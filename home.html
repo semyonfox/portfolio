@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/0df566eb07.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <h1>Semyon's Portfolio</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Projects</a></li>
+				<li><a href="#">Blog</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+		<section id="about">
+			<h2>Who am I?</h2>
+			<div class="grid">
+					<div class="about-text">
+						<p>Hi there! I'm Semyon, a passionate web developer and competitive swimmer hailing from Ireland. </br>
+							When I'm not coding up sleek, responsive websites, you can find me perfecting my freestyle technique, always chasing that sub-one-minute mark in the 100-meter race. 💦 </br>
+							A lover of all things science fiction, I often find myself dreaming about futuristic worlds, where my HTML, CSS, and JavaScript skills might just come in handy for building a spaceship interface—or at least a cool sci-fi-themed website. 🛸 </br>
+							In between swims and coding sessions, I like to challenge myself with a good game of chess, proving that strategy is just as important on the board as it is in life (and web development!).</br>
+							And when I need a break from the screen, you'll find me in the workshop, turning pieces of wood into something functional and beautiful—because who says a coder can't also be a craftsman? 🛠️</br>
+							As I dive into my college journey, I’m excited to expand my knowledge, debug all the bugs, and build some web apps that are worth showing off. </br>
+							Whether it's in the pool, on the web, or in the workshop, I believe in pushing limits and thinking creatively.</br>
+							Let's build something awesome together!
+						</p>
+					</div>				
+					<div class="about-pic">
+					<img src="assets/profilepic.png">
+					</div>
+			</div>
+		</section>
+		<section id="contact">
+			<h2>Get in touch:</h2>
+			
+			<form
+				action="https://formspree.io/f/mvgpyblo"
+				method="POST"
+			>
+				<label id='name' for="name">Name: </br> 
+					<input type="text" id="name" name="name" required>
+				</label>
+				<label>Email: </br>
+					<input type="email" name="email" required>
+				</label>
+				<label>Message: </br>
+					<textarea name="message" required></textarea>
+				</label>
+				<button type="submit">Send</button>
+			</form>
+			<nav>
+				<ul>
+					<li><a href="https://www.youtube.com/@FoxScope" target="_blank" title="YouTube"> <i class="fa-brands fa-youtube">  </i></a>  </li>
+					<li><a href="https://www.instagram.com/semyon.fox" target="_blank" title="Instagram"> <i class="fa-brands fa-instagram"></i></a>  </li>
+					<li><a href="https://x.com/FoxSemyon66841" target="_blank" title="X"><i class="fa-brands fa-x-twitter"></i> </a> </li>
+					<li><a href="https://www.linkedin.com/in/semyon-fox-968685249/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>  </li>
+					<li><a href="https://wa.me/0872830648" target="_blank" title="WhatsApp"> <i class="fa-brands fa-whatsapp"></i> </a> </li>
+				</ul>
+			</nav>
+		</section>
+    </main>
+    <footer>
+        <p>&copy; 2024 My Portfolio</p>
+    </footer>
+	<script src="index.js"></script>
+</body>
+</html>
