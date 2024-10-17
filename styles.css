@@ -12,7 +12,7 @@ body {
 
 header {
     background-color: #333;
-    background-image: url('Assets/bg01/bg02.jpg');
+    background-image: url('assets/bg01/bg02.jpg');
     background-blend-mode: multiply;
     background-repeat: repeat;
     background-size: auto;
@@ -95,7 +95,7 @@ main {
 }
 
 #about {
-background-image: url('Assets/bg01/sl_031520_28970_32.jpg');
+background-image: url('assets/bg01/sl_031520_28970_32.jpg');
 background-size: cover;
 }
 
@@ -205,7 +205,7 @@ form button:hover {
 
 footer {
     background-color: #333;
-    background-image: url('Assets/bg01/bg02.jpg');
+    background-image: url('assets/bg01/bg02.jpg');
     background-blend-mode: multiply;
     background-repeat: repeat;
     background-size: auto;
