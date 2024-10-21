@@ -108,6 +108,15 @@ background-size: cover;
     margin-left: 1em;
 }
 
+.content {
+	text-align: left;
+    padding: 1em;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 2em;
+    margin-right: 1em;
+    margin-left: 1em;
+}
+
 
 .about-pic img {
 	width: 90%;
