@@ -99,6 +99,7 @@ background-position: center;
 .about-text {
     text-align: left;
     padding: 1em;
+    font-size: large;
 }
 
 .content {
