@@ -97,9 +97,8 @@ background-position: center;
 }
 
 .about-text {
-	text-align: left;
+    text-align: left;
     padding: 1em;
-
 }
 
 .content {
@@ -215,92 +214,4 @@ footer {
     padding: 1em;
     margin-top: 0px;
     border-top: solid grey;
-}
-
-
-/* --- Media Queries(i dont know what is happening here due to chatgpts work) --- */
-
-/* For tablets and smaller devices (max-width: 768px) */
-@media (max-width: 768px) {
-    header h1 {
-        font-size: calc(1.5em + 5vw); /* Increase header size for smaller screens */
-    }
-
-    .grid {
-        grid-template-columns: 1fr; /* Single column layout */
-    }
-
-    nav ul {
-        text-align: center;
-    }
-
-    nav ul li {
-        display: block;
-        margin-right: 0;
-        margin-bottom: 1em;
-    }
-
-    .about-pic img {
-        width: 100%;
-        height: auto; /* Ensure images scale properly */
-    }
-
-    .content {
-        padding: 1em;
-    }
-
-    form input,
-    form textarea {
-        width: 90%;
-    }
-
-    form button {
-        width: 80%;
-    }
-}
-
-/* For mobile devices (max-width: 480px) */
-@media (max-width: 480px) {
-    body {
-        font-size: 14px; /* Smaller font size for mobile */
-    }
-
-    header h1 {
-        font-size: 1.5em; /* Smaller header for small screens */
-    }
-
-    .content {
-        padding: 0.5em;
-    }
-
-    .btn {
-        padding: 0.5em 1.5em;
-        font-size: 0.9em;
-    }
-
-    form button {
-        width: 90%;
-    }
-    .about-pic img {
-        width: 100%; /* Ensures the image fits with the about-text width */
-        height: auto; /* Maintains aspect ratio */
-    }
-
-    .about-text {
-        width: 100%; /* Ensures the text aligns with the image */
-    }
-
-    #contact ul {
-        display: flex; /* Use flexbox to align items horizontally */
-        justify-content: center; /* Center the links */
-        flex-wrap: nowrap; /* Prevent wrapping */
-    }
-
-    #contact li {
-        margin-right: 15px; /* Reduce space between links */
-    }
-
-    #contact a {
-        font-size: 18px; /* Adjust font size for better readability */
-    }
 }
