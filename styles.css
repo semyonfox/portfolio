@@ -15,7 +15,7 @@ header {
     background-image: url('assets/bg01/bg02.jpg');
     background-blend-mode: multiply;
     background-repeat: repeat;
-    background-size: auto;
+    background-size: cover;
     color: white;
     padding: 1em;
     text-align: center;
@@ -30,7 +30,7 @@ section {
 	padding-bottom:2%;
 }
 input {
-    width:100;
+    width:100%;
 }
 .h2 {
     text-align: center;
@@ -40,10 +40,11 @@ nav ul {
     list-style: none;
     padding: 0;
     width: 100%;
+    text-align: center;
 }
 
 nav ul li {
-    display: inline;
+    display: inline-block;
     margin-right: 1em;
 
 }
@@ -62,7 +63,7 @@ main {
 
 #about h2 {
     margin-bottom: 1em;
-    font-size: 30px;
+    font-size: 2em;
     font-style: bold;
 }
 
@@ -81,22 +82,24 @@ main {
 }
 
 .grid {
+    background-color: rgba(255, 255, 255, 0.7);
     display: grid;
     grid-template-columns: 3fr 1fr;
     gap: .1em;
+    margin-right: 0em;
+    margin-left: 1em;
 }
 
 #about {
 background-image: url('assets/bg01/sl_031520_28970_32.jpg');
 background-size: cover;
+background-position: center;
 }
 
 .about-text {
 	text-align: left;
     padding: 1em;
-    background-color: rgba(255, 255, 255, 0.7);
-    margin-right: 0em;
-    margin-left: 1em;
+
 }
 
 .content {
@@ -109,9 +112,8 @@ background-size: cover;
 
 
 .about-pic img {
-	width: 90%;
+	width: 100%;
 	height: auto;
-	border-radius: 2em;
     padding-right: 0em;
     margin-left: 0;
     padding-left: 0;
@@ -213,4 +215,92 @@ footer {
     padding: 1em;
     margin-top: 0px;
     border-top: solid grey;
+}
+
+
+/* --- Media Queries(i dont know what is happening here due to chatgpts work) --- */
+
+/* For tablets and smaller devices (max-width: 768px) */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: calc(1.5em + 5vw); /* Increase header size for smaller screens */
+    }
+
+    .grid {
+        grid-template-columns: 1fr; /* Single column layout */
+    }
+
+    nav ul {
+        text-align: center;
+    }
+
+    nav ul li {
+        display: block;
+        margin-right: 0;
+        margin-bottom: 1em;
+    }
+
+    .about-pic img {
+        width: 100%;
+        height: auto; /* Ensure images scale properly */
+    }
+
+    .content {
+        padding: 1em;
+    }
+
+    form input,
+    form textarea {
+        width: 90%;
+    }
+
+    form button {
+        width: 80%;
+    }
+}
+
+/* For mobile devices (max-width: 480px) */
+@media (max-width: 480px) {
+    body {
+        font-size: 14px; /* Smaller font size for mobile */
+    }
+
+    header h1 {
+        font-size: 1.5em; /* Smaller header for small screens */
+    }
+
+    .content {
+        padding: 0.5em;
+    }
+
+    .btn {
+        padding: 0.5em 1.5em;
+        font-size: 0.9em;
+    }
+
+    form button {
+        width: 90%;
+    }
+    .about-pic img {
+        width: 100%; /* Ensures the image fits with the about-text width */
+        height: auto; /* Maintains aspect ratio */
+    }
+
+    .about-text {
+        width: 100%; /* Ensures the text aligns with the image */
+    }
+
+    #contact ul {
+        display: flex; /* Use flexbox to align items horizontally */
+        justify-content: center; /* Center the links */
+        flex-wrap: nowrap; /* Prevent wrapping */
+    }
+
+    #contact li {
+        margin-right: 15px; /* Reduce space between links */
+    }
+
+    #contact a {
+        font-size: 18px; /* Adjust font size for better readability */
+    }
 }
