@@ -1,84 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-	<script src="https://kit.fontawesome.com/0df566eb07.js" crossorigin="anonymous"></script>
-</head>
-<body>
-    <header>
-        <h1>Semyon's Portfolio</h1>
-        <nav>
-            <ul>
-                <li><a href="home.html">Home</a></li>
-                <li><a href="#">Projects</a></li>
-				<li><a href="#">Blog</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-		<section id="about">
-			<h2>Blog</h2>
-					<div class="content">
-						<h3>
-								Why am I studying Computer Science
-						</h3>
-						<P>
-							5 weeks ago, I started a new chapter of my life. I started studying Computer Science and IT in NUIG. My journey to getting to this major section of my life is a long one, going back to my childhood. Let me fill you in...<br><br>
-							I remember being harassed in secondary school by my career guidance teacher, constantly demanding I tell her what I want to do after the Leaving Cert. but I had no idea. All I knew is that I wanted to go to university (there was no way I was going to miss out on the student life!).<br><br>
-							I tried picking a course on my Interests but I had so many such as swimming, video editing, woodworking, chess .... I could continue listing things for the rest of the day.<br><br>
-							But then it hit me.<br><br>
-							While training in the pool, I would often let my mind wander leaving my body pummeling the water on autopilot. I would ponder my future. I made mental lists of what I wanted to achieve in my time in the world. I want a good job that I enjoy. But what do I enjoy the most?<br><br>
-							I remember the day my mom came home from work, bearing a black box. She set it down on the couch and my curiosity got the better of me. I dropped the Lego pieces in my hands and made my way over to it. I recognised the power button, it was the same symbol that was on the TV remote, so I pressed it down firmly. The screen lit up, like my eyes, in amazement.<br><br>
-							A tiny TV?<br><br>
-							No.<br><br>
-							I learned it can do a lot more than just show videos in the next few years, by clicking on buttons, opening apps and venturing into the 8th Wonder of the World, the World Wide Web.<br><br>
-							My parents noticed my interest in computers and suggested I go to CoderDoJo. It started with Scratch, a cat floating across the screen, but quickly became a Snake game, Donkey Kong and even Space Invaders. I even did Whizzkidz, one summer and learnt the basics of HTML, CSS, JavaScript and Python.<br><br>
-							But one day it all just stopped.<br><br>
-							I never lost my fascination in technology. Between Linus Tech Tips videos and all the the time I invested into researching and learning about computers before building my own PC, I always made time for tech in my life, and I loved every minute of it. That is why I wanted to study Computer Science.<br><br>
-							However, I was worried that I would be lost in lectures, having forgotten everything in Python and JavaScript. It was also at the end of November, with the Leaving Cert just around the corner. The points for this course was high and my results were very far off what I would need to achieve to get accepted.<br><br>
-							I doubted this decision a lot. Did I just pick it so I wouldn't be replying with 'I dunno' when asked about university? What if there is another course I would prefer? The promises of money and a good job that I would love forced me to work hard until the end.<br><br>
-							And it paid off.<br><br>
-							I got the course.<br><br>
-							This was the most important decision I had to make in my life, and so far it has been the best decision I made. I met new people with the same interests, and the topics I am studying are so enjoyable that I find studying fun, something I would have never said before.
-						</P>
-					</div>				
-		</section>
-		<section id="contact">
-			<h2>Get in touch:</h2>
-			
-			<form
-				action="https://formspree.io/f/mvgpyblo"
-				method="POST"
-			>
-				<label id='name' for="name">Name: </br> 
-					<input type="text" id="name" name="name" required>
-				</label>
-				<label>Email: </br>
-					<input type="email" name="email" required>
-				</label>
-				<label>Message: </br>
-					<textarea name="message" required></textarea>
-				</label>
-				<button type="submit">Send</button>
-			</form>
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<meta
+			name="description"
+			content="Semyon's Portfolio Blog – insights and experiences in Computer Science" />
+		<title>My Portfolio</title>
+		<link
+			rel="stylesheet"
+			href="styles.css" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+			rel="stylesheet" />
+		<script
+			src="https://kit.fontawesome.com/0df566eb07.js"
+			crossorigin="anonymous"></script>
+	</head>
+	<body>
+		<header>
+			<h1>Semyon's Portfolio</h1>
 			<nav>
 				<ul>
-					<li><a href="https://www.youtube.com/@FoxScope" target="_blank" title="YouTube"> <i class="fa-brands fa-youtube">  </i></a>  </li>
-					<li><a href="https://www.instagram.com/semyon.fox" target="_blank" title="Instagram"> <i class="fa-brands fa-instagram"></i></a>  </li>
-					<li><a href="https://x.com/FoxSemyon66841" target="_blank" title="X"><i class="fa-brands fa-x-twitter"></i> </a> </li>
-					<li><a href="https://www.linkedin.com/in/semyon-fox-968685249/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>  </li>
-					<li><a href="https://wa.me/0872830648" target="_blank" title="WhatsApp"> <i class="fa-brands fa-whatsapp"></i> </a> </li>
+					<li><a href="home.html">Home</a></li>
+					<li><a href="#">Projects</a></li>
+					<li><a href="#">Blog</a></li>
 				</ul>
 			</nav>
-		</section>
-    </main>
-    <footer>
-        <p>&copy; 2024 My Portfolio</p>
-    </footer>
-	<script src="index.js"></script>
-</body>
+		</header>
+		<main>
+			<section id="about">
+				<h2>Blog</h2>
+				<article class="post">
+					<h3>Why am I studying Computer Science</h3>
+					<p>
+						5 weeks ago, I started a new chapter of my life. I began studying
+						Computer Science and IT at NUIG. My journey to this major section of
+						my life began in childhood. Let me fill you in.
+					</p>
+					<p>
+						I remember being harassed in secondary school by my career guidance
+						teacher, constantly demanding I tell her what I wanted to do after
+						the Leaving Cert. I had no idea; all I knew was that I wanted to go
+						to university (there was no way I was going to miss out on the
+						student life!).
+					</p>
+					<p>
+						I tried picking a course based on my interests—I had so many, such
+						as swimming, video editing, woodworking, chess... I could continue
+						listing them all day.
+					</p>
+					<p>But then it hit me.</p>
+					<p>
+						While training in the pool, I would often let my mind wander while
+						my body moved on autopilot. I made mental lists of what I wanted to
+						achieve in life. I wanted a good job that I enjoyed, but I also
+						wanted to know what I truly loved doing.
+					</p>
+					<p>
+						I remember the day my mom came home from work carrying a black box.
+						She set it on the couch, and my curiosity got the better of me. I
+						dropped my Lego pieces and moved over. I recognized the power
+						button—it was the same as the one on our TV remote—so I pressed it.
+						The screen lit up, just like my eyes in amazement.
+					</p>
+					<p>A tiny TV?</p>
+					<p>No.</p>
+					<p>
+						I later learned that it could do so much more than just display
+						videos—in the coming years it would allow for button clicks, app
+						launches, and a venture into the 8th Wonder of the World: the World
+						Wide Web.
+					</p>
+					<p>
+						My parents noticed my interest in computers and suggested I try
+						CoderDoJo. It started with Scratch—a cat floating across the
+						screen—but quickly became a Snake game, Donkey Kong, and even Space
+						Invaders. I even attended Whizzkidz one summer and learned the
+						basics of HTML, CSS, JavaScript, and Python.
+					</p>
+					<p>But one day, it all just stopped.</p>
+					<p>
+						Despite that, I never lost my fascination with technology. Between
+						watching Linus Tech Tips and investing time into researching
+						computers before building my own PC, I always made time for tech,
+						cherishing every minute. That is why I chose to study Computer
+						Science.
+					</p>
+					<p>
+						I was, however, worried about getting lost during lectures after
+						forgetting so much from Python and JavaScript. With the Leaving Cert
+						around the corner and high points required for acceptance, I had
+						doubts about my decision.
+					</p>
+					<p>
+						I wondered if I had chosen this path just to avoid saying "I dunno"
+						when asked about university options. Yet, the promise of a
+						fulfilling job propelled me forward.
+					</p>
+					<p>And it paid off.</p>
+					<p>I got the course!</p>
+					<p>
+						This was the most important decision of my life and, so far, the
+						best one. I've met passionate people with similar interests and am
+						enjoying my studies more than I ever expected.
+					</p>
+				</article>
+			</section>
+			<section id="contact">
+				<h2>Get in touch:</h2>
+
+				<form
+					action="https://formspree.io/f/mvgpyblo"
+					method="POST">
+					<label for="name">
+						Name:<br />
+						<input
+							type="text"
+							id="name"
+							name="name"
+							required />
+					</label>
+					<label for="email">
+						Email:<br />
+						<input
+							type="email"
+							name="email"
+							required />
+					</label>
+					<label for="message">
+						Message:<br />
+						<textarea
+							name="message"
+							required></textarea>
+					</label>
+					<button type="submit">Send</button>
+				</form>
+				<nav>
+					<ul>
+						<li>
+							<a
+								href="https://www.youtube.com/@FoxScope"
+								target="_blank"
+								title="YouTube"
+								><i class="fa-brands fa-youtube"></i
+							></a>
+						</li>
+						<li>
+							<a
+								href="https://www.instagram.com/semyon.fox"
+								target="_blank"
+								title="Instagram"
+								><i class="fa-brands fa-instagram"></i
+							></a>
+						</li>
+						<li>
+							<a
+								href="https://x.com/FoxSemyon66841"
+								target="_blank"
+								title="X"
+								><i class="fa-brands fa-x-twitter"></i
+							></a>
+						</li>
+						<li>
+							<a
+								href="https://www.linkedin.com/in/semyon-fox-968685249/"
+								target="_blank"
+								title="LinkedIn"
+								><i class="fa-brands fa-linkedin-in"></i
+							></a>
+						</li>
+						<li>
+							<a
+								href="https://wa.me/0872830648"
+								target="_blank"
+								title="WhatsApp"
+								><i class="fa-brands fa-whatsapp"></i
+							></a>
+						</li>
+					</ul>
+				</nav>
+			</section>
+		</main>
+		<footer>
+			<p>&copy; 2024 My Portfolio</p>
+		</footer>
+		<script src="index.js"></script>
+	</body>
 </html>
