@@ -1,80 +1,248 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-	<script src="https://kit.fontawesome.com/0df566eb07.js" crossorigin="anonymous"></script>
-</head>
-<body>
-    <header>
-        <h1>Semyon's Portfolio</h1>
-        <nav>
-            <ul>
-                <li><a href="home.html">Home</a></li>
-                <li><a href="#" class="active">Projects</a></li>
-                <li><a href="blog.html">Blog</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-		<section id="about">
-      <h1 id="projects">Projects</h1>
-<p>Welcome to my projects page! Here, I keep track of what I’m currently working on, including home server setups and my swimming web app.</p>
-<hr>
-<h2 id="home-server-projects">Home Server Projects</h2>
-<p>I’m setting up and experimenting with a home server to improve my network, storage, and automation. Here are some of the things I’m working on:</p>
-<ul>
-<li><strong>Server Hardware &amp; Setup</strong>
-<ul>
-<li>Current hardware: <em>(List your hardware specs here)</em></li>
-<li>Running Linux/Docker for better containerized services</li>
-</ul>
-</li>
-<li><strong>Services &amp; Applications</strong>
-<ul>
-<li><strong>Media Server</strong> – Hosting movies, music, and TV shows</li>
-<li><strong>Self-hosted Cloud</strong> – Private file storage solution</li>
-<li><strong>Home Automation</strong> – Smart home integration</li>
-<li><strong>Network Improvements</strong> – Upgrading from powerline adapters</li>
-<li><strong>Hardwara Upgrades</strong> - Improving hardware to a small business solution</li>
-</ul>
-</li>
-<li><strong>Future Plans</strong>
-<ul>
-<li><em>(Add ideas like better security, more services, or hardware upgrades)</em></li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="swimming-web-app">Swimming Web App</h2>
-<p>I’m on a team, developing a web app for tracking swimming performance, workouts, and statistics.</p>
-<ul>
-<li><strong>Features</strong>
-<ul>
-<li>Account system</li>
-<li>Data tracking (times, distances, progress)</li>
-<li>Graphs and analytics</li>
-<li>Workout plans and recommendations</li>
-</ul>
-</li>
-<li><strong>Tech Stack</strong>
-<ul>
-<li>Backend: SQL + JS</li>
-<li>Frontend: <em>React</em></li>
-</ul>
-</li>
-</ul>
-<hr>
-<p>This section will be updated as I make progress! If you’re interested in anything here, feel free to reach out or leave a comment on my blog.</p>
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<meta
+			name="description"
+			content="Semyon Fox's Portfolio Projects – Showcasing my work in computer science and web development" />
+		<meta
+			name="author"
+			content="Semyon Fox" />
+		<meta
+			name="keywords"
+			content="web developer, computer science, portfolio, projects, student, Ireland" />
+		<link
+			rel="icon"
+			href="assets/favicon.ico"
+			type="image/x-icon" />
+		<title>Semyon Fox | Projects</title>
+		<link
+			rel="stylesheet"
+			href="styles.css" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+			rel="stylesheet" />
+		<script
+			src="https://kit.fontawesome.com/0df566eb07.js"
+			crossorigin="anonymous"></script>
+	</head>
+	<body>
+		<header>
+			<h1>Semyon Fox</h1>
+			<nav>
+				<ul>
+					<li><a href="home.html">Home</a></li>
+					<li>
+						<a
+							href="#"
+							class="active"
+							>Projects</a
+						>
+					</li>
+					<li><a href="blog.html">Blog</a></li>
+				</ul>
+			</nav>
+		</header>
+		<main>
+			<section id="about">
+				<h2>My Projects</h2>
+				<p class="section-intro">
+					Welcome to my projects page! Here, I showcase what I'm currently
+					working on, including home server setups and my swimming web app.
+				</p>
 
-		</section>
-    </main>
-    <footer>
-        <p>&copy; 2024 My Portfolio</p>
-    </footer>
-	<script src="index.js"></script>
-</body>
+				<div id="projects-container">
+					<!-- Home Server Project Card -->
+					<div class="project-card">
+						<div class="project-header">Home Server Projects</div>
+						<div class="project-content">
+							<p>
+								I'm setting up and experimenting with a home server to improve
+								my network, storage, and automation.
+							</p>
+							<h3>Server Hardware &amp; Setup</h3>
+							<ul>
+								<li>Current hardware: <em>(Detailed specs)</em></li>
+								<li>Running Linux/Docker for containerized services</li>
+							</ul>
+
+							<h3>Services &amp; Applications</h3>
+							<ul>
+								<li>
+									<strong>Media Server</strong> – Hosting movies, music, and TV
+									shows
+								</li>
+								<li>
+									<strong>Self-hosted Cloud</strong> – Private file storage
+									solution
+								</li>
+								<li>
+									<strong>Home Automation</strong> – Smart home integration
+								</li>
+								<li>
+									<strong>Network Improvements</strong> – Upgrading from
+									powerline adapters
+								</li>
+								<li>
+									<strong>Hardware Upgrades</strong> - Improving to a small
+									business solution
+								</li>
+							</ul>
+
+							<h3>Future Plans</h3>
+							<ul>
+								<li>Enhanced security measures</li>
+								<li>Automated backups</li>
+								<li>Network monitoring</li>
+							</ul>
+						</div>
+					</div>
+
+					<!-- Swimming Web App Project Card -->
+					<div class="project-card">
+						<div class="project-header">Swimming Web App</div>
+						<div class="project-content">
+							<p>
+								I'm on a team developing a web app for tracking swimming
+								performance, workouts, and statistics.
+							</p>
+
+							<h3>Features</h3>
+							<ul>
+								<li>Account system</li>
+								<li>Data tracking (times, distances, progress)</li>
+								<li>Graphs and analytics</li>
+								<li>Workout plans and recommendations</li>
+							</ul>
+
+							<h3>Tech Stack</h3>
+							<ul>
+								<li>Backend: SQL + JS</li>
+								<li>Frontend: React</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<p
+					class="section-intro"
+					style="margin-top: 2rem">
+					This section will be updated as I make progress! If you're interested
+					in anything here, feel free to reach out or leave a comment on my
+					blog.
+				</p>
+			</section>
+
+			<section id="contact">
+				<h2>Get in Touch</h2>
+				<p class="section-intro">
+					Have a question or want to collaborate? Send me a message!
+				</p>
+				<form
+					action="https://formspree.io/f/mvgpyblo"
+					method="POST">
+					<div class="form-group">
+						<label for="name">Name</label>
+						<input
+							type="text"
+							id="name"
+							name="name"
+							required
+							placeholder="Your name" />
+					</div>
+					<div class="form-group">
+						<label for="email">Email</label>
+						<input
+							type="email"
+							id="email"
+							name="email"
+							required
+							placeholder="Your email address" />
+					</div>
+					<div class="form-group">
+						<label for="message">Message</label>
+						<textarea
+							id="message"
+							name="message"
+							required
+							placeholder="Type your message here..."></textarea>
+					</div>
+					<button type="submit">
+						<i class="fas fa-paper-plane"></i> Send Message
+					</button>
+				</form>
+				<nav class="social-links">
+					<p>Connect with me:</p>
+					<ul>
+						<li>
+							<a
+								href="https://www.youtube.com/@FoxScope"
+								target="_blank"
+								title="YouTube">
+								<i class="fa-brands fa-youtube"></i>
+							</a>
+						</li>
+						<li>
+							<a
+								href="https://www.instagram.com/semyon.fox"
+								target="_blank"
+								title="Instagram">
+								<i class="fa-brands fa-instagram"></i>
+							</a>
+						</li>
+						<li>
+							<a
+								href="https://x.com/FoxSemyon66841"
+								target="_blank"
+								title="X">
+								<i class="fa-brands fa-x-twitter"></i>
+							</a>
+						</li>
+						<li>
+							<a
+								href="https://www.linkedin.com/in/semyon-fox-968685249/"
+								target="_blank"
+								title="LinkedIn">
+								<i class="fa-brands fa-linkedin-in"></i>
+							</a>
+						</li>
+						<li>
+							<a
+								href="https://wa.me/0872830648"
+								target="_blank"
+								title="WhatsApp">
+								<i class="fa-brands fa-whatsapp"></i>
+							</a>
+						</li>
+					</ul>
+				</nav>
+			</section>
+		</main>
+		<footer>
+			<p>&copy; 2025 Semyon Fox | All Rights Reserved</p>
+		</footer>
+		<script src="index.js"></script>
+		<script>
+			// Back-to-top button logic
+			document.addEventListener('DOMContentLoaded', function () {
+				const btn = document.createElement('button');
+				btn.id = 'back-to-top';
+				btn.title = 'Back to top';
+				btn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+				document.body.appendChild(btn);
+				btn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+
+				window.addEventListener('scroll', function () {
+					if (window.scrollY > 200) {
+						document.body.classList.add('scrolled');
+					} else {
+						document.body.classList.remove('scrolled');
+					}
+				});
+			});
+		</script>
+	</body>
 </html>

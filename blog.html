@@ -1,64 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Semyon's Portfolio Blog – insights and experiences in Computer Science" />
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="styles.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
-    <script src="https://kit.fontawesome.com/0df566eb07.js" crossorigin="anonymous"></script>
-</head>
-<body>
-    <header>
-        <h1>Semyon's Portfolio</h1>
-        <nav>
-            <ul>
-                <li><a href="home.html">Home</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="#" class="active">Blog</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <section id="about">
-            <h2>Blog</h2>
-            <div id="blog-posts"></div>
-            <button id="add-post-btn" class="btn">Add Blog Post</button>
-            <form id="add-post-form" style="display:none;" class="blog-form">
-                <input type="text" id="post-title" placeholder="Title" required />
-                <textarea id="post-content" placeholder="Content" required></textarea>
-                <button type="submit" class="btn">Add</button>
-            </form>
-        </section>
-        <section id="contact">
-            <h2>Get in touch:</h2>
-            <form action="https://formspree.io/f/mvgpyblo" method="POST">
-                <label for="name">Name:<br />
-                    <input type="text" id="name" name="name" required />
-                </label>
-                <label for="email">Email:<br />
-                    <input type="email" name="email" required />
-                </label>
-                <label for="message">Message:<br />
-                    <textarea name="message" required></textarea>
-                </label>
-                <button type="submit">Send</button>
-            </form>
-            <nav>
-                <ul>
-                    <li><a href="https://www.youtube.com/@FoxScope" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a></li>
-                    <li><a href="https://www.instagram.com/semyon.fox" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
-                    <li><a href="https://x.com/FoxSemyon66841" target="_blank" title="X"><i class="fa-brands fa-x-twitter"></i></a></li>
-                    <li><a href="https://www.linkedin.com/in/semyon-fox-968685249/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a></li>
-                    <li><a href="https://wa.me/0872830648" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a></li>
-                </ul>
-            </nav>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2024 My Portfolio</p>
-    </footer>
-    <script src="index.js"></script>
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<meta
+			name="description"
+			content="Semyon Fox's Portfolio Blog – Insights and experiences in Computer Science and web development" />
+		<meta
+			name="author"
+			content="Semyon Fox" />
+		<meta
+			name="keywords"
+			content="web developer, computer science, portfolio, blog, student, Ireland" />
+		<link
+			rel="icon"
+			href="assets/favicon.ico"
+			type="image/x-icon" />
+		<title>Semyon Fox | Blog</title>
+		<link
+			rel="stylesheet"
+			href="styles.css" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+			rel="stylesheet" />
+		<script
+			src="https://kit.fontawesome.com/0df566eb07.js"
+			crossorigin="anonymous"></script>
+	</head>
+	<body>
+		<header>
+			<h1>Semyon Fox</h1>
+			<nav>
+				<ul>
+					<li><a href="home.html">Home</a></li>
+					<li><a href="projects.html">Projects</a></li>
+					<li>
+						<a
+							href="#"
+							class="active"
+							>Blog</a
+						>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<main>
+			<section id="about">
+				<h2>My Blog</h2>
+				<p class="section-intro">
+					Thoughts, experiences, and insights from my journey in computer
+					science and web development.
+				</p>
+				<div id="blog-posts"></div>
+				<button
+					id="add-post-btn"
+					class="btn">
+					<i class="fas fa-plus"></i> Add Blog Post
+				</button>
+				<form
+					id="add-post-form"
+					style="display: none"
+					class="blog-form">
+					<input
+						type="text"
+						id="post-title"
+						placeholder="Post Title"
+						required />
+					<textarea
+						id="post-content"
+						placeholder="Write your post content here..."
+						required></textarea>
+					<button
+						type="submit"
+						class="btn">
+						<i class="fas fa-paper-plane"></i> Publish Post
+					</button>
+				</form>
+			</section>
+			<section id="contact">
+				<h2>Get in Touch</h2>
+				<p class="section-intro">
+					Have a question or want to collaborate? Send me a message!
+				</p>
+				<form
+					action="https://formspree.io/f/mvgpyblo"
+					method="POST">
+					<div class="form-group">
+						<label for="name">Name</label>
+						<input
+							type="text"
+							id="name"
+							name="name"
+							required
+							placeholder="Your name" />
+					</div>
+					<div class="form-group">
+						<label for="email">Email</label>
+						<input
+							type="email"
+							id="email"
+							name="email"
+							required
+							placeholder="Your email address" />
+					</div>
+					<div class="form-group">
+						<label for="message">Message</label>
+						<textarea
+							id="message"
+							name="message"
+							required
+							placeholder="Type your message here..."></textarea>
+					</div>
+					<button type="submit">
+						<i class="fas fa-paper-plane"></i> Send Message
+					</button>
+				</form>
+				<nav class="social-links">
+					<p>Connect with me:</p>
+					<ul>
+						<li>
+							<a
+								href="https://www.youtube.com/@FoxScope"
+								target="_blank"
+								title="YouTube">
+								<i class="fa-brands fa-youtube"></i>
+							</a>
+						</li>
+						<li>
+							<a
+								href="https://www.instagram.com/semyon.fox"
+								target="_blank"
+								title="Instagram">
+								<i class="fa-brands fa-instagram"></i>
+							</a>
+						</li>
+						<li>
+							<a
+								href="https://x.com/FoxSemyon66841"
+								target="_blank"
+								title="X">
+								<i class="fa-brands fa-x-twitter"></i>
+							</a>
+						</li>
+						<li>
+							<a
+								href="https://www.linkedin.com/in/semyon-fox-968685249/"
+								target="_blank"
+								title="LinkedIn">
+								<i class="fa-brands fa-linkedin-in"></i>
+							</a>
+						</li>
+						<li>
+							<a
+								href="https://wa.me/0872830648"
+								target="_blank"
+								title="WhatsApp">
+								<i class="fa-brands fa-whatsapp"></i>
+							</a>
+						</li>
+					</ul>
+				</nav>
+			</section>
+		</main>
+		<footer>
+			<p>&copy; 2025 Semyon Fox | All Rights Reserved</p>
+		</footer>
+		<script src="index.js"></script>
+		<script>
+			// Back-to-top button logic
+			document.addEventListener('DOMContentLoaded', function () {
+				const btn = document.createElement('button');
+				btn.id = 'back-to-top';
+				btn.title = 'Back to top';
+				btn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+				document.body.appendChild(btn);
+				btn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+
+				window.addEventListener('scroll', function () {
+					if (window.scrollY > 200) {
+						document.body.classList.add('scrolled');
+					} else {
+						document.body.classList.remove('scrolled');
+					}
+				});
+			});
+		</script>
+	</body>
 </html>
