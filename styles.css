@@ -216,3 +216,77 @@ footer {
     margin-top: 0px;
     border-top: solid grey;
 }
+
+/* Blog/Portfolio UI improvements */
+.card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    margin: 1.5em auto;
+    padding: 1.5em;
+    max-width: 700px;
+    transition: box-shadow 0.2s;
+}
+.card:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+
+.collapsible {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    padding: 1em;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 1.2em;
+    border-radius: 8px 8px 0 0;
+    margin-bottom: 0;
+    transition: background 0.2s;
+}
+.collapsible.active, .collapsible:hover {
+    background-color: #0056b3;
+}
+.content-collapsible {
+    padding: 1em;
+    display: none;
+    border: 1px solid #eee;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    background: #f9f9f9;
+}
+
+.blog-form {
+    background: #f4f4f4;
+    border-radius: 8px;
+    padding: 1em;
+    margin: 1em auto;
+    max-width: 700px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+.blog-form input, .blog-form textarea {
+    font-size: 1em;
+    padding: 0.7em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+}
+
+/* Navigation active state */
+nav ul li a.active {
+    font-weight: bold;
+    border-bottom: 2px solid #007bff;
+}
+
+/* Responsive images */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+    margin: 0 auto;
+}
