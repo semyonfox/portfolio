@@ -12,7 +12,7 @@
 	--primary-color: #1a237e; /* Deeper Blue */
 	--secondary-color: #283593; /* Rich Blue */
 	--accent-color: #3f51b5; /* Indigo */
-	--accent-secondary: #ff9800; /* Professional Orange */
+	--accent-secondary: #42a5f5; /* Light Blue */
 	--text-color: #212121; /* Nearly Black */
 	--text-medium: #616161; /* Medium Gray */
 	--text-light: #9e9e9e; /* Light Gray */
@@ -115,34 +115,15 @@ nav ul li a {
 	font-weight: 500;
 	padding: 0.75em 1.5em;
 	border-radius: var(--radius-lg);
-	transition: var(--transition);
+	transition: var(--transition-fast);
 	font-size: var(--font-size-medium);
 	opacity: 0.9;
-	position: relative;
-	overflow: hidden;
-}
-
-nav ul li a::before {
-	content: '';
-	position: absolute;
-	top: 0;
-	left: -100%;
-	width: 100%;
-	height: 100%;
-	background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-	transition: var(--transition);
-}
-
-nav ul li a:hover::before {
-	left: 100%;
 }
 
 nav ul li a:hover,
 nav ul li a.active {
 	opacity: 1;
 	background-color: rgba(255, 255, 255, 0.15);
-	transform: translateY(-2px);
-	box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
 /* Main Layout */
@@ -397,7 +378,7 @@ h2::after {
 	justify-content: center;
 	width: 60px;
 	height: 60px;
-	border-radius: 50%;
+	border-radius: var(--radius-lg);
 	background: rgba(255, 255, 255, 0.1);
 	backdrop-filter: blur(10px);
 }
@@ -460,6 +441,18 @@ h2::after {
 	margin-right: var(--space-xs);
 }
 
+.post-preview {
+	padding: var(--space-lg) var(--space-xl);
+	background: var(--bg-white);
+	color: var(--text-color);
+	line-height: var(--line-height);
+}
+
+.post-preview p {
+	margin-bottom: var(--space-md);
+	text-align: justify;
+}
+
 .blog-actions {
 	padding: var(--space-lg) var(--space-xl);
 	display: flex;
@@ -468,7 +461,23 @@ h2::after {
 	border-bottom: 1px solid var(--bg-gray-200);
 }
 
-.read-aloud-btn,
+.read-aloud-btn {
+	background: var(--primary-color);
+	color: var(--light-text);
+	border: none;
+	padding: 0.5em;
+	border-radius: var(--radius-md);
+	cursor: pointer;
+	font-size: var(--font-size-small);
+	font-weight: 500;
+	transition: var(--transition);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 36px;
+	height: 36px;
+}
+
 .collapsible {
 	background: var(--primary-color);
 	color: var(--light-text);

@@ -6,6 +6,9 @@ const blogPosts = [
 		title: 'Why am I studying Computer Science',
 		author: 'Semyon Fox',
 		date: '2024-11-03',
+		preview: `<p>Recently, I began a new chapter: studying Computer Science and IT at NUIG. Looking back, my path here was shaped long before I first sat in a lecture hall.</p>
+
+<p>In secondary school, my career guidance teacher pestered me daily with the question, "What will you do after the Leaving Cert?" I had no answer—just the certainty that I wanted university life...</p>`,
 		content: `<p>Recently, I began a new chapter: studying Computer Science and IT at NUIG. Looking back, my path here was shaped long before I first sat in a lecture hall.</p>
 
 <p>In secondary school, my career guidance teacher pestered me daily with the question, “What will you do after the Leaving Cert?” I had no answer—just the certainty that I wanted university life. I floated among interests like swimming, video editing, woodworking, and chess, unable to commit.</p>
@@ -27,6 +30,9 @@ const blogPosts = [
 		title: 'Why I Switched to Linux Mint: A Student’s Experience',
 		author: 'Semyon Fox',
 		date: '2025-05-23',
+		preview: `<p>When Windows 10's support warning popped up on my laptop last year, I felt a mix of irritation and curiosity. I'd already wrestled with Ubuntu Server for my home projects and toyed with Kali Linux, but I'd never made a full switch.</p>
+
+<p>I backed up my files and wiped Windows clean. As the installer booted, I chose Linux Mint Cinnamon—attractive, stable, and with a desktop that felt oddly familiar...</p>`,
 		content: `<p>When Windows 10’s support warning popped up on my laptop last year, I felt a mix of irritation and curiosity. I’d already wrestled with Ubuntu Server for my home projects and toyed with Kali Linux, but I’d never made a full switch. That day, I decided to give my laptop a fresh start.</p>
 
 <p>I backed up my files and wiped Windows clean. As the installer booted, I chose Linux Mint Cinnamon—attractive, stable, and with a desktop that felt oddly familiar. It was like meeting an old friend in a new city.</p>
@@ -62,8 +68,9 @@ function renderBlogPosts() {
 				<h3 class="post-title">${post.title}</h3>
 				<div class="post-meta">${author} ${date}</div>
 			</header>
+			<div class="post-preview">${post.preview}</div>
 			<div class="blog-actions">
-				<button class="read-aloud-btn" data-idx="${idx}" aria-label="Read post aloud"><i class="fas fa-volume-up"></i> Read Aloud</button>
+				<button class="read-aloud-btn" data-idx="${idx}" aria-label="Read post aloud" title="Read post aloud"><i class="fas fa-volume-up"></i></button>
 				<button class="collapsible" aria-expanded="false" aria-controls="post-content-${idx}">Read More</button>
 			</div>
 			<div class="content-collapsible" id="post-content-${idx}" style="display:none;">${post.content}</div>
@@ -82,8 +89,9 @@ function addCollapsibleListeners() {
 			this.classList.toggle('active');
 			const content = this.closest('.blog-actions').nextElementSibling;
 			if (content && content.classList.contains('content-collapsible')) {
-				content.style.display =
-					content.style.display === 'block' ? 'none' : 'block';
+				const isVisible = content.style.display === 'block';
+				content.style.display = isVisible ? 'none' : 'block';
+				this.textContent = isVisible ? 'Read More' : 'Read Less';
 			}
 		};
 	});
@@ -103,7 +111,7 @@ function addReadAloudListeners() {
 			if (synth.speaking || synth.pending) {
 				synth.cancel();
 				if (currentBtn)
-					currentBtn.innerHTML = '<i class="fas fa-volume-up"></i> Read Aloud';
+					currentBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
 				if (currentBtn === btn) {
 					currentBtn = null;
 					return;
@@ -117,10 +125,10 @@ function addReadAloudListeners() {
 			const utter = new SpeechSynthesisUtterance(text);
 			currentUtterance = utter;
 			currentBtn = btn;
-			btn.innerHTML = '<i class="fas fa-stop"></i> Stop';
+			btn.innerHTML = '<i class="fas fa-stop"></i>';
 			btn.setAttribute('aria-pressed', 'true');
 			utter.onend = utter.onerror = function () {
-				btn.innerHTML = '<i class="fas fa-volume-up"></i> Read Aloud';
+				btn.innerHTML = '<i class="fas fa-volume-up"></i>';
 				btn.setAttribute('aria-pressed', 'false');
 				currentUtterance = null;
 				currentBtn = null;
