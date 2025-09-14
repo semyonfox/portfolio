@@ -48,100 +48,227 @@
 		</header>
 		<main>
 			<section id="about">
-				<h2>My Projects</h2>
+				<h2>👨‍💻 About My Technical Journey</h2>
 				<p class="section-intro">
-					Welcome to my projects page! Here, I showcase what I'm currently
-					working on, including home server setups and my swimming web app.
+					Second-year <strong>Computer Science & IT</strong> student at the <em>University of Galway</em> with a passion for building scalable web applications and managing complex systems. My journey into development began with creating a swimming monitoring system that sparked my interest in full-stack development, leading me to explore everything from React frontends to containerized infrastructure.
 				</p>
+				
+				<div class="about-highlights">
+					<p><strong>🔭 Currently Working On:</strong> Swimming Monitoring System with React and Node.js</p>
+					<p><strong>🌱 Learning:</strong> PostgreSQL, Advanced React Patterns, Cloud Deployment, Java</p>
+					<p><strong>🎯 Recent Achievement:</strong> Participated in Game Jam with "Artificial" - exploring humanity's creations</p>
+					<p><strong>📫 Contact:</strong> <a href="mailto:semyon.fox@gmail.com">semyon.fox@gmail.com</a> | <a href="https://www.linkedin.com/in/semyon-fox-968685249/">LinkedIn</a></p>
+				</div>
+
+				<h2>🚀 Featured Projects</h2>
 
 				<div id="projects-container">
-					<!-- Home Server Project Card -->
+					<!-- Server Infrastructure Journey -->
 					<div class="project-card">
 						<div class="project-header">
-							<i class="fas fa-server"></i> Home Server Projects
+							<i class="fas fa-server"></i> Home Server Infrastructure Journey
 						</div>
 						<div class="project-content">
 							<p>
-								I'm setting up and experimenting with a home server to improve
-								my network, storage, and automation.
+								What started as a broken Dell XPS 15 laptop became a year-long journey into systems administration, networking, and containerization. When the hinge crushed the 4K touchscreen, I transformed this "half-useless" machine into a powerful learning server.
 							</p>
-							<h3>Server Hardware &amp; Setup</h3>
+							
+							<h3>The Beginning: From Broken Laptop to Server</h3>
 							<ul>
-								<li>Current hardware: <em>(Detailed specs)</em></li>
-								<li>Running Linux/Docker for containerized services</li>
+								<li><strong>Hardware:</strong> Repurposed Dell XPS 15 with Ubuntu Server on 500GB SSD</li>
+								<li><strong>Initial Challenge:</strong> Terminal-only interface pushed me to learn command line</li>
+								<li><strong>Growth:</strong> From copy-pasting YAML into ChatGPT to managing complex infrastructure</li>
 							</ul>
-							<h3>Services &amp; Applications</h3>
+
+							<h3>Current Infrastructure (30+ Docker Containers)</h3>
 							<ul>
-								<li>
-									<strong>Media Server</strong> – Hosting movies, music, and TV
-									shows
-								</li>
-								<li>
-									<strong>Self-hosted Cloud</strong> – Private file storage
-									solution
-								</li>
-								<li>
-									<strong>Home Automation</strong> – Smart home integration
-								</li>
-								<li>
-									<strong>Network Improvements</strong> – Upgrading from
-									powerline adapters
-								</li>
-								<li>
-									<strong>Hardware Upgrades</strong> - Improving to a small
-									business solution
-								</li>
+								<li><strong>Media Services:</strong> Streaming, photo storage, and media management</li>
+								<li><strong>Network Services:</strong> DNS (Pi-hole), VPN, and reverse proxies with NGINX</li>
+								<li><strong>Monitoring:</strong> Netdata and Glances for system reliability</li>
+								<li><strong>Dashboards:</strong> Comprehensive monitoring and management interfaces</li>
+								<li><strong>File Services:</strong> Self-hosted cloud storage solutions</li>
+								<li><strong>Database:</strong> PostgreSQL with pgAdmin for data management</li>
 							</ul>
-							<h3>Future Plans</h3>
+
+							<h3>Custom NAS Build</h3>
 							<ul>
-								<li>Enhanced security measures</li>
-								<li>Automated backups</li>
-								<li>Network monitoring</li>
+								<li><strong>Hardware:</strong> TerraMaster enclosure with 4× 4TB Seagate IronWolf drives</li>
+								<li><strong>Configuration:</strong> RAID 10 via OpenMediaVault with Btrfs filesystem</li>
+								<li><strong>Features:</strong> Subvolumes mapped to network folders for secure family photo and media access</li>
+								<li><strong>Reliability:</strong> Automated systemd timers for mounting and network checks</li>
 							</ul>
+
+							<h3>Network Infrastructure Upgrades</h3>
+							<ul>
+								<li><strong>Wi-Fi Solution:</strong> Ubiquiti U6-LR access point in attic with hardwired ethernet</li>
+								<li><strong>Router Upgrade:</strong> GL.iNet Flint 2 (OpenWRT-based) replacing aging ISP router</li>
+								<li><strong>Advanced Features:</strong> VLAN tagging, PPPoE, and proper subnet management</li>
+								<li><strong>ISP Integration:</strong> Configured with Airwire for optimal performance</li>
+							</ul>
+
+							<h3>Lessons Learned Through Real-World Challenges</h3>
+							<ul>
+								<li>Power outages and disaster recovery procedures</li>
+								<li>SMART disk failure monitoring and replacement</li>
+								<li>Internal IP reshuffling and network troubleshooting</li>
+								<li>GPU acceleration issues (NVIDIA SMI) and workarounds</li>
+								<li>Filesystem experimentation and optimization</li>
+							</ul>
+
 							<div class="project-badges">
-								<span class="project-badge">Linux</span>
 								<span class="project-badge">Docker</span>
+								<span class="project-badge">Ubuntu Server</span>
+								<span class="project-badge">NGINX</span>
+								<span class="project-badge">PostgreSQL</span>
 								<span class="project-badge">Networking</span>
+								<span class="project-badge">RAID</span>
+								<span class="project-badge">OpenWRT</span>
 							</div>
 						</div>
 					</div>
-					<!-- Swimming Web App Project Card -->
+
+					<!-- Swimming Monitoring System -->
 					<div class="project-card">
 						<div class="project-header">
-							<i class="fas fa-swimmer"></i> Swimming Web App
+							<i class="fas fa-swimmer"></i> Swimming Monitoring System
 						</div>
 						<div class="project-content">
 							<p>
-								I'm on a team developing a web app for tracking swimming
-								performance, workouts, and statistics.
+								<strong>Comprehensive dashboard for swimming coaches and athletes</strong> - Digitizing local swimming clubs' workflows with modern web technologies.
 							</p>
-							<h3>Features</h3>
+							
+							<h3>Technical Stack</h3>
 							<ul>
-								<li>Account system</li>
-								<li>Data tracking (times, distances, progress)</li>
-								<li>Graphs and analytics</li>
-								<li>Workout plans and recommendations</li>
+								<li><strong>Frontend:</strong> React with Tailwind CSS for responsive design</li>
+								<li><strong>Visualization:</strong> Chart.js for performance analytics and data visualization</li>
+								<li><strong>Backend:</strong> Node.js with custom JWT authentication system</li>
+								<li><strong>Database:</strong> PostgreSQL (migrated from MySQL for better performance)</li>
+								<li><strong>Security:</strong> Custom authentication with secure JWT token implementation</li>
 							</ul>
-							<h3>Tech Stack</h3>
+
+							<h3>Key Features</h3>
 							<ul>
-								<li>Backend: SQL + JS</li>
-								<li>Frontend: React</li>
+								<li>Team management and coaching tools</li>
+								<li>Performance tracking and analytics</li>
+								<li>Secure user authentication system</li>
+								<li>Responsive dashboard interface</li>
+								<li>Database optimization for query performance</li>
 							</ul>
+
 							<div class="project-badges">
 								<span class="project-badge">React</span>
+								<span class="project-badge">Node.js</span>
+								<span class="project-badge">PostgreSQL</span>
+								<span class="project-badge">JWT</span>
+								<span class="project-badge">Tailwind CSS</span>
+								<span class="project-badge">Chart.js</span>
+							</div>
+						</div>
+					</div>
+
+					<!-- Game Development -->
+					<div class="project-card">
+						<div class="project-header">
+							<i class="fas fa-gamepad"></i> Artificial - Game Jam Project
+						</div>
+						<div class="project-content">
+							<p>
+								<strong>Progressive clicker exploring human creativity</strong> - A philosophical game exploring humanity's artificial creations, built for a game jam and continuing development.
+							</p>
+							
+							<h3>Development Approach</h3>
+							<ul>
+								<li><strong>Technology:</strong> Pure JavaScript implementation without frameworks</li>
+								<li><strong>Theme:</strong> Exploring humanity's relationship with artificial creations</li>
+								<li><strong>Mechanics:</strong> Historical progression system through different eras</li>
+								<li><strong>Challenge:</strong> Rapid prototyping and creative problem-solving under time constraints</li>
+							</ul>
+
+							<h3>Technical Highlights</h3>
+							<ul>
+								<li>Vanilla JavaScript game logic and state management</li>
+								<li>Progressive disclosure of historical content</li>
+								<li>Responsive design with pure CSS</li>
+								<li>Educational content integration</li>
+							</ul>
+
+							<div class="project-badges">
 								<span class="project-badge">JavaScript</span>
-								<span class="project-badge">SQL</span>
+								<span class="project-badge">CSS</span>
+								<span class="project-badge">Game Design</span>
+								<span class="project-badge">Creative Coding</span>
+							</div>
+						</div>
+					</div>
+
+					<!-- System Administration -->
+					<div class="project-card">
+						<div class="project-header">
+							<i class="fas fa-tools"></i> System Administration & Automation
+						</div>
+						<div class="project-content">
+							<p>
+								<strong>Automated system optimization and infrastructure management</strong> - Tools and scripts for maintaining both Windows and Linux environments.
+							</p>
+							
+							<h3>Windows Maintenance Suite</h3>
+							<ul>
+								<li><strong>Implementation:</strong> Comprehensive PowerShell scripting</li>
+								<li><strong>Features:</strong> Automated cleanup, optimization, and system maintenance</li>
+								<li><strong>Status:</strong> Production-ready with regular updates</li>
+							</ul>
+
+							<h3>Docker Infrastructure Management</h3>
+							<ul>
+								<li><strong>Purpose:</strong> Self-hosted services deployment and orchestration</li>
+								<li><strong>Tools:</strong> Docker Compose for multi-service management</li>
+								<li><strong>Scope:</strong> 30+ containerized applications and services</li>
+								<li><strong>Focus:</strong> Infrastructure automation and best practices</li>
+							</ul>
+
+							<div class="project-badges">
+								<span class="project-badge">PowerShell</span>
+								<span class="project-badge">Docker Compose</span>
+								<span class="project-badge">System Administration</span>
+								<span class="project-badge">Automation</span>
 							</div>
 						</div>
 					</div>
 				</div>
 
-				<p
-					class="section-intro"
-					style="margin-top: 2rem">
-					This section will be updated as I make progress! If you're interested
-					in anything here, feel free to reach out or leave a comment on my
-					blog.
+				<h2>🛠️ Technical Skills & Experience</h2>
+				<div class="skills-section">
+					<div class="skill-category">
+						<h3>🌐 Full-Stack Development</h3>
+						<ul>
+							<li><strong>Frontend:</strong> React applications with modern patterns, Tailwind CSS responsive design, Chart.js data visualization</li>
+							<li><strong>Backend:</strong> Node.js with Express.js, custom JWT authentication systems, RESTful API development</li>
+							<li><strong>Database:</strong> PostgreSQL optimization, MySQL to PostgreSQL migration, query performance tuning</li>
+						</ul>
+					</div>
+
+					<div class="skill-category">
+						<h3>⚙️ DevOps & Infrastructure</h3>
+						<ul>
+							<li><strong>Containerization:</strong> Docker and Docker Compose orchestration for 30+ services</li>
+							<li><strong>System Administration:</strong> Ubuntu Server management, self-hosted services deployment</li>
+							<li><strong>Networking:</strong> VLAN configuration, subnet management, NGINX reverse proxies</li>
+							<li><strong>Storage:</strong> RAID configurations, filesystem optimization (Btrfs), NAS management</li>
+						</ul>
+					</div>
+
+					<div class="skill-category">
+						<h3>🧠 Problem Solving & Architecture</h3>
+						<ul>
+							<li><strong>Fundamentals:</strong> Data structures and algorithms in C and JavaScript</li>
+							<li><strong>Architecture:</strong> Scalable web application design, component-based development</li>
+							<li><strong>Troubleshooting:</strong> Hardware failure recovery, network diagnostics, performance optimization</li>
+						</ul>
+					</div>
+				</div>
+
+				<p class="section-intro" style="margin-top: 2rem; font-style: italic;">
+					"What started as a broken laptop became a learning sandbox with just enough risk to make every mistake valuable, but not costly. This journey has made me more confident with Linux, networking, containerization, system administration, and monitoring in real-world environments."
 				</p>
 			</section>
 
