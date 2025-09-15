@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<meta
+			name="description"
+			content="Semyon Fox's Portfolio - A computer science student and web developer from Ireland" />
+		<meta
+			name="author"
+			content="Semyon Fox" />
+		<meta
+			name="keywords"
+			content="web developer, computer science, portfolio, student, Ireland, swimming" />
+		<link
+			rel="icon"
+			href="assets/favicon.ico"
+			type="image/x-icon" />
+		<title>Semyon Fox | Portfolio</title>
+		<link
+			rel="stylesheet"
+			href="styles.css" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+			rel="stylesheet" />
+		<script
+			src="https://kit.fontawesome.com/0df566eb07.js"
+			crossorigin="anonymous"></script>
+	</head>
+	<body>
+		<header>
+			<h1>Semyon Fox</h1>
+			<nav>
+				<ul>
+					<li>
+						<a
+							href="#"
+							class="active"
+							>Home</a
+						>
+					</li>
+					<li><a href="projects.html">Projects</a></li>
+					<li><a href="blog.html">Blog</a></li>
+				</ul>
+			</nav>
+		</header>
+		<main>
+			<section id="about">
+				<h2>Who am I?</h2>
+				<div class="grid">
+					<div class="about-text">
+						<p>
+							Hi there! I'm Semyon, a passionate web developer and competitive
+							swimmer hailing from Ireland.
+						</p>
+						<p>
+							When I'm not coding up sleek, responsive websites, you can find me
+							perfecting my freestyle technique, always chasing that
+							sub-one-minute mark in the 100-meter race. 💦
+						</p>
+						<p>
+							A lover of all things science fiction, I often find myself
+							dreaming about futuristic worlds, where my HTML, CSS, and
+							JavaScript skills might just come in handy for building a
+							spaceship interface—or at least a cool sci-fi-themed website. 🛸
+						</p>
+						<p>
+							In between swims and coding sessions, I like to challenge myself
+							with a good game of chess, proving that strategy is just as
+							important on the board as it is in life (and web development!).
+						</p>
+						<p>
+							And when I need a break from the screen, you'll find me in the
+							workshop, turning pieces of wood into something functional and
+							beautiful—because who says a coder can't also be a craftsman? 🛠️
+						</p>
+						<p>
+							As I dive into my college journey, I'm excited to expand my
+							knowledge, debug all the bugs, and build some web apps that are
+							worth showing off.
+						</p>
+						<p>
+							I'm actively involved in the university community as a member of CompSoc 
+							(Computer Society), where I've served as Public Relations Officer, 
+							Ordinary Committee Member, and Auditor. It's been rewarding to help 
+							organize events, manage society operations, and connect with fellow 
+							students who share my passion for technology.
+						</p>
+						<p>
+							Whether it's in the pool, on the web, or in the workshop, I
+							believe in pushing limits and thinking creatively.
+						</p>
+						<p>Let's build something awesome together!</p>
+					</div>
+					<div class="about-pic">
+						<img
+							src="assets/profilepic.webp"
+							alt="Profile picture of Semyon" />
+					</div>
+				</div>
+			</section>
+			<section id="contact">
+				<div class="contact-card">
+					<h2>Get in Touch</h2>
+					<p class="section-intro">
+						Have a question or want to collaborate? Send me a message!
+					</p>
+					<form
+						action="https://formspree.io/f/mvgpyblo"
+						method="POST">
+						<div class="form-group">
+							<label for="name">Name</label>
+							<input
+								type="text"
+								id="name"
+								name="name"
+								required
+								placeholder="Your name" />
+						</div>
+						<div class="form-group">
+							<label for="email">Email</label>
+							<input
+								type="email"
+								id="email"
+								name="email"
+								required
+								placeholder="Your email address" />
+						</div>
+						<div class="form-group">
+							<label for="message">Message</label>
+							<textarea
+								id="message"
+								name="message"
+								required
+								placeholder="Type your message here..."></textarea>
+						</div>
+						<button type="submit">
+							<i class="fas fa-paper-plane"></i> Send Message
+						</button>
+					</form>
+					<nav class="social-links">
+						<p>Connect with me:</p>
+						<ul>
+							<li>
+								<a
+									href="https://www.linkedin.com/in/semyon-fox-968685249/"
+									target="_blank"
+									title="LinkedIn">
+									<i class="fa-brands fa-linkedin-in"></i>
+								</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</section>
+		</main>
+		<footer>
+			<p>&copy; 2025 Semyon Fox | All Rights Reserved</p>
+		</footer>
+		<button
+			id="back-to-top"
+			title="Back to top">
+			<i class="fas fa-arrow-up"></i>
+		</button>
+		<script src="index.js"></script>
+		<script>
+			// Back-to-top button logic
+			document.addEventListener('DOMContentLoaded', function () {
+				const btn = document.createElement('button');
+				btn.id = 'back-to-top';
+				btn.title = 'Back to top';
+				btn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+				document.body.appendChild(btn);
+				btn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+
+				window.addEventListener('scroll', function () {
+					if (window.scrollY > 200) {
+						document.body.classList.add('scrolled');
+					} else {
+						document.body.classList.remove('scrolled');
+					}
+				});
+			});
+		</script>
+	</body>
+</html>
