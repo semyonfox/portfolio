@@ -14,39 +14,51 @@
 		<meta
 			name="keywords"
 			content="web developer, computer science, portfolio, blog, student, Ireland" />
+		<!-- Icons / Favicons -->
+		<link
+			rel="apple-touch-icon"
+			sizes="180x180"
+			href="assets/apple-touch-icon.png" />
 		<link
 			rel="icon"
-			href="assets/favicon.ico"
-			type="image/x-icon" />
+			type="image/png"
+			sizes="32x32"
+			href="assets/favicon-32x32.png" />
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="16x16"
+			href="assets/favicon-16x16.png" />
+		<link
+			rel="manifest"
+			href="assets/site.webmanifest" />
 		<title>Semyon Fox | Blog</title>
 		<link
 			rel="stylesheet"
 			href="styles.css" />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
 			rel="stylesheet" />
 		<script
 			src="https://kit.fontawesome.com/0df566eb07.js"
-			crossorigin="anonymous"></script>
+			crossorigin="anonymous"
+			defer></script>
 	</head>
 	<body>
+		<a class="skip-link" href="#main-content">Skip to main content</a>
 		<header>
 			<h1>Semyon Fox</h1>
-			<nav>
+			<nav aria-label="Primary">
 				<ul>
-					<li><a href="home.html">Home</a></li>
+					<li><a href="index.html">Home</a></li>
 					<li><a href="projects.html">Projects</a></li>
 					<li>
-						<a
-							href="#"
-							class="active"
-							>Blog</a
-						>
+						<a href="blog.html" class="active" aria-current="page">Blog</a>
 					</li>
 				</ul>
 			</nav>
 		</header>
-		<main>
+		<main id="main-content">
 			<section id="about">
 				<h2>My Blog</h2>
 				<p class="section-intro">
@@ -70,6 +82,7 @@
 								type="text"
 								id="name"
 								name="name"
+								autocomplete="name"
 								required
 								placeholder="Your name" />
 						</div>
@@ -79,6 +92,7 @@
 								type="email"
 								id="email"
 								name="email"
+								autocomplete="email"
 								required
 								placeholder="Your email address" />
 						</div>
@@ -87,22 +101,26 @@
 							<textarea
 								id="message"
 								name="message"
+								autocomplete="off"
 								required
 								placeholder="Type your message here..."></textarea>
 						</div>
 						<button type="submit">
-							<i class="fas fa-paper-plane"></i> Send Message
+							<i class="fas fa-paper-plane" aria-hidden="true"></i>
+							Send Message
 						</button>
 					</form>
-					<nav class="social-links">
+					<nav class="social-links" aria-label="Social links">
 						<p>Connect with me:</p>
 						<ul>
 							<li>
 								<a
 									href="https://www.linkedin.com/in/semyon-fox-968685249/"
 									target="_blank"
-									title="LinkedIn">
-									<i class="fa-brands fa-linkedin-in"></i>
+									rel="noopener noreferrer"
+									title="LinkedIn"
+									aria-label="LinkedIn (opens in a new tab)">
+									<i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
 								</a>
 							</li>
 						</ul>
@@ -113,26 +131,14 @@
 		<footer>
 			<p>&copy; 2025 Semyon Fox | All Rights Reserved</p>
 		</footer>
+		<button
+			id="back-to-top"
+			type="button"
+			title="Back to top"
+			aria-label="Back to top">
+			<i class="fas fa-arrow-up" aria-hidden="true"></i>
+		</button>
 		<script src="index.js"></script>
-		<script>
-			// Back-to-top button logic
-			document.addEventListener('DOMContentLoaded', function () {
-				const btn = document.createElement('button');
-				btn.id = 'back-to-top';
-				btn.title = 'Back to top';
-				btn.innerHTML = '<i class="fas fa-arrow-up"></i>';
-				document.body.appendChild(btn);
-				btn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
-
-				window.addEventListener('scroll', function () {
-					if (window.scrollY > 200) {
-						document.body.classList.add('scrolled');
-					} else {
-						document.body.classList.remove('scrolled');
-					}
-				});
-			});
-		</script>
 	</body>
 </html>
 

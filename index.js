@@ -1,4 +1,27 @@
-console.log('Hello, World!');
+function initBackToTop() {
+	const btn = document.getElementById('back-to-top');
+	if (!btn) return;
+
+	const prefersReducedMotion =
+		window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+	btn.addEventListener('click', () => {
+		window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+	});
+
+	const update = () => {
+		document.body.classList.toggle('scrolled', window.scrollY > 200);
+	};
+
+	update();
+	window.addEventListener('scroll', update, { passive: true });
+}
+
+function formatPostDate(dateString) {
+	if (!dateString) return '';
+	const date = new Date(dateString);
+	return Number.isNaN(date.getTime()) ? '' : date.toLocaleDateString();
+}
 
 // Blog posts data
 const blogPosts = [
@@ -75,118 +98,110 @@ const blogPosts = [
 
 function renderBlogPosts() {
 	const container = document.getElementById('blog-posts');
+	if (!container) return;
+
 	container.innerHTML = '';
 	blogPosts.forEach((post, idx) => {
 		const article = document.createElement('article');
 		article.className = 'post card';
-		const date = post.date
-			? `<span class="blog-date">${new Date(
-					post.date
-			  ).toLocaleDateString()}</span>`
-			: '';
-		const author = post.author
+
+		const date = formatPostDate(post.date);
+		const dateHtml = date ? `<span class="blog-date">${date}</span>` : '';
+		const authorHtml = post.author
 			? `<span class="blog-author">by ${post.author}</span>`
 			: '';
+
 		article.innerHTML = `
 			<header class="post-header">
 				<h3 class="post-title">${post.title}</h3>
-				<div class="post-meta">${author} ${date}</div>
+				<div class="post-meta">${authorHtml} ${dateHtml}</div>
 			</header>
 			<div class="post-preview">${post.preview}</div>
 			<div class="blog-actions">
-				<button class="read-aloud-btn" data-idx="${idx}" aria-label="Read post aloud" title="Read post aloud"><i class="fas fa-volume-up"></i></button>
+				<button class="read-aloud-btn" data-idx="${idx}" aria-label="Read post aloud" title="Read post aloud" aria-pressed="false">
+					<i class="fas fa-volume-up" aria-hidden="true"></i>
+				</button>
 				<button class="collapsible" aria-expanded="false" aria-controls="post-content-${idx}">Read More</button>
 			</div>
-			<div class="content-collapsible" id="post-content-${idx}" style="display:none;">${post.continuation || post.content}</div>
+			<div class="content-collapsible" id="post-content-${idx}" hidden>${post.continuation || post.content}</div>
 		`;
+
 		container.appendChild(article);
 	});
+
 	addCollapsibleListeners();
 	addReadAloudListeners();
 }
 
 function addCollapsibleListeners() {
 	document.querySelectorAll('.collapsible').forEach((btn) => {
-		btn.onclick = function () {
-			const expanded = this.getAttribute('aria-expanded') === 'true';
-			this.setAttribute('aria-expanded', String(!expanded));
-			this.classList.toggle('active');
-			const content = this.closest('.blog-actions').nextElementSibling;
-			if (content && content.classList.contains('content-collapsible')) {
-				const isVisible = content.style.display === 'block';
-				content.style.display = isVisible ? 'none' : 'block';
-				this.textContent = isVisible ? 'Read More' : 'Read Less';
-			}
+		btn.onclick = () => {
+			const expanded = btn.getAttribute('aria-expanded') === 'true';
+			btn.setAttribute('aria-expanded', String(!expanded));
+			btn.textContent = expanded ? 'Read More' : 'Read Less';
+
+			const content = btn.closest('.blog-actions')?.nextElementSibling;
+			if (!content || !content.classList.contains('content-collapsible')) return;
+
+			content.hidden = expanded;
 		};
 	});
 }
 
 function addReadAloudListeners() {
 	const synth = window.speechSynthesis;
-	let currentUtterance = null;
+	if (!synth) return;
+
 	let currentBtn = null;
 
-	document.querySelectorAll('.read-aloud-btn').forEach((btn) => {
-		btn.onclick = null;
-	});
+	const stopCurrent = () => {
+		if (synth.speaking || synth.pending) synth.cancel();
+		if (currentBtn) {
+			currentBtn.innerHTML = '<i class="fas fa-volume-up" aria-hidden="true"></i>';
+			currentBtn.setAttribute('aria-pressed', 'false');
+			currentBtn = null;
+		}
+	};
 
 	document.querySelectorAll('.read-aloud-btn').forEach((btn) => {
-		btn.onclick = function () {
-			if (synth.speaking || synth.pending) {
-				synth.cancel();
-				if (currentBtn)
-					currentBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
-				if (currentBtn === btn) {
-					currentBtn = null;
-					return;
-				}
+		btn.onclick = () => {
+			// If you click the same button while speaking: stop.
+			if ((synth.speaking || synth.pending) && currentBtn === btn) {
+				stopCurrent();
+				return;
 			}
-			const idx = btn.getAttribute('data-idx');
+
+			// Stop any existing speech, then start new.
+			stopCurrent();
+
+			const idx = Number(btn.getAttribute('data-idx'));
+			const post = blogPosts[idx];
+			if (!post?.content) return;
+
 			const tempDiv = document.createElement('div');
-			tempDiv.innerHTML = blogPosts[idx].content;
-			const text = tempDiv.textContent || tempDiv.innerText || '';
+			tempDiv.innerHTML = post.content;
+			const text = (tempDiv.textContent || tempDiv.innerText || '').trim();
 			if (!text) return;
+
 			const utter = new SpeechSynthesisUtterance(text);
-			currentUtterance = utter;
 			currentBtn = btn;
-			btn.innerHTML = '<i class="fas fa-stop"></i>';
+			btn.innerHTML = '<i class="fas fa-stop" aria-hidden="true"></i>';
 			btn.setAttribute('aria-pressed', 'true');
-			utter.onend = utter.onerror = function () {
-				btn.innerHTML = '<i class="fas fa-volume-up"></i>';
-				btn.setAttribute('aria-pressed', 'false');
-				currentUtterance = null;
-				currentBtn = null;
+
+			utter.onend = utter.onerror = () => {
+				if (currentBtn === btn) {
+					btn.innerHTML = '<i class="fas fa-volume-up" aria-hidden="true"></i>';
+					btn.setAttribute('aria-pressed', 'false');
+					currentBtn = null;
+				}
 			};
+
 			synth.speak(utter);
 		};
 	});
 }
 
-// Add post form logic
-const addPostBtn = document.getElementById('add-post-btn');
-const addPostForm = document.getElementById('add-post-form');
-if (addPostBtn && addPostForm) {
-	addPostBtn.onclick = () => {
-		addPostForm.style.display =
-			addPostForm.style.display === 'none' ? 'block' : 'none';
-	};
-	addPostForm.onsubmit = function (e) {
-		e.preventDefault();
-		const title = document.getElementById('post-title').value.trim();
-		const content = document.getElementById('post-content').value.trim();
-		if (title && content) {
-			blogPosts.unshift({
-				title,
-				author: 'Semyon Fox',
-				date: new Date().toISOString().split('T')[0],
-				content: `<p>${content.replace(/\n/g, '</p><p>')}</p>`,
-			});
-			renderBlogPosts();
-			addPostForm.reset();
-			addPostForm.style.display = 'none';
-		}
-	};
-}
-
-// Render posts on load
-if (document.getElementById('blog-posts')) renderBlogPosts();
+document.addEventListener('DOMContentLoaded', () => {
+	initBackToTop();
+	if (document.getElementById('blog-posts')) renderBlogPosts();
+});

@@ -23,51 +23,68 @@
 			rel="stylesheet"
 			href="styles.css" />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
 			rel="stylesheet" />
 		<script
 			src="https://kit.fontawesome.com/0df566eb07.js"
-			crossorigin="anonymous"></script>
+			crossorigin="anonymous"
+			defer></script>
+
+		<!-- Icons / Favicons -->
+		<link
+			rel="apple-touch-icon"
+			sizes="180x180"
+			href="assets/apple-touch-icon.png" />
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="assets/favicon-32x32.png" />
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="16x16"
+			href="assets/favicon-16x16.png" />
+		<link
+			rel="manifest"
+			href="assets/site.webmanifest" />
 	</head>
 	<body>
+		<a class="skip-link" href="#main-content">Skip to main content</a>
 		<header>
 			<h1>Semyon Fox</h1>
-			<nav>
+			<nav aria-label="Primary">
 				<ul>
-					<li><a href="home.html">Home</a></li>
+					<li><a href="index.html">Home</a></li>
 					<li>
-						<a
-							href="#"
-							class="active"
-							>Projects</a
-						>
+						<a href="projects.html" class="active" aria-current="page">Projects</a>
 					</li>
 					<li><a href="blog.html">Blog</a></li>
 				</ul>
 			</nav>
 		</header>
-		<main>
+		<main id="main-content">
 			<section id="about">
-				<h2>👨‍💻 About My Technical Journey</h2>
+				<h2>About My Technical Journey</h2>
 				<p class="section-intro">
 					Second-year <strong>Computer Science & IT</strong> student at the <em>University of Galway</em> with a passion for building scalable web applications and managing complex systems. My journey into development began with creating a swimming monitoring system that sparked my interest in full-stack development, leading me to explore everything from React frontends to containerized infrastructure.
 				</p>
 				
 				<div class="about-highlights">
-					<p><strong>🔭 Currently Working On:</strong> Swimming Monitoring System with React and Node.js</p>
-					<p><strong>🌱 Learning:</strong> PostgreSQL, Advanced React Patterns, Cloud Deployment, Java</p>
-					<p><strong>🎯 Recent Achievement:</strong> Participated in Game Jam with "Artificial" - exploring humanity's creations</p>
-					<p><strong>🏛️ Leadership:</strong> Public Relations Officer, Ordinary Committee Member, and Auditor of CompSoc</p>
-					<p><strong>📫 Contact:</strong> <a href="mailto:semyon.fox@gmail.com">semyon.fox@gmail.com</a> | <a href="https://www.linkedin.com/in/semyon-fox-968685249/">LinkedIn</a></p>
+					<p><strong>Currently Working On:</strong> Swimming Monitoring System with React and Node.js</p>
+					<p><strong>Learning:</strong> PostgreSQL, Advanced React Patterns, Cloud Deployment, Java</p>
+					<p><strong>Recent Achievement:</strong> Participated in Game Jam with "Artificial" - exploring humanity's creations</p>
+					<p><strong>Leadership:</strong> Public Relations Officer, Ordinary Committee Member, and Auditor of CompSoc</p>
+					<p><strong>Contact:</strong> <a href="mailto:semyon.fox@gmail.com">semyon.fox@gmail.com</a> | <a href="https://www.linkedin.com/in/semyon-fox-968685249/" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
 				</div>
 
-				<h2>🚀 Featured Projects</h2>
+				<h2>Featured Projects</h2>
 
 				<div id="projects-container">
 					<!-- Server Infrastructure Journey -->
 					<div class="project-card">
 						<div class="project-header">
-							<i class="fas fa-server"></i> Home Server Infrastructure Journey
+							<i class="fas fa-server" aria-hidden="true"></i> Home Server Infrastructure Journey
 						</div>
 						<div class="project-content">
 							<p>
@@ -132,7 +149,7 @@
 					<!-- Swimming Monitoring System -->
 					<div class="project-card">
 						<div class="project-header">
-							<i class="fas fa-swimmer"></i> Swimming Monitoring System
+							<i class="fas fa-swimmer" aria-hidden="true"></i> Swimming Monitoring System
 						</div>
 						<div class="project-content">
 							<p>
@@ -168,7 +185,7 @@
 
 							<div class="project-links">
 								<a href="https://github.com/semyonfox/swim" target="_blank" rel="noopener noreferrer">
-									<i class="fab fa-github"></i> View on GitHub
+									<i class="fab fa-github" aria-hidden="true"></i> View on GitHub
 								</a>
 							</div>
 						</div>
@@ -177,7 +194,7 @@
 					<!-- Game Development -->
 					<div class="project-card">
 						<div class="project-header">
-							<i class="fas fa-gamepad"></i> Artificial - Game Jam Project
+							<i class="fas fa-gamepad" aria-hidden="true"></i> Artificial - Game Jam Project
 						</div>
 						<div class="project-content">
 							<p>
@@ -209,7 +226,7 @@
 
 							<div class="project-links">
 								<a href="https://github.com/semyonfox/artificial" target="_blank" rel="noopener noreferrer">
-									<i class="fab fa-github"></i> View on GitHub
+									<i class="fab fa-github" aria-hidden="true"></i> View on GitHub
 								</a>
 							</div>
 						</div>
@@ -218,7 +235,7 @@
 					<!-- System Administration -->
 					<div class="project-card">
 						<div class="project-header">
-							<i class="fas fa-tools"></i> System Administration & Automation
+							<i class="fas fa-tools" aria-hidden="true"></i> System Administration & Automation
 						</div>
 						<div class="project-content">
 							<p>
@@ -249,20 +266,20 @@
 
 							<div class="project-links">
 								<a href="https://github.com/semyonfox/WindowsMaintenance" target="_blank" rel="noopener noreferrer">
-									<i class="fab fa-github"></i> Windows Maintenance
+									<i class="fab fa-github" aria-hidden="true"></i> Windows Maintenance
 								</a>
 								<a href="https://github.com/semyonfox/server_stacks" target="_blank" rel="noopener noreferrer">
-									<i class="fab fa-github"></i> Server Infrastructure
+									<i class="fab fa-github" aria-hidden="true"></i> Server Infrastructure
 								</a>
 							</div>
 						</div>
 					</div>
 				</div>
 
-				<h2>🛠️ Technical Skills & Experience</h2>
+				<h2>Technical Skills & Experience</h2>
 				<div class="skills-section">
 					<div class="skill-category">
-						<h3>🌐 Full-Stack Development</h3>
+						<h3>Full-Stack Development</h3>
 						<ul>
 							<li><strong>Frontend:</strong> React applications with modern patterns, Tailwind CSS responsive design, Chart.js data visualization</li>
 							<li><strong>Backend:</strong> Node.js with Express.js, custom JWT authentication systems, RESTful API development</li>
@@ -271,7 +288,7 @@
 					</div>
 
 					<div class="skill-category">
-						<h3>⚙️ DevOps & Infrastructure</h3>
+						<h3>DevOps & Infrastructure</h3>
 						<ul>
 							<li><strong>Containerization:</strong> Docker and Docker Compose orchestration for 30+ services</li>
 							<li><strong>System Administration:</strong> Ubuntu Server management, self-hosted services deployment</li>
@@ -281,7 +298,7 @@
 					</div>
 
 					<div class="skill-category">
-						<h3>🧠 Problem Solving & Architecture</h3>
+						<h3>Problem Solving & Architecture</h3>
 						<ul>
 							<li><strong>Fundamentals:</strong> Data structures and algorithms in C and JavaScript</li>
 							<li><strong>Architecture:</strong> Scalable web application design, component-based development</li>
@@ -290,7 +307,7 @@
 					</div>
 				</div>
 
-				<p class="section-intro" style="margin-top: 2rem; font-style: italic;">
+				<p class="section-intro section-intro--quote">
 					"What started as a broken laptop became a learning sandbox with just enough risk to make every mistake valuable, but not costly. This journey has made me more confident with Linux, networking, containerization, system administration, and monitoring in real-world environments."
 				</p>
 			</section>
@@ -310,6 +327,7 @@
 								type="text"
 								id="name"
 								name="name"
+								autocomplete="name"
 								required
 								placeholder="Your name" />
 						</div>
@@ -319,6 +337,7 @@
 								type="email"
 								id="email"
 								name="email"
+								autocomplete="email"
 								required
 								placeholder="Your email address" />
 						</div>
@@ -327,22 +346,25 @@
 							<textarea
 								id="message"
 								name="message"
+								autocomplete="off"
 								required
 								placeholder="Type your message here..."></textarea>
 						</div>
 						<button type="submit">
-							<i class="fas fa-paper-plane"></i> Send Message
+							<i class="fas fa-paper-plane" aria-hidden="true"></i> Send Message
 						</button>
 					</form>
-					<nav class="social-links">
+					<nav class="social-links" aria-label="Social links">
 						<p>Connect with me:</p>
 						<ul>
 							<li>
 								<a
 									href="https://www.linkedin.com/in/semyon-fox-968685249/"
 									target="_blank"
-									title="LinkedIn">
-									<i class="fa-brands fa-linkedin-in"></i>
+									rel="noopener noreferrer"
+									title="LinkedIn"
+									aria-label="LinkedIn (opens in a new tab)">
+									<i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
 								</a>
 							</li>
 						</ul>
@@ -353,25 +375,13 @@
 		<footer>
 			<p>&copy; 2025 Semyon Fox | All Rights Reserved</p>
 		</footer>
+		<button
+			id="back-to-top"
+			type="button"
+			title="Back to top"
+			aria-label="Back to top">
+			<i class="fas fa-arrow-up" aria-hidden="true"></i>
+		</button>
 		<script src="index.js"></script>
-		<script>
-			// Back-to-top button logic
-			document.addEventListener('DOMContentLoaded', function () {
-				const btn = document.createElement('button');
-				btn.id = 'back-to-top';
-				btn.title = 'Back to top';
-				btn.innerHTML = '<i class="fas fa-arrow-up"></i>';
-				document.body.appendChild(btn);
-				btn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
-
-				window.addEventListener('scroll', function () {
-					if (window.scrollY > 200) {
-						document.body.classList.add('scrolled');
-					} else {
-						document.body.classList.remove('scrolled');
-					}
-				});
-			});
-		</script>
 	</body>
 </html>

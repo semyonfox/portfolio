@@ -23,21 +23,43 @@
 			rel="stylesheet"
 			href="styles.css" />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
 			rel="stylesheet" />
 		<script
 			src="https://kit.fontawesome.com/0df566eb07.js"
-			crossorigin="anonymous"></script>
+			crossorigin="anonymous"
+			defer></script>
+
+		<!-- Icons / Favicons -->
+		<link
+			rel="apple-touch-icon"
+			sizes="180x180"
+			href="assets/apple-touch-icon.png" />
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="assets/favicon-32x32.png" />
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="16x16"
+			href="assets/favicon-16x16.png" />
+		<link
+			rel="manifest"
+			href="assets/site.webmanifest" />
 	</head>
 	<body>
+		<a class="skip-link" href="#main-content">Skip to main content</a>
 		<header>
 			<h1>Semyon Fox</h1>
-			<nav>
+			<nav aria-label="Primary">
 				<ul>
 					<li>
 						<a
-							href="#"
+							href="index.html"
 							class="active"
+							aria-current="page"
 							>Home</a
 						>
 					</li>
@@ -46,7 +68,7 @@
 				</ul>
 			</nav>
 		</header>
-		<main>
+		<main id="main-content">
 			<section id="about">
 				<h2>Who am I?</h2>
 				<div class="grid">
@@ -58,13 +80,13 @@
 						<p>
 							When I'm not coding up sleek, responsive websites, you can find me
 							perfecting my freestyle technique, always chasing that
-							sub-one-minute mark in the 100-meter race. 💦
+							sub-one-minute mark in the 100-meter race.
 						</p>
 						<p>
 							A lover of all things science fiction, I often find myself
 							dreaming about futuristic worlds, where my HTML, CSS, and
 							JavaScript skills might just come in handy for building a
-							spaceship interface—or at least a cool sci-fi-themed website. 🛸
+							spaceship interface—or at least a cool sci-fi-themed website.
 						</p>
 						<p>
 							In between swims and coding sessions, I like to challenge myself
@@ -74,7 +96,7 @@
 						<p>
 							And when I need a break from the screen, you'll find me in the
 							workshop, turning pieces of wood into something functional and
-							beautiful—because who says a coder can't also be a craftsman? 🛠️
+							beautiful—because who says a coder can't also be a craftsman?
 						</p>
 						<p>
 							As I dive into my college journey, I'm excited to expand my
@@ -82,10 +104,10 @@
 							worth showing off.
 						</p>
 						<p>
-							I'm actively involved in the university community as a member of CompSoc 
-							(Computer Society), where I've served as Public Relations Officer, 
-							Ordinary Committee Member, and Auditor. It's been rewarding to help 
-							organize events, manage society operations, and connect with fellow 
+							I'm actively involved in the university community as a member of CompSoc
+							(Computer Society), where I've served as Public Relations Officer,
+							Ordinary Committee Member, and Auditor. It's been rewarding to help
+							organize events, manage society operations, and connect with fellow
 							students who share my passion for technology.
 						</p>
 						<p>
@@ -97,7 +119,11 @@
 					<div class="about-pic">
 						<img
 							src="assets/profilepic.webp"
-							alt="Profile picture of Semyon" />
+							alt="Profile picture of Semyon"
+							width="2448"
+							height="3264"
+							loading="lazy"
+							decoding="async" />
 					</div>
 				</div>
 			</section>
@@ -116,6 +142,7 @@
 								type="text"
 								id="name"
 								name="name"
+								autocomplete="name"
 								required
 								placeholder="Your name" />
 						</div>
@@ -125,6 +152,7 @@
 								type="email"
 								id="email"
 								name="email"
+								autocomplete="email"
 								required
 								placeholder="Your email address" />
 						</div>
@@ -133,22 +161,26 @@
 							<textarea
 								id="message"
 								name="message"
+								autocomplete="off"
 								required
 								placeholder="Type your message here..."></textarea>
 						</div>
 						<button type="submit">
-							<i class="fas fa-paper-plane"></i> Send Message
+							<i class="fas fa-paper-plane" aria-hidden="true"></i>
+							Send Message
 						</button>
 					</form>
-					<nav class="social-links">
+					<nav class="social-links" aria-label="Social links">
 						<p>Connect with me:</p>
 						<ul>
 							<li>
 								<a
 									href="https://www.linkedin.com/in/semyon-fox-968685249/"
 									target="_blank"
-									title="LinkedIn">
-									<i class="fa-brands fa-linkedin-in"></i>
+									rel="noopener noreferrer"
+									title="LinkedIn"
+									aria-label="LinkedIn (opens in a new tab)">
+									<i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
 								</a>
 							</li>
 						</ul>
@@ -161,28 +193,11 @@
 		</footer>
 		<button
 			id="back-to-top"
-			title="Back to top">
-			<i class="fas fa-arrow-up"></i>
+			type="button"
+			title="Back to top"
+			aria-label="Back to top">
+			<i class="fas fa-arrow-up" aria-hidden="true"></i>
 		</button>
 		<script src="index.js"></script>
-		<script>
-			// Back-to-top button logic
-			document.addEventListener('DOMContentLoaded', function () {
-				const btn = document.createElement('button');
-				btn.id = 'back-to-top';
-				btn.title = 'Back to top';
-				btn.innerHTML = '<i class="fas fa-arrow-up"></i>';
-				document.body.appendChild(btn);
-				btn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
-
-				window.addEventListener('scroll', function () {
-					if (window.scrollY > 200) {
-						document.body.classList.add('scrolled');
-					} else {
-						document.body.classList.remove('scrolled');
-					}
-				});
-			});
-		</script>
 	</body>
 </html>
