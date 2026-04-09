@@ -13,33 +13,23 @@ use std::{
 };
 use tower_http::cors::CorsLayer;
 
-const SYSTEM_PROMPT: &str = r#"You are Semyon Fox, responding as yourself on your personal portfolio website. You're a second-year Computer Science & IT student at the University of Galway in Ireland. You're chatting with visitors to your portfolio site.
+const MODEL: &str = "kimi-k2-0711-preview";
+
+const SYSTEM_PROMPT: &str = r#"You are Semyon Fox, responding as yourself on your portfolio website. Second-year CS & IT student at University of Galway, Ireland.
 
 About you:
-- Competitive swimmer, chasing sub-1min in the 100m freestyle
-- Auditor (president) of CompSoc (Computer Society) at University of Galway, previously PRO and committee member
-- Run a homelab with 30+ Docker containers on a repurposed Dell XPS 15 whose screen broke -- turned it into a server running Ubuntu Server
-- Built a custom NAS with 4x 4TB drives in RAID 10 using OpenMediaVault and Btrfs
-- Network setup includes a Ubiquiti U6-LR access point, GL.iNet Flint 2 router with OpenWRT, VLANs, and Pi-hole for DNS
-- Built a full-stack Swimming Monitoring System (React, Node.js, PostgreSQL, Chart.js) for coaches and athletes
-- Made "Artificial" -- a philosophical clicker game for a game jam in pure JS
-- Tech skills: JavaScript, React, Node.js, Tailwind, Java, Python, C, SQL, Docker, Linux, NGINX, PostgreSQL, Git, PowerShell
-- Into science fiction, chess, and woodworking
-- Daily driver is Arch Linux with Hyprland (wayland), Neovim, and a very customized dotfiles setup
-- Irish-based, passionate about open source and self-hosting
+- competitive swimmer chasing sub-1min 100m freestyle
+- auditor of CompSoc (446 members), organised CTF 2026
+- homelab with 45+ docker containers on a repurposed dell xps 15
+- custom NAS (4x4TB RAID 10, btrfs, openmediavault)
+- projects: SWIM (react/node/postgres), OghmaNotes (AI note app), irish rail data pipeline, cf ai watchdog
+- tech: javascript, react, node, java, python, rust, c, docker, linux, nginx, postgres
+- arch linux, hyprland, neovim
+- hobbies: sci-fi, chess, woodworking, self-hosting
+- worked as laptop repair tech at cahill computers
 
-Personality and tone:
-- Casual and conversational, like texting a friend
-- Enthusiastic about tech, swimming, and building things
-- Curious and always learning
-- Keep responses SHORT -- 1-3 sentences usually, unless someone asks for detail
-- Use lowercase, no formal punctuation unless it helps clarity
-- Don't be cringe or try too hard. just be yourself
-- If someone asks something you don't know or that isn't about you, be honest about it
-- You can gently steer people toward your projects or blog if relevant
-- Never break character -- you ARE Semyon, not an AI pretending to be him"#;
+Respond casually and briefly, like texting. 1-3 sentences max. be friendly and a bit cheeky. lowercase. never break character."#;
 
-// rate limiter: tracks request timestamps per IP
 struct RateLimiter {
     requests: Mutex<HashMap<String, Vec<Instant>>>,
     max_requests: usize,
@@ -59,14 +49,10 @@ impl RateLimiter {
         let mut map = self.requests.lock().unwrap();
         let now = Instant::now();
         let timestamps = map.entry(ip.to_string()).or_default();
-
-        // drop expired entries
         timestamps.retain(|t| now.duration_since(*t) < self.window);
-
         if timestamps.len() >= self.max_requests {
             return false;
         }
-
         timestamps.push(now);
         true
     }
@@ -88,9 +74,8 @@ struct ChatResponse {
     reply: String,
 }
 
-// moonshot api types (openai-compatible)
 #[derive(Serialize)]
-struct MoonshotRequest {
+struct UpstreamRequest {
     model: String,
     messages: Vec<ChatMessage>,
     temperature: f32,
@@ -98,22 +83,23 @@ struct MoonshotRequest {
 }
 
 #[derive(Deserialize)]
-struct MoonshotResponse {
-    choices: Vec<MoonshotChoice>,
+struct UpstreamResponse {
+    choices: Vec<UpstreamChoice>,
 }
 
 #[derive(Deserialize)]
-struct MoonshotChoice {
-    message: MoonshotMessage,
+struct UpstreamChoice {
+    message: UpstreamMessage,
 }
 
 #[derive(Deserialize)]
-struct MoonshotMessage {
+struct UpstreamMessage {
     content: String,
 }
 
 struct AppState {
     api_key: String,
+    api_url: String,
     http_client: reqwest::Client,
     rate_limiter: RateLimiter,
 }
@@ -134,13 +120,12 @@ async fn chat_handler(
         );
     }
 
-    // build messages with system prompt prepended
+    // build messages: system prompt + last 20 user/assistant messages
     let mut messages = vec![ChatMessage {
         role: "system".to_string(),
         content: SYSTEM_PROMPT.to_string(),
     }];
 
-    // only keep last 20 messages to avoid token overflow
     let user_messages: Vec<_> = payload
         .messages
         .into_iter()
@@ -149,8 +134,9 @@ async fn chat_handler(
     let start = user_messages.len().saturating_sub(20);
     messages.extend(user_messages[start..].to_vec());
 
-    let moonshot_req = MoonshotRequest {
-        model: "kimi-k2-0711-preview".to_string(),
+    // hardcoded model -- client cannot override
+    let upstream_req = UpstreamRequest {
+        model: MODEL.to_string(),
         messages,
         temperature: 0.7,
         max_tokens: 300,
@@ -158,55 +144,44 @@ async fn chat_handler(
 
     let result = state
         .http_client
-        .post("https://api.moonshot.cn/v1/chat/completions")
+        .post(&state.api_url)
         .bearer_auth(&state.api_key)
-        .json(&moonshot_req)
+        .json(&upstream_req)
         .send()
         .await;
 
     match result {
-        Ok(res) => {
-            if !res.status().is_success() {
-                let status = res.status();
-                let body = res.text().await.unwrap_or_default();
-                tracing::error!("moonshot api error {status}: {body}");
-                return (
-                    StatusCode::BAD_GATEWAY,
-                    Json(ChatResponse {
-                        reply: "something went wrong on my end, try again in a sec.".to_string(),
-                    }),
-                );
-            }
-
-            match res.json::<MoonshotResponse>().await {
-                Ok(moonshot_res) => {
-                    let reply = moonshot_res
+        Ok(res) if res.status().is_success() => {
+            match res.json::<UpstreamResponse>().await {
+                Ok(data) => {
+                    let reply = data
                         .choices
                         .first()
                         .map(|c| c.message.content.clone())
                         .unwrap_or_else(|| "hmm, i blanked. try asking again?".to_string());
-
                     (StatusCode::OK, Json(ChatResponse { reply }))
                 }
                 Err(e) => {
-                    tracing::error!("failed to parse moonshot response: {e}");
-                    (
-                        StatusCode::BAD_GATEWAY,
-                        Json(ChatResponse {
-                            reply: "got a weird response, try again?".to_string(),
-                        }),
-                    )
+                    tracing::error!("parse error: {e}");
+                    (StatusCode::BAD_GATEWAY, Json(ChatResponse {
+                        reply: "got a weird response, try again?".to_string(),
+                    }))
                 }
             }
         }
+        Ok(res) => {
+            let status = res.status();
+            let body = res.text().await.unwrap_or_default();
+            tracing::error!("upstream {status}: {body}");
+            (StatusCode::BAD_GATEWAY, Json(ChatResponse {
+                reply: "something went wrong on my end, try again in a sec.".to_string(),
+            }))
+        }
         Err(e) => {
-            tracing::error!("moonshot request failed: {e}");
-            (
-                StatusCode::BAD_GATEWAY,
-                Json(ChatResponse {
-                    reply: "couldn't reach my brain right now. try again later!".to_string(),
-                }),
-            )
+            tracing::error!("request failed: {e}");
+            (StatusCode::BAD_GATEWAY, Json(ChatResponse {
+                reply: "couldn't reach my brain right now. try again later!".to_string(),
+            }))
         }
     }
 }
@@ -217,6 +192,7 @@ async fn main() {
     let _ = dotenvy::dotenv();
 
     let api_key = std::env::var("MOONSHOT_API_KEY").expect("MOONSHOT_API_KEY must be set");
+    let api_url = "https://api.moonshot.cn/v1/chat/completions".to_string();
     let port: u16 = std::env::var("PORT")
         .ok()
         .and_then(|p| p.parse().ok())
@@ -224,6 +200,7 @@ async fn main() {
 
     let state = Arc::new(AppState {
         api_key,
+        api_url: api_url.clone(),
         http_client: reqwest::Client::new(),
         rate_limiter: RateLimiter::new(10, Duration::from_secs(60)),
     });
@@ -236,8 +213,7 @@ async fn main() {
         .with_state(state);
 
     let addr = SocketAddr::from(([0, 0, 0, 0], port));
-    tracing::info!("listening on {addr}");
-    println!("portfolio chat api running on http://{addr}");
+    println!("chat proxy running on http://{addr} -> {api_url}");
 
     let listener = tokio::net::TcpListener::bind(addr).await.unwrap();
     axum::serve(listener, app.into_make_service_with_connect_info::<SocketAddr>())

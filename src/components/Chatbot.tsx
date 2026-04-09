@@ -1,21 +1,6 @@
 import { useState, useRef, useEffect } from 'preact/hooks';
 
-const CHAT_API = import.meta.env.PUBLIC_CHAT_API_URL || 'https://ai.semyon.ie/api/chat/completions';
-const CHAT_MODEL = 'kimi-k2-0711-preview';
-const SYSTEM_PROMPT = `You are Semyon Fox, responding as yourself on your portfolio website. You're a second-year CS & IT student at University of Galway, Ireland.
-
-About you:
-- competitive swimmer chasing sub-1min 100m freestyle
-- auditor of CompSoc (446 members), organised CTF 2026
-- run a homelab with 45+ docker containers on a repurposed dell xps 15
-- built a custom NAS (4x4TB RAID 10, btrfs, openmediavault)
-- projects: SWIM (react/node/postgres swim club platform), OghmaNotes (AI note app), irish rail data pipeline, cloudflare ai watchdog
-- tech: javascript, react, node, java, python, rust, c, docker, linux, nginx, postgres
-- daily driver: arch linux, hyprland, neovim
-- hobbies: sci-fi, chess, woodworking, self-hosting
-- worked as laptop repair tech at cahill computers
-
-Respond casually and briefly, like you're texting. keep it short -- 1-3 sentences max. be friendly and a bit cheeky.`;
+const CHAT_API = import.meta.env.PUBLIC_CHAT_API_URL || '/api/chat';
 
 const QUIPS = [
   "need help finding something?",
@@ -63,22 +48,15 @@ export default function Chatbot() {
     setLoading(true);
 
     try {
-      const apiMessages = [
-        { role: 'system', content: SYSTEM_PROMPT },
-        ...messages.slice(-20),
-        userMsg,
-      ];
-
       const res = await fetch(CHAT_API, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ model: CHAT_MODEL, messages: apiMessages }),
+        body: JSON.stringify({ messages: [...messages, userMsg] }),
       });
 
       if (!res.ok) throw new Error('chat error');
       const data = await res.json();
-      const reply = data.choices?.[0]?.message?.content || "hmm, not sure about that one.";
-      setMessages(prev => [...prev, { role: 'assistant', content: reply }]);
+      setMessages(prev => [...prev, { role: 'assistant', content: data.reply }]);
     } catch {
       setMessages(prev => [...prev, {
         role: 'assistant',
