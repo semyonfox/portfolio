@@ -27,7 +27,8 @@ api/target/
 # env / secrets
 .env
 .env.local
-.env.*
+.env.development
+.env.production
 
 # old site (migrated to astro)
 _old/
