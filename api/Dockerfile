@@ -1,5 +1,7 @@
 FROM rust:1.87-slim AS builder
 
+RUN apt-get update && apt-get install -y --no-install-recommends pkg-config libssl-dev && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
 COPY Cargo.toml Cargo.lock* ./
 # create dummy src for dependency caching
