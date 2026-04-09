@@ -1,0 +1,29 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: { id: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Layout title={`${post.data.title} | Semyon Fox`} description={post.data.description}>
+  <article class="pt-20 pb-16 md:pt-28 max-w-2xl">
+    <a href="/blog" class="text-dim text-xs hover:text-muted transition-colors mb-6 inline-block">&larr; back to blog</a>
+    <p class="text-dim text-xs mb-3">
+      {new Date(post.data.date).toLocaleDateString('en-IE', { day: 'numeric', month: 'long', year: 'numeric' })}
+      &middot; {post.data.author}
+    </p>
+    <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight mb-8">{post.data.title}</h1>
+    <div class="prose prose-invert prose-sm max-w-none text-muted leading-relaxed space-y-4 [&>p]:text-muted [&>h2]:text-heading [&>h2]:text-xl [&>h2]:font-bold [&>h2]:mt-8 [&>h2]:mb-4 [&>h3]:text-heading [&>h3]:font-semibold [&>h3]:mt-6 [&>h3]:mb-3">
+      <Content />
+    </div>
+  </article>
+</Layout>

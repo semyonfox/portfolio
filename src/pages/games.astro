@@ -1,0 +1,116 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const games = (await getCollection('games')).sort((a, b) => a.data.order - b.data.order);
+
+// short labels for thumbnail placeholders until screenshots are added
+const gameLabels: Record<string, string> = {
+  'space-invaders': 'SI',
+  'maze-chase': 'A*',
+  'game-of-life': 'GOL',
+  'artificial': 'ART',
+  'cellular-caves': 'CA',
+  'gacha-bot': 'GB',
+  'clicker-game': 'CLK',
+};
+---
+
+<Layout title="Games | Semyon Fox" description="Games and apps I've built that you can actually play.">
+  <section class="pt-20 pb-16 md:pt-28">
+    <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight mb-2">Games & Apps</h1>
+    <p class="text-muted text-sm mb-12">stuff i've built that you can actually play</p>
+
+    <!-- catalog grid -->
+    <div id="game-catalog" class="grid grid-cols-2 md:grid-cols-3 gap-3">
+      {games.map(game => (
+        <button
+          class="game-card bg-surface border border-heading/[0.06] rounded-bento overflow-hidden hover:border-heading/10 transition-colors text-left group"
+          data-game-id={game.id}
+          data-game-title={game.data.title}
+          data-game-tech={game.data.tech}
+          data-game-github={game.data.github || ''}
+          data-game-embed={game.data.embed || ''}
+        >
+          <div class="bg-border h-32 md:h-40 flex items-center justify-center">
+            <span class="text-2xl font-black text-dim/40 tracking-tighter">{gameLabels[game.id] || '?'}</span>
+          </div>
+          <div class="p-4">
+            <h3 class="text-heading text-sm font-semibold group-hover:text-fox/90 transition-colors">{game.data.title}</h3>
+            <p class="text-muted text-xs mt-1.5 line-clamp-2 leading-relaxed">{game.data.description}</p>
+            <p class="text-dim text-[11px] mt-2">{game.data.tech}</p>
+          </div>
+        </button>
+      ))}
+    </div>
+
+    <!-- game player (hidden by default) -->
+    <div id="game-player" class="hidden">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <h2 id="player-title" class="text-heading text-xl font-bold tracking-tight"></h2>
+          <p id="player-tech" class="text-dim text-xs mt-1"></p>
+        </div>
+        <div class="flex gap-2">
+          <a id="player-github" href="#" target="_blank" rel="noopener noreferrer" class="hidden border border-border text-muted text-xs px-3 py-1.5 rounded-lg hover:text-heading hover:border-muted transition-colors">
+            github
+          </a>
+          <button id="player-fullscreen" class="border border-border text-muted text-xs px-3 py-1.5 rounded-lg hover:text-heading hover:border-muted transition-colors">
+            fullscreen
+          </button>
+          <button id="player-back" class="border border-border text-muted text-xs px-3 py-1.5 rounded-lg hover:text-heading hover:border-muted transition-colors">
+            back
+          </button>
+        </div>
+      </div>
+      <div class="bg-black rounded-bento overflow-hidden border border-border">
+        <iframe id="player-frame" class="w-full aspect-video" title="Game player" sandbox="allow-scripts allow-same-origin"></iframe>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const catalog = document.getElementById('game-catalog');
+  const player = document.getElementById('game-player');
+  const frame = document.getElementById('player-frame') as HTMLIFrameElement;
+  const title = document.getElementById('player-title');
+  const tech = document.getElementById('player-tech');
+  const githubLink = document.getElementById('player-github') as HTMLAnchorElement;
+  const backBtn = document.getElementById('player-back');
+  const fullscreenBtn = document.getElementById('player-fullscreen');
+
+  document.querySelectorAll('.game-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const el = card as HTMLElement;
+      const embedUrl = el.dataset.gameEmbed;
+
+      if (title) title.textContent = el.dataset.gameTitle || '';
+      if (tech) tech.textContent = el.dataset.gameTech || '';
+
+      if (el.dataset.gameGithub && githubLink) {
+        githubLink.href = el.dataset.gameGithub;
+        githubLink.classList.remove('hidden');
+      }
+
+      if (embedUrl && frame) {
+        frame.src = embedUrl;
+      } else if (frame) {
+        frame.srcdoc = `<div style="display:flex;align-items:center;justify-content:center;height:100%;background:#0a0a0a;color:#666;font-family:system-ui;"><p>Game embed coming soon</p></div>`;
+      }
+
+      catalog?.classList.add('hidden');
+      player?.classList.remove('hidden');
+    });
+  });
+
+  backBtn?.addEventListener('click', () => {
+    player?.classList.add('hidden');
+    catalog?.classList.remove('hidden');
+    if (frame) frame.src = '';
+  });
+
+  fullscreenBtn?.addEventListener('click', () => {
+    frame?.requestFullscreen?.();
+  });
+</script>
