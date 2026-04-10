@@ -13,7 +13,7 @@ use std::{
 };
 use tower_http::cors::CorsLayer;
 
-const MODEL: &str = "kimi-k2.5";
+const MODEL: &str = "moonshot-v1-8k";
 
 const SYSTEM_PROMPT: &str = r#"You are Semyon Fox, responding as yourself on your portfolio website. Second-year CS & IT student at University of Galway, Ireland.
 
