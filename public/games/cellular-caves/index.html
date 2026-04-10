@@ -3,23 +3,44 @@
   <head>
     <meta charset="utf-8" />
     <title>Cellular Automata Caves</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
     <script src="https://cjrtnc.leaningtech.com/4.2/loader.js"></script>
     <style>
-      html, body { margin: 0; padding: 0; background: #000; overflow: hidden; width: 100%; height: 100%; }
-      #loading { color: #888; font-family: monospace; font-size: 14px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 10; }
-      #loading.hidden { display: none; }
-      div[style*="cheerpj"] { display: none !important; }
-      [class*="cheerpj"], .cheerpjSplash, .cheerpj-splash { display: none !important; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 100%; height: 100%; background: #0c0c0c; overflow: hidden; font-family: 'Inter', system-ui, sans-serif; }
+
+      #loader {
+        position: absolute; inset: 0; z-index: 100;
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        background: #0c0c0c;
+        transition: opacity 0.4s ease;
+      }
+      #loader.fade-out { opacity: 0; pointer-events: none; }
+      #loader.hidden { display: none; }
+
+      .loader-title { color: #e0e0e0; font-size: 18px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 6px; }
+      .loader-sub { color: #4a4a4a; font-size: 12px; margin-bottom: 28px; }
+      .progress-track { width: 200px; height: 3px; background: #1e1e1e; border-radius: 2px; overflow: hidden; }
+      .progress-bar { height: 100%; width: 0%; background: #e8702a; border-radius: 2px; transition: width 0.5s ease; }
+      .loader-status { color: #7a7a7a; font-size: 11px; margin-top: 14px; transition: opacity 0.3s ease; }
+
+      div[style*="cheerpj"], [class*="cheerpj"], .cheerpjSplash, .cheerpj-splash { display: none !important; }
       div[style*="COMMUNITY"] { display: none !important; }
-      body > div:last-child[style*="position: fixed"] { display: none !important; }
-      body > div[style*="z-index"][style*="background"] { display: none !important; }
+      body > div[style*="position: fixed"][style*="bottom"] { display: none !important; }
     </style>
   </head>
   <body>
-    <div id="loading">loading CheerpJ runtime...</div>
+    <div id="loader">
+      <div class="loader-title">Cellular Automata Caves</div>
+      <div class="loader-sub">Java (Swing) via CheerpJ</div>
+      <div class="progress-track"><div class="progress-bar" id="progress"></div></div>
+      <div class="loader-status" id="status">initializing runtime...</div>
+    </div>
     <script>
       function hideCheerpjUI() {
         document.querySelectorAll('body > div').forEach(function(el) {
+          if (el.id === 'loader') return;
           var s = el.getAttribute('style') || '';
           var t = el.textContent || '';
           if (t.indexOf('COMMUNITY') !== -1 || t.indexOf('cheerpj') !== -1 ||
@@ -30,12 +51,29 @@
       }
       new MutationObserver(hideCheerpjUI).observe(document.body, { childList: true, subtree: true });
 
+      var bar = document.getElementById('progress');
+      var status = document.getElementById('status');
+      var loader = document.getElementById('loader');
+
+      function setProgress(pct, msg) {
+        bar.style.width = pct + '%';
+        if (msg) status.textContent = msg;
+      }
+
       (async function () {
-        await cheerpjInit({ clipboardMode: "permission" });
+        setProgress(15, 'loading cheerpj runtime...');
+        await cheerpjInit({ status: "none", clipboardMode: "permission" });
+        setProgress(45, 'creating display...');
         cheerpjCreateDisplay(-1, -1, document.body);
-        document.getElementById("loading").classList.add("hidden");
         hideCheerpjUI();
+        setProgress(70, 'loading jar...');
+        setTimeout(function() { setProgress(85, 'starting application...'); }, 500);
         await cheerpjRunJar("/app/games/cellular-caves/app.jar");
+        setProgress(100, 'ready');
+        setTimeout(function() {
+          loader.classList.add('fade-out');
+          setTimeout(function() { loader.classList.add('hidden'); }, 400);
+        }, 300);
       })();
     </script>
   </body>
