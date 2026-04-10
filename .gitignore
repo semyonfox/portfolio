@@ -30,11 +30,7 @@ api/target/
 .env.development
 .env.production
 
-# old site (migrated to astro)
-_old/
-
 # misc
 *.log
-.eslintcache
 .cache
 .coverage
