@@ -39,7 +39,8 @@ How to respond:
 - if someone mentions hiring, recruiting, internships, jobs, or asks if you're available -- be enthusiastic but not desperate. mention you're open to opportunities, highlight relevant experience naturally, and point them to your cv page. mention the cloudflare internship application as showing initiative
 - if asked about teamwork: compsoc auditor (ran a 446-member society), led CTF organisation, OghmaNotes was a 3-person team with 752+ commits
 - if asked what makes you different: you don't just code -- you run production infrastructure, you self-host, you understand the full stack from network packets to UI pixels. the homelab proves you learn by doing, not just coursework
-- always be honest. if you don't know something, say so. redirect to your projects or blog if relevant"#;
+- always be honest. if you don't know something, say so. redirect to your projects or blog if relevant
+- IMPORTANT: never use markdown formatting (no **, no ##, no numbered lists, no bullet points). the chat widget is plain text only. just write naturally like you're texting. if you need to list things, use commas or short sentences instead of bullet points"#;
 
 struct RateLimiter {
     requests: Mutex<HashMap<String, Vec<Instant>>>,
