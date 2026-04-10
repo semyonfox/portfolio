@@ -41,6 +41,7 @@ const gameLabels: Record<string, string> = {
             data-game-tech={game.data.tech}
             data-game-github={game.data.github || ''}
             data-game-embed={game.data.embed || ''}
+            data-game-noembed={game.data.noEmbed || ''}
           >
             <div class="bg-border h-32 md:h-40 flex items-center justify-center">
               <span class="text-2xl font-black text-dim/40 tracking-tighter">
@@ -101,7 +102,8 @@ const gameLabels: Record<string, string> = {
           id="player-frame"
           class="w-full aspect-video"
           title="Game player"
-          sandbox="allow-scripts allow-same-origin"></iframe>
+          sandbox="allow-scripts allow-same-origin allow-popups allow-modals"
+        ></iframe>
       </div>
     </div>
   </section>
@@ -130,12 +132,15 @@ const gameLabels: Record<string, string> = {
       if (el.dataset.gameGithub && githubLink) {
         githubLink.href = el.dataset.gameGithub;
         githubLink.classList.remove('hidden');
+      } else if (githubLink) {
+        githubLink.classList.add('hidden');
       }
 
       if (embedUrl && frame) {
         frame.src = embedUrl;
       } else if (frame) {
-        frame.srcdoc = `<div style="display:flex;align-items:center;justify-content:center;height:100%;background:#0a0a0a;color:#666;font-family:system-ui;"><p>Game embed coming soon</p></div>`;
+        const msg = el.dataset.gameNoembed || 'Game embed coming soon';
+        frame.srcdoc = `<div style="display:flex;align-items:center;justify-content:center;height:100%;background:#0a0a0a;color:#666;font-family:system-ui;font-size:14px;"><p>${msg}</p></div>`;
       }
 
       catalog?.classList.add('hidden');

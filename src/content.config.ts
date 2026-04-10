@@ -33,6 +33,7 @@ const games = defineCollection({
     tech: z.string(),
     github: z.string().optional(),
     embed: z.string().optional(),
+    noEmbed: z.string().optional(),
     thumbnail: z.string().optional(),
     order: z.number().default(0),
   }),

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>A* Maze Chase</title>
+    <script src="https://cjrtnc.leaningtech.com/4.2/loader.js"></script>
+    <style>
+      html, body { margin: 0; padding: 0; background: #000; overflow: hidden; width: 100%; height: 100%; }
+      #loading { color: #888; font-family: monospace; font-size: 14px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 10; }
+      #loading.hidden { display: none; }
+    </style>
+  </head>
+  <body>
+    <div id="loading">loading CheerpJ runtime...</div>
+    <script>
+      (async function () {
+        await cheerpjInit({ clipboardMode: "permission" });
+        cheerpjCreateDisplay(-1, -1, document.body);
+        document.getElementById("loading").classList.add("hidden");
+        await cheerpjRunJar("/app/games/astar-maze-chase/app.jar");
+      })();
+    </script>
+  </body>
+</html>
