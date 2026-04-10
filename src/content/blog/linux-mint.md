@@ -1,20 +1,24 @@
 ---
-title: "Why I Switched to Linux Mint: A Student's Experience"
+title: "Why I Switched to Linux Mint"
 date: "2025-05-23"
 author: "Semyon Fox"
-description: "From Windows 10 end-of-life to a full Linux switch — battery gains, Timeshift saves, and a system that actually feels mine."
+description: "Windows 10 was dying, so I wiped my laptop and installed Linux Mint. Best decision I made all year."
 ---
 
-When Windows 10's support warning popped up on my laptop last year, I felt a mix of irritation and curiosity. I'd already wrestled with Ubuntu Server for my home projects and toyed with Kali Linux, but I'd never made a full switch. That day, I decided to give my laptop a fresh start.
+Windows 10 started nagging me about end of support. I'd already been messing around with Ubuntu Server for my home projects and had Kali installed at one point, but I'd never actually daily-driven Linux. So I thought, why not?
 
-I backed up my files and wiped Windows clean. As the installer booted, I chose Linux Mint Cinnamon—attractive, stable, and with a desktop that felt oddly familiar. It was like meeting an old friend in a new city.
+I backed everything up and wiped the laptop clean.
 
-Once the install finished, I settled into the new environment. The first boot was slower than expected, but the system quickly found its rhythm. I explored the menus, tweaked the theme to a dark blue I liked, and installed VS Code for coding. It felt liberating to press Ctrl+Alt+T and open a terminal without fear—yet I rarely used it except to troubleshoot minor hiccups.
+I went with Linux Mint Cinnamon. It looked good, it was stable, and the desktop layout felt familiar enough that I wasn't completely lost. I tweaked the theme to a dark blue, installed VS Code, and honestly? It just worked. I could open a terminal without feeling like I was about to break something (though I rarely needed to).
 
-My HP EliteBook's Wi-Fi drove me nuts at first—Eduroam required hidden settings—but a forum thread on Reddit saved the day. At university, hooking up my USB-C dock sometimes made external monitors flicker, reminding me that no system is perfect. Multiple reboots later, I mostly shrugged and copied logs for next time.
+Wi-Fi was a nightmare at first. My HP EliteBook did not want to cooperate with Eduroam. Some hidden settings buried in the network config, a Reddit thread, and a lot of patience later, it finally connected. The USB-C dock at uni was another story. External monitors would flicker every now and then. No system is perfect, I suppose. I learned to shrug and save the logs for later.
 
-Battery life surprised me: an extra 20% during long library sessions. Playing Minecraft, I noticed a small FPS bump. For heavy AAA titles, I still boot into Windows on my desktop, but for everything else—coding, note-taking in Obsidian, streaming lectures—Mint handled it flawlessly.
+What actually surprised me was the battery life. An extra 20% during long library sessions. Minecraft even ran slightly better. For anything heavy I still boot into Windows on my desktop, but for coding, Obsidian, lectures... Mint handled all of it without breaking a sweat.
 
-One evening, an AI-suggested command I didn't fully understand wiped out critical system files. Panic hit, but Timeshift snapshots restored everything within minutes. The experience taught me respect for backups and the strength of the community backing Mint.
+Then one evening I ran a command I didn't fully understand.
 
-Now, every morning, I open my laptop to a snappy login, the familiar Cinnamon panel waiting. I customize themes on weekends, share fixes on the forums, and enjoy a system that feels truly mine. Linux Mint didn't just replace Windows—it breathed new life into my daily routine.
+It wiped out critical system files.
+
+Total panic. But Timeshift had my back. Snapshots restored everything in minutes. Lesson learned: always have backups, and don't blindly paste commands from the internet.
+
+Now I open my laptop every morning to a snappy login and the Cinnamon panel waiting for me. I mess with themes on weekends, lurk on the forums, and actually enjoy using my computer. Linux Mint didn't just replace Windows. It made my laptop feel like mine again.
