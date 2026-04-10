@@ -60,7 +60,7 @@
 
       (async function () {
         setProgress(15, 'loading cheerpj runtime...');
-        await cheerpjInit({ status: "none", clipboardMode: "permission" });
+        await cheerpjInit({ status: "none", clipboardMode: "system" });
         setProgress(45, 'creating display...');
         cheerpjCreateDisplay(-1, -1, document.body);
         hideCheerpjUI();
