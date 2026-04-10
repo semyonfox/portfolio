@@ -8,15 +8,33 @@
       html, body { margin: 0; padding: 0; background: #000; overflow: hidden; width: 100%; height: 100%; }
       #loading { color: #888; font-family: monospace; font-size: 14px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 10; }
       #loading.hidden { display: none; }
+      div[style*="cheerpj"] { display: none !important; }
+      [class*="cheerpj"], .cheerpjSplash, .cheerpj-splash { display: none !important; }
+      div[style*="COMMUNITY"] { display: none !important; }
+      body > div:last-child[style*="position: fixed"] { display: none !important; }
+      body > div[style*="z-index"][style*="background"] { display: none !important; }
     </style>
   </head>
   <body>
     <div id="loading">loading CheerpJ runtime...</div>
     <script>
+      function hideCheerpjUI() {
+        document.querySelectorAll('body > div').forEach(function(el) {
+          var s = el.getAttribute('style') || '';
+          var t = el.textContent || '';
+          if (t.indexOf('COMMUNITY') !== -1 || t.indexOf('cheerpj') !== -1 ||
+              s.indexOf('cheerpj') !== -1 || (s.indexOf('position: fixed') !== -1 && s.indexOf('bottom') !== -1)) {
+            el.style.display = 'none';
+          }
+        });
+      }
+      new MutationObserver(hideCheerpjUI).observe(document.body, { childList: true, subtree: true });
+
       (async function () {
         await cheerpjInit({ clipboardMode: "permission" });
         cheerpjCreateDisplay(-1, -1, document.body);
         document.getElementById("loading").classList.add("hidden");
+        hideCheerpjUI();
         await cheerpjRunJar("/app/games/astar-maze-chase/app.jar");
       })();
     </script>
