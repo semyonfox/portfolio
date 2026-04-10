@@ -60,7 +60,7 @@ export default function Chatbot() {
     } catch {
       setMessages(prev => [...prev, {
         role: 'assistant',
-        content: "can't reach my brain right now -- try again in a sec!",
+        content: "my brain isn't connected yet -- the rust backend is coming soon!",
       }]);
     } finally {
       setLoading(false);
