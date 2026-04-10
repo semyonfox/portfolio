@@ -4,11 +4,17 @@ import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import profilePic from '../assets/profilepic.webp';
 
-const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
-const posts = (await getCollection('blog')).sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
-const games = (await getCollection('games')).sort((a, b) => a.data.order - b.data.order);
+const projects = (await getCollection('projects')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const posts = (await getCollection('blog')).sort(
+  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+);
+const games = (await getCollection('games')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
 
-const featured = projects.find(p => p.data.featured) || projects[0];
+const featured = projects.find((p) => p.data.featured) || projects[0];
 const latestPost = posts[0];
 const latestGame = games[0];
 const secondPost = posts[1];
@@ -17,20 +23,32 @@ const secondPost = posts[1];
 <Layout title="Semyon Fox | Developer, Swimmer, Tinkerer">
   <!-- hero -->
   <section class="pt-20 pb-16 md:pt-28 md:pb-20">
-    <p class="text-dim text-xs uppercase tracking-[3px] mb-4">CS &middot; University of Galway</p>
-    <h1 class="text-5xl md:text-7xl font-black tracking-[-3px] leading-[0.9] mb-6">
+    <p class="text-dim text-xs uppercase tracking-[3px] mb-4">
+      CS &middot; University of Galway
+    </p>
+    <h1
+      class="text-5xl md:text-7xl font-black tracking-[-3px] leading-[0.9] mb-6"
+    >
       Dev<span class="text-fox">.</span><br />
       <span class="text-muted">Swim</span><span class="text-fox">.</span><br />
       <span class="text-dim">Build</span><span class="text-fox">.</span>
     </h1>
     <p class="text-muted text-sm md:text-base leading-relaxed max-w-md mb-8">
-      I build things with code and break things with curiosity. Currently running 30+ containers on a repurposed laptop and racing toward sub-1min 100m.
+      I build things with code and break things with curiosity. Currently
+      running 30+ containers on a repurposed laptop and racing toward sub-1min
+      100m.
     </p>
     <div class="flex gap-3">
-      <a href="/projects" class="bg-fox text-heading font-semibold text-sm px-5 py-2.5 rounded-lg hover:brightness-110 transition-all">
+      <a
+        href="/projects"
+        class="bg-fox text-heading font-semibold text-sm px-5 py-2.5 rounded-lg hover:brightness-110 transition-all"
+      >
         view projects
       </a>
-      <a href="/blog" class="border border-border text-muted font-medium text-sm px-5 py-2.5 rounded-lg hover:text-heading hover:border-muted transition-colors">
+      <a
+        href="/blog"
+        class="border border-border text-muted font-medium text-sm px-5 py-2.5 rounded-lg hover:text-heading hover:border-muted transition-colors"
+      >
         read blog
       </a>
     </div>
@@ -38,68 +56,140 @@ const secondPost = posts[1];
 
   <!-- bento grid -->
   <section class="pb-16">
-    <p class="text-dim text-xs uppercase tracking-[3px] mb-6">what i've been up to</p>
+    <p class="text-dim text-xs uppercase tracking-[3px] mb-6">
+      what i've been up to
+    </p>
 
     <div class="grid grid-cols-1 md:grid-cols-5 gap-3">
       <!-- featured project (spans 2 rows) -->
-      {featured && (
-        <a href="/projects" class="md:col-span-3 md:row-span-2 bg-surface border border-heading/[0.06] rounded-bento p-6 flex flex-col justify-between hover:border-heading/10 transition-colors group">
-          <div>
-            <p class="text-fox text-[11px] font-semibold uppercase tracking-widest mb-3">featured project</p>
-            <h3 class="text-heading text-lg font-bold tracking-tight mb-2 group-hover:text-fox/90 transition-colors">{featured.data.title}</h3>
-            <p class="text-muted text-sm leading-relaxed">{featured.data.description}</p>
-          </div>
-          <div class="flex flex-wrap gap-1.5 mt-4">
-            {featured.data.tags.slice(0, 4).map(tag => (
-              <span class="bg-border px-2 py-0.5 rounded text-[11px] text-muted">{tag}</span>
-            ))}
-          </div>
-        </a>
-      )}
+      {
+        featured && (
+          <a
+            href="/projects"
+            class="md:col-span-3 md:row-span-2 bg-surface border border-heading/[0.06] rounded-bento p-6 flex flex-col justify-between hover:border-heading/10 transition-colors group"
+          >
+            <div>
+              <p class="text-fox text-[11px] font-semibold uppercase tracking-widest mb-3">
+                featured project
+              </p>
+              <h3 class="text-heading text-lg font-bold tracking-tight mb-2 group-hover:text-fox/90 transition-colors">
+                {featured.data.title}
+              </h3>
+              <p class="text-muted text-sm leading-relaxed">
+                {featured.data.description}
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-1.5 mt-4">
+              {featured.data.tags.slice(0, 4).map((tag) => (
+                <span class="bg-border px-2 py-0.5 rounded text-[11px] text-muted">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </a>
+        )
+      }
 
       <!-- game card -->
-      {latestGame && (
-        <a href="/games" class="md:col-span-2 bg-surface border border-heading/[0.06] rounded-bento overflow-hidden hover:border-heading/10 transition-colors group">
-          <div class="bg-border h-28 flex items-center justify-center">
-            <span class="text-lg font-black text-dim/40 tracking-tighter">PLAY</span>
-          </div>
-          <div class="p-4">
-            <p class="text-dim text-[11px] uppercase tracking-widest mb-1">game</p>
-            <h3 class="text-heading text-sm font-semibold group-hover:text-fox/90 transition-colors">{latestGame.data.title}</h3>
-            <p class="text-dim text-xs mt-1">{latestGame.data.tech}</p>
-          </div>
-        </a>
-      )}
+      {
+        latestGame && (
+          <a
+            href="/games"
+            class="md:col-span-2 bg-surface border border-heading/[0.06] rounded-bento overflow-hidden hover:border-heading/10 transition-colors group"
+          >
+            <div class="bg-border h-28 flex items-center justify-center">
+              <span class="text-lg font-black text-dim/40 tracking-tighter">
+                PLAY
+              </span>
+            </div>
+            <div class="p-4">
+              <p class="text-dim text-[11px] uppercase tracking-widest mb-1">
+                game
+              </p>
+              <h3 class="text-heading text-sm font-semibold group-hover:text-fox/90 transition-colors">
+                {latestGame.data.title}
+              </h3>
+              <p class="text-dim text-xs mt-1">{latestGame.data.tech}</p>
+            </div>
+          </a>
+        )
+      }
 
       <!-- latest blog -->
-      {latestPost && (
-        <a href={`/blog/${latestPost.id}`} class="md:col-span-2 bg-surface border border-heading/[0.06] rounded-bento p-4 hover:border-heading/10 transition-colors group">
-          <p class="text-dim text-[11px] uppercase tracking-widest mb-1.5">blog</p>
-          <h3 class="text-heading text-sm font-semibold group-hover:text-fox/90 transition-colors">{latestPost.data.title}</h3>
-          <p class="text-dim text-xs mt-1">{new Date(latestPost.data.date).toLocaleDateString('en-IE', { month: 'short', year: 'numeric' })}</p>
-        </a>
-      )}
+      {
+        latestPost && (
+          <a
+            href={`/blog/${latestPost.id}`}
+            class="md:col-span-2 bg-surface border border-heading/[0.06] rounded-bento p-4 hover:border-heading/10 transition-colors group"
+          >
+            <p class="text-dim text-[11px] uppercase tracking-widest mb-1.5">
+              blog
+            </p>
+            <h3 class="text-heading text-sm font-semibold group-hover:text-fox/90 transition-colors">
+              {latestPost.data.title}
+            </h3>
+            <p class="text-dim text-xs mt-1">
+              {new Date(latestPost.data.date).toLocaleDateString('en-IE', {
+                month: 'short',
+                year: 'numeric',
+              })}
+            </p>
+          </a>
+        )
+      }
 
       <!-- row 2 -->
-      {projects[1] && (
-        <a href="/projects" class="md:col-span-2 bg-surface border border-heading/[0.06] rounded-bento p-4 hover:border-heading/10 transition-colors group">
-          <p class="text-dim text-[11px] uppercase tracking-widest mb-1.5">project</p>
-          <h3 class="text-heading text-sm font-semibold group-hover:text-fox/90 transition-colors">{projects[1].data.title}</h3>
-          <p class="text-muted text-xs mt-1 line-clamp-2">{projects[1].data.description}</p>
-        </a>
-      )}
+      {
+        projects[1] && (
+          <a
+            href="/projects"
+            class="md:col-span-2 bg-surface border border-heading/[0.06] rounded-bento p-4 hover:border-heading/10 transition-colors group"
+          >
+            <p class="text-dim text-[11px] uppercase tracking-widest mb-1.5">
+              project
+            </p>
+            <h3 class="text-heading text-sm font-semibold group-hover:text-fox/90 transition-colors">
+              {projects[1].data.title}
+            </h3>
+            <p class="text-muted text-xs mt-1 line-clamp-2">
+              {projects[1].data.description}
+            </p>
+          </a>
+        )
+      }
 
-      {secondPost && (
-        <a href={`/blog/${secondPost.id}`} class="md:col-span-2 bg-surface border border-heading/[0.06] rounded-bento p-4 hover:border-heading/10 transition-colors group">
-          <p class="text-dim text-[11px] uppercase tracking-widest mb-1.5">blog</p>
-          <h3 class="text-heading text-sm font-semibold group-hover:text-fox/90 transition-colors">{secondPost.data.title}</h3>
-          <p class="text-dim text-xs mt-1">{new Date(secondPost.data.date).toLocaleDateString('en-IE', { month: 'short', year: 'numeric' })}</p>
-        </a>
-      )}
+      {
+        secondPost && (
+          <a
+            href={`/blog/${secondPost.id}`}
+            class="md:col-span-2 bg-surface border border-heading/[0.06] rounded-bento p-4 hover:border-heading/10 transition-colors group"
+          >
+            <p class="text-dim text-[11px] uppercase tracking-widest mb-1.5">
+              blog
+            </p>
+            <h3 class="text-heading text-sm font-semibold group-hover:text-fox/90 transition-colors">
+              {secondPost.data.title}
+            </h3>
+            <p class="text-dim text-xs mt-1">
+              {new Date(secondPost.data.date).toLocaleDateString('en-IE', {
+                month: 'short',
+                year: 'numeric',
+              })}
+            </p>
+          </a>
+        )
+      }
 
-      <a href="/games" class="md:col-span-1 bg-surface border border-heading/[0.06] rounded-bento p-4 flex flex-col items-center justify-center text-center hover:border-heading/10 transition-colors group">
+      <a
+        href="/games"
+        class="md:col-span-1 bg-surface border border-heading/[0.06] rounded-bento p-4 flex flex-col items-center justify-center text-center hover:border-heading/10 transition-colors group"
+      >
         <span class="text-lg font-black text-dim/40 mb-1">~/games</span>
-        <p class="text-muted text-xs group-hover:text-heading transition-colors">play</p>
+        <p
+          class="text-muted text-xs group-hover:text-heading transition-colors"
+        >
+          play
+        </p>
       </a>
     </div>
   </section>
@@ -107,7 +197,11 @@ const secondPost = posts[1];
   <!-- linkedin -->
   <section class="pb-16">
     <div class="flex items-center gap-3 mb-6">
-      <svg class="w-4 h-4 text-dim" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      <svg class="w-4 h-4 text-dim" fill="currentColor" viewBox="0 0 24 24"
+        ><path
+          d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+        ></path></svg
+      >
       <p class="text-dim text-xs uppercase tracking-[3px]">on linkedin</p>
     </div>
 
@@ -118,9 +212,19 @@ const secondPost = posts[1];
         rel="noopener noreferrer"
         class="bg-surface border border-heading/[0.06] rounded-bento p-5 hover:border-heading/10 transition-colors group"
       >
-        <p class="text-dim text-xs mb-2">8 months ago &middot; 1,339 impressions</p>
-        <h3 class="text-heading text-sm font-bold group-hover:text-fox/90 transition-colors mb-2">From Broken Laptop to Full Homelab: One Year Later</h3>
-        <p class="text-muted text-xs leading-relaxed line-clamp-3">One year ago, my Dell XPS 15's hinge crushed the screen. What was once a great laptop was now half-useless. While researching what to do, I came across a video: "Turn it into a server." So I did.</p>
+        <p class="text-dim text-xs mb-2">
+          8 months ago &middot; 1,339 impressions
+        </p>
+        <h3
+          class="text-heading text-sm font-bold group-hover:text-fox/90 transition-colors mb-2"
+        >
+          From Broken Laptop to Full Homelab: One Year Later
+        </h3>
+        <p class="text-muted text-xs leading-relaxed line-clamp-3">
+          One year ago, my Dell XPS 15's hinge crushed the screen. What was once
+          a great laptop was now half-useless. While researching what to do, I
+          came across a video: "Turn it into a server." So I did.
+        </p>
       </a>
 
       <a
@@ -129,9 +233,20 @@ const secondPost = posts[1];
         rel="noopener noreferrer"
         class="bg-surface border border-heading/[0.06] rounded-bento p-5 hover:border-heading/10 transition-colors group"
       >
-        <p class="text-dim text-xs mb-2">6 months ago &middot; 579 impressions</p>
-        <h3 class="text-heading text-sm font-bold group-hover:text-fox/90 transition-colors mb-2">Migrated from Google Photos to Immich</h3>
-        <p class="text-muted text-xs leading-relaxed line-clamp-3">I ran out of storage on Google and didn't want to pay for more. More importantly, I realized I didn't want Google controlling all my family memories. Immich is fast, reliable, and surprisingly close to Google Photos.</p>
+        <p class="text-dim text-xs mb-2">
+          6 months ago &middot; 579 impressions
+        </p>
+        <h3
+          class="text-heading text-sm font-bold group-hover:text-fox/90 transition-colors mb-2"
+        >
+          Migrated from Google Photos to Immich
+        </h3>
+        <p class="text-muted text-xs leading-relaxed line-clamp-3">
+          I ran out of storage on Google and didn't want to pay for more. More
+          importantly, I realized I didn't want Google controlling all my family
+          memories. Immich is fast, reliable, and surprisingly close to Google
+          Photos.
+        </p>
       </a>
 
       <a
@@ -140,9 +255,19 @@ const secondPost = posts[1];
         rel="noopener noreferrer"
         class="bg-surface border border-heading/[0.06] rounded-bento p-5 hover:border-heading/10 transition-colors group"
       >
-        <p class="text-dim text-xs mb-2">1 month ago &middot; 236 impressions</p>
-        <h3 class="text-heading text-sm font-bold group-hover:text-fox/90 transition-colors mb-2">CompSoc CTF 2026</h3>
-        <p class="text-muted text-xs leading-relaxed line-clamp-3">Incredibly proud of what we achieved. As Auditor, it was rewarding to see months of planning come together for our biggest event yet, with students travelling from across Ireland to compete.</p>
+        <p class="text-dim text-xs mb-2">
+          1 month ago &middot; 236 impressions
+        </p>
+        <h3
+          class="text-heading text-sm font-bold group-hover:text-fox/90 transition-colors mb-2"
+        >
+          CompSoc CTF 2026
+        </h3>
+        <p class="text-muted text-xs leading-relaxed line-clamp-3">
+          Incredibly proud of what we achieved. As Auditor, it was rewarding to
+          see months of planning come together for our biggest event yet, with
+          students travelling from across Ireland to compete.
+        </p>
       </a>
     </div>
   </section>
@@ -152,13 +277,40 @@ const secondPost = posts[1];
     <h2 class="text-2xl font-extrabold tracking-tight mb-6">About me</h2>
     <div class="grid md:grid-cols-[3fr_1fr] gap-8 items-start">
       <div class="space-y-4 text-muted text-sm leading-relaxed">
-        <p>Hi there! I'm Semyon, a passionate web developer and competitive swimmer hailing from Ireland.</p>
-        <p>When I'm not coding up sleek, responsive websites, you can find me perfecting my freestyle technique, always chasing that sub-one-minute mark in the 100-meter race.</p>
-        <p>A lover of all things science fiction, I often find myself dreaming about futuristic worlds, where my HTML, CSS, and JavaScript skills might just come in handy for building a spaceship interface -- or at least a cool sci-fi-themed website.</p>
-        <p>In between swims and coding sessions, I like to challenge myself with a good game of chess, proving that strategy is just as important on the board as it is in life (and web development!).</p>
-        <p>And when I need a break from the screen, you'll find me in the workshop, turning pieces of wood into something functional and beautiful -- because who says a coder can't also be a craftsman?</p>
-        <p>I'm actively involved in the university community as a member of CompSoc (Computer Society), where I've served as PRO, Committee Member, Auditor, and now Treasurer.</p>
-        <p>Whether it's in the pool, on the web, or in the workshop, I believe in pushing limits and thinking creatively.</p>
+        <p>
+          Hi there! I'm Semyon, a passionate web developer and competitive
+          swimmer hailing from Ireland.
+        </p>
+        <p>
+          When I'm not coding up sleek, responsive websites, you can find me
+          perfecting my freestyle technique, always chasing that sub-one-minute
+          mark in the 100-meter race.
+        </p>
+        <p>
+          A lover of all things science fiction, I often find myself dreaming
+          about futuristic worlds, where my HTML, CSS, and JavaScript skills
+          might just come in handy for building a spaceship interface -- or at
+          least a cool sci-fi-themed website.
+        </p>
+        <p>
+          In between swims and coding sessions, I like to challenge myself with
+          a good game of chess, proving that strategy is just as important on
+          the board as it is in life (and web development!).
+        </p>
+        <p>
+          And when I need a break from the screen, you'll find me in the
+          workshop, turning pieces of wood into something functional and
+          beautiful -- because who says a coder can't also be a craftsman?
+        </p>
+        <p>
+          I'm actively involved in the university community as a member of
+          CompSoc (Computer Society), where I've served as PRO, Committee
+          Member, Auditor, and now Treasurer.
+        </p>
+        <p>
+          Whether it's in the pool, on the web, or in the workshop, I believe in
+          pushing limits and thinking creatively.
+        </p>
       </div>
       <div class="hidden md:block">
         <Image

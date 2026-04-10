@@ -1,5 +1,5 @@
 {
-  "name": "astro-new",
+  "name": "portfolio",
   "type": "module",
   "version": "0.0.1",
   "engines": {
@@ -9,7 +9,11 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "lint": "prettier --check 'src/**/*.{astro,ts,tsx,css}'",
+    "format": "prettier --write 'src/**/*.{astro,ts,tsx,css}'",
+    "check": "astro check && pnpm run lint",
+    "deploy": "ssh semyon@server 'cd portfolio && git pull && docker compose build && docker compose up -d'"
   },
   "dependencies": {
     "@astrojs/preact": "^5.1.1",
@@ -19,5 +23,10 @@
     "preact": "^10.29.1",
     "sharp": "^0.34.5",
     "tailwindcss": "^3.4.19"
+  },
+  "devDependencies": {
+    "eslint": "^10.2.0",
+    "prettier": "^3.8.2",
+    "prettier-plugin-astro": "^0.14.1"
   }
 }

@@ -2,10 +2,15 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="CV | Semyon Fox" description="Semyon Fox - CS student, full-stack developer, homelab enthusiast.">
+<Layout
+  title="CV | Semyon Fox"
+  description="Semyon Fox - CS student, full-stack developer, homelab enthusiast."
+>
   <section class="pt-20 pb-16 md:pt-28 max-w-3xl">
     <div class="flex items-center justify-between gap-4 mb-1">
-      <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">Semyon Fox</h1>
+      <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">
+        Semyon Fox
+      </h1>
       <a
         href="/cv.pdf"
         download
@@ -16,27 +21,62 @@ import Layout from '../layouts/Layout.astro';
     </div>
     <p class="text-muted text-sm mb-2">Galway, Ireland</p>
     <div class="flex flex-wrap gap-3 text-xs text-muted mb-8">
-      <a href="mailto:semyon.fox@gmail.com" class="hover:text-heading transition-colors">semyon.fox@gmail.com</a>
+      <a
+        href="mailto:semyon.fox@gmail.com"
+        class="hover:text-heading transition-colors">semyon.fox@gmail.com</a
+      >
       <span class="text-dim">&middot;</span>
-      <a href="https://semyon.ie" class="hover:text-heading transition-colors">semyon.ie</a>
+      <a href="https://semyon.ie" class="hover:text-heading transition-colors"
+        >semyon.ie</a
+      >
       <span class="text-dim">&middot;</span>
-      <a href="https://github.com/semyonfox" target="_blank" rel="noopener noreferrer" class="hover:text-heading transition-colors">github.com/semyonfox</a>
+      <a
+        href="https://github.com/semyonfox"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hover:text-heading transition-colors">github.com/semyonfox</a
+      >
       <span class="text-dim">&middot;</span>
-      <a href="https://www.linkedin.com/in/semyon-fox-968685249/" target="_blank" rel="noopener noreferrer" class="hover:text-heading transition-colors">LinkedIn</a>
+      <a
+        href="https://www.linkedin.com/in/semyon-fox-968685249/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hover:text-heading transition-colors">LinkedIn</a
+      >
     </div>
 
     <p class="text-muted text-sm leading-relaxed italic mb-12">
-      Second-year Computer Science student building full-stack web applications and running a 45-container homelab. Currently serving as Treasurer of the 446-member Computer Science Society, previously Auditor.
+      Second-year Computer Science student building full-stack web applications
+      and running a 45-container homelab. Currently serving as Treasurer of the
+      446-member Computer Science Society, previously Auditor.
     </p>
 
     <!-- technical skills -->
     <div class="mb-12">
-      <h2 class="text-xs text-dim uppercase tracking-[3px] mb-4">Technical Skills</h2>
+      <h2 class="text-xs text-dim uppercase tracking-[3px] mb-4">
+        Technical Skills
+      </h2>
       <div class="space-y-2 text-sm">
-        <p><span class="text-heading font-semibold">Languages:</span> <span class="text-muted">JavaScript, Java, C, SQL, Python, Rust</span></p>
-        <p><span class="text-heading font-semibold">Web:</span> <span class="text-muted">React, Node.js/Express, REST APIs, HTML/CSS, Tailwind CSS, Astro, Next.js</span></p>
-        <p><span class="text-heading font-semibold">Databases:</span> <span class="text-muted">PostgreSQL, MySQL, TimescaleDB, Redis</span></p>
-        <p><span class="text-heading font-semibold">Infrastructure:</span> <span class="text-muted">Docker, Git/GitHub, Linux, Nginx, Cloudflare Workers, Restic, Btrfs, JWT, CSRF</span></p>
+        <p>
+          <span class="text-heading font-semibold">Languages:</span>
+          <span class="text-muted">JavaScript, Java, C, SQL, Python, Rust</span>
+        </p>
+        <p>
+          <span class="text-heading font-semibold">Web:</span>
+          <span class="text-muted"
+            >React, Node.js/Express, REST APIs, HTML/CSS, Tailwind CSS, Astro,
+            Next.js</span>
+        </p>
+        <p>
+          <span class="text-heading font-semibold">Databases:</span>
+          <span class="text-muted">PostgreSQL, MySQL, TimescaleDB, Redis</span>
+        </p>
+        <p>
+          <span class="text-heading font-semibold">Infrastructure:</span>
+          <span class="text-muted"
+            >Docker, Git/GitHub, Linux, Nginx, Cloudflare Workers, Restic,
+            Btrfs, JWT, CSRF</span>
+        </p>
       </div>
     </div>
 
@@ -45,104 +85,179 @@ import Layout from '../layouts/Layout.astro';
       <h2 class="text-xs text-dim uppercase tracking-[3px] mb-4">Education</h2>
       <div class="border-l border-border pl-6">
         <h3 class="text-heading font-bold">University of Galway</h3>
-        <p class="text-muted text-sm">BSc (Hons) Computer Science & IT &middot; Expected August 2028</p>
-        <p class="text-muted text-sm mt-1">2nd Year &middot; <span class="text-heading font-semibold">First Class Honours</span> (Year 1)</p>
-        <p class="text-dim text-xs mt-2">Web Development, Algorithms & Data Structures, Database Systems, Software Engineering, OOP (Java), Discrete Mathematics, Calculus, Statistics</p>
+        <p class="text-muted text-sm">
+          BSc (Hons) Computer Science & IT &middot; Expected August 2028
+        </p>
+        <p class="text-muted text-sm mt-1">
+          2nd Year &middot; <span class="text-heading font-semibold"
+            >First Class Honours</span
+          > (Year 1)
+        </p>
+        <p class="text-dim text-xs mt-2">
+          Web Development, Algorithms & Data Structures, Database Systems,
+          Software Engineering, OOP (Java), Discrete Mathematics, Calculus,
+          Statistics
+        </p>
       </div>
     </div>
 
     <!-- honours -->
     <div class="mb-12">
-      <h2 class="text-xs text-dim uppercase tracking-[3px] mb-4">Honours & Awards</h2>
+      <h2 class="text-xs text-dim uppercase tracking-[3px] mb-4">
+        Honours & Awards
+      </h2>
       <div class="space-y-4">
         <div class="bg-surface border border-heading/[0.06] rounded-bento p-4">
           <div class="flex justify-between items-start">
-            <h3 class="text-heading font-bold text-sm">Best Intervarsity Competition -- CompSoc "Capture the Flag"</h3>
+            <h3 class="text-heading font-bold text-sm">
+              Best Intervarsity Competition -- CompSoc "Capture the Flag"
+            </h3>
             <span class="text-dim text-xs shrink-0 ml-4">Mar 2025</span>
           </div>
-          <p class="text-muted text-xs mt-1">University of Galway Societies Award. Selected by panel of judges; represented university at BICS National Society Awards.</p>
+          <p class="text-muted text-xs mt-1">
+            University of Galway Societies Award. Selected by panel of judges;
+            represented university at BICS National Society Awards.
+          </p>
         </div>
         <div class="bg-surface border border-heading/[0.06] rounded-bento p-4">
           <div class="flex justify-between items-start">
-            <h3 class="text-heading font-bold text-sm">Brian O Maoilchiarain Award</h3>
+            <h3 class="text-heading font-bold text-sm">
+              Brian O Maoilchiarain Award
+            </h3>
             <span class="text-dim text-xs shrink-0 ml-4">Jun 2024</span>
           </div>
-          <p class="text-muted text-xs mt-1">Outstanding Student, Leaving Certificate year -- Colaiste an Eachréidh</p>
+          <p class="text-muted text-xs mt-1">
+            Outstanding Student, Leaving Certificate year -- Colaiste an
+            Eachréidh
+          </p>
         </div>
         <div class="bg-surface border border-heading/[0.06] rounded-bento p-4">
           <div class="flex justify-between items-start">
             <h3 class="text-heading font-bold text-sm">STEM Award -- GRETB</h3>
             <span class="text-dim text-xs shrink-0 ml-4">Jun 2024</span>
           </div>
-          <p class="text-muted text-xs mt-1">Recognition for excellence in STEM subjects.</p>
+          <p class="text-muted text-xs mt-1">
+            Recognition for excellence in STEM subjects.
+          </p>
         </div>
       </div>
     </div>
 
     <!-- projects -->
     <div class="mb-12">
-      <h2 class="text-xs text-dim uppercase tracking-[3px] mb-4">Key Projects</h2>
+      <h2 class="text-xs text-dim uppercase tracking-[3px] mb-4">
+        Key Projects
+      </h2>
       <div class="space-y-4">
         <div class="bg-surface border border-heading/[0.06] rounded-bento p-4">
           <div class="flex justify-between items-start">
-            <h3 class="text-heading font-bold text-sm">Swimming Club Management System</h3>
+            <h3 class="text-heading font-bold text-sm">
+              Swimming Club Management System
+            </h3>
             <span class="text-dim text-xs shrink-0 ml-4">In Development</span>
           </div>
-          <p class="text-dim text-xs mt-1">React 19, Node.js/Express, PostgreSQL, Redis, Docker, Jest</p>
-          <p class="text-muted text-xs mt-2">Full-stack platform for 200 swimmers, 5 coaches, and 10 committee members. 58-table PostgreSQL schema. Production-grade security with JWT, CSRF, rate limiting.</p>
+          <p class="text-dim text-xs mt-1">
+            React 19, Node.js/Express, PostgreSQL, Redis, Docker, Jest
+          </p>
+          <p class="text-muted text-xs mt-2">
+            Full-stack platform for 200 swimmers, 5 coaches, and 10 committee
+            members. 58-table PostgreSQL schema. Production-grade security with
+            JWT, CSRF, rate limiting.
+          </p>
         </div>
         <div class="bg-surface border border-heading/[0.06] rounded-bento p-4">
           <div class="flex justify-between items-start">
             <h3 class="text-heading font-bold text-sm">Home Lab Server</h3>
             <span class="text-dim text-xs shrink-0 ml-4">Ongoing</span>
           </div>
-          <p class="text-dim text-xs mt-1">Docker, Linux, Nginx, Restic, Btrfs</p>
-          <p class="text-muted text-xs mt-2">Self-host 45+ services on repurposed hardware with Nginx reverse proxy. Automated encrypted backups with daily/weekly/monthly retention.</p>
+          <p class="text-dim text-xs mt-1">
+            Docker, Linux, Nginx, Restic, Btrfs
+          </p>
+          <p class="text-muted text-xs mt-2">
+            Self-host 45+ services on repurposed hardware with Nginx reverse
+            proxy. Automated encrypted backups with daily/weekly/monthly
+            retention.
+          </p>
         </div>
         <div class="bg-surface border border-heading/[0.06] rounded-bento p-4">
           <div class="flex justify-between items-start">
             <h3 class="text-heading font-bold text-sm">OghmaNotes</h3>
             <span class="text-dim text-xs shrink-0 ml-4">CT216 Capstone</span>
           </div>
-          <p class="text-dim text-xs mt-1">Next.js, PostgreSQL, S3, Tailwind CSS</p>
-          <p class="text-muted text-xs mt-2">Full-featured note-taking app with AI RAG chat, Canvas LMS import, quiz generation with spaced repetition (FSRS).</p>
+          <p class="text-dim text-xs mt-1">
+            Next.js, PostgreSQL, S3, Tailwind CSS
+          </p>
+          <p class="text-muted text-xs mt-2">
+            Full-featured note-taking app with AI RAG chat, Canvas LMS import,
+            quiz generation with spaced repetition (FSRS).
+          </p>
         </div>
         <div class="bg-surface border border-heading/[0.06] rounded-bento p-4">
           <div class="flex justify-between items-start">
             <h3 class="text-heading font-bold text-sm">Irish Rail Nabber</h3>
             <span class="text-dim text-xs shrink-0 ml-4">Data Pipeline</span>
           </div>
-          <p class="text-dim text-xs mt-1">Python, TimescaleDB, Docker Compose</p>
-          <p class="text-muted text-xs mt-2">Real-time Irish Rail data collector. Train positions every 3 seconds with interactive network visualizations.</p>
+          <p class="text-dim text-xs mt-1">
+            Python, TimescaleDB, Docker Compose
+          </p>
+          <p class="text-muted text-xs mt-2">
+            Real-time Irish Rail data collector. Train positions every 3 seconds
+            with interactive network visualizations.
+          </p>
         </div>
       </div>
-      <a href="/projects" class="text-fox text-xs mt-3 inline-block hover:underline">view all projects &rarr;</a>
+      <a
+        href="/projects"
+        class="text-fox text-xs mt-3 inline-block hover:underline"
+        >view all projects &rarr;</a
+      >
     </div>
 
     <!-- work experience -->
     <div class="mb-12">
-      <h2 class="text-xs text-dim uppercase tracking-[3px] mb-4">Work Experience</h2>
+      <h2 class="text-xs text-dim uppercase tracking-[3px] mb-4">
+        Work Experience
+      </h2>
       <div class="border-l border-border pl-6 space-y-6">
         <div>
           <h3 class="text-heading font-bold">Laptop Repair Technician</h3>
-          <p class="text-muted text-sm">Cahill Computers, Athenry &middot; 8 months</p>
-          <p class="text-dim text-xs mt-2">Hardware upgrades, repairs, diagnostics. System administration, OS installation, drive cloning.</p>
+          <p class="text-muted text-sm">
+            Cahill Computers, Athenry &middot; 8 months
+          </p>
+          <p class="text-dim text-xs mt-2">
+            Hardware upgrades, repairs, diagnostics. System administration, OS
+            installation, drive cloning.
+          </p>
         </div>
         <div>
           <h3 class="text-heading font-bold">Work Experience Placements</h3>
-          <p class="text-muted text-sm">Lapteck (2023), Old Barracks Kitchen (2023-2025)</p>
-          <p class="text-dim text-xs mt-2">Diverse roles developing reliability and technical troubleshooting in fast-paced environments.</p>
+          <p class="text-muted text-sm">
+            Lapteck (2023), Old Barracks Kitchen (2023-2025)
+          </p>
+          <p class="text-dim text-xs mt-2">
+            Diverse roles developing reliability and technical troubleshooting
+            in fast-paced environments.
+          </p>
         </div>
       </div>
     </div>
 
     <!-- leadership -->
     <div class="mb-12">
-      <h2 class="text-xs text-dim uppercase tracking-[3px] mb-4">Leadership & Involvement</h2>
+      <h2 class="text-xs text-dim uppercase tracking-[3px] mb-4">
+        Leadership & Involvement
+      </h2>
       <div class="border-l border-border pl-6">
         <h3 class="text-heading font-bold">CompSoc Treasurer</h3>
-        <p class="text-muted text-sm">University of Galway Computer Science Society &middot; 2025 - present</p>
-        <p class="text-dim text-xs mt-2">Managing society finances for 446 members. Previously Auditor -- led committee, chaired meetings, organised CTF 2026 (Ireland's largest student-run cybersecurity competition). Stepped down to treasurer to diversify skills and gain financial management experience.</p>
+        <p class="text-muted text-sm">
+          University of Galway Computer Science Society &middot; 2025 - present
+        </p>
+        <p class="text-dim text-xs mt-2">
+          Managing society finances for 446 members. Previously Auditor -- led
+          committee, chaired meetings, organised CTF 2026 (Ireland's largest
+          student-run cybersecurity competition). Stepped down to treasurer to
+          diversify skills and gain financial management experience.
+        </p>
       </div>
     </div>
 
@@ -150,7 +265,8 @@ import Layout from '../layouts/Layout.astro';
     <div>
       <h2 class="text-xs text-dim uppercase tracking-[3px] mb-4">Interests</h2>
       <p class="text-muted text-sm leading-relaxed">
-        Self-hosting and home networking, Linux tinkering, competitive swimming, hands-on tech experimentation.
+        Self-hosting and home networking, Linux tinkering, competitive swimming,
+        hands-on tech experimentation.
       </p>
     </div>
   </section>

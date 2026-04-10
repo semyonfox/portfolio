@@ -1,0 +1,12 @@
+#!/bin/sh
+# lint check before commit
+pnpm run lint || {
+  echo "lint failed, run 'pnpm run format' to fix"
+  exit 1
+}
+
+# build check
+pnpm run build > /dev/null 2>&1 || {
+  echo "build failed"
+  exit 1
+}

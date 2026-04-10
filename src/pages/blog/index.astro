@@ -2,26 +2,46 @@
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
-const posts = (await getCollection('blog')).sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+const posts = (await getCollection('blog')).sort(
+  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+);
 ---
 
-<Layout title="Blog | Semyon Fox" description="Thoughts, experiences, and insights from my journey in computer science.">
+<Layout
+  title="Blog | Semyon Fox"
+  description="Thoughts, experiences, and insights from my journey in computer science."
+>
   <section class="pt-20 pb-16 md:pt-28">
-    <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight mb-2">Blog</h1>
-    <p class="text-muted text-sm mb-12">thoughts, experiences, and things i've learned</p>
+    <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight mb-2">
+      Blog
+    </h1>
+    <p class="text-muted text-sm mb-12">
+      thoughts, experiences, and things i've learned
+    </p>
 
     <div class="grid gap-4">
-      {posts.map(post => (
-        <a href={`/blog/${post.id}`} class="block bg-surface border border-heading/[0.06] rounded-bento p-6 hover:border-heading/10 transition-colors group">
-          <p class="text-dim text-xs mb-2">
-            {new Date(post.data.date).toLocaleDateString('en-IE', { day: 'numeric', month: 'long', year: 'numeric' })}
-          </p>
-          <h2 class="text-heading text-lg font-bold tracking-tight mb-2 group-hover:text-fox/90 transition-colors">
-            {post.data.title}
-          </h2>
-          <p class="text-muted text-sm leading-relaxed">{post.data.description}</p>
-        </a>
-      ))}
+      {
+        posts.map((post) => (
+          <a
+            href={`/blog/${post.id}`}
+            class="block bg-surface border border-heading/[0.06] rounded-bento p-6 hover:border-heading/10 transition-colors group"
+          >
+            <p class="text-dim text-xs mb-2">
+              {new Date(post.data.date).toLocaleDateString('en-IE', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric',
+              })}
+            </p>
+            <h2 class="text-heading text-lg font-bold tracking-tight mb-2 group-hover:text-fox/90 transition-colors">
+              {post.data.title}
+            </h2>
+            <p class="text-muted text-sm leading-relaxed">
+              {post.data.description}
+            </p>
+          </a>
+        ))
+      }
     </div>
   </section>
 </Layout>

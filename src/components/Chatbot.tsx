@@ -4,23 +4,23 @@ const CHAT_API = import.meta.env.PUBLIC_CHAT_API_URL || '/api/chat';
 
 // rotating bubble text on the collapsed chatbot
 const QUIPS = [
-  "need help finding something?",
+  'need help finding something?',
   "click me if you're lost",
-  "hey, over here!",
-  "poke me, i dare you",
-  "ask me anything about semyon",
+  'hey, over here!',
+  'poke me, i dare you',
+  'ask me anything about semyon',
 ];
 
 // shown when rate limited (429)
 const RATE_LIMIT_MSGS = [
-  "brb, gone to swim a 100 free",
-  "warming up for a 50 back, ask again in a min",
-  "my ai agents need a prompt, hold on",
-  "gone for a coffee, try again shortly",
-  "between sets at the pool, give me a sec",
-  "the homelab needs a breather, one moment",
-  "docker compose down... just kidding, try again soon",
-  "even rust needs a break sometimes",
+  'brb, gone to swim a 100 free',
+  'warming up for a 50 back, ask again in a min',
+  'my ai agents need a prompt, hold on',
+  'gone for a coffee, try again shortly',
+  'between sets at the pool, give me a sec',
+  'the homelab needs a breather, one moment',
+  'docker compose down... just kidding, try again soon',
+  'even rust needs a break sometimes',
   "rate limited! i'm fast but not that fast",
   "slow down, i'm only one fox",
 ];
@@ -28,7 +28,7 @@ const RATE_LIMIT_MSGS = [
 // shown on server errors (500, timeouts, network issues)
 const ERROR_MSGS = [
   "my brain isn't connected yet -- the rust backend is coming soon!",
-  "the server gremlins got me, try again in a sec",
+  'the server gremlins got me, try again in a sec',
 ];
 
 interface Message {
@@ -39,7 +39,10 @@ interface Message {
 export default function Chatbot() {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'assistant', content: "yo! what do you want to know about me or my projects?" },
+    {
+      role: 'assistant',
+      content: 'yo! what do you want to know about me or my projects?',
+    },
   ]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -64,7 +67,7 @@ export default function Chatbot() {
     if (!text || loading) return;
 
     const userMsg: Message = { role: 'user', content: text };
-    setMessages(prev => [...prev, userMsg]);
+    setMessages((prev) => [...prev, userMsg]);
     setInput('');
     setLoading(true);
 
@@ -76,20 +79,24 @@ export default function Chatbot() {
       });
 
       if (res.status === 429) {
-        const msg = RATE_LIMIT_MSGS[Math.floor(Math.random() * RATE_LIMIT_MSGS.length)];
-        setMessages(prev => [...prev, { role: 'assistant', content: msg }]);
+        const msg =
+          RATE_LIMIT_MSGS[Math.floor(Math.random() * RATE_LIMIT_MSGS.length)];
+        setMessages((prev) => [...prev, { role: 'assistant', content: msg }]);
         return;
       }
       if (!res.ok) {
         const msg = ERROR_MSGS[Math.floor(Math.random() * ERROR_MSGS.length)];
-        setMessages(prev => [...prev, { role: 'assistant', content: msg }]);
+        setMessages((prev) => [...prev, { role: 'assistant', content: msg }]);
         return;
       }
       const data = await res.json();
-      setMessages(prev => [...prev, { role: 'assistant', content: data.reply }]);
+      setMessages((prev) => [
+        ...prev,
+        { role: 'assistant', content: data.reply },
+      ]);
     } catch {
       const msg = ERROR_MSGS[Math.floor(Math.random() * ERROR_MSGS.length)];
-      setMessages(prev => [...prev, { role: 'assistant', content: msg }]);
+      setMessages((prev) => [...prev, { role: 'assistant', content: msg }]);
     } finally {
       setLoading(false);
     }
@@ -106,7 +113,11 @@ export default function Chatbot() {
           class="w-12 h-12 rounded-full shadow-lg shadow-fox/25 flex items-center justify-center hover:scale-110 transition-all overflow-hidden border-2 border-fox"
           aria-label="Open chat"
         >
-          <img src="/foxbot.png" alt="Chat with Semyon" class="w-full h-full object-cover scale-125" />
+          <img
+            src="/foxbot.png"
+            alt="Chat with Semyon"
+            class="w-full h-full object-cover scale-125"
+          />
         </button>
       </div>
     );
@@ -132,12 +143,17 @@ export default function Chatbot() {
       {/* messages */}
       <div class="flex-1 overflow-y-auto p-4 space-y-3 min-h-[200px] max-h-[320px]">
         {messages.map((msg, i) => (
-          <div key={i} class={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-            <div class={`max-w-[80%] px-3 py-2 rounded-xl text-xs leading-relaxed ${
-              msg.role === 'user'
-                ? 'bg-white text-black rounded-br-none'
-                : 'bg-border text-heading/80 rounded-bl-none'
-            }`}>
+          <div
+            key={i}
+            class={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+          >
+            <div
+              class={`max-w-[80%] px-3 py-2 rounded-xl text-xs leading-relaxed ${
+                msg.role === 'user'
+                  ? 'bg-white text-black rounded-br-none'
+                  : 'bg-border text-heading/80 rounded-bl-none'
+              }`}
+            >
               {msg.content}
             </div>
           </div>
