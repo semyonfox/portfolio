@@ -3,8 +3,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    ports:
-      - "8090:80"
     depends_on:
       - chat-api
     restart: unless-stopped
@@ -15,4 +13,13 @@ services:
       dockerfile: Dockerfile
     env_file:
       - .env
+    restart: unless-stopped
+
+  tunnel:
+    image: cloudflare/cloudflared:latest
+    command: tunnel --no-autoupdate run
+    environment:
+      - TUNNEL_TOKEN=${TUNNEL_TOKEN}
+    depends_on:
+      - portfolio
     restart: unless-stopped
