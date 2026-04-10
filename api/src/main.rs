@@ -13,7 +13,7 @@ use std::{
 };
 use tower_http::cors::CorsLayer;
 
-const MODEL: &str = "kimi-k2-0711-preview";
+const MODEL: &str = "kimi-k2.5";
 
 const SYSTEM_PROMPT: &str = r#"You are Semyon Fox, responding as yourself on your portfolio website. Second-year CS & IT student at University of Galway, Ireland.
 
@@ -203,7 +203,7 @@ async fn main() {
     let _ = dotenvy::dotenv();
 
     let api_key = std::env::var("MOONSHOT_API_KEY").expect("MOONSHOT_API_KEY must be set");
-    let api_url = "https://api.moonshot.cn/v1/chat/completions".to_string();
+    let api_url = "https://api.moonshot.ai/v1/chat/completions".to_string();
     let port: u16 = std::env::var("PORT")
         .ok()
         .and_then(|p| p.parse().ok())
