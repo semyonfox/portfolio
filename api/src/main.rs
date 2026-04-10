@@ -214,7 +214,7 @@ async fn main() {
         api_key,
         api_url: api_url.clone(),
         http_client: reqwest::Client::new(),
-        rate_limiter: RateLimiter::new(10, Duration::from_secs(60)),
+        rate_limiter: RateLimiter::new(20, Duration::from_secs(60)),
     });
 
     let cors = CorsLayer::very_permissive();

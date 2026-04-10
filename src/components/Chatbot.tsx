@@ -2,12 +2,33 @@ import { useState, useRef, useEffect } from 'preact/hooks';
 
 const CHAT_API = import.meta.env.PUBLIC_CHAT_API_URL || '/api/chat';
 
+// rotating bubble text on the collapsed chatbot
 const QUIPS = [
   "need help finding something?",
   "click me if you're lost",
-  "i know things about semyon",
-  "bored? ask me anything",
   "hey, over here!",
+  "poke me, i dare you",
+  "ask me anything about semyon",
+];
+
+// shown when rate limited (429)
+const RATE_LIMIT_MSGS = [
+  "brb, gone to swim a 100 free",
+  "warming up for a 50 back, ask again in a min",
+  "my ai agents need a prompt, hold on",
+  "gone for a coffee, try again shortly",
+  "between sets at the pool, give me a sec",
+  "the homelab needs a breather, one moment",
+  "docker compose down... just kidding, try again soon",
+  "even rust needs a break sometimes",
+  "rate limited! i'm fast but not that fast",
+  "slow down, i'm only one fox",
+];
+
+// shown on server errors (500, timeouts, network issues)
+const ERROR_MSGS = [
+  "my brain isn't connected yet -- the rust backend is coming soon!",
+  "the server gremlins got me, try again in a sec",
 ];
 
 interface Message {
@@ -54,14 +75,21 @@ export default function Chatbot() {
         body: JSON.stringify({ messages: [...messages, userMsg] }),
       });
 
-      if (!res.ok) throw new Error('chat error');
+      if (res.status === 429) {
+        const msg = RATE_LIMIT_MSGS[Math.floor(Math.random() * RATE_LIMIT_MSGS.length)];
+        setMessages(prev => [...prev, { role: 'assistant', content: msg }]);
+        return;
+      }
+      if (!res.ok) {
+        const msg = ERROR_MSGS[Math.floor(Math.random() * ERROR_MSGS.length)];
+        setMessages(prev => [...prev, { role: 'assistant', content: msg }]);
+        return;
+      }
       const data = await res.json();
       setMessages(prev => [...prev, { role: 'assistant', content: data.reply }]);
     } catch {
-      setMessages(prev => [...prev, {
-        role: 'assistant',
-        content: "my brain isn't connected yet -- the rust backend is coming soon!",
-      }]);
+      const msg = ERROR_MSGS[Math.floor(Math.random() * ERROR_MSGS.length)];
+      setMessages(prev => [...prev, { role: 'assistant', content: msg }]);
     } finally {
       setLoading(false);
     }
