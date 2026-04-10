@@ -25,9 +25,9 @@
       .progress-bar { height: 100%; width: 0%; background: #e8702a; border-radius: 2px; transition: width 0.5s ease; }
       .loader-status { color: #7a7a7a; font-size: 11px; margin-top: 14px; transition: opacity 0.3s ease; }
 
-      div[style*="cheerpj"], [class*="cheerpj"], .cheerpjSplash, .cheerpj-splash { display: none !important; }
-      div[style*="COMMUNITY"] { display: none !important; }
-      body > div[style*="position: fixed"][style*="bottom"] { display: none !important; }
+      /* hide cheerpj community banner only, not the game display */
+      .cheerpjSplash, .cheerpj-splash { display: none !important; }
+      body > div[style*="position: fixed"][style*="bottom"]:not(#cheerpjDisplay) { display: none !important; }
     </style>
   </head>
   <body>
@@ -40,16 +40,14 @@
     <script>
       function hideCheerpjUI() {
         document.querySelectorAll('body > div').forEach(function(el) {
-          if (el.id === 'loader') return;
-          var s = el.getAttribute('style') || '';
+          if (el.id === 'loader' || el.id === 'cheerpjDisplay') return;
           var t = el.textContent || '';
-          if (t.indexOf('COMMUNITY') !== -1 || t.indexOf('cheerpj') !== -1 ||
-              s.indexOf('cheerpj') !== -1 || (s.indexOf('position: fixed') !== -1 && s.indexOf('bottom') !== -1)) {
+          if (t.indexOf('COMMUNITY') !== -1 || t.indexOf('FOR PERSONAL') !== -1) {
             el.style.display = 'none';
           }
         });
       }
-      new MutationObserver(hideCheerpjUI).observe(document.body, { childList: true, subtree: true });
+      new MutationObserver(hideCheerpjUI).observe(document.body, { childList: true, subtree: false });
 
       var bar = document.getElementById('progress');
       var status = document.getElementById('status');
