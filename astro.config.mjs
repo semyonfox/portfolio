@@ -1,10 +1,13 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
+import tailwindcss from '@tailwindcss/vite';
 import preact from '@astrojs/preact';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://semyon.ie',
-  integrations: [tailwind(), preact(), sitemap()],
+  integrations: [preact(), sitemap()],
+  vite: {
+    plugins: [tailwindcss()],
+  },
 });

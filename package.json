@@ -16,16 +16,23 @@
     "deploy": "ssh semyon@server 'cd portfolio && git pull && docker compose build && docker compose up -d'"
   },
   "dependencies": {
-    "@astrojs/preact": "^5.1.1",
+    "@astrojs/preact": "^5.1.2",
     "@astrojs/sitemap": "^3.7.2",
-    "@astrojs/tailwind": "^6.0.2",
-    "astro": "^6.1.6",
+    "astro": "^6.1.9",
     "preact": "^10.29.1",
     "sharp": "^0.34.5",
-    "tailwindcss": "^3.4.19"
+    "tailwindcss": "^4.2.4"
   },
   "devDependencies": {
-    "prettier": "^3.8.2",
-    "prettier-plugin-astro": "^0.14.1"
+    "@astrojs/check": "^0.9.8",
+    "@tailwindcss/vite": "^4.2.4",
+    "prettier": "^3.8.3",
+    "prettier-plugin-astro": "^0.14.1",
+    "typescript": "^5.9.3"
+  },
+  "pnpm": {
+    "overrides": {
+      "yaml": "^2.8.3"
+    }
   }
 }
