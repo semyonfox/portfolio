@@ -96,7 +96,7 @@ pipeline {
         sh '''
           cp "$PORTFOLIO_ENV_FILE" ./.env
           docker-compose --project-name "$COMPOSE_PROJECT_NAME" --env-file "$PORTFOLIO_ENV_FILE" build $DEPLOY_SERVICES
-          docker-compose --project-name "$COMPOSE_PROJECT_NAME" --env-file "$PORTFOLIO_ENV_FILE" up -d $DEPLOY_SERVICES
+          docker-compose --project-name "$COMPOSE_PROJECT_NAME" --env-file "$PORTFOLIO_ENV_FILE" up -d --force-recreate $DEPLOY_SERVICES
           docker-compose --project-name "$COMPOSE_PROJECT_NAME" --env-file "$PORTFOLIO_ENV_FILE" ps
           rm -f ./.env
         '''
