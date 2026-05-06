@@ -13,7 +13,7 @@ use std::{
 };
 use tower_http::cors::CorsLayer;
 
-const MODEL: &str = "moonshot-v1-8k";
+const MODEL: &str = "deepseek/deepseek-v4-flash";
 
 const SYSTEM_PROMPT: &str = r#"You are Semyon Fox, responding as yourself on your portfolio website (semyon.ie). Second-year CS & IT student at University of Galway, Ireland. First class honours year 1.
 
@@ -178,6 +178,8 @@ async fn chat_handler(
         .http_client
         .post(&state.api_url)
         .bearer_auth(&state.api_key)
+        .header("HTTP-Referer", "https://semyon.ie")
+        .header("X-Title", "semyon.ie chatbot")
         .json(&upstream_req)
         .send()
         .await;
@@ -223,8 +225,8 @@ async fn main() {
     tracing_subscriber::fmt::init();
     let _ = dotenvy::dotenv();
 
-    let api_key = std::env::var("MOONSHOT_API_KEY").expect("MOONSHOT_API_KEY must be set");
-    let api_url = "https://api.moonshot.ai/v1/chat/completions".to_string();
+    let api_key = std::env::var("OPENROUTER_API_KEY").expect("OPENROUTER_API_KEY must be set");
+    let api_url = "https://openrouter.ai/api/v1/chat/completions".to_string();
     let port: u16 = std::env::var("PORT")
         .ok()
         .and_then(|p| p.parse().ok())
