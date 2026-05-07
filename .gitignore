@@ -34,3 +34,6 @@ api/target/
 *.log
 .cache
 .coverage
+data/cache/*.sqlite
+data/cache/*.sqlite-shm
+data/cache/*.sqlite-wal

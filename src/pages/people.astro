@@ -193,17 +193,26 @@ const defaultPerson = graphNodes[0];
       >
     </div>
 
-    <div class="grid xl:grid-cols-[1.9fr_1fr] gap-4">
+    <div
+      class="grid xl:grid-cols-[2.15fr_minmax(300px,0.85fr)] 2xl:grid-cols-[2.3fr_minmax(320px,0.8fr)] gap-4"
+    >
       <div
-        class="bg-surface border border-heading/[0.06] rounded-bento p-3 md:p-5 overflow-hidden"
+        class="bg-surface border border-heading/[0.06] rounded-bento p-3 md:p-4 overflow-hidden"
       >
         <svg
           id="people-graph"
           viewBox="0 0 1000 620"
-          class="w-full h-auto"
+          class="w-full h-auto select-none touch-none"
+          style="outline: none;"
           aria-label="Graph of interesting people and creators"
         >
-          <rect x="0" y="0" width="1000" height="620" fill="#151313"></rect>
+          <rect
+            id="people-graph-bg"
+            x="0"
+            y="0"
+            width="1000"
+            height="620"
+            fill="#151313"></rect>
           <g opacity="0.14">
             {
               Array.from({ length: 20 }).map((_, i) => (
@@ -261,10 +270,11 @@ const defaultPerson = graphNodes[0];
             graphNodes.map((person) => (
               <g
                 data-node={person.slug}
-                class="cursor-pointer transition-opacity"
+                class="cursor-pointer transition-opacity focus:outline-none focus-visible:outline-none"
                 tabindex="0"
                 role="button"
                 aria-label={`Select ${person.name}`}
+                style="outline: none;"
               >
                 <circle
                   data-node-glow={person.slug}
@@ -509,6 +519,7 @@ const defaultPerson = graphNodes[0];
   const detailLinks = document.getElementById('detail-links');
   const detailConnections = document.getElementById('detail-connections');
   const resetBtn = document.getElementById('graph-reset');
+  const graphBackground = document.getElementById('people-graph-bg');
 
   const nodeMap = new Map(nodes.map((node) => [node.slug, node]));
   const positionMap = new Map(
@@ -526,6 +537,10 @@ const defaultPerson = graphNodes[0];
   const height = 620;
   const padding = 24;
   const edgeBaseColor = '#8c93b0';
+  const defaultView = { x: 0, y: 0, width, height };
+  const currentView = { ...defaultView };
+  let pointerState = null;
+  let dragMoved = false;
 
   const linkOrder = [
     'youtube',
@@ -543,6 +558,54 @@ const defaultPerson = graphNodes[0];
     website: 'site',
     primary: 'open',
   };
+
+  function applyViewBox() {
+    graphSvg?.setAttribute(
+      'viewBox',
+      `${currentView.x} ${currentView.y} ${currentView.width} ${currentView.height}`,
+    );
+  }
+
+  function clampView() {
+    if (currentView.width >= width) {
+      currentView.x = 0;
+      currentView.width = width;
+    } else {
+      currentView.x = Math.max(
+        0,
+        Math.min(width - currentView.width, currentView.x),
+      );
+    }
+
+    if (currentView.height >= height) {
+      currentView.y = 0;
+      currentView.height = height;
+    } else {
+      currentView.y = Math.max(
+        0,
+        Math.min(height - currentView.height, currentView.y),
+      );
+    }
+  }
+
+  function resetViewBox() {
+    currentView.x = defaultView.x;
+    currentView.y = defaultView.y;
+    currentView.width = defaultView.width;
+    currentView.height = defaultView.height;
+    applyViewBox();
+  }
+
+  function eventToSvgPoint(event) {
+    if (!graphSvg) return { x: 0, y: 0 };
+    const rect = graphSvg.getBoundingClientRect();
+    const relX = (event.clientX - rect.left) / rect.width;
+    const relY = (event.clientY - rect.top) / rect.height;
+    return {
+      x: currentView.x + relX * currentView.width,
+      y: currentView.y + relY * currentView.height,
+    };
+  }
 
   function renderLinks(person) {
     if (!detailLinks) return;
@@ -841,7 +904,10 @@ const defaultPerson = graphNodes[0];
     const slug = el.getAttribute('data-node');
     if (!slug) return;
 
-    el.addEventListener('click', () => selectNode(slug));
+    el.addEventListener('click', () => {
+      if (dragMoved) return;
+      selectNode(slug);
+    });
     el.addEventListener('keydown', (event) => {
       if (event.key === 'Enter' || event.key === ' ') {
         event.preventDefault();
@@ -851,16 +917,87 @@ const defaultPerson = graphNodes[0];
   });
 
   resetBtn?.addEventListener('click', () => {
+    resetViewBox();
     resetGraph();
     if (nodes[0]) selectNode(nodes[0].slug);
   });
 
+  graphSvg?.addEventListener(
+    'wheel',
+    (event) => {
+      event.preventDefault();
+      const point = eventToSvgPoint(event);
+      const zoomFactor = event.deltaY < 0 ? 0.9 : 1.1;
+      const nextWidth = Math.max(
+        320,
+        Math.min(width, currentView.width * zoomFactor),
+      );
+      const scale = nextWidth / currentView.width;
+      const nextHeight = currentView.height * scale;
+      const relX = (point.x - currentView.x) / currentView.width;
+      const relY = (point.y - currentView.y) / currentView.height;
+
+      currentView.x = point.x - relX * nextWidth;
+      currentView.y = point.y - relY * nextHeight;
+      currentView.width = nextWidth;
+      currentView.height = nextHeight;
+      clampView();
+      applyViewBox();
+    },
+    { passive: false },
+  );
+
+  graphSvg?.addEventListener('pointerdown', (event) => {
+    if (!graphSvg) return;
+    pointerState = {
+      x: event.clientX,
+      y: event.clientY,
+      viewX: currentView.x,
+      viewY: currentView.y,
+    };
+    dragMoved = false;
+    graphSvg.setPointerCapture?.(event.pointerId);
+  });
+
+  graphSvg?.addEventListener('pointermove', (event) => {
+    if (!graphSvg || !pointerState) return;
+    const rect = graphSvg.getBoundingClientRect();
+    const dx =
+      ((event.clientX - pointerState.x) / rect.width) * currentView.width;
+    const dy =
+      ((event.clientY - pointerState.y) / rect.height) * currentView.height;
+    if (Math.abs(dx) > 2 || Math.abs(dy) > 2) {
+      dragMoved = true;
+    }
+    if (!dragMoved) return;
+    currentView.x = pointerState.viewX - dx;
+    currentView.y = pointerState.viewY - dy;
+    clampView();
+    applyViewBox();
+  });
+
+  graphSvg?.addEventListener('pointerup', (event) => {
+    graphSvg.releasePointerCapture?.(event.pointerId);
+    setTimeout(() => {
+      dragMoved = false;
+    }, 0);
+    pointerState = null;
+  });
+
+  graphSvg?.addEventListener('pointerleave', () => {
+    pointerState = null;
+  });
+
   graphSvg?.addEventListener('click', (event) => {
-    if (event.target === graphSvg) {
+    if (
+      !dragMoved &&
+      (event.target === graphSvg || event.target === graphBackground)
+    ) {
       resetGraph();
     }
   });
 
+  applyViewBox();
   settleLayout();
 
   if (nodes[0]) {
