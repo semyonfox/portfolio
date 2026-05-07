@@ -39,6 +39,15 @@ const posts = (await getCollection('blog')).sort(
             <p class="text-muted text-sm leading-relaxed">
               {post.data.description}
             </p>
+            {post.data.tags.length > 0 && (
+              <div class="flex flex-wrap gap-1.5 mt-4">
+                {post.data.tags.map((tag) => (
+                  <span class="bg-border px-2 py-0.5 rounded text-[11px] text-muted">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
           </a>
         ))
       }

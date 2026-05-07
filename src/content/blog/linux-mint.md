@@ -3,6 +3,7 @@ title: "Why I Switched to Linux Mint"
 date: "2025-05-23"
 author: "Semyon Fox"
 description: "Windows 10 was dying, so I wiped my laptop and installed Linux Mint. Best decision I made all year."
+tags: ["Linux", "Linux Mint", "Personal Setup"]
 ---
 
 Windows 10 started nagging me about end of support. I'd already been messing around with Ubuntu Server for my home projects and had Kali installed at one point, but I'd never actually daily-driven Linux. So I thought, why not?

@@ -4,6 +4,7 @@ description: "AI-powered learning platform with markdown notes, RAG chat, Canvas
 tags: ["Next.js", "React 19", "PostgreSQL", "pgvector", "AWS", "Cohere", "Kimi K2.5", "Docker"]
 category: academic
 live: "https://oghmanotes.ie"
+github: "https://github.com/semyonfox/oghma"
 order: 5
 ---
 

@@ -9,6 +9,7 @@ const blog = defineCollection({
     date: z.string(),
     author: z.string(),
     description: z.string(),
+    tags: z.array(z.string()).default([]),
   }),
 });
 
@@ -20,6 +21,7 @@ const projects = defineCollection({
     tags: z.array(z.string()),
     category: z.enum(['personal', 'academic']).default('personal'),
     github: z.string().optional(),
+    private: z.boolean().default(false),
     live: z.string().optional(),
     featured: z.boolean().default(false),
     order: z.number().default(0),
@@ -33,6 +35,7 @@ const games = defineCollection({
     description: z.string(),
     tech: z.string(),
     github: z.string().optional(),
+    private: z.boolean().default(false),
     embed: z.string().optional(),
     noEmbed: z.string().optional(),
     thumbnail: z.string().optional(),

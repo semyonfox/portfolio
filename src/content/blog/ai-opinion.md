@@ -3,6 +3,7 @@ title: "AI Is Just a Fancy Autocorrect"
 date: "2026-04-10"
 author: "Semyon Fox"
 description: "I'm a vibe coder. AI isn't going anywhere. The question is whether you learn to use it or get left behind."
+tags: ["AI", "Developer Tools", "Education"]
 ---
 
 I'm a vibe coder. There, I said it.

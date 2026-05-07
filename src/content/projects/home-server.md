@@ -1,6 +1,6 @@
 ---
 title: "Home Server Infrastructure"
-description: "Repurposed Dell XPS 15 running 30+ Docker containers. A year-long journey into systems administration, networking, and containerization."
+description: "Repurposed Dell XPS 15 running 45+ Docker containers. A year-long journey into systems administration, networking, and containerization."
 tags: ["Docker", "Ubuntu Server", "NGINX", "PostgreSQL", "Pi-hole", "Immich", "RAID", "OpenWRT"]
 featured: true
 order: 1
@@ -14,7 +14,7 @@ What started as a broken Dell XPS 15 laptop became a year-long journey into syst
 - **Initial Challenge:** Terminal-only interface pushed me to learn command line
 - **Growth:** From copy-pasting YAML to managing complex infrastructure
 
-## Current Infrastructure (30+ Docker Containers)
+## Current Infrastructure (45+ Docker Containers)
 
 - **Media Services:** Streaming, photo storage (Immich), and media management
 - **Network Services:** DNS (Pi-hole), VPN, and reverse proxies with NGINX

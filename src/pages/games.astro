@@ -27,7 +27,7 @@ const gameLabels: Record<string, string> = {
       Games & Apps
     </h1>
     <p class="text-muted text-sm mb-12">
-      stuff i've built that you can actually play
+      games and other interactive things i've built
     </p>
 
     <!-- catalog grid -->
@@ -40,6 +40,7 @@ const gameLabels: Record<string, string> = {
             data-game-title={game.data.title}
             data-game-tech={game.data.tech}
             data-game-github={game.data.github || ''}
+            data-game-private={game.data.private ? 'true' : 'false'}
             data-game-embed={game.data.embed || ''}
             data-game-noembed={game.data.noEmbed || ''}
           >
@@ -83,6 +84,12 @@ const gameLabels: Record<string, string> = {
           >
             github
           </a>
+          <span
+            id="player-private"
+            class="hidden border border-border text-muted text-xs px-3 py-1.5 rounded-lg"
+          >
+            private repo
+          </span>
           <button
             id="player-fullscreen"
             class="border border-border text-muted text-xs px-3 py-1.5 rounded-lg hover:text-heading hover:border-muted transition-colors"
@@ -116,6 +123,7 @@ const gameLabels: Record<string, string> = {
   const githubLink = document.getElementById(
     'player-github',
   ) as HTMLAnchorElement;
+  const privateRepo = document.getElementById('player-private');
   const backBtn = document.getElementById('player-back');
   const fullscreenBtn = document.getElementById('player-fullscreen');
 
@@ -127,11 +135,16 @@ const gameLabels: Record<string, string> = {
       if (title) title.textContent = el.dataset.gameTitle || '';
       if (tech) tech.textContent = el.dataset.gameTech || '';
 
-      if (el.dataset.gameGithub && githubLink) {
+      if (el.dataset.gamePrivate === 'true') {
+        githubLink?.classList.add('hidden');
+        privateRepo?.classList.remove('hidden');
+      } else if (el.dataset.gameGithub && githubLink) {
         githubLink.href = el.dataset.gameGithub;
         githubLink.classList.remove('hidden');
+        privateRepo?.classList.add('hidden');
       } else if (githubLink) {
         githubLink.classList.add('hidden');
+        privateRepo?.classList.add('hidden');
       }
 
       if (embedUrl && frame) {

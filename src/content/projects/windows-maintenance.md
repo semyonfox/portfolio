@@ -4,5 +4,6 @@ description: "Comprehensive PowerShell scripts for automated system cleanup, opt
 tags: ["PowerShell", "Automation"]
 category: personal
 github: "https://github.com/semyonfox/windows-maintenance"
+private: true
 order: 14
 ---

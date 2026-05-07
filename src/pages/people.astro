@@ -1,0 +1,212 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { categoryOrder, people, type PersonCategory } from '../data/people';
+
+const categoryMeta: Record<
+  PersonCategory,
+  {
+    label: string;
+    blurb: string;
+    cardClass: string;
+    chipClass: string;
+  }
+> = {
+  dev: {
+    label: 'Dev / Software',
+    blurb: 'tooling, programming taste, systems, and internet dev culture',
+    cardClass: 'border-fox/20 bg-fox/[0.03]',
+    chipClass: 'border-fox/25 bg-fox/[0.08] text-heading hover:bg-fox/[0.14]',
+  },
+  science: {
+    label: 'Math / Science / Engineering',
+    blurb: 'channels that make hard things feel intuitive instead of distant',
+    cardClass: 'border-sky-500/20 bg-sky-500/[0.03]',
+    chipClass:
+      'border-sky-500/25 bg-sky-500/[0.08] text-heading hover:bg-sky-500/[0.14]',
+  },
+  hardware: {
+    label: 'Hardware / Maker / Tech',
+    blurb: 'pcs, hardware reviews, clean builds, and hands-on making',
+    cardClass: 'border-emerald-500/20 bg-emerald-500/[0.03]',
+    chipClass:
+      'border-emerald-500/25 bg-emerald-500/[0.08] text-heading hover:bg-emerald-500/[0.14]',
+  },
+  swimming: {
+    label: 'Swimming / Sport',
+    blurb: 'people i watch for race craft, speed, consistency, and standards',
+    cardClass: 'border-cyan-500/20 bg-cyan-500/[0.03]',
+    chipClass:
+      'border-cyan-500/25 bg-cyan-500/[0.08] text-heading hover:bg-cyan-500/[0.14]',
+  },
+  games: {
+    label: 'Games / Internet',
+    blurb: 'game design, minecraft orbit, and internet chaos',
+    cardClass: 'border-violet-500/20 bg-violet-500/[0.03]',
+    chipClass:
+      'border-violet-500/25 bg-violet-500/[0.08] text-heading hover:bg-violet-500/[0.14]',
+  },
+  creative: {
+    label: 'Film / Creative',
+    blurb: 'editing, production, storytelling, and polished creator craft',
+    cardClass: 'border-amber-500/20 bg-amber-500/[0.03]',
+    chipClass:
+      'border-amber-500/25 bg-amber-500/[0.08] text-heading hover:bg-amber-500/[0.14]',
+  },
+  chess: {
+    label: 'Chess',
+    blurb: 'competitive thinking, explanation, and pattern recognition',
+    cardClass: 'border-red-500/20 bg-red-500/[0.03]',
+    chipClass:
+      'border-red-500/25 bg-red-500/[0.08] text-heading hover:bg-red-500/[0.14]',
+  },
+  comedy: {
+    label: 'Comedy / Entertainment',
+    blurb: 'stuff that is just fun, sharp, or entertainingly unhinged',
+    cardClass: 'border-zinc-500/20 bg-zinc-500/[0.03]',
+    chipClass:
+      'border-zinc-500/25 bg-zinc-500/[0.08] text-heading hover:bg-zinc-500/[0.14]',
+  },
+};
+
+const grouped = Object.fromEntries(
+  categoryOrder.map((category) => [
+    category,
+    people
+      .filter((person) => person.category === category)
+      .sort((a, b) => b.weight - a.weight || a.name.localeCompare(b.name)),
+  ]),
+) as Record<PersonCategory, typeof people>;
+
+const weightClasses = {
+  1: 'text-[11px] px-2 py-1',
+  2: 'text-xs px-2.5 py-1.5',
+  3: 'text-xs px-3 py-1.5',
+  4: 'text-sm px-3.5 py-2',
+  5: 'text-sm px-4 py-2.5 font-semibold',
+};
+---
+
+<Layout
+  title="People | Semyon Fox"
+  description="Interesting people, channels, and internet rabbit holes I keep coming back to."
+>
+  <section class="pt-20 pb-16 md:pt-28">
+    <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight mb-2">
+      Interesting People/Videos
+    </h1>
+    <p class="text-muted text-sm mb-4">
+      some of my favorite content creators and internet people
+    </p>
+    <p class="text-dim text-xs max-w-2xl leading-relaxed">
+      grouped for now, but shaped like future graph data. weight roughly means
+      how central they are to my feed, interests, or thinking. proper
+      obsidian-style clustering can come later.
+    </p>
+  </section>
+
+  <section class="pb-16">
+    <div class="flex items-center gap-3 mb-6">
+      <span class="text-dim text-xs uppercase tracking-[3px]">signal map</span>
+      <span class="text-dim text-xs">weighted nodes by cluster</span>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3">
+      {
+        categoryOrder.map((category) => (
+          <section
+            class={`rounded-bento border p-5 ${categoryMeta[category].cardClass}`}
+          >
+            <h2 class="text-heading text-sm font-bold tracking-tight mb-1">
+              {categoryMeta[category].label}
+            </h2>
+            <p class="text-dim text-xs leading-relaxed mb-4">
+              {categoryMeta[category].blurb}
+            </p>
+            <div class="flex flex-wrap gap-2">
+              {grouped[category].map((person) => (
+                <a
+                  href={person.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class:list={[
+                    'rounded-full border transition-all hover:scale-[1.03]',
+                    categoryMeta[category].chipClass,
+                    weightClasses[person.weight],
+                  ]}
+                >
+                  {person.name}
+                </a>
+              ))}
+            </div>
+          </section>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="pb-16">
+    <div class="flex items-center gap-3 mb-6">
+      <span class="text-dim text-xs uppercase tracking-[3px]">directory</span>
+      <span class="text-dim text-xs">
+        grouped entries with quick links out to content
+      </span>
+    </div>
+
+    <div class="space-y-8">
+      {
+        categoryOrder.map((category) => (
+          <section>
+            <div class="mb-4">
+              <h2 class="text-heading text-xl font-bold tracking-tight">
+                {categoryMeta[category].label}
+              </h2>
+              <p class="text-muted text-sm mt-1">
+                {categoryMeta[category].blurb}
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
+              {grouped[category].map((person) => (
+                <article class="bg-surface border border-heading/[0.06] rounded-bento p-5 hover:border-heading/10 transition-colors">
+                  <div class="flex items-start justify-between gap-4 mb-3">
+                    <div>
+                      <h3 class="text-heading text-sm font-semibold">
+                        {person.name}
+                      </h3>
+                      <p class="text-dim text-[11px] mt-1">
+                        signal {person.weight}/5
+                      </p>
+                    </div>
+                    <a
+                      href={person.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="shrink-0 border border-border text-muted text-[11px] px-2.5 py-1 rounded hover:text-heading hover:border-muted transition-colors"
+                    >
+                      open
+                    </a>
+                  </div>
+
+                  <div class="flex flex-wrap gap-1.5 mb-3">
+                    {person.tags.map((tag) => (
+                      <span class="bg-border px-2 py-0.5 rounded text-[11px] text-muted">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  {person.connections && person.connections.length > 0 && (
+                    <p class="text-dim text-[11px] leading-relaxed">
+                      linked to {person.connections.length} nearby nodes in the
+                      future graph.
+                    </p>
+                  )}
+                </article>
+              ))}
+            </div>
+          </section>
+        ))
+      }
+    </div>
+  </section>
+</Layout>

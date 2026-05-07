@@ -3,6 +3,7 @@ title: "Why I Self-Host Everything"
 date: "2026-04-10"
 author: "Semyon Fox"
 description: "It started with a broken laptop and no money. Now I run 30+ containers and can't stop tinkering."
+tags: ["Self-Hosting", "Homelab", "Infrastructure"]
 ---
 
 I didn't start self-hosting because of privacy. I started because I had a broken laptop and no money.

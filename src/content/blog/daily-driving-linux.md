@@ -3,6 +3,7 @@ title: "Daily Driving Linux: From Mint to Hyprland"
 date: "2026-02-15"
 author: "Semyon Fox"
 description: "Mint was comfortable. Then I wanted to experiment. Now I'm on CachyOS with Hyprland and it's chaos, but it's mine."
+tags: ["Linux", "Hyprland", "Personal Setup"]
 ---
 
 I stuck with Linux Mint for a while and it was great. Stable, comfortable, everything worked. But at some point I got the itch to experiment.

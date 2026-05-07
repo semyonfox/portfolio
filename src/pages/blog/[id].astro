@@ -34,6 +34,17 @@ const { Content } = await render(post);
       }
       &middot; {post.data.author}
     </p>
+    {
+      post.data.tags.length > 0 && (
+        <div class="flex flex-wrap gap-1.5 mb-4">
+          {post.data.tags.map((tag) => (
+            <span class="bg-border px-2 py-0.5 rounded text-[11px] text-muted">
+              {tag}
+            </span>
+          ))}
+        </div>
+      )
+    }
     <div class="flex items-center gap-4 mb-8">
       <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">
         {post.data.title}
