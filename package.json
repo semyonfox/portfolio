@@ -10,6 +10,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "people:graph": "node --experimental-strip-types scripts/generate-people-graph.mjs",
     "lint": "prettier --check 'src/**/*.{astro,ts,tsx,css}'",
     "format": "prettier --write 'src/**/*.{astro,ts,tsx,css}'",
     "check": "astro check && pnpm run lint",

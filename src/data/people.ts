@@ -49,6 +49,7 @@ export const categoryOrder: PersonCategory[] = [
 type RawPerson = Omit<Person, 'summary' | 'links'> & {
   summary?: string;
   links?: Partial<PersonLinks>;
+  wikiSearch?: string | false;
 };
 
 const buildSummary = (tags: string[]) => {
@@ -82,6 +83,7 @@ const rawPeople: RawPerson[] = [
     category: 'dev',
     weight: 4,
     href: youtubeSearch('Prime Time'),
+    wikiSearch: false,
     tags: ['clips', 'commentary', 'dev'],
     connections: ['theprimeagen', 'theo'],
   },
@@ -100,6 +102,7 @@ const rawPeople: RawPerson[] = [
     category: 'dev',
     weight: 4,
     href: youtubeSearch('Low Level Learning'),
+    wikiSearch: false,
     tags: ['systems', 'security', 'cs fundamentals'],
     connections: ['theprimeagen', 'computerphile', 'core-dumped'],
   },

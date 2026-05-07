@@ -1,0 +1,1636 @@
+{
+  "generatedAt": "2026-05-07T08:59:54.600Z",
+  "model": "qwen/qwen3-embedding-8b",
+  "nodes": {
+    "theo": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "web dev content with a focus on opinionated, startup energy",
+      "graphWeight": 5
+    },
+    "theprimeagen": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "vim content with a focus on systems, dev culture",
+      "graphWeight": 5
+    },
+    "prime-time": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "clips content with a focus on commentary, dev",
+      "graphWeight": 5
+    },
+    "fireship": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "fast explainers content with a focus on web dev, ai",
+      "graphWeight": 5
+    },
+    "low-level": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "systems content with a focus on security, cs fundamentals",
+      "graphWeight": 5
+    },
+    "arjan-codes": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "software design content with a focus on clean code, python",
+      "graphWeight": 5
+    },
+    "devtoolbox": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "tooling content with a focus on ai, workflow",
+      "graphWeight": 5
+    },
+    "devops-toolbox": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "infrastructure content with a focus on automation, cloud",
+      "graphWeight": 5
+    },
+    "hyperplexed": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "frontend content with a focus on css, creative web",
+      "graphWeight": 5
+    },
+    "computerphile": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "computer science content with a focus on theory, broad topics",
+      "graphWeight": 5
+    },
+    "computerscience-lessons": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "education content with a focus on fundamentals",
+      "graphWeight": 5
+    },
+    "coding-with-lewis": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "coding content with a focus on teaching",
+      "graphWeight": 5
+    },
+    "core-dumped": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "low-level content with a focus on cs, explainers",
+      "graphWeight": 5
+    },
+    "finzar": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "dev workflow content with a focus on productivity",
+      "graphWeight": 5
+    },
+    "networkchuck": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "networking content with a focus on homelab, security",
+      "graphWeight": 5
+    },
+    "salem-techsperts": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "tech content with a focus on tutorials",
+      "graphWeight": 5
+    },
+    "thiojoe": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "windows content with a focus on troubleshooting, tech tips",
+      "graphWeight": 5
+    },
+    "mralextech": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "tech content with a focus on workflow",
+      "graphWeight": 5
+    },
+    "juxtoposed": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "frontend content with a focus on design, web",
+      "graphWeight": 5
+    },
+    "veritasium": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "science content with a focus on intuition, big questions",
+      "graphWeight": 5
+    },
+    "vsauce": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "curiosity content with a focus on weird questions, science",
+      "graphWeight": 5
+    },
+    "3blue1brown": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "math content with a focus on visual intuition, learning",
+      "graphWeight": 5
+    },
+    "numberphile": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "math content with a focus on patterns, explainers",
+      "graphWeight": 5
+    },
+    "astrum": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "space content with a focus on astronomy, visuals",
+      "graphWeight": 5
+    },
+    "real-engineering": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "engineering content with a focus on infrastructure, systems",
+      "graphWeight": 5
+    },
+    "electroboom": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "electronics content with a focus on chaos, learning",
+      "graphWeight": 5
+    },
+    "nilered": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "chemistry content with a focus on experiments, maker",
+      "graphWeight": 5
+    },
+    "mark-rober": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "engineering content with a focus on fun builds, education",
+      "graphWeight": 5
+    },
+    "cleo-abrams": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "future tech content with a focus on media, explainers",
+      "graphWeight": 5
+    },
+    "bright-side": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "pop science content with a focus on internet",
+      "graphWeight": 5
+    },
+    "infographics-show": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "explainers content with a focus on general knowledge",
+      "graphWeight": 5
+    },
+    "ltt": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "pcs content with a focus on hardware, tech media",
+      "graphWeight": 5
+    },
+    "wan-show": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "podcast content with a focus on tech news, ltt orbit",
+      "graphWeight": 5
+    },
+    "shortcircuit": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "unboxings content with a focus on hardware, ltt orbit",
+      "graphWeight": 5
+    },
+    "techlinked": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "tech news content with a focus on ltt orbit",
+      "graphWeight": 5
+    },
+    "gamelinked": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "gaming news content with a focus on ltt orbit",
+      "graphWeight": 5
+    },
+    "diy-perks": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "builds content with a focus on clean design, hardware",
+      "graphWeight": 5
+    },
+    "jerryrigeverything": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "repairability content with a focus on durability, phones",
+      "graphWeight": 5
+    },
+    "hacksmith": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "engineering content with a focus on sci-fi builds",
+      "graphWeight": 5
+    },
+    "blacktail-studio": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "woodworking content with a focus on craft, design",
+      "graphWeight": 5
+    },
+    "four-eyes": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "furniture content with a focus on design, woodworking",
+      "graphWeight": 5
+    },
+    "john-malecki": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "maker content with a focus on woodworking, chaos",
+      "graphWeight": 5
+    },
+    "jarrods-tech": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "laptops content with a focus on benchmarks, reviews",
+      "graphWeight": 5
+    },
+    "zachs-tech-turf": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "pc builds content with a focus on hardware, value",
+      "graphWeight": 5
+    },
+    "mkbhd": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "reviews content with a focus on clean production, consumer tech",
+      "graphWeight": 5
+    },
+    "mrwhosetheboss": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "tech content with a focus on reviews, consumer gadgets",
+      "graphWeight": 5
+    },
+    "kyle-sockwell": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "tech content with a focus on reviews",
+      "graphWeight": 5
+    },
+    "max-klymenko": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "tech content with a focus on maker",
+      "graphWeight": 5
+    },
+    "jakkuh": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "tech content with a focus on ltt orbit",
+      "graphWeight": 5
+    },
+    "ltt-offshoots": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "channel network content with a focus on orbit",
+      "graphWeight": 5
+    },
+    "caeleb-dressel": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "sprint swimming content with a focus on elite athlete",
+      "graphWeight": 5
+    },
+    "michael-helps": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "swimming content with a focus on training",
+      "graphWeight": 5
+    },
+    "david-popovici": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "freestyle content with a focus on racing, elite athlete",
+      "graphWeight": 5
+    },
+    "summer-mcintosh": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "elite swimming content with a focus on range, race craft",
+      "graphWeight": 5
+    },
+    "katie-ledecky": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "distance swimming content with a focus on consistency, greatness",
+      "graphWeight": 5
+    },
+    "game-makers-toolkit": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "game design content with a focus on analysis, systems",
+      "graphWeight": 5
+    },
+    "jacksepticeye": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "gaming content with a focus on internet, energy",
+      "graphWeight": 5
+    },
+    "dantdm": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "minecraft content with a focus on gaming, nostalgia",
+      "graphWeight": 5
+    },
+    "mumbo-jumbo": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "minecraft content with a focus on redstone, building",
+      "graphWeight": 5
+    },
+    "camman18": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "minecraft content with a focus on internet",
+      "graphWeight": 5
+    },
+    "lazarbeam": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "gaming content with a focus on chaos",
+      "graphWeight": 5
+    },
+    "lachlan": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "gaming content with a focus on fortnite",
+      "graphWeight": 5
+    },
+    "lets-game-it-out": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "sandbox chaos content with a focus on systems, humor",
+      "graphWeight": 5
+    },
+    "stampy": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "minecraft content with a focus on classic youtube",
+      "graphWeight": 5
+    },
+    "muselk": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "gaming content with a focus on internet",
+      "graphWeight": 5
+    },
+    "mewtru": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "internet content with a focus on gaming",
+      "graphWeight": 5
+    },
+    "misfit-minds": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "internet content with a focus on creator",
+      "graphWeight": 5
+    },
+    "squishy": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "gaming content with a focus on internet",
+      "graphWeight": 5
+    },
+    "corridor-crew": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "vfx content with a focus on film, breakdowns",
+      "graphWeight": 5
+    },
+    "film-booth": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "content craft content with a focus on youtube, storytelling",
+      "graphWeight": 5
+    },
+    "michelle-khare": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "challenge videos content with a focus on production, discipline",
+      "graphWeight": 5
+    },
+    "zach-king": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "editing content with a focus on illusion, short-form",
+      "graphWeight": 5
+    },
+    "gothamchess": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "chess content with a focus on commentary, teaching",
+      "graphWeight": 5
+    },
+    "chess-vibes": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "chess content with a focus on teaching",
+      "graphWeight": 5
+    },
+    "foil-arms-and-hog": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "irish comedy content with a focus on sketches",
+      "graphWeight": 5
+    },
+    "jimmy-carr": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "comedy content with a focus on stand-up",
+      "graphWeight": 5
+    },
+    "matt-rife": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "comedy content with a focus on stand-up",
+      "graphWeight": 5
+    },
+    "tyler-oliveira": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "internet content with a focus on documentary, chaos",
+      "graphWeight": 5
+    },
+    "mark-tilbury": {
+      "source": "fallback",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "internet content with a focus on shorts",
+      "graphWeight": 5
+    }
+  },
+  "semanticEdges": [
+    {
+      "source": "salem-techsperts",
+      "target": "theo",
+      "score": 0.7677
+    },
+    {
+      "source": "fireship",
+      "target": "theo",
+      "score": 0.7309
+    },
+    {
+      "source": "gamelinked",
+      "target": "theo",
+      "score": 0.7168
+    },
+    {
+      "source": "hyperplexed",
+      "target": "theo",
+      "score": 0.7017
+    },
+    {
+      "source": "mralextech",
+      "target": "theprimeagen",
+      "score": 0.6358
+    },
+    {
+      "source": "salem-techsperts",
+      "target": "theprimeagen",
+      "score": 0.6348
+    },
+    {
+      "source": "finzar",
+      "target": "theprimeagen",
+      "score": 0.6223
+    },
+    {
+      "source": "prime-time",
+      "target": "theprimeagen",
+      "score": 0.6214
+    },
+    {
+      "source": "computerphile",
+      "target": "prime-time",
+      "score": 0.6859
+    },
+    {
+      "source": "mralextech",
+      "target": "prime-time",
+      "score": 0.6577
+    },
+    {
+      "source": "film-booth",
+      "target": "prime-time",
+      "score": 0.6438
+    },
+    {
+      "source": "prime-time",
+      "target": "salem-techsperts",
+      "score": 0.6429
+    },
+    {
+      "source": "devtoolbox",
+      "target": "fireship",
+      "score": 0.7065
+    },
+    {
+      "source": "fireship",
+      "target": "salem-techsperts",
+      "score": 0.6894
+    },
+    {
+      "source": "fireship",
+      "target": "hyperplexed",
+      "score": 0.6709
+    },
+    {
+      "source": "core-dumped",
+      "target": "low-level",
+      "score": 0.7206
+    },
+    {
+      "source": "computerscience-lessons",
+      "target": "low-level",
+      "score": 0.6827
+    },
+    {
+      "source": "computerphile",
+      "target": "low-level",
+      "score": 0.6136
+    },
+    {
+      "source": "low-level",
+      "target": "theprimeagen",
+      "score": 0.5725
+    },
+    {
+      "source": "arjan-codes",
+      "target": "coding-with-lewis",
+      "score": 0.6208
+    },
+    {
+      "source": "arjan-codes",
+      "target": "diy-perks",
+      "score": 0.5968
+    },
+    {
+      "source": "arjan-codes",
+      "target": "computerscience-lessons",
+      "score": 0.594
+    },
+    {
+      "source": "arjan-codes",
+      "target": "computerphile",
+      "score": 0.5825
+    },
+    {
+      "source": "devtoolbox",
+      "target": "mralextech",
+      "score": 0.7665
+    },
+    {
+      "source": "devtoolbox",
+      "target": "finzar",
+      "score": 0.7332
+    },
+    {
+      "source": "devops-toolbox",
+      "target": "devtoolbox",
+      "score": 0.7171
+    },
+    {
+      "source": "devops-toolbox",
+      "target": "salem-techsperts",
+      "score": 0.6328
+    },
+    {
+      "source": "devops-toolbox",
+      "target": "mralextech",
+      "score": 0.6283
+    },
+    {
+      "source": "devops-toolbox",
+      "target": "theo",
+      "score": 0.6171
+    },
+    {
+      "source": "hyperplexed",
+      "target": "juxtoposed",
+      "score": 0.8061
+    },
+    {
+      "source": "hyperplexed",
+      "target": "mralextech",
+      "score": 0.6453
+    },
+    {
+      "source": "computerphile",
+      "target": "computerscience-lessons",
+      "score": 0.8063
+    },
+    {
+      "source": "computerphile",
+      "target": "core-dumped",
+      "score": 0.7182
+    },
+    {
+      "source": "computerphile",
+      "target": "salem-techsperts",
+      "score": 0.7018
+    },
+    {
+      "source": "coding-with-lewis",
+      "target": "computerphile",
+      "score": 0.7018
+    },
+    {
+      "source": "coding-with-lewis",
+      "target": "computerscience-lessons",
+      "score": 0.771
+    },
+    {
+      "source": "computerscience-lessons",
+      "target": "core-dumped",
+      "score": 0.706
+    },
+    {
+      "source": "computerscience-lessons",
+      "target": "salem-techsperts",
+      "score": 0.6855
+    },
+    {
+      "source": "coding-with-lewis",
+      "target": "salem-techsperts",
+      "score": 0.678
+    },
+    {
+      "source": "coding-with-lewis",
+      "target": "mralextech",
+      "score": 0.6555
+    },
+    {
+      "source": "core-dumped",
+      "target": "salem-techsperts",
+      "score": 0.6724
+    },
+    {
+      "source": "finzar",
+      "target": "mralextech",
+      "score": 0.729
+    },
+    {
+      "source": "finzar",
+      "target": "fireship",
+      "score": 0.6234
+    },
+    {
+      "source": "networkchuck",
+      "target": "salem-techsperts",
+      "score": 0.6281
+    },
+    {
+      "source": "ltt-offshoots",
+      "target": "networkchuck",
+      "score": 0.6221
+    },
+    {
+      "source": "camman18",
+      "target": "networkchuck",
+      "score": 0.6079
+    },
+    {
+      "source": "devops-toolbox",
+      "target": "networkchuck",
+      "score": 0.6065
+    },
+    {
+      "source": "mralextech",
+      "target": "salem-techsperts",
+      "score": 0.7832
+    },
+    {
+      "source": "salem-techsperts",
+      "target": "thiojoe",
+      "score": 0.711
+    },
+    {
+      "source": "salem-techsperts",
+      "target": "techlinked",
+      "score": 0.705
+    },
+    {
+      "source": "mralextech",
+      "target": "thiojoe",
+      "score": 0.6922
+    },
+    {
+      "source": "ltt",
+      "target": "thiojoe",
+      "score": 0.6664
+    },
+    {
+      "source": "mrwhosetheboss",
+      "target": "thiojoe",
+      "score": 0.6596
+    },
+    {
+      "source": "mralextech",
+      "target": "mrwhosetheboss",
+      "score": 0.6986
+    },
+    {
+      "source": "juxtoposed",
+      "target": "theo",
+      "score": 0.6244
+    },
+    {
+      "source": "fireship",
+      "target": "juxtoposed",
+      "score": 0.6184
+    },
+    {
+      "source": "finzar",
+      "target": "juxtoposed",
+      "score": 0.6051
+    },
+    {
+      "source": "veritasium",
+      "target": "vsauce",
+      "score": 0.8307
+    },
+    {
+      "source": "3blue1brown",
+      "target": "veritasium",
+      "score": 0.8048
+    },
+    {
+      "source": "bright-side",
+      "target": "veritasium",
+      "score": 0.7508
+    },
+    {
+      "source": "infographics-show",
+      "target": "veritasium",
+      "score": 0.7336
+    },
+    {
+      "source": "bright-side",
+      "target": "vsauce",
+      "score": 0.7237
+    },
+    {
+      "source": "nilered",
+      "target": "vsauce",
+      "score": 0.7049
+    },
+    {
+      "source": "mark-rober",
+      "target": "vsauce",
+      "score": 0.6993
+    },
+    {
+      "source": "3blue1brown",
+      "target": "numberphile",
+      "score": 0.809
+    },
+    {
+      "source": "3blue1brown",
+      "target": "computerphile",
+      "score": 0.6999
+    },
+    {
+      "source": "3blue1brown",
+      "target": "vsauce",
+      "score": 0.6961
+    },
+    {
+      "source": "numberphile",
+      "target": "veritasium",
+      "score": 0.7064
+    },
+    {
+      "source": "computerphile",
+      "target": "numberphile",
+      "score": 0.671
+    },
+    {
+      "source": "numberphile",
+      "target": "vsauce",
+      "score": 0.6561
+    },
+    {
+      "source": "astrum",
+      "target": "veritasium",
+      "score": 0.6787
+    },
+    {
+      "source": "3blue1brown",
+      "target": "astrum",
+      "score": 0.6432
+    },
+    {
+      "source": "astrum",
+      "target": "vsauce",
+      "score": 0.6372
+    },
+    {
+      "source": "astrum",
+      "target": "infographics-show",
+      "score": 0.6333
+    },
+    {
+      "source": "mark-rober",
+      "target": "real-engineering",
+      "score": 0.7301
+    },
+    {
+      "source": "hacksmith",
+      "target": "real-engineering",
+      "score": 0.6996
+    },
+    {
+      "source": "real-engineering",
+      "target": "veritasium",
+      "score": 0.6462
+    },
+    {
+      "source": "infographics-show",
+      "target": "real-engineering",
+      "score": 0.6026
+    },
+    {
+      "source": "electroboom",
+      "target": "mark-rober",
+      "score": 0.7002
+    },
+    {
+      "source": "electroboom",
+      "target": "veritasium",
+      "score": 0.6893
+    },
+    {
+      "source": "3blue1brown",
+      "target": "electroboom",
+      "score": 0.6888
+    },
+    {
+      "source": "electroboom",
+      "target": "vsauce",
+      "score": 0.6862
+    },
+    {
+      "source": "nilered",
+      "target": "veritasium",
+      "score": 0.6959
+    },
+    {
+      "source": "mark-rober",
+      "target": "nilered",
+      "score": 0.6717
+    },
+    {
+      "source": "electroboom",
+      "target": "nilered",
+      "score": 0.6623
+    },
+    {
+      "source": "hacksmith",
+      "target": "mark-rober",
+      "score": 0.7454
+    },
+    {
+      "source": "bright-side",
+      "target": "cleo-abrams",
+      "score": 0.6427
+    },
+    {
+      "source": "cleo-abrams",
+      "target": "mrwhosetheboss",
+      "score": 0.624
+    },
+    {
+      "source": "cleo-abrams",
+      "target": "max-klymenko",
+      "score": 0.6172
+    },
+    {
+      "source": "cleo-abrams",
+      "target": "salem-techsperts",
+      "score": 0.6167
+    },
+    {
+      "source": "bright-side",
+      "target": "infographics-show",
+      "score": 0.706
+    },
+    {
+      "source": "bright-side",
+      "target": "computerphile",
+      "score": 0.6804
+    },
+    {
+      "source": "3blue1brown",
+      "target": "infographics-show",
+      "score": 0.688
+    },
+    {
+      "source": "infographics-show",
+      "target": "vsauce",
+      "score": 0.6751
+    },
+    {
+      "source": "ltt",
+      "target": "zachs-tech-turf",
+      "score": 0.8033
+    },
+    {
+      "source": "ltt",
+      "target": "mrwhosetheboss",
+      "score": 0.7694
+    },
+    {
+      "source": "ltt",
+      "target": "shortcircuit",
+      "score": 0.7381
+    },
+    {
+      "source": "jarrods-tech",
+      "target": "ltt",
+      "score": 0.7372
+    },
+    {
+      "source": "techlinked",
+      "target": "wan-show",
+      "score": 0.7933
+    },
+    {
+      "source": "ltt-offshoots",
+      "target": "wan-show",
+      "score": 0.7431
+    },
+    {
+      "source": "jakkuh",
+      "target": "wan-show",
+      "score": 0.7305
+    },
+    {
+      "source": "shortcircuit",
+      "target": "wan-show",
+      "score": 0.7235
+    },
+    {
+      "source": "shortcircuit",
+      "target": "techlinked",
+      "score": 0.8106
+    },
+    {
+      "source": "ltt-offshoots",
+      "target": "shortcircuit",
+      "score": 0.8053
+    },
+    {
+      "source": "jakkuh",
+      "target": "shortcircuit",
+      "score": 0.7663
+    },
+    {
+      "source": "gamelinked",
+      "target": "shortcircuit",
+      "score": 0.7564
+    },
+    {
+      "source": "gamelinked",
+      "target": "techlinked",
+      "score": 0.8786
+    },
+    {
+      "source": "jakkuh",
+      "target": "techlinked",
+      "score": 0.8248
+    },
+    {
+      "source": "ltt-offshoots",
+      "target": "techlinked",
+      "score": 0.8123
+    },
+    {
+      "source": "gamelinked",
+      "target": "ltt-offshoots",
+      "score": 0.7668
+    },
+    {
+      "source": "gamelinked",
+      "target": "mewtru",
+      "score": 0.7529
+    },
+    {
+      "source": "diy-perks",
+      "target": "zachs-tech-turf",
+      "score": 0.8151
+    },
+    {
+      "source": "diy-perks",
+      "target": "hacksmith",
+      "score": 0.7598
+    },
+    {
+      "source": "diy-perks",
+      "target": "max-klymenko",
+      "score": 0.7562
+    },
+    {
+      "source": "diy-perks",
+      "target": "shortcircuit",
+      "score": 0.7542
+    },
+    {
+      "source": "diy-perks",
+      "target": "jerryrigeverything",
+      "score": 0.6782
+    },
+    {
+      "source": "jerryrigeverything",
+      "target": "shortcircuit",
+      "score": 0.6469
+    },
+    {
+      "source": "jerryrigeverything",
+      "target": "mkbhd",
+      "score": 0.6445
+    },
+    {
+      "source": "jerryrigeverything",
+      "target": "mrwhosetheboss",
+      "score": 0.6188
+    },
+    {
+      "source": "hacksmith",
+      "target": "max-klymenko",
+      "score": 0.7026
+    },
+    {
+      "source": "blacktail-studio",
+      "target": "john-malecki",
+      "score": 0.7151
+    },
+    {
+      "source": "blacktail-studio",
+      "target": "four-eyes",
+      "score": 0.7097
+    },
+    {
+      "source": "blacktail-studio",
+      "target": "diy-perks",
+      "score": 0.6526
+    },
+    {
+      "source": "blacktail-studio",
+      "target": "hacksmith",
+      "score": 0.6212
+    },
+    {
+      "source": "diy-perks",
+      "target": "four-eyes",
+      "score": 0.705
+    },
+    {
+      "source": "four-eyes",
+      "target": "john-malecki",
+      "score": 0.6963
+    },
+    {
+      "source": "four-eyes",
+      "target": "hacksmith",
+      "score": 0.6067
+    },
+    {
+      "source": "john-malecki",
+      "target": "max-klymenko",
+      "score": 0.7783
+    },
+    {
+      "source": "diy-perks",
+      "target": "john-malecki",
+      "score": 0.7088
+    },
+    {
+      "source": "jarrods-tech",
+      "target": "mrwhosetheboss",
+      "score": 0.7646
+    },
+    {
+      "source": "jarrods-tech",
+      "target": "zachs-tech-turf",
+      "score": 0.7364
+    },
+    {
+      "source": "jarrods-tech",
+      "target": "kyle-sockwell",
+      "score": 0.7339
+    },
+    {
+      "source": "mrwhosetheboss",
+      "target": "zachs-tech-turf",
+      "score": 0.7378
+    },
+    {
+      "source": "mkbhd",
+      "target": "mrwhosetheboss",
+      "score": 0.8056
+    },
+    {
+      "source": "kyle-sockwell",
+      "target": "mkbhd",
+      "score": 0.7551
+    },
+    {
+      "source": "mkbhd",
+      "target": "shortcircuit",
+      "score": 0.7483
+    },
+    {
+      "source": "diy-perks",
+      "target": "mkbhd",
+      "score": 0.7355
+    },
+    {
+      "source": "kyle-sockwell",
+      "target": "mrwhosetheboss",
+      "score": 0.8002
+    },
+    {
+      "source": "kyle-sockwell",
+      "target": "max-klymenko",
+      "score": 0.7752
+    },
+    {
+      "source": "max-klymenko",
+      "target": "mrwhosetheboss",
+      "score": 0.7516
+    },
+    {
+      "source": "jakkuh",
+      "target": "ltt-offshoots",
+      "score": 0.7842
+    },
+    {
+      "source": "caeleb-dressel",
+      "target": "david-popovici",
+      "score": 0.7978
+    },
+    {
+      "source": "caeleb-dressel",
+      "target": "summer-mcintosh",
+      "score": 0.7897
+    },
+    {
+      "source": "caeleb-dressel",
+      "target": "katie-ledecky",
+      "score": 0.7555
+    },
+    {
+      "source": "caeleb-dressel",
+      "target": "michael-helps",
+      "score": 0.6972
+    },
+    {
+      "source": "michael-helps",
+      "target": "summer-mcintosh",
+      "score": 0.743
+    },
+    {
+      "source": "david-popovici",
+      "target": "michael-helps",
+      "score": 0.6813
+    },
+    {
+      "source": "katie-ledecky",
+      "target": "michael-helps",
+      "score": 0.6788
+    },
+    {
+      "source": "david-popovici",
+      "target": "summer-mcintosh",
+      "score": 0.7542
+    },
+    {
+      "source": "david-popovici",
+      "target": "katie-ledecky",
+      "score": 0.7048
+    },
+    {
+      "source": "katie-ledecky",
+      "target": "summer-mcintosh",
+      "score": 0.774
+    },
+    {
+      "source": "game-makers-toolkit",
+      "target": "lets-game-it-out",
+      "score": 0.7025
+    },
+    {
+      "source": "game-makers-toolkit",
+      "target": "misfit-minds",
+      "score": 0.6376
+    },
+    {
+      "source": "game-makers-toolkit",
+      "target": "squishy",
+      "score": 0.6188
+    },
+    {
+      "source": "game-makers-toolkit",
+      "target": "mewtru",
+      "score": 0.6111
+    },
+    {
+      "source": "jacksepticeye",
+      "target": "muselk",
+      "score": 0.8208
+    },
+    {
+      "source": "jacksepticeye",
+      "target": "squishy",
+      "score": 0.8176
+    },
+    {
+      "source": "jacksepticeye",
+      "target": "mewtru",
+      "score": 0.7898
+    },
+    {
+      "source": "camman18",
+      "target": "jacksepticeye",
+      "score": 0.7614
+    },
+    {
+      "source": "camman18",
+      "target": "dantdm",
+      "score": 0.7787
+    },
+    {
+      "source": "dantdm",
+      "target": "stampy",
+      "score": 0.7583
+    },
+    {
+      "source": "dantdm",
+      "target": "jacksepticeye",
+      "score": 0.7452
+    },
+    {
+      "source": "dantdm",
+      "target": "mumbo-jumbo",
+      "score": 0.7243
+    },
+    {
+      "source": "camman18",
+      "target": "mumbo-jumbo",
+      "score": 0.8038
+    },
+    {
+      "source": "mumbo-jumbo",
+      "target": "stampy",
+      "score": 0.757
+    },
+    {
+      "source": "mumbo-jumbo",
+      "target": "muselk",
+      "score": 0.6795
+    },
+    {
+      "source": "camman18",
+      "target": "mewtru",
+      "score": 0.8134
+    },
+    {
+      "source": "camman18",
+      "target": "stampy",
+      "score": 0.7961
+    },
+    {
+      "source": "jacksepticeye",
+      "target": "lazarbeam",
+      "score": 0.743
+    },
+    {
+      "source": "lachlan",
+      "target": "lazarbeam",
+      "score": 0.7238
+    },
+    {
+      "source": "lazarbeam",
+      "target": "muselk",
+      "score": 0.7204
+    },
+    {
+      "source": "lazarbeam",
+      "target": "lets-game-it-out",
+      "score": 0.7154
+    },
+    {
+      "source": "jacksepticeye",
+      "target": "lachlan",
+      "score": 0.7304
+    },
+    {
+      "source": "camman18",
+      "target": "lachlan",
+      "score": 0.725
+    },
+    {
+      "source": "gamelinked",
+      "target": "lachlan",
+      "score": 0.723
+    },
+    {
+      "source": "lets-game-it-out",
+      "target": "misfit-minds",
+      "score": 0.6862
+    },
+    {
+      "source": "lets-game-it-out",
+      "target": "squishy",
+      "score": 0.6807
+    },
+    {
+      "source": "jacksepticeye",
+      "target": "stampy",
+      "score": 0.6976
+    },
+    {
+      "source": "mewtru",
+      "target": "muselk",
+      "score": 0.8675
+    },
+    {
+      "source": "muselk",
+      "target": "squishy",
+      "score": 0.8306
+    },
+    {
+      "source": "camman18",
+      "target": "muselk",
+      "score": 0.7761
+    },
+    {
+      "source": "mewtru",
+      "target": "squishy",
+      "score": 0.8316
+    },
+    {
+      "source": "mewtru",
+      "target": "misfit-minds",
+      "score": 0.7982
+    },
+    {
+      "source": "camman18",
+      "target": "misfit-minds",
+      "score": 0.774
+    },
+    {
+      "source": "misfit-minds",
+      "target": "squishy",
+      "score": 0.7735
+    },
+    {
+      "source": "misfit-minds",
+      "target": "muselk",
+      "score": 0.7705
+    },
+    {
+      "source": "corridor-crew",
+      "target": "film-booth",
+      "score": 0.6972
+    },
+    {
+      "source": "corridor-crew",
+      "target": "zach-king",
+      "score": 0.6746
+    },
+    {
+      "source": "corridor-crew",
+      "target": "michelle-khare",
+      "score": 0.6
+    },
+    {
+      "source": "corridor-crew",
+      "target": "misfit-minds",
+      "score": 0.5973
+    },
+    {
+      "source": "film-booth",
+      "target": "zach-king",
+      "score": 0.7029
+    },
+    {
+      "source": "film-booth",
+      "target": "michelle-khare",
+      "score": 0.6704
+    },
+    {
+      "source": "film-booth",
+      "target": "stampy",
+      "score": 0.6581
+    },
+    {
+      "source": "michelle-khare",
+      "target": "zach-king",
+      "score": 0.6432
+    },
+    {
+      "source": "michelle-khare",
+      "target": "prime-time",
+      "score": 0.5599
+    },
+    {
+      "source": "misfit-minds",
+      "target": "zach-king",
+      "score": 0.6136
+    },
+    {
+      "source": "chess-vibes",
+      "target": "gothamchess",
+      "score": 0.8963
+    },
+    {
+      "source": "gothamchess",
+      "target": "jacksepticeye",
+      "score": 0.6349
+    },
+    {
+      "source": "3blue1brown",
+      "target": "gothamchess",
+      "score": 0.628
+    },
+    {
+      "source": "gothamchess",
+      "target": "muselk",
+      "score": 0.6251
+    },
+    {
+      "source": "3blue1brown",
+      "target": "chess-vibes",
+      "score": 0.6311
+    },
+    {
+      "source": "chess-vibes",
+      "target": "coding-with-lewis",
+      "score": 0.6306
+    },
+    {
+      "source": "camman18",
+      "target": "chess-vibes",
+      "score": 0.6078
+    },
+    {
+      "source": "foil-arms-and-hog",
+      "target": "jimmy-carr",
+      "score": 0.7046
+    },
+    {
+      "source": "foil-arms-and-hog",
+      "target": "matt-rife",
+      "score": 0.6626
+    },
+    {
+      "source": "foil-arms-and-hog",
+      "target": "mark-tilbury",
+      "score": 0.6571
+    },
+    {
+      "source": "foil-arms-and-hog",
+      "target": "tyler-oliveira",
+      "score": 0.6385
+    },
+    {
+      "source": "jimmy-carr",
+      "target": "matt-rife",
+      "score": 0.8336
+    },
+    {
+      "source": "jimmy-carr",
+      "target": "mark-tilbury",
+      "score": 0.7329
+    },
+    {
+      "source": "jimmy-carr",
+      "target": "tyler-oliveira",
+      "score": 0.6658
+    },
+    {
+      "source": "mark-tilbury",
+      "target": "matt-rife",
+      "score": 0.719
+    },
+    {
+      "source": "matt-rife",
+      "target": "tyler-oliveira",
+      "score": 0.6857
+    },
+    {
+      "source": "mark-tilbury",
+      "target": "tyler-oliveira",
+      "score": 0.7691
+    },
+    {
+      "source": "misfit-minds",
+      "target": "tyler-oliveira",
+      "score": 0.6592
+    },
+    {
+      "source": "mark-tilbury",
+      "target": "misfit-minds",
+      "score": 0.6673
+    }
+  ]
+}

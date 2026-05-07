@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { categoryOrder, people, type PersonCategory } from '../data/people';
+import semanticGraph from '../data/people-graph.json';
 
 const categoryMeta: Record<
   PersonCategory,
@@ -113,10 +114,15 @@ const graphNodes = categoryOrder.flatMap((category) => {
 
     return {
       ...person,
+      semantic: semanticGraph.nodes[person.slug],
       x,
       y,
-      radius: 4 + person.weight * 2.4,
-      glow: 10 + person.weight * 4,
+      radius:
+        4 +
+        (semanticGraph.nodes[person.slug]?.graphWeight || person.weight) * 2.4,
+      glow:
+        10 +
+        (semanticGraph.nodes[person.slug]?.graphWeight || person.weight) * 4,
       color: graphColors[category],
     };
   });
@@ -124,22 +130,12 @@ const graphNodes = categoryOrder.flatMap((category) => {
 
 const slugSet = new Set(graphNodes.map((node) => node.slug));
 
-const tokenize = (tags: string[]) =>
-  new Set(
-    tags
-      .flatMap((tag) => tag.toLowerCase().split(/[^a-z0-9]+/))
-      .filter((token) => token.length > 2),
-  );
-
-const tokenMap = Object.fromEntries(
-  graphNodes.map((node) => [node.slug, tokenize(node.tags)]),
-) as Record<string, Set<string>>;
-
 const explicitEdges = new Set<string>();
 const graphEdges: Array<{
   source: string;
   target: string;
   inferred: boolean;
+  score?: number;
 }> = [];
 
 for (const person of graphNodes) {
@@ -153,24 +149,16 @@ for (const person of graphNodes) {
   }
 }
 
-for (const category of categoryOrder) {
-  const members = grouped[category];
-  for (let i = 0; i < members.length; i++) {
-    for (let j = i + 1; j < members.length; j++) {
-      const a = members[i];
-      const b = members[j];
-      const key = [a.slug, b.slug].sort().join(':');
-      if (explicitEdges.has(key)) continue;
-
-      const overlap = [...tokenMap[a.slug]].filter((token) =>
-        tokenMap[b.slug].has(token),
-      );
-
-      if (overlap.length === 0) continue;
-      if (Math.abs(a.weight - b.weight) > 2) continue;
-      graphEdges.push({ source: a.slug, target: b.slug, inferred: true });
-    }
-  }
+for (const edge of semanticGraph.semanticEdges) {
+  const key = [edge.source, edge.target].sort().join(':');
+  if (explicitEdges.has(key)) continue;
+  if (!slugSet.has(edge.source) || !slugSet.has(edge.target)) continue;
+  graphEdges.push({
+    source: edge.source,
+    target: edge.target,
+    inferred: true,
+    score: edge.score,
+  });
 }
 
 const defaultPerson = graphNodes[0];
@@ -190,7 +178,8 @@ const defaultPerson = graphNodes[0];
     <p class="text-dim text-xs max-w-2xl leading-relaxed">
       weight roughly means how central they are to my feed, interests, or
       thinking. solid links are direct connections i care about; faint links are
-      inferred from category and tag overlap.
+      inferred from semantic similarity using embedded wiki or fallback profile
+      text.
     </p>
   </section>
 
@@ -363,6 +352,8 @@ const defaultPerson = graphNodes[0];
             <p id="detail-category" class="text-dim text-xs mt-1">
               {categoryMeta[defaultPerson.category].label} · signal {
                 defaultPerson.weight
+              }/5 · graph {
+                defaultPerson.semantic?.graphWeight || defaultPerson.weight
               }/5
             </p>
           </div>
@@ -378,7 +369,7 @@ const defaultPerson = graphNodes[0];
         </div>
 
         <p id="detail-summary" class="text-muted text-sm leading-relaxed mb-4">
-          {defaultPerson.summary}
+          {defaultPerson.semantic?.summary || defaultPerson.summary}
         </p>
 
         <div id="detail-tags" class="flex flex-wrap gap-1.5 mb-4">
@@ -454,7 +445,8 @@ const defaultPerson = graphNodes[0];
                   </div>
 
                   <p class="text-muted text-xs leading-relaxed mb-3">
-                    {person.summary}
+                    {semanticGraph.nodes[person.slug]?.summary ||
+                      person.summary}
                   </p>
 
                   <div class="flex flex-wrap gap-1.5 mb-3">
@@ -467,8 +459,7 @@ const defaultPerson = graphNodes[0];
 
                   {person.connections && person.connections.length > 0 && (
                     <p class="text-dim text-[11px] leading-relaxed">
-                      linked to {person.connections.length} nearby nodes in the
-                      future graph.
+                      explicit links: {person.connections.length}
                     </p>
                   )}
                 </article>
@@ -625,9 +616,11 @@ const defaultPerson = graphNodes[0];
 
     if (detailName) detailName.textContent = person.name;
     if (detailCategory) {
-      detailCategory.textContent = `${categoryMeta[person.category].label} · signal ${person.weight}/5`;
+      detailCategory.textContent = `${categoryMeta[person.category].label} · signal ${person.weight}/5 · graph ${person.semantic?.graphWeight || person.weight}/5`;
     }
-    if (detailSummary) detailSummary.textContent = person.summary;
+    if (detailSummary) {
+      detailSummary.textContent = person.semantic?.summary || person.summary;
+    }
     if (detailPrimary) detailPrimary.href = person.links.primary;
 
     renderTags(person);
