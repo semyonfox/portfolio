@@ -117,12 +117,14 @@ const graphNodes = categoryOrder.flatMap((category) => {
       semantic: semanticGraph.nodes[person.slug],
       x,
       y,
-      radius:
-        4 +
-        (semanticGraph.nodes[person.slug]?.graphWeight || person.weight) * 2.4,
-      glow:
-        10 +
-        (semanticGraph.nodes[person.slug]?.graphWeight || person.weight) * 4,
+      visualWeight: Math.max(
+        person.weight,
+        Math.round(
+          (person.weight +
+            (semanticGraph.nodes[person.slug]?.graphWeight || person.weight)) /
+            2,
+        ),
+      ),
       color: graphColors[category],
     };
   });
@@ -179,7 +181,8 @@ const defaultPerson = graphNodes[0];
       weight roughly means how central they are to my feed, interests, or
       thinking. solid links are direct connections i care about; faint links are
       inferred from semantic similarity using embedded wiki or fallback profile
-      text.
+      text. this should feel more like a colored obsidian graph than a rigid
+      category diagram.
     </p>
   </section>
 
@@ -200,50 +203,10 @@ const defaultPerson = graphNodes[0];
           class="w-full h-auto"
           aria-label="Graph of interesting people and creators"
         >
-          <defs>
-            {
-              categoryOrder.map((category) => (
-                <radialGradient
-                  id={`cluster-glow-${category}`}
-                  cx="50%"
-                  cy="50%"
-                  r="50%"
-                >
-                  <stop
-                    offset="0%"
-                    stop-color={graphColors[category]}
-                    stop-opacity="0.12"
-                  />
-                  <stop
-                    offset="60%"
-                    stop-color={graphColors[category]}
-                    stop-opacity="0.04"
-                  />
-                  <stop
-                    offset="100%"
-                    stop-color={graphColors[category]}
-                    stop-opacity="0"
-                  />
-                </radialGradient>
-              ))
-            }
-          </defs>
-
-          <rect x="0" y="0" width="1000" height="620" fill="#141414"></rect>
+          <rect x="0" y="0" width="1000" height="620" fill="#171726"></rect>
 
           {
-            categoryOrder.map((category) => (
-              <circle
-                cx={categoryCenters[category].x}
-                cy={categoryCenters[category].y}
-                r="115"
-                fill={`url(#cluster-glow-${category})`}
-              />
-            ))
-          }
-
-          {
-            graphEdges.map((edge) => {
+            graphEdges.map((edge, index) => {
               const source = graphNodes.find(
                 (node) => node.slug === edge.source,
               )!;
@@ -256,30 +219,15 @@ const defaultPerson = graphNodes[0];
                   y1={source.y}
                   x2={target.x}
                   y2={target.y}
-                  stroke={edge.inferred ? '#2f2f34' : '#4b4b52'}
-                  stroke-opacity={edge.inferred ? '0.28' : '0.62'}
-                  stroke-width={edge.inferred ? '0.9' : '1.5'}
+                  stroke={edge.inferred ? '#666b8f' : '#8d93b8'}
+                  stroke-opacity={edge.inferred ? '0.18' : '0.34'}
+                  stroke-width={edge.inferred ? '0.7' : '1'}
+                  data-edge-index={index}
                   data-edge-source={edge.source}
                   data-edge-target={edge.target}
                 />
               );
             })
-          }
-
-          {
-            categoryOrder.map((category) => (
-              <text
-                x={categoryCenters[category].x}
-                y={categoryCenters[category].y - 72}
-                text-anchor="middle"
-                fill={graphColors[category]}
-                opacity="0.88"
-                font-size="12"
-                letter-spacing="2"
-              >
-                {categoryMeta[category].label.toUpperCase()}
-              </text>
-            ))
           }
 
           {
@@ -292,35 +240,38 @@ const defaultPerson = graphNodes[0];
                 aria-label={`Select ${person.name}`}
               >
                 <circle
+                  data-node-glow={person.slug}
                   cx={person.x}
                   cy={person.y}
-                  r={person.glow}
+                  r={8 + person.visualWeight * 2.6}
                   fill={person.color}
-                  fill-opacity="0.06"
+                  fill-opacity="0.03"
                 />
                 <circle
+                  data-node-ring={person.slug}
                   cx={person.x}
                   cy={person.y}
-                  r={person.radius + 2.5}
+                  r={2 + person.visualWeight * 1.8}
                   fill={person.color}
-                  fill-opacity="0.06"
+                  fill-opacity="0.04"
                   stroke={person.color}
-                  stroke-width="1.5"
+                  stroke-width="1.1"
                 />
                 <circle
+                  data-node-core={person.slug}
                   cx={person.x}
                   cy={person.y}
-                  r={Math.max(2.5, person.radius / 2.5)}
+                  r={1.3 + person.visualWeight * 0.9}
                   fill={person.color}
                 />
                 <text
                   data-label={person.slug}
                   x={person.x}
-                  y={person.y + person.radius + 14}
+                  y={person.y + 16}
                   text-anchor="middle"
-                  fill="#d4d4d4"
-                  font-size={person.weight >= 4 ? '12' : '10'}
-                  opacity={person.weight >= 5 ? '0.42' : '0.16'}
+                  fill="#d8dbef"
+                  font-size={person.weight >= 4 ? '11' : '10'}
+                  opacity={person.weight >= 5 ? '0.14' : '0.04'}
                 >
                   {person.name}
                 </text>
@@ -472,7 +423,14 @@ const defaultPerson = graphNodes[0];
   </section>
 </Layout>
 
-<script define:vars={{ people: graphNodes, edges: graphEdges, categoryMeta }}>
+<script
+  define:vars={{
+    people: graphNodes,
+    edges: graphEdges,
+    categoryMeta,
+    categoryCenters,
+  }}
+>
   const nodes = people;
   const edgeList = edges;
   const nodeEls = Array.from(document.querySelectorAll('[data-node]'));
@@ -481,6 +439,24 @@ const defaultPerson = graphNodes[0];
     document.querySelectorAll('[data-edge-source][data-edge-target]'),
   );
   const graphSvg = document.getElementById('people-graph');
+  const nodeGlows = new Map(
+    nodes.map((node) => [
+      node.slug,
+      document.querySelector(`[data-node-glow="${node.slug}"]`),
+    ]),
+  );
+  const nodeRings = new Map(
+    nodes.map((node) => [
+      node.slug,
+      document.querySelector(`[data-node-ring="${node.slug}"]`),
+    ]),
+  );
+  const nodeCores = new Map(
+    nodes.map((node) => [
+      node.slug,
+      document.querySelector(`[data-node-core="${node.slug}"]`),
+    ]),
+  );
 
   const detailName = document.getElementById('detail-name');
   const detailCategory = document.getElementById('detail-category');
@@ -492,6 +468,20 @@ const defaultPerson = graphNodes[0];
   const resetBtn = document.getElementById('graph-reset');
 
   const nodeMap = new Map(nodes.map((node) => [node.slug, node]));
+  const positionMap = new Map(
+    nodes.map((node) => [
+      node.slug,
+      {
+        x: node.x,
+        y: node.y,
+        vx: 0,
+        vy: 0,
+      },
+    ]),
+  );
+  const width = 1000;
+  const height = 620;
+  const padding = 24;
 
   const linkOrder = [
     'youtube',
@@ -574,16 +564,109 @@ const defaultPerson = graphNodes[0];
     });
 
     edgeEls.forEach((el) => {
-      const inferred = el.getAttribute('stroke-width') === '0.9';
-      el.style.opacity = inferred ? '0.28' : '0.62';
+      const inferred = el.getAttribute('stroke-width') === '0.7';
+      el.style.opacity = inferred ? '0.18' : '0.34';
     });
 
     labelEls.forEach((el) => {
       const slug = el.getAttribute('data-label');
       const person = slug ? nodeMap.get(slug) : null;
       if (!person) return;
-      el.style.opacity = person.weight >= 5 ? '0.42' : '0.16';
+      el.style.opacity = person.weight >= 5 ? '0.14' : '0.04';
     });
+  }
+
+  function tickLayout() {
+    const entries = nodes.map((node) => ({
+      node,
+      pos: positionMap.get(node.slug),
+    }));
+
+    for (let i = 0; i < entries.length; i++) {
+      for (let j = i + 1; j < entries.length; j++) {
+        const a = entries[i];
+        const b = entries[j];
+        const dx = a.pos.x - b.pos.x;
+        const dy = a.pos.y - b.pos.y;
+        const distSq = dx * dx + dy * dy + 0.01;
+        const dist = Math.sqrt(distSq);
+        const force = 190 / distSq;
+        const fx = (dx / dist) * force;
+        const fy = (dy / dist) * force;
+        a.pos.vx += fx;
+        a.pos.vy += fy;
+        b.pos.vx -= fx;
+        b.pos.vy -= fy;
+      }
+    }
+
+    for (const edge of edgeList) {
+      const source = positionMap.get(edge.source);
+      const target = positionMap.get(edge.target);
+      if (!source || !target) continue;
+      const dx = target.x - source.x;
+      const dy = target.y - source.y;
+      const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+      const desired = edge.inferred ? 78 : 54;
+      const strength = edge.inferred ? 0.0025 : 0.006;
+      const force = (dist - desired) * strength;
+      const fx = (dx / dist) * force;
+      const fy = (dy / dist) * force;
+      source.vx += fx;
+      source.vy += fy;
+      target.vx -= fx;
+      target.vy -= fy;
+    }
+
+    for (const { node, pos } of entries) {
+      const anchor = categoryCenters[node.category];
+      pos.vx += (anchor.x - pos.x) * 0.0005;
+      pos.vy += (anchor.y - pos.y) * 0.0005;
+      pos.vx += (width / 2 - pos.x) * 0.00005;
+      pos.vy += (height / 2 - pos.y) * 0.00005;
+      pos.vx *= 0.88;
+      pos.vy *= 0.88;
+      pos.x = Math.max(padding, Math.min(width - padding, pos.x + pos.vx));
+      pos.y = Math.max(padding, Math.min(height - padding, pos.y + pos.vy));
+    }
+  }
+
+  function renderLayout() {
+    for (const node of nodes) {
+      const pos = positionMap.get(node.slug);
+      const group = document.querySelector(`[data-node="${node.slug}"]`);
+      const glow = nodeGlows.get(node.slug);
+      const ring = nodeRings.get(node.slug);
+      const core = nodeCores.get(node.slug);
+      const label = document.querySelector(`[data-label="${node.slug}"]`);
+      if (!pos || !group || !glow || !ring || !core || !label) continue;
+
+      glow.setAttribute('cx', pos.x);
+      glow.setAttribute('cy', pos.y);
+      ring.setAttribute('cx', pos.x);
+      ring.setAttribute('cy', pos.y);
+      core.setAttribute('cx', pos.x);
+      core.setAttribute('cy', pos.y);
+      label.setAttribute('x', pos.x);
+      label.setAttribute('y', pos.y + 16);
+    }
+
+    edgeEls.forEach((el) => {
+      const source = positionMap.get(el.getAttribute('data-edge-source'));
+      const target = positionMap.get(el.getAttribute('data-edge-target'));
+      if (!source || !target) return;
+      el.setAttribute('x1', source.x);
+      el.setAttribute('y1', source.y);
+      el.setAttribute('x2', target.x);
+      el.setAttribute('y2', target.y);
+    });
+  }
+
+  function settleLayout(iterations = 180) {
+    for (let i = 0; i < iterations; i++) {
+      tickLayout();
+    }
+    renderLayout();
   }
 
   function selectNode(slug) {
@@ -611,7 +694,7 @@ const defaultPerson = graphNodes[0];
     labelEls.forEach((el) => {
       const labelSlug = el.getAttribute('data-label') || '';
       const active = connected.has(labelSlug);
-      el.style.opacity = active ? '0.95' : '0.08';
+      el.style.opacity = active ? '0.95' : '0.02';
     });
 
     if (detailName) detailName.textContent = person.name;
@@ -651,6 +734,8 @@ const defaultPerson = graphNodes[0];
       resetGraph();
     }
   });
+
+  settleLayout();
 
   if (nodes[0]) {
     selectNode(nodes[0].slug);
