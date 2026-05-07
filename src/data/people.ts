@@ -8,12 +8,23 @@ export type PersonCategory =
   | 'comedy'
   | 'chess';
 
+export interface PersonLinks {
+  primary: string;
+  youtube?: string;
+  x?: string;
+  github?: string;
+  linkedin?: string;
+  website?: string;
+}
+
 export interface Person {
   slug: string;
   name: string;
   category: PersonCategory;
   weight: 1 | 2 | 3 | 4 | 5;
   href: string;
+  summary: string;
+  links: PersonLinks;
   tags: string[];
   connections?: string[];
 }
@@ -35,7 +46,18 @@ export const categoryOrder: PersonCategory[] = [
   'comedy',
 ];
 
-export const people: Person[] = [
+type RawPerson = Omit<Person, 'summary' | 'links'> & {
+  summary?: string;
+  links?: Partial<PersonLinks>;
+};
+
+const buildSummary = (tags: string[]) => {
+  if (tags.length === 0) return 'interesting internet person';
+  if (tags.length === 1) return `${tags[0]} content`;
+  return `${tags[0]} content with a focus on ${tags.slice(1).join(', ')}`;
+};
+
+const rawPeople: RawPerson[] = [
   {
     slug: 'theo',
     name: 'Theo / t3.gg',
@@ -740,3 +762,20 @@ export const people: Person[] = [
     tags: ['internet', 'shorts'],
   },
 ];
+
+export const people: Person[] = rawPeople.map((person) => ({
+  ...person,
+  summary: person.summary ?? buildSummary(person.tags),
+  links: {
+    primary: person.links?.primary ?? person.href,
+    youtube:
+      person.links?.youtube ??
+      (person.href.includes('youtube.com') ? person.href : undefined),
+    x: person.links?.x,
+    github: person.links?.github,
+    linkedin: person.links?.linkedin,
+    website:
+      person.links?.website ??
+      (!person.href.includes('youtube.com') ? person.href : undefined),
+  },
+}));

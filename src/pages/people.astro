@@ -77,13 +77,100 @@ const grouped = Object.fromEntries(
   ]),
 ) as Record<PersonCategory, typeof people>;
 
-const weightClasses = {
-  1: 'text-[11px] px-2 py-1',
-  2: 'text-xs px-2.5 py-1.5',
-  3: 'text-xs px-3 py-1.5',
-  4: 'text-sm px-3.5 py-2',
-  5: 'text-sm px-4 py-2.5 font-semibold',
+const graphColors: Record<PersonCategory, string> = {
+  dev: '#e8702a',
+  science: '#38bdf8',
+  hardware: '#10b981',
+  swimming: '#06b6d4',
+  games: '#8b5cf6',
+  creative: '#f59e0b',
+  chess: '#ef4444',
+  comedy: '#71717a',
 };
+
+const categoryCenters: Record<PersonCategory, { x: number; y: number }> = {
+  dev: { x: 210, y: 160 },
+  science: { x: 500, y: 120 },
+  hardware: { x: 790, y: 170 },
+  swimming: { x: 160, y: 450 },
+  games: { x: 425, y: 500 },
+  creative: { x: 680, y: 450 },
+  chess: { x: 905, y: 420 },
+  comedy: { x: 560, y: 315 },
+};
+
+const graphNodes = categoryOrder.flatMap((category) => {
+  const members = grouped[category];
+  const center = categoryCenters[category];
+
+  return members.map((person, index) => {
+    const angle = (Math.PI * 2 * index) / Math.max(members.length, 1);
+    const ring = 38 + Math.floor(index / 5) * 38 + (5 - person.weight) * 4;
+    const x = center.x + Math.cos(angle) * ring;
+    const y = center.y + Math.sin(angle) * ring;
+
+    return {
+      ...person,
+      x,
+      y,
+      radius: 7 + person.weight * 3,
+      color: graphColors[category],
+    };
+  });
+});
+
+const slugSet = new Set(graphNodes.map((node) => node.slug));
+
+const tokenize = (tags: string[]) =>
+  new Set(
+    tags
+      .flatMap((tag) => tag.toLowerCase().split(/[^a-z0-9]+/))
+      .filter((token) => token.length > 2),
+  );
+
+const tokenMap = Object.fromEntries(
+  graphNodes.map((node) => [node.slug, tokenize(node.tags)]),
+) as Record<string, Set<string>>;
+
+const explicitEdges = new Set<string>();
+const graphEdges: Array<{
+  source: string;
+  target: string;
+  inferred: boolean;
+}> = [];
+
+for (const person of graphNodes) {
+  for (const target of person.connections || []) {
+    if (!slugSet.has(target)) continue;
+    const [a, b] = [person.slug, target].sort();
+    const key = `${a}:${b}`;
+    if (explicitEdges.has(key)) continue;
+    explicitEdges.add(key);
+    graphEdges.push({ source: a, target: b, inferred: false });
+  }
+}
+
+for (const category of categoryOrder) {
+  const members = grouped[category];
+  for (let i = 0; i < members.length; i++) {
+    for (let j = i + 1; j < members.length; j++) {
+      const a = members[i];
+      const b = members[j];
+      const key = [a.slug, b.slug].sort().join(':');
+      if (explicitEdges.has(key)) continue;
+
+      const overlap = [...tokenMap[a.slug]].filter((token) =>
+        tokenMap[b.slug].has(token),
+      );
+
+      if (overlap.length === 0) continue;
+      if (Math.abs(a.weight - b.weight) > 2) continue;
+      graphEdges.push({ source: a.slug, target: b.slug, inferred: true });
+    }
+  }
+}
+
+const defaultPerson = graphNodes[0];
 ---
 
 <Layout
@@ -98,49 +185,168 @@ const weightClasses = {
       some of my favorite content creators and internet people
     </p>
     <p class="text-dim text-xs max-w-2xl leading-relaxed">
-      grouped for now, but shaped like future graph data. weight roughly means
-      how central they are to my feed, interests, or thinking. proper
-      obsidian-style clustering can come later.
+      weight roughly means how central they are to my feed, interests, or
+      thinking. solid links are direct connections i care about; faint links are
+      inferred from category and tag overlap.
     </p>
   </section>
 
   <section class="pb-16">
     <div class="flex items-center gap-3 mb-6">
       <span class="text-dim text-xs uppercase tracking-[3px]">signal map</span>
-      <span class="text-dim text-xs">weighted nodes by cluster</span>
+      <span class="text-dim text-xs">weighted nodes, clustered by interest</span
+      >
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3">
-      {
-        categoryOrder.map((category) => (
-          <section
-            class={`rounded-bento border p-5 ${categoryMeta[category].cardClass}`}
-          >
-            <h2 class="text-heading text-sm font-bold tracking-tight mb-1">
-              {categoryMeta[category].label}
-            </h2>
-            <p class="text-dim text-xs leading-relaxed mb-4">
-              {categoryMeta[category].blurb}
-            </p>
-            <div class="flex flex-wrap gap-2">
-              {grouped[category].map((person) => (
-                <a
-                  href={person.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class:list={[
-                    'rounded-full border transition-all hover:scale-[1.03]',
-                    categoryMeta[category].chipClass,
-                    weightClasses[person.weight],
-                  ]}
+    <div class="grid xl:grid-cols-[1.9fr_1fr] gap-4">
+      <div
+        class="bg-surface border border-heading/[0.06] rounded-bento p-3 md:p-5 overflow-hidden"
+      >
+        <svg
+          id="people-graph"
+          viewBox="0 0 1000 620"
+          class="w-full h-auto"
+          aria-label="Graph of interesting people and creators"
+        >
+          {
+            graphEdges.map((edge) => {
+              const source = graphNodes.find(
+                (node) => node.slug === edge.source,
+              )!;
+              const target = graphNodes.find(
+                (node) => node.slug === edge.target,
+              )!;
+              return (
+                <line
+                  x1={source.x}
+                  y1={source.y}
+                  x2={target.x}
+                  y2={target.y}
+                  stroke={edge.inferred ? '#3a3a3a' : '#5a5a5a'}
+                  stroke-opacity={edge.inferred ? '0.35' : '0.75'}
+                  stroke-width={edge.inferred ? '1.2' : '2'}
+                  data-edge-source={edge.source}
+                  data-edge-target={edge.target}
+                />
+              );
+            })
+          }
+
+          {
+            categoryOrder.map((category) => (
+              <text
+                x={categoryCenters[category].x}
+                y={categoryCenters[category].y - 72}
+                text-anchor="middle"
+                fill={graphColors[category]}
+                opacity="0.75"
+                font-size="12"
+                letter-spacing="2"
+              >
+                {categoryMeta[category].label.toUpperCase()}
+              </text>
+            ))
+          }
+
+          {
+            graphNodes.map((person) => (
+              <g
+                data-node={person.slug}
+                class="cursor-pointer transition-opacity"
+                tabindex="0"
+                role="button"
+                aria-label={`Select ${person.name}`}
+              >
+                <circle
+                  cx={person.x}
+                  cy={person.y}
+                  r={person.radius}
+                  fill={person.color}
+                  fill-opacity="0.18"
+                  stroke={person.color}
+                  stroke-width="2"
+                />
+                <circle
+                  cx={person.x}
+                  cy={person.y}
+                  r={Math.max(3, person.radius / 2.8)}
+                  fill={person.color}
+                />
+                <text
+                  x={person.x}
+                  y={person.y + person.radius + 14}
+                  text-anchor="middle"
+                  fill="#d4d4d4"
+                  font-size={person.weight >= 4 ? '12' : '10'}
+                  opacity="0.92"
                 >
                   {person.name}
-                </a>
-              ))}
-            </div>
-          </section>
-        ))
-      }
+                </text>
+              </g>
+            ))
+          }
+        </svg>
+      </div>
+
+      <aside
+        id="people-detail"
+        class="bg-surface border border-heading/[0.06] rounded-bento p-5"
+      >
+        <p class="text-dim text-[11px] uppercase tracking-[3px] mb-3">
+          selected node
+        </p>
+        <div class="flex items-start justify-between gap-4 mb-3">
+          <div>
+            <h2 id="detail-name" class="text-heading text-xl font-bold">
+              {defaultPerson.name}
+            </h2>
+            <p id="detail-category" class="text-dim text-xs mt-1">
+              {categoryMeta[defaultPerson.category].label} · signal {
+                defaultPerson.weight
+              }/5
+            </p>
+          </div>
+          <a
+            id="detail-primary"
+            href={defaultPerson.links.primary}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="shrink-0 border border-border text-muted text-xs px-3 py-1.5 rounded-lg hover:text-heading hover:border-muted transition-colors"
+          >
+            open
+          </a>
+        </div>
+
+        <p id="detail-summary" class="text-muted text-sm leading-relaxed mb-4">
+          {defaultPerson.summary}
+        </p>
+
+        <div id="detail-tags" class="flex flex-wrap gap-1.5 mb-4">
+          {
+            defaultPerson.tags.map((tag) => (
+              <span class="bg-border px-2 py-0.5 rounded text-[11px] text-muted">
+                {tag}
+              </span>
+            ))
+          }
+        </div>
+
+        <div class="space-y-3">
+          <div>
+            <p class="text-dim text-[11px] uppercase tracking-[3px] mb-2">
+              links
+            </p>
+            <div id="detail-links" class="flex flex-wrap gap-2"></div>
+          </div>
+
+          <div>
+            <p class="text-dim text-[11px] uppercase tracking-[3px] mb-2">
+              nearby nodes
+            </p>
+            <div id="detail-connections" class="flex flex-wrap gap-2"></div>
+          </div>
+        </div>
+      </aside>
     </div>
   </section>
 
@@ -178,7 +384,7 @@ const weightClasses = {
                       </p>
                     </div>
                     <a
-                      href={person.href}
+                      href={person.links.primary}
                       target="_blank"
                       rel="noopener noreferrer"
                       class="shrink-0 border border-border text-muted text-[11px] px-2.5 py-1 rounded hover:text-heading hover:border-muted transition-colors"
@@ -186,6 +392,10 @@ const weightClasses = {
                       open
                     </a>
                   </div>
+
+                  <p class="text-muted text-xs leading-relaxed mb-3">
+                    {person.summary}
+                  </p>
 
                   <div class="flex flex-wrap gap-1.5 mb-3">
                     {person.tags.map((tag) => (
@@ -210,3 +420,148 @@ const weightClasses = {
     </div>
   </section>
 </Layout>
+
+<script define:vars={{ people: graphNodes, edges: graphEdges, categoryMeta }}>
+  const nodes = people;
+  const edgeList = edges;
+  const nodeEls = Array.from(document.querySelectorAll('[data-node]'));
+  const edgeEls = Array.from(
+    document.querySelectorAll('[data-edge-source][data-edge-target]'),
+  );
+
+  const detailName = document.getElementById('detail-name');
+  const detailCategory = document.getElementById('detail-category');
+  const detailSummary = document.getElementById('detail-summary');
+  const detailPrimary = document.getElementById('detail-primary');
+  const detailTags = document.getElementById('detail-tags');
+  const detailLinks = document.getElementById('detail-links');
+  const detailConnections = document.getElementById('detail-connections');
+
+  const nodeMap = new Map(nodes.map((node) => [node.slug, node]));
+
+  const linkOrder = [
+    'youtube',
+    'x',
+    'github',
+    'linkedin',
+    'website',
+    'primary',
+  ];
+  const linkLabels = {
+    youtube: 'youtube',
+    x: 'x',
+    github: 'github',
+    linkedin: 'linkedin',
+    website: 'site',
+    primary: 'open',
+  };
+
+  function renderLinks(person) {
+    if (!detailLinks) return;
+    detailLinks.innerHTML = '';
+
+    const seen = new Set();
+
+    for (const key of linkOrder) {
+      const href = person.links?.[key];
+      if (!href || seen.has(href)) continue;
+      seen.add(href);
+
+      const a = document.createElement('a');
+      a.href = href;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      a.className =
+        'border border-border text-muted text-[11px] px-2.5 py-1 rounded hover:text-heading hover:border-muted transition-colors';
+      a.textContent = linkLabels[key];
+      detailLinks.appendChild(a);
+    }
+  }
+
+  function renderConnections(person) {
+    if (!detailConnections) return;
+    detailConnections.innerHTML = '';
+
+    const nearby = new Set(person.connections || []);
+    for (const edge of edgeList) {
+      if (edge.source === person.slug) nearby.add(edge.target);
+      if (edge.target === person.slug) nearby.add(edge.source);
+    }
+
+    for (const slug of nearby) {
+      const target = nodeMap.get(slug);
+      if (!target) continue;
+
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className =
+        'bg-border px-2 py-0.5 rounded text-[11px] text-muted hover:text-heading transition-colors';
+      button.textContent = target.name;
+      button.addEventListener('click', () => selectNode(slug));
+      detailConnections.appendChild(button);
+    }
+  }
+
+  function renderTags(person) {
+    if (!detailTags) return;
+    detailTags.innerHTML = '';
+
+    for (const tag of person.tags || []) {
+      const span = document.createElement('span');
+      span.className = 'bg-border px-2 py-0.5 rounded text-[11px] text-muted';
+      span.textContent = tag;
+      detailTags.appendChild(span);
+    }
+  }
+
+  function selectNode(slug) {
+    const person = nodeMap.get(slug);
+    if (!person) return;
+
+    const connected = new Set([slug]);
+    for (const edge of edgeList) {
+      if (edge.source === slug) connected.add(edge.target);
+      if (edge.target === slug) connected.add(edge.source);
+    }
+
+    nodeEls.forEach((el) => {
+      const active = connected.has(el.getAttribute('data-node') || '');
+      el.style.opacity = active ? '1' : '0.24';
+    });
+
+    edgeEls.forEach((el) => {
+      const source = el.getAttribute('data-edge-source');
+      const target = el.getAttribute('data-edge-target');
+      const active = source === slug || target === slug;
+      el.style.opacity = active ? '1' : '0.12';
+    });
+
+    if (detailName) detailName.textContent = person.name;
+    if (detailCategory) {
+      detailCategory.textContent = `${categoryMeta[person.category].label} · signal ${person.weight}/5`;
+    }
+    if (detailSummary) detailSummary.textContent = person.summary;
+    if (detailPrimary) detailPrimary.href = person.links.primary;
+
+    renderTags(person);
+    renderLinks(person);
+    renderConnections(person);
+  }
+
+  nodeEls.forEach((el) => {
+    const slug = el.getAttribute('data-node');
+    if (!slug) return;
+
+    el.addEventListener('click', () => selectNode(slug));
+    el.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        selectNode(slug);
+      }
+    });
+  });
+
+  if (nodes[0]) {
+    selectNode(nodes[0].slug);
+  }
+</script>
