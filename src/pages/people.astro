@@ -203,7 +203,33 @@ const defaultPerson = graphNodes[0];
           class="w-full h-auto"
           aria-label="Graph of interesting people and creators"
         >
-          <rect x="0" y="0" width="1000" height="620" fill="#171726"></rect>
+          <rect x="0" y="0" width="1000" height="620" fill="#151313"></rect>
+          <g opacity="0.14">
+            {
+              Array.from({ length: 20 }).map((_, i) => (
+                <line
+                  x1={i * 50}
+                  y1="0"
+                  x2={i * 50}
+                  y2="620"
+                  stroke="#4a4e63"
+                  stroke-width="0.6"
+                />
+              ))
+            }
+            {
+              Array.from({ length: 13 }).map((_, i) => (
+                <line
+                  x1="0"
+                  y1={i * 50}
+                  x2="1000"
+                  y2={i * 50}
+                  stroke="#4a4e63"
+                  stroke-width="0.6"
+                />
+              ))
+            }
+          </g>
 
           {
             graphEdges.map((edge, index) => {
@@ -219,12 +245,13 @@ const defaultPerson = graphNodes[0];
                   y1={source.y}
                   x2={target.x}
                   y2={target.y}
-                  stroke={edge.inferred ? '#666b8f' : '#8d93b8'}
-                  stroke-opacity={edge.inferred ? '0.18' : '0.34'}
+                  stroke="#8c93b0"
+                  stroke-opacity={edge.inferred ? '0.08' : '0.18'}
                   stroke-width={edge.inferred ? '0.7' : '1'}
                   data-edge-index={index}
                   data-edge-source={edge.source}
                   data-edge-target={edge.target}
+                  data-edge-inferred={edge.inferred ? 'true' : 'false'}
                 />
               );
             })
@@ -243,25 +270,35 @@ const defaultPerson = graphNodes[0];
                   data-node-glow={person.slug}
                   cx={person.x}
                   cy={person.y}
-                  r={8 + person.visualWeight * 2.6}
+                  r={4 + person.visualWeight * 1.6}
                   fill={person.color}
-                  fill-opacity="0.03"
+                  fill-opacity="0.06"
                 />
                 <circle
                   data-node-ring={person.slug}
                   cx={person.x}
                   cy={person.y}
-                  r={2 + person.visualWeight * 1.8}
-                  fill={person.color}
-                  fill-opacity="0.04"
+                  r={3 + person.visualWeight * 0.9}
+                  fill="none"
                   stroke={person.color}
-                  stroke-width="1.1"
+                  stroke-opacity="0"
+                  stroke-width="1"
+                />
+                <circle
+                  data-node-focus={person.slug}
+                  cx={person.x}
+                  cy={person.y}
+                  r={4.5 + person.visualWeight * 0.95}
+                  fill="none"
+                  stroke={person.color}
+                  stroke-opacity="0"
+                  stroke-width="1.2"
                 />
                 <circle
                   data-node-core={person.slug}
                   cx={person.x}
                   cy={person.y}
-                  r={1.3 + person.visualWeight * 0.9}
+                  r={0.9 + person.visualWeight * 0.9}
                   fill={person.color}
                 />
                 <text
@@ -451,6 +488,12 @@ const defaultPerson = graphNodes[0];
       document.querySelector(`[data-node-ring="${node.slug}"]`),
     ]),
   );
+  const nodeFocuses = new Map(
+    nodes.map((node) => [
+      node.slug,
+      document.querySelector(`[data-node-focus="${node.slug}"]`),
+    ]),
+  );
   const nodeCores = new Map(
     nodes.map((node) => [
       node.slug,
@@ -482,6 +525,7 @@ const defaultPerson = graphNodes[0];
   const width = 1000;
   const height = 620;
   const padding = 24;
+  const edgeBaseColor = '#8c93b0';
 
   const linkOrder = [
     'youtube',
@@ -564,15 +608,39 @@ const defaultPerson = graphNodes[0];
     });
 
     edgeEls.forEach((el) => {
-      const inferred = el.getAttribute('stroke-width') === '0.7';
-      el.style.opacity = inferred ? '0.18' : '0.34';
+      const inferred = el.getAttribute('data-edge-inferred') === 'true';
+      el.style.opacity = inferred ? '0.08' : '0.18';
+      el.setAttribute('stroke', edgeBaseColor);
+      el.setAttribute('stroke-width', inferred ? '0.7' : '1');
     });
 
     labelEls.forEach((el) => {
       const slug = el.getAttribute('data-label');
       const person = slug ? nodeMap.get(slug) : null;
       if (!person) return;
-      el.style.opacity = person.weight >= 5 ? '0.14' : '0.04';
+      el.style.opacity = person.weight >= 5 ? '0.15' : '0.05';
+    });
+
+    nodes.forEach((node) => {
+      const glow = nodeGlows.get(node.slug);
+      const ring = nodeRings.get(node.slug);
+      const focus = nodeFocuses.get(node.slug);
+      const core = nodeCores.get(node.slug);
+      if (glow) {
+        glow.setAttribute('r', String(4 + node.visualWeight * 1.6));
+        glow.setAttribute('fill-opacity', '0.06');
+      }
+      if (ring) {
+        ring.setAttribute('r', String(3 + node.visualWeight * 0.9));
+        ring.setAttribute('stroke-opacity', '0');
+      }
+      if (focus) {
+        focus.setAttribute('r', String(4.5 + node.visualWeight * 0.95));
+        focus.setAttribute('stroke-opacity', '0');
+      }
+      if (core) {
+        core.setAttribute('r', String(0.9 + node.visualWeight * 0.9));
+      }
     });
   }
 
@@ -637,14 +705,18 @@ const defaultPerson = graphNodes[0];
       const group = document.querySelector(`[data-node="${node.slug}"]`);
       const glow = nodeGlows.get(node.slug);
       const ring = nodeRings.get(node.slug);
+      const focus = nodeFocuses.get(node.slug);
       const core = nodeCores.get(node.slug);
       const label = document.querySelector(`[data-label="${node.slug}"]`);
-      if (!pos || !group || !glow || !ring || !core || !label) continue;
+      if (!pos || !group || !glow || !ring || !focus || !core || !label)
+        continue;
 
       glow.setAttribute('cx', pos.x);
       glow.setAttribute('cy', pos.y);
       ring.setAttribute('cx', pos.x);
       ring.setAttribute('cy', pos.y);
+      focus.setAttribute('cx', pos.x);
+      focus.setAttribute('cy', pos.y);
       core.setAttribute('cx', pos.x);
       core.setAttribute('cy', pos.y);
       label.setAttribute('x', pos.x);
@@ -688,13 +760,67 @@ const defaultPerson = graphNodes[0];
       const source = el.getAttribute('data-edge-source');
       const target = el.getAttribute('data-edge-target');
       const active = source === slug || target === slug;
-      el.style.opacity = active ? '0.95' : '0.08';
+      const inferred = el.getAttribute('data-edge-inferred') === 'true';
+      const activeColor =
+        source === slug
+          ? person.color
+          : target === slug
+            ? person.color
+            : edgeBaseColor;
+      el.style.opacity = active ? '0.72' : inferred ? '0.05' : '0.08';
+      el.setAttribute('stroke', active ? activeColor : edgeBaseColor);
+      el.setAttribute('stroke-width', active ? '1.8' : inferred ? '0.7' : '1');
     });
 
     labelEls.forEach((el) => {
       const labelSlug = el.getAttribute('data-label') || '';
       const active = connected.has(labelSlug);
-      el.style.opacity = active ? '0.95' : '0.02';
+      el.style.opacity = active ? '0.92' : '0.02';
+    });
+
+    nodes.forEach((node) => {
+      const glow = nodeGlows.get(node.slug);
+      const ring = nodeRings.get(node.slug);
+      const focus = nodeFocuses.get(node.slug);
+      const core = nodeCores.get(node.slug);
+      const isSelected = node.slug === slug;
+      const isNeighbor = connected.has(node.slug) && !isSelected;
+      const isActive = isSelected || isNeighbor;
+      if (glow) {
+        glow.setAttribute(
+          'r',
+          String(
+            isActive
+              ? 8 + node.visualWeight * 2.1
+              : 4 + node.visualWeight * 1.6,
+          ),
+        );
+        glow.setAttribute('fill-opacity', isActive ? '0.16' : '0.06');
+      }
+      if (ring) {
+        ring.setAttribute(
+          'r',
+          String(
+            isActive
+              ? 3 + node.visualWeight * 0.9
+              : 3 + node.visualWeight * 0.9,
+          ),
+        );
+        ring.setAttribute('stroke-opacity', isActive ? '0.4' : '0');
+      }
+      if (focus) {
+        focus.setAttribute('stroke-opacity', isSelected ? '0.7' : '0');
+      }
+      if (core) {
+        core.setAttribute(
+          'r',
+          String(
+            isActive
+              ? 1.3 + node.visualWeight * 0.95
+              : 0.9 + node.visualWeight * 0.9,
+          ),
+        );
+      }
     });
 
     if (detailName) detailName.textContent = person.name;
