@@ -1,0 +1,35 @@
+{
+  "slug": "arjan-codes",
+  "name": "ArjanCodes",
+  "realName": "Arjan Egges",
+  "oneLine": "University CS lecturer running a Python channel focused on software design, architecture, and clean code.",
+  "bio": "Arjan Egges is a Dutch entrepreneur and university lecturer with 20+ years in software development who runs ArjanCodes, a weekly Python channel about design patterns, SOLID principles, type hints, and project architecture. He publishes a Friday video plus a newsletter (The Friday Loop) and sells courses such as The Software Designer Mindset and The Software Architect Mindset on arjancodes.com. Tone is calm, lecture-style, with a strong refactoring-from-bad-to-good narrative arc.",
+  "topics": [
+    "Python design patterns",
+    "SOLID principles",
+    "clean code refactoring",
+    "type hints and dataclasses",
+    "software architecture",
+    "FastAPI",
+    "uv and modern Python tooling",
+    "functional programming in Python"
+  ],
+  "style": "Calm, lecture-style screen-cast tutorials around 15-25 minutes with before/after refactoring demos.",
+  "notable": [
+    "The Software Designer Mindset course",
+    "The Software Architect Mindset course",
+    "The Friday Loop newsletter",
+    "Code Roast series"
+  ],
+  "associatedWith": [
+    "mCoding",
+    "Indently",
+    "Tech With Tim",
+    "Real Python"
+  ],
+  "sources": [
+    "https://arjancodes.com/",
+    "https://www.youtube.com/arjancodes",
+    "https://www.linkedin.com/in/arjanegges"
+  ]
+}

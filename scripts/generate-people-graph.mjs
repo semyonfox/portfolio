@@ -1,8 +1,42 @@
 import { createHash } from 'node:crypto';
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { DatabaseSync } from 'node:sqlite';
 import { people } from '../src/data/people.ts';
+
+const RESEARCH_DIR = new URL('../data/people-research/', import.meta.url);
+
+async function loadResearch(slug) {
+  try {
+    const path = new URL(`${slug}.json`, RESEARCH_DIR);
+    const raw = await readFile(path, 'utf8');
+    return JSON.parse(raw);
+  } catch {
+    return null;
+  }
+}
+
+function buildSemanticText(person, research) {
+  const lines = [person.name];
+  if (research?.realName) lines.push(`Real name: ${research.realName}`);
+  lines.push(`Category: ${person.category}`);
+  if (research?.oneLine) lines.push(`What they do: ${research.oneLine}`);
+  if (research?.bio) lines.push(`Bio: ${research.bio}`);
+  if (research?.style) lines.push(`Format: ${research.style}`);
+  if (research?.topics?.length)
+    lines.push(`Topics: ${research.topics.join(', ')}`);
+  if (research?.notable?.length)
+    lines.push(`Notable: ${research.notable.join('; ')}`);
+  if (research?.associatedWith?.length)
+    lines.push(`Associated with: ${research.associatedWith.join(', ')}`);
+  if (!research) {
+    lines.push(`Summary: ${person.summary}`);
+    lines.push(`Tags: ${person.tags.join(', ')}`);
+  } else if (person.tags?.length) {
+    lines.push(`Tags: ${person.tags.join(', ')}`);
+  }
+  return lines.join('\n');
+}
 
 const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
 
@@ -375,22 +409,18 @@ const model = await resolveEmbeddingModel();
 
 const resolved = [];
 for (const person of people) {
+  const research = await loadResearch(person.slug);
   const wiki =
-    person.wikiSearch === false
+    research || person.wikiSearch === false
       ? null
       : await wikipediaSummary(person, person.wikiSearch || person.name);
-  const summary = wiki?.extract || person.summary;
-  const semanticText = [
-    person.name,
-    `Category: ${person.category}`,
-    `Summary: ${summary}`,
-    `Tags: ${person.tags.join(', ')}`,
-  ].join('\n');
+  const summary = research?.bio || wiki?.extract || person.summary;
+  const semanticText = buildSemanticText(person, research);
 
   resolved.push({
     slug: person.slug,
     name: person.name,
-    source: wiki ? 'wikipedia' : 'fallback',
+    source: research ? 'research' : wiki ? 'wikipedia' : 'fallback',
     wikiTitle: wiki?.title || null,
     wikiUrl: wiki?.url || null,
     summary,

@@ -1,0 +1,16 @@
+{
+  "slug": "cleo-abrams",
+  "name": "Cleo Abrams",
+  "realName": "Cleo Abram",
+  "oneLine": "Former Vox journalist whose channel Huge If True profiles emerging technologies through a deliberately optimistic lens.",
+  "bio": "Cleo Abram, a former Vox video journalist, launched Huge If True as a solo independent show after leaving Vox. Each episode is a single deep dive into one technology or scientific achievement, structured around the question 'What could go right?' rather than what could go wrong. Episodes are typically reported on location at facilities like CERN, NASA, IBM, and Boston Dynamics, with a self-imposed rule that topics must be inherently visual to merit a video.",
+  "topics": ["humanoid robots", "quantum computing", "supersonic flight", "particle physics", "AI", "fusion energy", "space technology", "biotechnology"],
+  "style": "on-location explainer documentaries with first-person reporting, expert interviews, and clean motion graphics",
+  "notable": ["Huge If True series", "Boston Dynamics episode", "CERN Large Hadron Collider episode", "IBM quantum computing episode", "NASA supersonic plane episode"],
+  "associatedWith": ["Johnny Harris", "Vox", "Marques Brownlee (MKBHD)", "Tom Scott", "Veritasium"],
+  "sources": [
+    "https://blog.youtube/creator-and-artist-stories/5-huge-if-true-moments-for-cleo-abram/",
+    "https://www.youtube.com/@CleoAbram",
+    "https://www.semafor.com/article/06/13/2025/cleo-abram-on-techs-bright-future"
+  ]
+}

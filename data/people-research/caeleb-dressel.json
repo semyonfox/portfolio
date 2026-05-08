@@ -1,0 +1,25 @@
+{
+  "slug": "caeleb-dressel",
+  "name": "Caeleb Dressel",
+  "realName": "Caeleb Remel Dressel",
+  "oneLine": "American sprinter and nine-time Olympic gold medalist known for his explosive 50m and 100m speed.",
+  "bio": "Caeleb Dressel is a Florida Gators alum who specializes in freestyle and butterfly sprints, with primary events the 50m freestyle, 100m freestyle, and 100m butterfly. At Tokyo 2020 he won five gold medals, including individual golds in the 100m free, 100m fly, and 50m free, joining a short list of Americans to win five golds at a single Games. He holds the long-course world record in the 100m butterfly (49.45) and the short-course world record in the 100m IM, and matched Phelps with seven golds at the 2017 World Championships in Budapest. His style is built on explosive starts, brutal underwater dolphin kicks, and high stroke rate.",
+  "topics": ["50m freestyle", "100m freestyle", "100m butterfly", "Olympics", "World Championships", "NCAA", "sprint freestyle"],
+  "style": "Pure sprinter: huge start, monster underwaters, aggressive front-half pace, high turnover.",
+  "notable": [
+    "9-time Olympic gold medalist",
+    "5 gold medals at Tokyo 2020 (100 free, 100 fly, 50 free, 4x100 free relay, 4x100 medley relay)",
+    "World record 100m butterfly long course (49.45)",
+    "World record 100m IM short course",
+    "7 gold medals at 2017 World Championships (tied Phelps single-meet record)",
+    "Olympic golds in Rio 2016 (relays), Tokyo 2020 (5x), Paris 2024 (relays)"
+  ],
+  "associatedWith": ["Michael Phelps", "Bob Bowman", "Gregg Troy", "Anthony Nesty", "Florida Gators", "David Popovici", "Kyle Chalmers"],
+  "sources": [
+    "https://en.wikipedia.org/wiki/Caeleb_Dressel",
+    "https://www.olympics.com/en/athletes/caeleb-dressel",
+    "https://www.nbcolympics.com/news/caeleb-dressel-career-highlights",
+    "https://www.si.com/olympics/2021/08/01/caeleb-dressel-tokyo-olympics-historic-gold-medals-career",
+    "https://www.britannica.com/biography/Caeleb-Dressel"
+  ]
+}

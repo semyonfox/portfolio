@@ -1,0 +1,17 @@
+{
+  "slug": "veritasium",
+  "name": "Veritasium",
+  "realName": "Derek Muller",
+  "oneLine": "Canadian-Australian science communicator running long-form physics and engineering investigations on YouTube.",
+  "bio": "Derek Muller, who holds a PhD in physics education research, started Veritasium in 2011 with street-corner interviews probing scientific misconceptions. The channel has grown into long-form, often hour-long documentary-style videos on physics, engineering, and investigative science journalism. Muller also runs the side channels 2veritasium and Sciencium.",
+  "topics": ["physics misconceptions", "electromagnetism", "relativity", "quantum mechanics", "engineering history", "PFAS contamination", "AI and learning", "gravity"],
+  "style": "long-form documentary explainers with on-location reporting, archival footage, and interviews",
+  "notable": ["Slinky drop experiment", "How One Company Secretly Poisoned the Planet (PFAS)", "The Bizarre Behavior of Rotating Bodies", "Mission Possible: Graphene", "Parker Solar Probe coverage"],
+  "associatedWith": ["3Blue1Brown", "Vsauce", "Mark Rober", "MinutePhysics", "SmarterEveryDay"],
+  "sources": [
+    "https://en.wikipedia.org/wiki/Derek_Muller",
+    "https://www.youtube.com/@veritasium",
+    "https://www.veritasium.com/about",
+    "https://www.scientificamerican.com/article/how-youtube-star-derek-muller-of-veritasium-is-challenging-scientific/"
+  ]
+}

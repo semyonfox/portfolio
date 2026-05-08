@@ -3,6 +3,28 @@ import Layout from '../layouts/Layout.astro';
 import { categoryOrder, people, type PersonCategory } from '../data/people';
 import semanticGraph from '../data/people-graph.json';
 
+interface Research {
+  slug: string;
+  name: string;
+  realName: string | null;
+  oneLine?: string;
+  bio?: string;
+  topics?: string[];
+  style?: string;
+  notable?: string[];
+  associatedWith?: string[];
+  sources?: string[];
+}
+
+const researchModules = import.meta.glob<Research>(
+  '../../data/people-research/*.json',
+  { eager: true, import: 'default' },
+);
+const researchMap: Record<string, Research> = {};
+for (const mod of Object.values(researchModules)) {
+  if (mod?.slug) researchMap[mod.slug] = mod;
+}
+
 const categoryMeta: Record<
   PersonCategory,
   {
@@ -106,9 +128,9 @@ const graphNodes = categoryOrder.flatMap((category) => {
 
   return members.map((person, index) => {
     const angle = (Math.PI * 2 * index) / Math.max(members.length, 1);
-    const ring = 36 + Math.floor(index / 5) * 34 + (5 - person.weight) * 5;
-    const driftX = Math.sin(index * 1.7) * 10;
-    const driftY = Math.cos(index * 1.3) * 8;
+    const ring = 42 + Math.floor(index / 5) * 38 + (5 - person.weight) * 6;
+    const driftX = Math.sin(index * 1.7) * 12;
+    const driftY = Math.cos(index * 1.3) * 10;
     const x = center.x + Math.cos(angle) * ring + driftX;
     const y = center.y + Math.sin(angle) * ring + driftY;
 
@@ -314,11 +336,11 @@ const defaultPerson = graphNodes[0];
                 <text
                   data-label={person.slug}
                   x={person.x}
-                  y={person.y + 16}
+                  y={person.y + 18}
                   text-anchor="middle"
                   fill="#d8dbef"
-                  font-size={person.weight >= 4 ? '11' : '10'}
-                  opacity={person.weight >= 5 ? '0.14' : '0.04'}
+                  font-size={person.weight >= 4 ? '12' : '11'}
+                  opacity={person.weight >= 4 ? '0.45' : '0.25'}
                 >
                   {person.name}
                 </text>
@@ -367,7 +389,7 @@ const defaultPerson = graphNodes[0];
         </div>
 
         <p id="detail-summary" class="text-muted text-sm leading-relaxed mb-4">
-          {defaultPerson.semantic?.summary || defaultPerson.summary}
+          {defaultPerson.summary}
         </p>
 
         <div id="detail-tags" class="flex flex-wrap gap-1.5 mb-4">
@@ -443,8 +465,7 @@ const defaultPerson = graphNodes[0];
                   </div>
 
                   <p class="text-muted text-xs leading-relaxed mb-3">
-                    {semanticGraph.nodes[person.slug]?.summary ||
-                      person.summary}
+                    {person.summary}
                   </p>
 
                   <div class="flex flex-wrap gap-1.5 mb-3">
@@ -681,7 +702,7 @@ const defaultPerson = graphNodes[0];
       const slug = el.getAttribute('data-label');
       const person = slug ? nodeMap.get(slug) : null;
       if (!person) return;
-      el.style.opacity = person.weight >= 5 ? '0.15' : '0.05';
+      el.style.opacity = person.weight >= 4 ? '0.45' : '0.25';
     });
 
     nodes.forEach((node) => {
@@ -721,7 +742,7 @@ const defaultPerson = graphNodes[0];
         const dy = a.pos.y - b.pos.y;
         const distSq = dx * dx + dy * dy + 0.01;
         const dist = Math.sqrt(distSq);
-        const force = 190 / distSq;
+        const force = 220 / distSq;
         const fx = (dx / dist) * force;
         const fy = (dy / dist) * force;
         a.pos.vx += fx;
@@ -738,7 +759,7 @@ const defaultPerson = graphNodes[0];
       const dx = target.x - source.x;
       const dy = target.y - source.y;
       const dist = Math.sqrt(dx * dx + dy * dy) || 1;
-      const desired = edge.inferred ? 78 : 54;
+      const desired = edge.inferred ? 85 : 60;
       const strength = edge.inferred ? 0.0025 : 0.006;
       const force = (dist - desired) * strength;
       const fx = (dx / dist) * force;
@@ -783,7 +804,7 @@ const defaultPerson = graphNodes[0];
       core.setAttribute('cx', pos.x);
       core.setAttribute('cy', pos.y);
       label.setAttribute('x', pos.x);
-      label.setAttribute('y', pos.y + 16);
+      label.setAttribute('y', pos.y + 18);
     }
 
     edgeEls.forEach((el) => {
@@ -891,7 +912,7 @@ const defaultPerson = graphNodes[0];
       detailCategory.textContent = `${categoryMeta[person.category].label} · signal ${person.weight}/5 · graph ${person.semantic?.graphWeight || person.weight}/5`;
     }
     if (detailSummary) {
-      detailSummary.textContent = person.semantic?.summary || person.summary;
+      detailSummary.textContent = person.summary;
     }
     if (detailPrimary) detailPrimary.href = person.links.primary;
 
@@ -904,8 +925,8 @@ const defaultPerson = graphNodes[0];
     const slug = el.getAttribute('data-node');
     if (!slug) return;
 
-    el.addEventListener('click', () => {
-      if (dragMoved) return;
+    el.addEventListener('click', (event) => {
+      event.stopPropagation();
       selectNode(slug);
     });
     el.addEventListener('keydown', (event) => {
@@ -949,6 +970,8 @@ const defaultPerson = graphNodes[0];
 
   graphSvg?.addEventListener('pointerdown', (event) => {
     if (!graphSvg) return;
+    const onNode = event.target instanceof Element && event.target.closest('[data-node]');
+    if (onNode) return;
     pointerState = {
       x: event.clientX,
       y: event.clientY,
@@ -977,7 +1000,11 @@ const defaultPerson = graphNodes[0];
   });
 
   graphSvg?.addEventListener('pointerup', (event) => {
-    graphSvg.releasePointerCapture?.(event.pointerId);
+    if (pointerState) {
+      try {
+        graphSvg.releasePointerCapture?.(event.pointerId);
+      } catch {}
+    }
     setTimeout(() => {
       dragMoved = false;
     }, 0);

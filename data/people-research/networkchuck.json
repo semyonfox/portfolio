@@ -1,0 +1,36 @@
+{
+  "slug": "networkchuck",
+  "name": "NetworkChuck",
+  "realName": "Chuck Keith",
+  "oneLine": "High-energy IT educator selling networking, Linux, and homelab tutorials with a coffee-and-hacking brand.",
+  "bio": "Chuck Keith is a Dallas-Fort-Worth-based IT educator who launched NetworkChuck on April 27, 2014. The channel (5M+ subscribers) covers practical networking (CCNA, Cisco IOS), Linux fundamentals, cybersecurity, and Raspberry Pi homelab projects, all delivered with an over-the-top excited presenting style anchored by his coffee-shop aesthetic. He runs adjacent businesses including NetworkChuck Coffee and NetworkChuck Academy (paid courses) and the noobs podcast.",
+  "topics": [
+    "CCNA and Cisco networking",
+    "Linux for hackers",
+    "cybersecurity basics",
+    "Raspberry Pi homelab",
+    "self-hosting",
+    "VPNs and privacy",
+    "cloud certifications",
+    "AI for sysadmins"
+  ],
+  "style": "Highly-edited 10-25 minute studio-shot tutorials with multi-camera cuts, sound effects, and his trademark coffee opener.",
+  "notable": [
+    "Linux for Hackers course",
+    "CCNA prep series",
+    "NetworkChuck Coffee",
+    "NetworkChuck Academy",
+    "noobs podcast"
+  ],
+  "associatedWith": [
+    "David Bombal",
+    "John Hammond",
+    "The Cyber Mentor (TCM)",
+    "Lawrence Systems"
+  ],
+  "sources": [
+    "https://www.youtube.com/channel/UC9x0AN7BWHpCDHSm9NiJFJQ",
+    "https://academy.networkchuck.com/",
+    "https://grokipedia.com/page/NetworkChuck"
+  ]
+}

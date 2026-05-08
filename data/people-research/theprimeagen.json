@@ -1,0 +1,38 @@
+{
+  "slug": "theprimeagen",
+  "name": "ThePrimeagen",
+  "realName": "Michael B. Paulson",
+  "oneLine": "Ex-Netflix engineer turned full-time Twitch streamer evangelising Neovim, Vim motions, and low-level programming.",
+  "bio": "Michael Paulson, aka ThePrimeagen, spent roughly a decade at Netflix working on TV apps and the Falcor data-fetching library before going full-time as a creator in 2024. He streams long live-coding sessions on Twitch (peak 100k+ concurrent viewers) that get clipped to YouTube, mostly about Neovim, Vim motions, Rust, Go, and reading other people's code. He authored the Harpoon Neovim plugin and runs the educational platform TheStartOfSomething / ThePrimeagen courses. His channel name comes from the final boss of Turok: Dinosaur Hunter.",
+  "topics": [
+    "Neovim configuration",
+    "Vim motions",
+    "Rust",
+    "Go",
+    "performance and low-level systems",
+    "code review reactions",
+    "developer productivity",
+    "tech industry commentary"
+  ],
+  "style": "Multi-hour live-coded Twitch streams with high-energy ranting, clipped into YouTube videos by his editing team.",
+  "notable": [
+    "Harpoon (Neovim plugin)",
+    "Vim motions course",
+    "Lex Fridman five-hour interview",
+    "Backend Banter podcast appearances"
+  ],
+  "associatedWith": [
+    "Theo Browne",
+    "TJ DeVries",
+    "Tsoding",
+    "Casey Muratori",
+    "Bashbunni",
+    "Teej_DV"
+  ],
+  "sources": [
+    "https://www.youtube.com/@ThePrimeagen",
+    "https://www.twitch.tv/theprimeagen",
+    "https://grokipedia.com/page/ThePrimeagen",
+    "https://youtube.fandom.com/wiki/ThePrimeagen"
+  ]
+}

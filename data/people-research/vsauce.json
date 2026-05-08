@@ -1,0 +1,16 @@
+{
+  "slug": "vsauce",
+  "name": "VSauce",
+  "realName": "Michael Stevens",
+  "oneLine": "YouTube channel where Michael Stevens unspools tangent-heavy explorations of science, philosophy, and the weird edges of human knowledge.",
+  "bio": "Michael Stevens founded Vsauce in 2010, building episodes around question-titled videos like 'What if the Sun Disappeared?' His delivery is energetic and conversational, opening with 'Hey, Vsauce! Michael here!' and weaving science, math, anthropology, and philosophy through self-referential tangents. He also created and hosted the YouTube Premium series Mind Field, an experimental show about human behavior.",
+  "topics": ["philosophy of mind", "physics thought experiments", "consciousness", "mathematics", "psychology", "scale and infinity", "language", "human behavior"],
+  "style": "monologue-driven question explainers with rhetorical tangents, sound design, and on-camera presentation",
+  "notable": ["Mind Field (3 seasons)", "What if the Sun Disappeared?", "How Earth Moves", "The Zipf Mystery", "Vsauce2 and Vsauce3 sister channels"],
+  "associatedWith": ["Kevin Lieber (Vsauce2)", "Jake Roper (Vsauce3)", "Veritasium", "MinutePhysics", "CGP Grey"],
+  "sources": [
+    "https://en.wikipedia.org/wiki/Vsauce",
+    "https://en.wikipedia.org/wiki/Michael_Stevens_(YouTuber)",
+    "https://www.vsauce.com/img/Vsauce1-michael-bio.pdf"
+  ]
+}

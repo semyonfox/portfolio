@@ -1,0 +1,16 @@
+{
+  "slug": "michael-phelps",
+  "name": "Michael Phelps",
+  "realName": "Michael Fred Phelps II",
+  "oneLine": "Most decorated Olympian in history with 28 medals (23 gold) across butterfly, IM, and freestyle.",
+  "bio": "Michael Phelps is an American former competitive swimmer widely regarded as the greatest swimmer and one of the greatest Olympians of all time. He won 23 Olympic gold medals, 28 Olympic medals total, and held world records across the 100m and 200m butterfly, 200m and 400m individual medley, and multiple relay events. Coached by Bob Bowman from age 11 through his career, Phelps famously won 8 golds at Beijing 2008 and competed at five Olympics from Sydney 2000 to Rio 2016 before retiring. Post-retirement he has advocated for mental health awareness through the Michael Phelps Foundation.",
+  "topics": ["butterfly", "individual medley", "200m IM", "400m IM", "100m butterfly", "200m butterfly", "Olympic relay", "world records", "mental health advocacy"],
+  "style": "Tall, long-armed butterfly and IM specialist with legendary aerobic capacity and underwater dolphin kick",
+  "notable": ["8 gold medals at Beijing 2008", "23 Olympic gold medals (record)", "World records in 100m fly, 200m fly, 200m IM, 400m IM", "5x Olympian (2000-2016)", "FINA Swimmer of the Year (multiple)", "Michael Phelps Foundation"],
+  "associatedWith": ["Bob Bowman", "Ryan Lochte", "Caeleb Dressel", "Ian Thorpe", "Chad le Clos", "Milorad Cavic", "Katie Ledecky"],
+  "sources": [
+    "https://en.wikipedia.org/wiki/Michael_Phelps",
+    "https://www.olympics.com/en/athletes/michael-phelps",
+    "https://www.britannica.com/biography/Michael-Phelps"
+  ]
+}

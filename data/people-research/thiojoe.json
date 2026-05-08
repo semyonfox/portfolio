@@ -1,0 +1,34 @@
+{
+  "slug": "thiojoe",
+  "name": "ThioJoe",
+  "realName": "Joseph Thio",
+  "oneLine": "Long-running tech-tips YouTuber who pivoted from satirical fake tutorials to genuine Windows and consumer-tech advice.",
+  "bio": "Joe Thio (b. 1992) started ThioJoe in the early 2010s with deliberately absurd joke tutorials (How to Download More RAM) and pivoted in 2017 to making real tech videos full-time. The main channel now covers Windows tips, registry tweaks, browser settings, scam awareness, and small open-source utilities he writes himself (hosted on github.com/ThioJoe). He also runs the spinoff ThioJoeTech and operates several mostly-dormant channels (ThioJoeGaming, Vid Authority).",
+  "topics": [
+    "Windows hidden settings",
+    "Windows registry tweaks",
+    "browser tips",
+    "tech scams and security awareness",
+    "consumer hardware advice",
+    "YouTube creator tips",
+    "small Windows utilities"
+  ],
+  "style": "Edited solo talking-head plus screen-recordings, 5-15 minutes, with a calm conversational delivery and on-screen click-through demos.",
+  "notable": [
+    "How to Download More RAM (early joke era)",
+    "Windows tips series",
+    "ThioJoeTech secondary channel",
+    "Open-source Windows utilities on GitHub"
+  ],
+  "associatedWith": [
+    "Linus Tech Tips",
+    "ThreatWire",
+    "ChrisTitusTech",
+    "Britec09"
+  ],
+  "sources": [
+    "https://www.youtube.com/channel/UCQSpnDG3YsFNf5-qHocF-WQ",
+    "https://youtube.fandom.com/wiki/ThioJoe",
+    "https://github.com/ThioJoe"
+  ]
+}

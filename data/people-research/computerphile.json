@@ -1,0 +1,36 @@
+{
+  "slug": "computerphile",
+  "name": "Computerphile",
+  "realName": "Brady Haran (creator) and Sean Riley (producer)",
+  "oneLine": "Long-running British educational channel where University of Nottingham academics explain CS topics on camera.",
+  "bio": "Computerphile is the computer-science sister channel to Numberphile, created by filmmaker Brady Haran and produced primarily by Sean Riley since April 2013. Episodes are interview-style: a University of Nottingham (or visiting) academic such as Mike Pound, David Brailsford, or Steve Bagley explains a CS topic - cryptography, algorithms, AI safety, compilers - usually with marker-and-paper diagrams. As of 2026 the channel is past 2.6M subscribers and 232M views.",
+  "topics": [
+    "cryptography",
+    "algorithms and complexity",
+    "AI safety and alignment",
+    "compilers and operating systems",
+    "neural networks",
+    "computer history",
+    "data structures",
+    "security"
+  ],
+  "style": "Single-camera interview-style explainers, 6-20 minutes, almost always with the academic drawing on a paper pad.",
+  "notable": [
+    "AI safety series with Robert Miles",
+    "Mike Pound security videos",
+    "Professor David Brailsford history-of-computing series",
+    "Numberphile sister channel"
+  ],
+  "associatedWith": [
+    "Numberphile",
+    "Sixty Symbols",
+    "Periodic Videos",
+    "Robert Miles AI Safety",
+    "Tom Scott"
+  ],
+  "sources": [
+    "https://www.youtube.com/channel/UC9-y-6csu5WGm29I7JiwpnA",
+    "https://en.wikipedia.org/wiki/Brady_Haran",
+    "https://grokipedia.com/page/Computerphile"
+  ]
+}

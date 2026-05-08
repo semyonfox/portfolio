@@ -1,0 +1,16 @@
+{
+  "slug": "mkbhd",
+  "name": "MKBHD",
+  "realName": "Marques Keith Brownlee",
+  "oneLine": "The most influential consumer-tech reviewer on YouTube, known for clean, balanced flagship-phone and EV reviews.",
+  "bio": "Marques Brownlee (born December 3, 1993, Maplewood, NJ) started his YouTube channel in 2008 while in high school and grew it into the dominant consumer-tech review brand on the platform, surpassing 20 million subscribers by mid-2025. He attended the Howe School at Stevens Institute of Technology, majoring in business and information technology. Beyond reviews, he co-hosts the Waveform podcast (since August 2019) and plays professional ultimate frisbee for the New York Empire of the UFA.",
+  "topics": ["flagship smartphone reviews", "Tesla and EV reviews", "Apple keynote impressions", "annual smartphone awards", "studio and camera gear breakdowns"],
+  "style": "clean, even-toned, high-bitrate single-host reviews with deliberate cinematography and minimal hype",
+  "notable": ["annual 'Smartphone Awards'", "'Dumbest Tech of the Year' lists", "Waveform: The MKBHD Podcast", "Studio Tour videos on his Maplewood/NJ studio"],
+  "associatedWith": ["Mrwhosetheboss", "JerryRigEverything", "Andrew Manganelli (Waveform co-host)"],
+  "sources": [
+    "https://en.wikipedia.org/wiki/Marques_Brownlee",
+    "https://www.youtube.com/@mkbhd",
+    "https://www.fastcompany.com/90978935/marques-brownlee-mkbhd-youtube-tech-review"
+  ]
+}

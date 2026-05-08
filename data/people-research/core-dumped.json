@@ -1,0 +1,34 @@
+{
+  "slug": "core-dumped",
+  "name": "Core Dumped",
+  "realName": "George",
+  "oneLine": "Animated explainer channel that turns operating systems and computer architecture topics into clean PowerPoint-style visuals.",
+  "bio": "Core Dumped is run by George, a CS engineer based in Ecuador, who explains low-level computer-science concepts with simple animated diagrams. Production is famously homegrown: animations are built in PowerPoint and voice-over uses ElevenLabs AI. The channel (340k+ subscribers) is organised around two flagship playlists - Operating Systems Theory and Computer Architecture from Scratch - covering scheduling, paging, concurrency, caches, and pipelining.",
+  "topics": [
+    "operating systems theory",
+    "computer architecture",
+    "CPU pipelining and caches",
+    "concurrency and parallelism",
+    "scheduling algorithms",
+    "memory management",
+    "low-level programming concepts"
+  ],
+  "style": "Animated explainers around 8-15 minutes built in PowerPoint with AI voice-over, anchored by a recurring cartoon CPU/process character.",
+  "notable": [
+    "Operating Systems Theory playlist",
+    "Computer Architecture from Scratch playlist",
+    "Concurrency Is Not What You Think",
+    "The Fancy Algorithms That Make Your Computer Feel Smoother"
+  ],
+  "associatedWith": [
+    "Computerphile",
+    "Low Level Learning",
+    "Ben Eater",
+    "ThePrimeagen"
+  ],
+  "sources": [
+    "https://www.youtube.com/@CoreDumpped",
+    "https://app.daily.dev/posts/the-most-common-question-on-my-channel-iucaatqer",
+    "https://www.bestyoutubechannels.com/creators/CoreDumpped/"
+  ]
+}

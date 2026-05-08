@@ -1,0 +1,33 @@
+{
+  "slug": "coding-with-lewis",
+  "name": "Coding with Lewis",
+  "realName": "Lewis Menelaws",
+  "oneLine": "Short-form-first developer creator making story-driven web dev and career content across TikTok, YouTube, and Instagram.",
+  "bio": "Lewis Menelaws is a Canadian developer who co-founded tmrrw labs (enterprise software for health and energy clients) before going full-time as a creator. He posts beginner-friendly modern web dev tutorials, React courses, and career advice to a combined 1.2M+ following (about 700k YouTube, 340k TikTok). His longer YouTube videos lean into narrative case-studies - how Notion scaled, building a $10k trading bot - rather than pure how-to.",
+  "topics": [
+    "React and Next.js",
+    "TypeScript for beginners",
+    "developer career advice",
+    "software industry storytelling",
+    "AI and developer jobs",
+    "side projects and indie hacking"
+  ],
+  "style": "Vertical short-form on TikTok/Instagram plus 8-15 minute story-driven YouTube essays, often built around a single scaling or product anecdote.",
+  "notable": [
+    "React course",
+    "How Notion scaled (case-study video)",
+    "$10,000 trading bot project",
+    "tmrrw labs (co-founded)"
+  ],
+  "associatedWith": [
+    "Theo Browne",
+    "Fireship",
+    "Web Dev Simplified",
+    "Joma Tech"
+  ],
+  "sources": [
+    "https://www.lewismenelaws.com/about/",
+    "https://www.youtube.com/@CodingWithLewis",
+    "https://www.tiktok.com/@lewismenelaws"
+  ]
+}

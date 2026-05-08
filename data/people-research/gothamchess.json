@@ -1,0 +1,17 @@
+{
+  "slug": "gothamchess",
+  "name": "GothamChess",
+  "realName": "Levy Rozman",
+  "oneLine": "American IM and YouTube's biggest chess teacher, often called 'The Internet's Chess Teacher.'",
+  "bio": "Levy Rozman is an American chess International Master (title earned 2018, peak rating 2421) who runs GothamChess, named after his hometown New York. The channel exploded during the COVID-19 pandemic and the release of The Queen's Gambit in 2020 and became the first chess channel on YouTube to surpass one billion views. He posts daily game recaps, opening guides, beginner lessons and tournament commentary, and authored the 2023 #1 Amazon best-seller How To Win At Chess: The Ultimate Guide For Beginners And Beyond.",
+  "topics": ["chess openings", "tournament recaps", "beginner chess instruction", "speedrun guess-the-elo", "chess news"],
+  "style": "Long-form board-analysis videos and shorts with high-energy commentary",
+  "notable": ["How To Win At Chess (2023 book)", "Guess The Elo series", "PogChamps commentary", "1B+ views milestone"],
+  "associatedWith": ["Chess.com", "Hikaru Nakamura", "Anna Cramling", "Daniel Naroditsky"],
+  "sources": [
+    "https://en.wikipedia.org/wiki/Levy_Rozman",
+    "https://www.youtube.com/channel/UCQHX6ViZmPsWiYSFAyS0a3Q",
+    "https://www.chess.com/players/levy-rozman",
+    "https://www.gothamchess.com/"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "slug": "diy-perks",
+  "name": "DIY Perks",
+  "realName": "Matthew Perks",
+  "oneLine": "UK maker channel known for design-conscious DIY builds that turn discarded electronics into premium-feeling gadgets.",
+  "bio": "Matthew 'Matt' Perks runs DIY Perks, a UK-based YouTube channel started in February 2012 with a video titled 'LEGO Remote Follow Focus.' The channel has grown to roughly 4.9 million subscribers and is distinguished from typical maker content by its focus on aesthetics and finish quality. Builds are designed to be replicable at home with minimal tools, ranging from custom PC cases and monitor mounts to studio lighting and thermoelectric generators.",
+  "topics": ["copper-clad custom PC cases", "turning broken LCDs into projector-fed pseudo-OLED displays", "thermoelectric generators", "DIY studio LED panels", "passive-cooled silent computers"],
+  "style": "calm, narrated, slow-cinema build videos emphasising material finish and final reveal",
+  "notable": ["'OLED killer' projector + LCD display build", "copper-cooled passive PC builds", "fanless laptop cooling mods"],
+  "associatedWith": [],
+  "sources": [
+    "https://www.youtube.com/channel/UCUQo7nzH1sXVpzL92VesANw",
+    "https://diyperks.com/",
+    "https://diyperks.com/about/",
+    "https://www.tomshardware.com/news/power-user-profile-diy-youtuber,37160.html"
+  ]
+}

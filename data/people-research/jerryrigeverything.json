@@ -1,0 +1,16 @@
+{
+  "slug": "jerryrigeverything",
+  "name": "JerryRigEverything",
+  "realName": "Zack Nelson",
+  "oneLine": "Phone durability tester famous for the 'scratches at level 6, deeper grooves at level 7' Mohs-pick routine.",
+  "bio": "Zack Nelson (born June 29, 1988) runs JerryRigEverything, an American teardown and durability channel best known for scratch tests, burn tests, and bend tests on flagship smartphones. Beyond the destruction content, Nelson founded Not A Wheelchair, a business making affordable off-road wheelchairs, and posts longer adventure and engineering content. His 'iPhone 7 Scratch test - BEND TEST' video crossed 10 million views and helped define the channel's signature format.",
+  "topics": ["Mohs-scale screen scratch tests", "smartphone bend tests", "phone teardown repairability", "off-road wheelchair builds", "burn-tests on OLED displays"],
+  "style": "tripod-static phone-on-table durability segments with deadpan narration and reusable opening lines",
+  "notable": ["iPhone bend test series", "Galaxy Fold durability video that allegedly led to a redesign", "Not A Wheelchair off-road wheelchair company"],
+  "associatedWith": ["MKBHD", "Mrwhosetheboss"],
+  "sources": [
+    "https://en.wikipedia.org/wiki/JerryRigEverything",
+    "https://jerryrigeverything.com/about/",
+    "https://youtube.fandom.com/wiki/JerryRigEverything"
+  ]
+}

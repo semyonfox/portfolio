@@ -1,0 +1,15 @@
+{
+  "slug": "lets-game-it-out",
+  "name": "Let's Game It Out",
+  "realName": "Joshua Knoles",
+  "oneLine": "American YouTuber who breaks simulation and tycoon games in absurd ways to find their hidden limits.",
+  "bio": "Josh Knoles, born 1983, hosts Let's Game It Out, a channel devoted to pushing simulator, tycoon and sandbox games well past their intended use to expose bugs, loopholes and emergent chaos. The channel started as a duo with co-host Anthony before becoming solo in late 2018. Indie developers now routinely send him early-access keys as a kind of stress test, and the format has made breaking your game on his channel a badge of honour for emerging studios.",
+  "topics": ["simulation games", "tycoon games", "sandbox games", "game-breaking experiments", "indie games"],
+  "style": "deadpan absurdist experimental playthroughs",
+  "notable": ["Planet Zoo videos", "Satisfactory series", "Startup Company", "Hydroneer", "Raft"],
+  "associatedWith": null,
+  "sources": [
+    "https://youtube.fandom.com/wiki/Let%E2%80%99s_Game_It_Out",
+    "https://boingboing.net/2025/03/07/pushing-games-to-their-limits-in-the-wildest-weirdest-ways.html"
+  ]
+}

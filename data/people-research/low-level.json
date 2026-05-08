@@ -1,0 +1,34 @@
+{
+  "slug": "low-level",
+  "name": "Low Level (Low Level Learning)",
+  "realName": "Ed",
+  "oneLine": "Cybersecurity and reverse-engineering educator publishing approachable deep-dives on memory, exploits, and systems internals.",
+  "bio": "Ed runs the channel formerly known as Low Level Learning, now branded Low Level (@LowLevelTV), where he covers reverse engineering, binary exploitation, C, memory layout, and CVE breakdowns. He works as a software security engineer and presents content that bridges entry-level explainers (pointers, syscalls) and serious offensive-security material (Ghidra, IDA, fuzzing). The channel has grown past 1M subscribers across YouTube and Twitch.",
+  "topics": [
+    "reverse engineering",
+    "binary exploitation",
+    "C programming",
+    "memory and pointers",
+    "Ghidra and IDA",
+    "CVE analysis",
+    "operating system internals",
+    "fuzzing"
+  ],
+  "style": "Edited talking-head and screen-recorded walkthroughs, often using Ghidra/IDA, with whiteboard-style diagrams for memory and system concepts.",
+  "notable": [
+    "The 5 Levels of Reverse Engineering",
+    "C pointer explainer series",
+    "CVE breakdown videos"
+  ],
+  "associatedWith": [
+    "John Hammond",
+    "LiveOverflow",
+    "ThePrimeagen",
+    "stacksmashing"
+  ],
+  "sources": [
+    "https://www.youtube.com/@LowLevelTV",
+    "https://github.com/lowleveltv",
+    "https://x.com/LowLevelTweets"
+  ]
+}

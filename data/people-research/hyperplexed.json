@@ -1,0 +1,34 @@
+{
+  "slug": "hyperplexed",
+  "name": "Hyperplexed",
+  "realName": null,
+  "oneLine": "Front-end channel that reverse-engineers eye-catching CSS and JS visual effects from real production websites.",
+  "bio": "Hyperplexed is a front-end-focused YouTube channel (~656k subs, ~98M views) that picks a striking visual effect from a real site (Apple, Awwwards, indie portfolios) and walks through rebuilding it from scratch with HTML, CSS, and vanilla JS or GSAP. All demo code is published free at hyperplexed.io with no paywall. The host stays anonymous on camera, narrating over a fast-paced screen-share build.",
+  "topics": [
+    "CSS animations",
+    "GSAP",
+    "scroll-driven effects",
+    "hover and cursor interactions",
+    "WebGL and shaders (light)",
+    "front-end visual effects",
+    "Awwwards-style microinteractions"
+  ],
+  "style": "Voice-over screen-share build videos around 5-12 minutes, narrating CSS/JS as effects appear in real time.",
+  "notable": [
+    "Apple website effect recreations",
+    "magnetic cursor tutorials",
+    "anime-style hover effects series",
+    "hyperplexed.io free demo library"
+  ],
+  "associatedWith": [
+    "Kevin Powell",
+    "Hyper",
+    "Olivier Larose",
+    "Tom is Loading"
+  ],
+  "sources": [
+    "https://www.youtube.com/@Hyperplexed",
+    "https://hyperplexed.io/",
+    "https://vidiq.com/youtube-stats/channel/UCmEzz-dPBVrsy4ZluSsYHDg/"
+  ]
+}

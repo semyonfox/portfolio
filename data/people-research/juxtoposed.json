@@ -1,0 +1,34 @@
+{
+  "slug": "juxtoposed",
+  "name": "Juxtopposed",
+  "realName": null,
+  "oneLine": "Pseudonymous UI/UX designer whose channel reimagines mainstream apps through full-scope redesign case studies.",
+  "bio": "Juxtopposed is the online pseudonym of a UI/UX designer who has run @juxtopposed since 2022, posting deeply-researched redesign concept videos for major products - YouTube, Spotify, Discord, browsers - presented as full design case studies with research, wireframes, motion, and Figma walkthroughs. Their December 2024 YouTube redesign spawned community Chrome and Firefox extensions that ship the redesign to real users. The community lives on r/juxtopposed.",
+  "topics": [
+    "UI redesign concepts",
+    "UX research methodology",
+    "Figma prototyping",
+    "design systems",
+    "motion design",
+    "browser interface critique",
+    "Linux desktop UI"
+  ],
+  "style": "Cinematic ~15-25 minute design case-study videos with voice-over, motion mockups, and on-screen Figma frames; presenter stays off-camera.",
+  "notable": [
+    "I Redesigned the ENTIRE YouTube UI from Scratch",
+    "Spotify and Discord redesign videos",
+    "I Designed Your Goofiest UI Ideas",
+    "YouTube Redesigned Chrome/Firefox extensions (community-built from her video)"
+  ],
+  "associatedWith": [
+    "Femke Van Schoonhoven",
+    "Malewicz",
+    "DesignCourse",
+    "Flux Academy"
+  ],
+  "sources": [
+    "https://www.youtube.com/@juxtopposed",
+    "https://grokipedia.com/page/juxtopposed",
+    "https://chromewebstore.google.com/detail/youtube-redesigned-inspir/lbfobcdcnfaaioghfjlhfmfndpfedkci"
+  ]
+}

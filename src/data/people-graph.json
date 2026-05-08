@@ -1,1251 +1,1182 @@
 {
-  "generatedAt": "2026-05-07T10:40:02.385Z",
+  "generatedAt": "2026-05-08T23:31:29.191Z",
   "model": "qwen/qwen3-embedding-8b",
   "nodes": {
     "theo": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "web dev content with a focus on opinionated, startup energy",
+      "summary": "Theo Browne is the CEO of Ping Labs (Y Combinator) and a TypeScript-focused YouTuber and streamer. He created the T3 Stack and create-t3-app (Next.js + tRPC + Prisma + Tailwind), Uploadthing, Ping.gg, and the T3 Chat AI client. His channel mixes hot-take reactions to web dev news, deep TypeScript and React commentary, and product-building vlogs, drawing roughly 4M views per month.",
       "graphWeight": 5
     },
     "theprimeagen": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "vim content with a focus on systems, dev culture",
+      "summary": "Michael Paulson, aka ThePrimeagen, spent roughly a decade at Netflix working on TV apps and the Falcor data-fetching library before going full-time as a creator in 2024. He streams long live-coding sessions on Twitch (peak 100k+ concurrent viewers) that get clipped to YouTube, mostly about Neovim, Vim motions, Rust, Go, and reading other people's code. He authored the Harpoon Neovim plugin and runs the educational platform TheStartOfSomething / ThePrimeagen courses. His channel name comes from the final boss of Turok: Dinosaur Hunter.",
       "graphWeight": 5
     },
     "prime-time": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "clips content with a focus on commentary, dev",
+      "summary": "Prime Time is ThePrimeagen's clip and reaction channel, separate from his main @ThePrimeagen channel. It re-publishes his Twitch streams in close-to-full form, focused on article reactions, blog post breakdowns, paper readings, and tech news commentary rather than the shorter edited highlights that go on the main channel. The format is unedited or lightly edited live talking-head with screen-share reading.",
       "graphWeight": 5
     },
     "fireship": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "fast explainers content with a focus on web dev, ai",
+      "summary": "Jeff Delaney runs Fireship, a web-development channel known for fast-cut, joke-heavy explainers strictly clocked at 100 seconds. The channel launched its 100 Seconds of Code series in 2019 and has grown to 4M+ subscribers and 650M+ views by late 2025. Beyond shorts, Fireship publishes weekly tech news roundups (Code Report) and longer paid courses on fireship.io covering Firebase, Next.js, Flutter, and full-stack TypeScript.",
       "graphWeight": 5
     },
     "low-level": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "systems content with a focus on security, cs fundamentals",
+      "summary": "Ed runs the channel formerly known as Low Level Learning, now branded Low Level (@LowLevelTV), where he covers reverse engineering, binary exploitation, C, memory layout, and CVE breakdowns. He works as a software security engineer and presents content that bridges entry-level explainers (pointers, syscalls) and serious offensive-security material (Ghidra, IDA, fuzzing). The channel has grown past 1M subscribers across YouTube and Twitch.",
       "graphWeight": 5
     },
     "arjan-codes": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "software design content with a focus on clean code, python",
-      "graphWeight": 5
-    },
-    "devtoolbox": {
-      "source": "fallback",
-      "wikiTitle": null,
-      "wikiUrl": null,
-      "summary": "tooling content with a focus on ai, workflow",
+      "summary": "Arjan Egges is a Dutch entrepreneur and university lecturer with 20+ years in software development who runs ArjanCodes, a weekly Python channel about design patterns, SOLID principles, type hints, and project architecture. He publishes a Friday video plus a newsletter (The Friday Loop) and sells courses such as The Software Designer Mindset and The Software Architect Mindset on arjancodes.com. Tone is calm, lecture-style, with a strong refactoring-from-bad-to-good narrative arc.",
       "graphWeight": 5
     },
     "devops-toolbox": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "infrastructure content with a focus on automation, cloud",
+      "summary": "DevOps Toolbox is hosted by Omer (Omerxx), a working DevOps engineer who publishes Friday tutorials on terminal-first workflows: Neovim, tmux, Zsh, Docker, Kubernetes, and infrastructure-as-code. The channel is heavy on dotfile walkthroughs and reproducible setups, with a companion GitHub (omerxx/devops-toolbox) hosting his configs. Style is hands-on screen-share with the host's terminal as the main subject.",
       "graphWeight": 5
     },
     "hyperplexed": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "frontend content with a focus on css, creative web",
+      "summary": "Hyperplexed is a front-end-focused YouTube channel (~656k subs, ~98M views) that picks a striking visual effect from a real site (Apple, Awwwards, indie portfolios) and walks through rebuilding it from scratch with HTML, CSS, and vanilla JS or GSAP. All demo code is published free at hyperplexed.io with no paywall. The host stays anonymous on camera, narrating over a fast-paced screen-share build.",
       "graphWeight": 5
     },
     "computerphile": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "computer science content with a focus on theory, broad topics",
+      "summary": "Computerphile is the computer-science sister channel to Numberphile, created by filmmaker Brady Haran and produced primarily by Sean Riley since April 2013. Episodes are interview-style: a University of Nottingham (or visiting) academic such as Mike Pound, David Brailsford, or Steve Bagley explains a CS topic - cryptography, algorithms, AI safety, compilers - usually with marker-and-paper diagrams. As of 2026 the channel is past 2.6M subscribers and 232M views.",
       "graphWeight": 5
     },
     "computerscience-lessons": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "education content with a focus on fundamentals",
+      "summary": "ComputerScienceLessons is a UK-focused educational channel covering the GCSE and A-Level Computer Science curriculum: data representation, computer architecture, networks, databases, algorithms, and programming theory. Videos are organised as exam-board-aligned playlists rather than reaction or news content, aimed at students revising for AQA, OCR, and Edexcel papers. The host is not publicly named on the channel.",
       "graphWeight": 5
     },
     "coding-with-lewis": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "coding content with a focus on teaching",
+      "summary": "Lewis Menelaws is a Canadian developer who co-founded tmrrw labs (enterprise software for health and energy clients) before going full-time as a creator. He posts beginner-friendly modern web dev tutorials, React courses, and career advice to a combined 1.2M+ following (about 700k YouTube, 340k TikTok). His longer YouTube videos lean into narrative case-studies - how Notion scaled, building a $10k trading bot - rather than pure how-to.",
       "graphWeight": 5
     },
     "core-dumped": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "low-level content with a focus on cs, explainers",
+      "summary": "Core Dumped is run by George, a CS engineer based in Ecuador, who explains low-level computer-science concepts with simple animated diagrams. Production is famously homegrown: animations are built in PowerPoint and voice-over uses ElevenLabs AI. The channel (340k+ subscribers) is organised around two flagship playlists - Operating Systems Theory and Computer Architecture from Scratch - covering scheduling, paging, concurrency, caches, and pipelining.",
       "graphWeight": 5
     },
     "finzar": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "dev workflow content with a focus on productivity",
+      "summary": "Finzar (first name Fin) is a British filmmaker and editor who started making stop-motion shorts as a teenager and went on to work at film studios including Pinewood before launching his YouTube channel. He posts Premiere Pro tutorials, editing breakdowns and YouTube growth advice, and runs Storezar, a shop selling editing presets and courses including a flagship Premiere Pro course.",
       "graphWeight": 5
     },
     "networkchuck": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "networking content with a focus on homelab, security",
+      "summary": "Chuck Keith is a Dallas-Fort-Worth-based IT educator who launched NetworkChuck on April 27, 2014. The channel (5M+ subscribers) covers practical networking (CCNA, Cisco IOS), Linux fundamentals, cybersecurity, and Raspberry Pi homelab projects, all delivered with an over-the-top excited presenting style anchored by his coffee-shop aesthetic. He runs adjacent businesses including NetworkChuck Coffee and NetworkChuck Academy (paid courses) and the noobs podcast.",
       "graphWeight": 5
     },
     "salem-techsperts": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "tech content with a focus on tutorials",
+      "summary": "Andy runs Salem Techsperts, a Salem, Massachusetts computer refurbishing operation that famously originated inside a Subway restaurant. After pivoting to comedic, highly expressive short-form content in 2022 (a viral video of a CPU with a sticker stuck to it accelerated growth), the channel passed 1.4 million subscribers. By June 2024, walk-in repair was discontinued and the business shifted entirely toward YouTube content, sponsorships, and refurbished device sales.",
       "graphWeight": 5
     },
     "thiojoe": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "windows content with a focus on troubleshooting, tech tips",
+      "summary": "Joe Thio (b. 1992) started ThioJoe in the early 2010s with deliberately absurd joke tutorials (How to Download More RAM) and pivoted in 2017 to making real tech videos full-time. The main channel now covers Windows tips, registry tweaks, browser settings, scam awareness, and small open-source utilities he writes himself (hosted on github.com/ThioJoe). He also runs the spinoff ThioJoeTech and operates several mostly-dormant channels (ThioJoeGaming, Vid Authority).",
       "graphWeight": 5
     },
     "mralextech": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "tech content with a focus on workflow",
+      "summary": "MrAlexTech (first name Alex) is a YouTube creator dedicated to DaVinci Resolve, Blackmagic Design's editing and color grading suite. His channel runs long playlists of beginner-friendly Resolve tutorials covering the cut and edit pages, Fusion, and color, and he co-hosts The Resolve Creators Podcast. He sells project files, presets and templates through his Ko-fi shop and partners with MotionVFX.",
       "graphWeight": 5
     },
     "juxtoposed": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "frontend content with a focus on design, web",
+      "summary": "Juxtopposed is the online pseudonym of a UI/UX designer who has run @juxtopposed since 2022, posting deeply-researched redesign concept videos for major products - YouTube, Spotify, Discord, browsers - presented as full design case studies with research, wireframes, motion, and Figma walkthroughs. Their December 2024 YouTube redesign spawned community Chrome and Firefox extensions that ship the redesign to real users. The community lives on r/juxtopposed.",
       "graphWeight": 5
     },
     "veritasium": {
-      "source": "wikipedia",
-      "wikiTitle": "Derek Muller",
-      "wikiUrl": "https://en.wikipedia.org/wiki/Derek_Muller",
-      "summary": "Derek Alexander Muller is a Canadian-Australian science communicator and media personality best known for his YouTube channel Veritasium, which has over 20.6 million subscribers and 4.1 billion views as of April 2026.",
+      "source": "research",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "Derek Muller, who holds a PhD in physics education research, started Veritasium in 2011 with street-corner interviews probing scientific misconceptions. The channel has grown into long-form, often hour-long documentary-style videos on physics, engineering, and investigative science journalism. Muller also runs the side channels 2veritasium and Sciencium.",
       "graphWeight": 5
     },
     "vsauce": {
-      "source": "wikipedia",
-      "wikiTitle": "Vsauce",
-      "wikiUrl": "https://en.wikipedia.org/wiki/Vsauce",
-      "summary": "Vsauce is a YouTube brand created by American educator Michael Stevens consisting of the eponymous channel plus five other spin-offs. The channels feature videos on scientific, psychological, mathematical, and philosophical topics, as well as gaming, technology, popular culture, and other general interest subjects.",
+      "source": "research",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "Michael Stevens founded Vsauce in 2010, building episodes around question-titled videos like 'What if the Sun Disappeared?' His delivery is energetic and conversational, opening with 'Hey, Vsauce! Michael here!' and weaving science, math, anthropology, and philosophy through self-referential tangents. He also created and hosted the YouTube Premium series Mind Field, an experimental show about human behavior.",
       "graphWeight": 5
     },
     "3blue1brown": {
-      "source": "wikipedia",
-      "wikiTitle": "3Blue1Brown",
-      "wikiUrl": "https://en.wikipedia.org/wiki/3Blue1Brown",
-      "summary": "3Blue1Brown is an educational YouTube channel created and run by Grant Sanderson. The channel focuses on teaching higher mathematics from a visual perspective, and on the process of discovery and inquiry-based learning in mathematics, which Sanderson calls \"inventing math\".",
+      "source": "research",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "Grant Sanderson, a Stanford math graduate and former Khan Academy contributor, launched 3Blue1Brown in 2015 to teach higher mathematics from a visual perspective. He built the Python animation engine Manim specifically to produce the channel's precise, programmatic visuals, and the tool now has a thriving community fork. Series cover linear algebra, calculus, neural networks, differential equations, and probability with strong emphasis on intuition and discovery.",
       "graphWeight": 5
     },
     "numberphile": {
-      "source": "wikipedia",
-      "wikiTitle": "Numberphile",
-      "wikiUrl": "https://en.wikipedia.org/wiki/Numberphile",
-      "summary": "Numberphile is an educational YouTube channel featuring videos that explore topics from a variety of fields of mathematics. In the early days of the channel, each video focused on a specific number, but the channel has since expanded its scope, featuring videos on more advanced mathematical concepts such as Fermat's Last Theorem, the Riemann hypothesis and Kruskal's tree theorem. The videos are produced by Brady Haran, a former BBC video journalist and creator of Periodic Videos, Sixty Symbols, and several other YouTube channels. Videos on the channel feature several university professors, maths communicators and famous mathematicians.",
+      "source": "research",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "Brady Haran, an Australian-British video journalist, started Numberphile in 2011. The channel's signature format is a casual interview with a mathematician sketching ideas on brown paper. Originally each episode focused on a specific number; it has since expanded to advanced topics like the Riemann hypothesis and Fermat's Last Theorem. Haran was awarded the 2024 Christopher Zeeman Medal for math communication.",
       "graphWeight": 5
     },
     "astrum": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "space content with a focus on astronomy, visuals",
+      "summary": "Alex McColgan launched Astrum in 2013 as a faceless channel dedicated to making space science accessible, with a self-imposed rule of using only real images from probes and telescopes wherever possible. Episodes are weekly long-form video essays on celestial bodies, missions, and astronomical phenomena. The brand has expanded into the Astrum Space and Sleep Space podcasts and a sister channel Astrum Earth.",
       "graphWeight": 5
     },
     "real-engineering": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "engineering content with a focus on infrastructure, systems",
+      "summary": "Brian McManus, an Irish biomedical engineer, taught himself animation in 2013 and went viral with 'Why Are Plane Windows Round?', which became the foundation for Real Engineering. The channel covers aviation, aerospace, renewable energy, and military technology with a distinctive flat-vector animation style. McManus runs animation studio Throttle Media in the west of Ireland with a small full-time team, and also operates the sister channel Real Science.",
       "graphWeight": 5
     },
     "electroboom": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "electronics content with a focus on chaos, learning",
+      "summary": "Mehdi Sadaghdar holds an electronics degree from the University of Tehran and a microelectronics master's from Simon Fraser University. ElectroBOOM mixes earnest electrical engineering tutorials with comedic mishaps where he reacts to shocks, fires, and exploding components for laughs while showing what not to do. Series include the beginner-focused ElectroBOOM101 and a steady stream of debunks of viral 'free energy' and pseudoscience videos.",
       "graphWeight": 5
     },
     "nilered": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "chemistry content with a focus on experiments, maker",
+      "summary": "Nigel Braun, a McGill biochemistry graduate, started NileRed in 2014 after his Pharaoh's Serpent firework demo went viral. The channel is known for ambitious, weeks-long synthesis projects documented in detail, like distilling vodka from thin air or converting Styrofoam into cinnamon candy. Braun also runs the sister channel NileBlue for shorter or more experimental builds, and his style emphasizes patient, narrated bench chemistry over flashy reactions.",
       "graphWeight": 5
     },
     "mark-rober": {
-      "source": "wikipedia",
-      "wikiTitle": "Mark Rober",
-      "wikiUrl": "https://en.wikipedia.org/wiki/Mark_Rober",
-      "summary": "Mark Rober is an American YouTuber, engineer, inventor, and educator. He is known for his YouTube videos on popular science and do-it-yourself gadgets. Before he became a YouTuber, Rober was an engineer with NASA for nine years, where he spent seven years working on the Curiosity rover at NASA's Jet Propulsion Laboratory. He later worked for four years at Apple as a product designer in their Special Projects Group, where he authored patents involving virtual reality in self-driving cars.",
+      "source": "research",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "Mark Rober spent nine years at NASA's Jet Propulsion Laboratory, including seven on the Curiosity Mars rover, before going full-time on YouTube. His channel is built around heavily-produced, family-friendly engineering builds, viral stunts, and explainer-flavored science. He is best known for the annual porch-pirate Glitter Bomb series and the charity fundraising event #TeamSeas, and he co-founded the educational platform CrunchLabs.",
       "graphWeight": 5
     },
     "cleo-abrams": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "future tech content with a focus on media, explainers",
+      "summary": "Cleo Abram, a former Vox video journalist, launched Huge If True as a solo independent show after leaving Vox. Each episode is a single deep dive into one technology or scientific achievement, structured around the question 'What could go right?' rather than what could go wrong. Episodes are typically reported on location at facilities like CERN, NASA, IBM, and Boston Dynamics, with a self-imposed rule that topics must be inherently visual to merit a video.",
       "graphWeight": 5
     },
     "bright-side": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "pop science content with a focus on internet",
+      "summary": "Bright Side is operated by TheSoul Publishing, a Cyprus-based digital media company founded in 2016 by Pavel Radaev and Marat Mukhometov, the same publisher behind 5-Minute Crafts. Launched in 2017, the channel mass-produces narrated trivia, riddles, life hacks, history snippets, and 'mysteries of the universe'-style explainers built primarily from stock footage and assembled animation. It has over 44 million subscribers and more than 10,000 videos, and is widely criticized by science communicators for sensational and inaccurate content.",
       "graphWeight": 5
     },
     "infographics-show": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "explainers content with a focus on general knowledge",
+      "summary": "The Infographics Show is a faceless studio-run YouTube channel that publishes near-daily animated videos in a recognizable flat 2D style produced in Adobe Illustrator and After Effects. Topics span true crime, military history, survival hypotheticals, comparison videos, and pop science. As of late 2024 the channel had roughly 14.7 million subscribers and over 6 billion total views, and operates spinoff channels including Fact Fiend and similar formats.",
       "graphWeight": 5
     },
     "ltt": {
-      "source": "wikipedia",
-      "wikiTitle": "Linus Media Group",
-      "wikiUrl": "https://en.wikipedia.org/wiki/Linus_Media_Group",
-      "summary": "Linus Media Group Inc. (LMG) is a privately held Canadian digital media entertainment company with a focus on technology, founded by Linus Sebastian and Yvonne Ho in 2012. The company owns and operates several technology-oriented YouTube channels and podcasts, most notably Linus Tech Tips (LTT), as their production agency and distributor. Linus Tech Tips was later developed into an internet forum on January 2, 2013.",
+      "source": "research",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "Linus Tech Tips is a YouTube channel started in November 2008 by Linus Sebastian while he was the on-camera presenter for Canadian retailer NCIX. It became the foundation of Linus Media Group (LMG), formally launched in 2013, of which Sebastian was CEO until July 2023 when he transitioned to chief vision officer. As of early 2026, the main channel has over 16 million subscribers and 9.2 billion views, covering hardware reviews, extreme PC builds, and tech industry commentary.",
       "graphWeight": 5
     },
     "wan-show": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "podcast content with a focus on tech news, ltt orbit",
+      "summary": "The WAN Show is Linus Media Group's flagship podcast, livestreamed every Friday on the Linus Tech Tips YouTube channel and distributed via Apple Podcasts and Spotify. Running since 2013 and routinely over three hours long, it features Linus Sebastian and Luke Lafreniere covering the week's tech news, LMG company updates, sponsored merch segments, and live audience chat questions in an informal, conversational format.",
       "graphWeight": 5
     },
     "shortcircuit": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "unboxings content with a focus on hardware, ltt orbit",
+      "summary": "ShortCircuit is a Linus Media Group channel that premiered around early 2020 as a home for unboxing and quick product reveal videos, separating fast-paced first-look content from the higher-production main reviews on Linus Tech Tips. Hosts rotate from the LMG roster and have included Linus Sebastian, Anthony Young, Alex Clark, Riley Murdock, and guests, with Jonathan Tan serving as channel manager. The channel intentionally revives the looser style of early NCIX-era unboxings.",
       "graphWeight": 5
     },
     "techlinked": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "tech news content with a focus on ltt orbit",
+      "summary": "TechLinked is a Linus Media Group news channel uploading every Monday, Wednesday, and Friday. It is the spiritual successor to NCIX's Netlinked Daily, launched after Linus Sebastian's attempt to acquire the NCIX YouTube channel during its 2017 bankruptcy fell through. Riley Murdock, the final Netlinked presenter, became TechLinked's primary writer and host, joined by a rotating cast of LMG hosts. A podcast version is distributed on Spotify and Apple Podcasts.",
       "graphWeight": 5
     },
     "gamelinked": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "gaming news content with a focus on ltt orbit",
+      "summary": "GameLinked is a Linus Media Group channel delivering weekly gaming-industry news, billed as 'TechLinked's gaming-obsessed little brother.' The channel went on indefinite hiatus on November 14, 2024, alongside Mac Address and Techquickie, but resumed weekly uploads on January 29, 2026. It covers video game industry happenings rather than hardware reviews.",
       "graphWeight": 5
     },
     "diy-perks": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "builds content with a focus on clean design, hardware",
+      "summary": "Matthew 'Matt' Perks runs DIY Perks, a UK-based YouTube channel started in February 2012 with a video titled 'LEGO Remote Follow Focus.' The channel has grown to roughly 4.9 million subscribers and is distinguished from typical maker content by its focus on aesthetics and finish quality. Builds are designed to be replicable at home with minimal tools, ranging from custom PC cases and monitor mounts to studio lighting and thermoelectric generators.",
       "graphWeight": 5
     },
     "jerryrigeverything": {
-      "source": "wikipedia",
-      "wikiTitle": "JerryRigEverything",
-      "wikiUrl": "https://en.wikipedia.org/wiki/JerryRigEverything",
-      "summary": "Zack Nelson, better known as JerryRigEverything, is an American YouTuber, internet personality and founder of a business that makes custom and off-road wheelchairs. He is known for teardown videos where he takes various tech products and disassembles them by any force necessary, typically resulting in the product in question getting severely damaged. He has a background in construction and documented the process of building a bunker in his backyard on his channel.",
+      "source": "research",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "Zack Nelson (born June 29, 1988) runs JerryRigEverything, an American teardown and durability channel best known for scratch tests, burn tests, and bend tests on flagship smartphones. Beyond the destruction content, Nelson founded Not A Wheelchair, a business making affordable off-road wheelchairs, and posts longer adventure and engineering content. His 'iPhone 7 Scratch test - BEND TEST' video crossed 10 million views and helped define the channel's signature format.",
       "graphWeight": 5
     },
     "hacksmith": {
-      "source": "wikipedia",
-      "wikiTitle": "The Hacksmith",
-      "wikiUrl": "https://en.wikipedia.org/wiki/The_Hacksmith",
-      "summary": "James Hobson, known for his YouTube channel Hacksmith Industries, is a Canadian engineer, Entrepreneur and YouTuber.",
+      "source": "research",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "Hacksmith Industries is a Canadian YouTube channel and engineering company founded by James Hobson (born February 10, 1990), an engineering graduate who went full-time on YouTube in late 2015 after a viral pneumatic-exoskeleton video. The studio's signature 'Make It Real' series builds functional replicas of fictional weapons and tools. Hobson holds a Guinness World Record (Dec 2020) for the first retractable proto-plasma lightsaber, which reached around 2,200 C.",
       "graphWeight": 5
     },
     "blacktail-studio": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "woodworking content with a focus on craft, design",
+      "summary": "Cam Anderson is a former helicopter pilot turned custom woodworker who founded Blacktail Studio in Portland, Oregon and began posting woodworking videos in 2018. He went full-time on YouTube in 2020. His epoxy build tutorials have accumulated over 90 million views and pushed the channel past one million subscribers. Tables that once sold for $900 now go for $10,000 to over $30,000, and he runs a paid Epoxy Workshop course alongside the free YouTube tutorials.",
       "graphWeight": 5
     },
     "four-eyes": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "furniture content with a focus on design, woodworking",
+      "summary": "Chris Salomone is a Cal State Fullerton business graduate (2006) who built Foureyes Furniture into a full-time YouTube woodworking business while serving as marketing director for CSUF's College of Humanities and Social Sciences. He published his first video in March 2016 and grew to over 437,000 subscribers, eventually quitting his day job. He differentiated the channel by using improvised guitar music and tight macro plus wide environmental shots rather than the technique-only style dominant in woodworking YouTube.",
       "graphWeight": 5
     },
     "john-malecki": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "maker content with a focus on woodworking, chaos",
+      "summary": "John Malecki is an ex-NFL offensive lineman who, after retiring from professional football, co-founded Studio AM with former teammate Baron Batch and posted woodworking projects to Facebook and Instagram before launching his YouTube channel. The channel has grown to roughly 1.2 million subscribers, where he builds for clients full-time and produces tool reviews, challenge builds, and home renovation projects. He also runs Shop Shades, a safety glasses brand.",
       "graphWeight": 5
     },
     "jarrods-tech": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "laptops content with a focus on benchmarks, reviews",
+      "summary": "Jarrod'sTech is a YouTube channel and companion site (jarrods.tech) dedicated to gaming-laptop reviews and benchmark comparisons. New laptops are tested weekly on a standardised pipeline measuring performance, thermals, battery life, and fan noise, and results are catalogued on the website for cross-model comparison. The channel is known for sweeping multi-GPU comparison videos, including one testing 34 laptop and desktop GPUs across 25 games at 1080p, 1440p, and 4K.",
       "graphWeight": 5
     },
     "zachs-tech-turf": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "pc builds content with a focus on hardware, value",
+      "summary": "Zach's Tech Turf is a US-based YouTube channel started on April 26, 2015 covering gaming PC builds, hardware buying guides, and PC flipping for profit. The channel has grown to roughly 1.8 million subscribers with about 2.8 billion views and uploads weekly, typically on Wednesdays. Zach also streams on Twitch as ZachsTechTurf.",
       "graphWeight": 5
     },
     "mkbhd": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "reviews content with a focus on clean production, consumer tech",
+      "summary": "Marques Brownlee (born December 3, 1993, Maplewood, NJ) started his YouTube channel in 2008 while in high school and grew it into the dominant consumer-tech review brand on the platform, surpassing 20 million subscribers by mid-2025. He attended the Howe School at Stevens Institute of Technology, majoring in business and information technology. Beyond reviews, he co-hosts the Waveform podcast (since August 2019) and plays professional ultimate frisbee for the New York Empire of the UFA.",
       "graphWeight": 5
     },
     "mrwhosetheboss": {
-      "source": "wikipedia",
-      "wikiTitle": "Mrwhosetheboss",
-      "wikiUrl": "https://en.wikipedia.org/wiki/Mrwhosetheboss",
-      "summary": "Arun Rupesh Maini, commonly known as Mrwhosetheboss, is an English YouTuber who is best known for his technology-related content, and is the creator of one of the biggest tech-related YouTube channels.",
+      "source": "research",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "Arun Maini is a British YouTuber of Indian descent and Economics graduate who runs Mrwhosetheboss, a tech review channel that began as anonymous voice-over smartphone videos and shifted in 2016 to on-camera, high-energy reviews. By November 2025 the channel had surpassed 21.8 million subscribers and over 7.8 billion views. He gained additional press attention in 2026 after being detained, strip-searched, and deported at the US border.",
       "graphWeight": 5
     },
     "kyle-sockwell": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "tech content with a focus on reviews",
-      "graphWeight": 5
+      "summary": "Kyle Sockwell swam at Arizona State under coach Bob Bowman, where he was team captain, before pivoting into swim media. He built a following starting on Vine and now reaches tens of thousands across YouTube and social platforms with meet recaps, interviews, and play-by-play. He has called the Big 12 Swimming and Diving Championships on ESPN+ for six consecutive years and previously ran media for FloSwimming. He is currently COO of the new College Swimming League (CSL), launched alongside CEO Rob Kent.",
+      "graphWeight": 4
     },
     "max-klymenko": {
-      "source": "wikipedia",
-      "wikiTitle": "Max Klymenko",
-      "wikiUrl": "https://en.wikipedia.org/wiki/Max_Klymenko",
-      "summary": "Maksym \"Max\" Klymenko is a Ukrainian internet personality and educator, recording short videos for TikTok and YouTube, regarding career, business, brands and public issues. His most popular series, titled Career Ladder, focuses on him attempting to guess careers of people met on the street under two minutes, while standing with them on a ladder. As of May 2026, Klymenko has 9.6 million followers on TikTok, and about 4.05 million subscribers on YouTube. He is based in London, England.",
+      "source": "research",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "Max Klymenko is a Ukrainian-born, London-based creator and entrepreneur who previously worked as a lawyer and as a corporate consultant at Accenture before going full-time on content. In 2024 he launched Career Ladder, a vertical-video format where he stands on the back of a ladder and tries to guess a stranger's job in under two minutes, which has become one of the most-watched non-animated shows on the internet. He also runs the communications agency KLYM&CO and was named to Forbes 30 Under 30 in Media and Marketing.",
       "graphWeight": 5
     },
     "jakkuh": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "tech content with a focus on ltt orbit",
-      "graphWeight": 5
-    },
-    "ltt-offshoots": {
-      "source": "fallback",
-      "wikiTitle": null,
-      "wikiUrl": null,
-      "summary": "channel network content with a focus on orbit",
+      "summary": "Jake Tivy, known online as Jakkuh, joined Linus Media Group at age 15 and worked there for nearly a decade across Linus Tech Tips, ShortCircuit, and Techquickie before resigning on August 6, 2025. He cited stagnant compensation in increasingly unaffordable Vancouver, the company becoming more corporate, and recent controversies as reasons for leaving. His independent YouTube channel has grown to over 190,000 subscribers and focuses on high-end home/enterprise server builds and car tech.",
       "graphWeight": 5
     },
     "caeleb-dressel": {
-      "source": "wikipedia",
-      "wikiTitle": "Caeleb Dressel",
-      "wikiUrl": "https://en.wikipedia.org/wiki/Caeleb_Dressel",
-      "summary": "Caeleb Remel Dressel is an American competitive swimmer who specializes in freestyle, butterfly, and individual medley events. He swims representing the Cali Condors as part of the International Swimming League. He won a record seven gold medals at the 2017 World Aquatics Championships in Budapest, nine medals, six of which were gold, at the 2018 World Short Course Swimming Championships in Hangzhou, and eight medals, including six gold, at the 2019 World Aquatics Championships in Gwangju. Dressel is a nine-time Olympic gold medalist and holds world records in the 100 meter butterfly, and 100 meter individual medley.",
-      "graphWeight": 5
-    },
-    "michael-helps": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "swimming content with a focus on training",
+      "summary": "Caeleb Dressel is a Florida Gators alum who specializes in freestyle and butterfly sprints, with primary events the 50m freestyle, 100m freestyle, and 100m butterfly. At Tokyo 2020 he won five gold medals, including individual golds in the 100m free, 100m fly, and 50m free, joining a short list of Americans to win five golds at a single Games. He holds the long-course world record in the 100m butterfly (49.45) and the short-course world record in the 100m IM, and matched Phelps with seven golds at the 2017 World Championships in Budapest. His style is built on explosive starts, brutal underwater dolphin kicks, and high stroke rate.",
+      "graphWeight": 5
+    },
+    "michael-phelps": {
+      "source": "research",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "Michael Phelps is an American former competitive swimmer widely regarded as the greatest swimmer and one of the greatest Olympians of all time. He won 23 Olympic gold medals, 28 Olympic medals total, and held world records across the 100m and 200m butterfly, 200m and 400m individual medley, and multiple relay events. Coached by Bob Bowman from age 11 through his career, Phelps famously won 8 golds at Beijing 2008 and competed at five Olympics from Sydney 2000 to Rio 2016 before retiring. Post-retirement he has advocated for mental health awareness through the Michael Phelps Foundation.",
       "graphWeight": 5
     },
     "david-popovici": {
-      "source": "wikipedia",
-      "wikiTitle": "David Popovici",
-      "wikiUrl": "https://en.wikipedia.org/wiki/David_Popovici",
-      "summary": "David Popovici is a Romanian competitive swimmer who specializes in freestyle events and is the reigning Olympic champion in the 200-metre event, having won the gold medal at the 2024 Summer Olympics. He is the current holder of the European record and the junior world record, as well as the former holder of the world record in the long course 100-metre freestyle. He is also the holder of the current junior world record in the short course 100-metre freestyle event and in the long course 200-metre freestyle event.",
+      "source": "research",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "David Popovici is a Romanian sprinter coached since age nine by Adrian Radulescu at Aqua Team Bucharest. At Paris 2024 he won Olympic gold in the 200m freestyle (1:44.72) and bronze in the 100m freestyle, finishing 0.01s behind Kyle Chalmers. In August 2022 at the European Championships in Rome, he set the 100m freestyle world record at 46.86, becoming the youngest swimmer to do so at age 17 and breaking Cesar Cielo's 13-year-old supersuit-era mark. His style stands out for an unusually low stroke rate, long underwater pull, and a fast back half.",
       "graphWeight": 5
     },
     "summer-mcintosh": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "elite swimming content with a focus on range, race craft",
+      "summary": "Summer McIntosh is a Canadian swimmer who specializes in the individual medleys, 200m butterfly, and middle-distance freestyle. At Paris 2024 she won three gold medals (200m butterfly, 200m IM, 400m IM, all with Olympic records or close to it) plus silver in the 400m freestyle, becoming the first Canadian athlete with three golds at a single Games. She holds long-course world records in the 400m freestyle, 200m IM, and 400m IM, plus short-course records, and her 400m IM mark she has reset multiple times. At the 2025 World Aquatics Championships she won four golds (400 IM, 200 fly, 200 IM, 400 free), making her the most decorated Canadian in World Aquatics history.",
       "graphWeight": 5
     },
     "katie-ledecky": {
-      "source": "wikipedia",
-      "wikiTitle": "Katie Ledecky",
-      "wikiUrl": "https://en.wikipedia.org/wiki/Katie_Ledecky",
-      "summary": "Kathleen Genevieve Ledecky is an American competitive swimmer. She is the most decorated female swimmer in history and the most decorated American woman in Olympic history, with a total of 14 Olympic medals, including nine golds. She is widely regarded as the greatest female swimmer of all time.",
+      "source": "research",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "Katie Ledecky is an American distance freestyler who specializes in the 400m, 800m, and 1500m freestyle. She is the most decorated female swimmer in history with 14 Olympic medals, including 9 golds across four Games (London 2012 through Paris 2024). She holds the long-course world records in the 800m and 1500m freestyle, owns 18 of the 20 fastest 1500m free times ever, and is undefeated at Olympics and World Championships in the 800m (9-0) and 1500m (6-0). At Paris 2024 she added gold in the 800m and 1500m, silver in the 4x200m free relay, and bronze in the 400m. Her style is defined by relentless pace, near-metronomic stroke rhythm, and an unusually aggressive front-end.",
       "graphWeight": 5
     },
     "game-makers-toolkit": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "game design content with a focus on analysis, systems",
+      "summary": "Mark Brown is a former games journalist with over 15 years covering the industry who founded Game Maker's Toolkit in 2014. The channel produces analytical video essays on mechanics, level design, accessibility and indie development. Since 2017 Brown has hosted the annual GMTK Game Jam on itch.io, which has grown into one of the largest game jams online, and in 2024 he released his own game Mind Over Magnet.",
       "graphWeight": 5
     },
     "jacksepticeye": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "gaming content with a focus on internet, energy",
+      "summary": "Seán McLoughlin from Offaly, Ireland, started uploading to YouTube in 2012 and grew into one of the platform's most-subscribed gaming creators, hitting 10 million subs by 2016 and over 30 million by 2024. His channel mixes long let's plays of Sony exclusives and story-driven games with indie horror, comedy formats and reactions. He has also done voice work, including Shawn Flynn in Bendy and the Ink Machine, a role in Sonic Prime, and a part in the 2025 game Dispatch.",
       "graphWeight": 5
     },
     "dantdm": {
-      "source": "wikipedia",
-      "wikiTitle": "DanTDM",
-      "wikiUrl": "https://en.wikipedia.org/wiki/DanTDM",
-      "summary": "Daniel Robert Middleton, better known as DanTDM, is an English YouTuber, gamer, and author. He is primarily known for his Let's Play videos, particularly those featuring Minecraft, Roblox, Pokémon and Five Nights at Freddy's. Middleton's YouTube channel, which he started in 2012, has amassed over 29 million subscribers and 20 billion views as of 2025, making him one of the most popular content creators on the platform.",
+      "source": "research",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "Daniel Middleton, born 1991 in Aldershot, launched TheDiamondMinecart in 2012 focused on Minecraft mod reviews and showcases. The channel was rebranded to DanTDM in 2016 and has grown to roughly 29 million subscribers and over 20 billion views, holding a Guinness World Record for most views on a dedicated Minecraft channel. Long-running series include the modded Diamond Dimensions, plus expansions into Roblox, Fortnite and broader gaming content.",
       "graphWeight": 5
     },
     "mumbo-jumbo": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "minecraft content with a focus on redstone, building",
+      "summary": "Oli Brotherhood, born 1995, is one of Minecraft's best-known redstone engineers and the most-subscribed member of the Hermitcraft server, which he joined at the start of Season 2. His videos showcase practical and decorative redstone builds, base tours and SMP storylines, with a moustache-themed brand. He has been part of long-running Hermitcraft groups including Architech (with Grian and Iskall85), the Buttercups (with Grian and GoodTimesWithScar) and the C-Team.",
       "graphWeight": 5
     },
     "camman18": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "minecraft content with a focus on internet",
+      "summary": "Cameron Manning, born February 22, 2004, runs camman18, a Minecraft-focused channel that exploded on YouTube Shorts and TikTok with rapid-fire challenge clips and rare-fact commentary. Content centres on Minecraft challenges, speedruns, hardcore runs and trivia about obscure mechanics. The brand has expanded to multiple sister channels covering vods, shorts and live content.",
       "graphWeight": 5
     },
     "lazarbeam": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "gaming content with a focus on chaos",
+      "summary": "Lannan Eacott started his channel in 2015 making slow-motion demolition videos before pivoting to game commentary. Fortnite Battle Royale uploads in 2018 and Minecraft in 2019 drove explosive growth, hitting 10 million subscribers in April 2019 and 20 million by May 2022. In 2020 he signed an exclusive YouTube streaming deal alongside Muselk, and in 2021 received his own Fortnite Icon Series outfit.",
       "graphWeight": 5
     },
     "lachlan": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "gaming content with a focus on fortnite",
+      "summary": "Lachlan Power, born 1995 in Brisbane, registered the CraftBattleDuty channel in 2013 and built early audiences with Minecraft, Pixelmon and How to Minecraft series before riding the Pokemon GO boom in 2016-17 and pivoting fully to Fortnite. In June 2020 he founded PWR, a Queensland-based Fortnite esports org and apparel brand, and in October 2020 received his own Fortnite Icon Series outfit. He won the 2020 Fortnite Summer Smash Pro-Am with Fresh and Enschway.",
       "graphWeight": 5
     },
     "lets-game-it-out": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "sandbox chaos content with a focus on systems, humor",
+      "summary": "Josh Knoles, born 1983, hosts Let's Game It Out, a channel devoted to pushing simulator, tycoon and sandbox games well past their intended use to expose bugs, loopholes and emergent chaos. The channel started as a duo with co-host Anthony before becoming solo in late 2018. Indie developers now routinely send him early-access keys as a kind of stress test, and the format has made breaking your game on his channel a badge of honour for emerging studios.",
       "graphWeight": 5
     },
     "stampy": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "minecraft content with a focus on classic youtube",
+      "summary": "Joseph Garrett studied TV and video production at Solent University and created the Stampylongnose channel in 2006 for live-action sketches before launching Stampylonghead in 2011. He began Minecraft let's plays in 2012, and the long-running Stampy's Lovely World became one of the most-watched Minecraft series ever, helping push the channel past 10 million subscribers. After a hiatus, Garrett revived Lovely World in August 2020 and concluded it on October 21, 2023 after 823 episodes.",
       "graphWeight": 5
     },
     "muselk": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "gaming content with a focus on internet",
+      "summary": "Elliott Watkins, born 1994 and based in Sydney, built his early audience on Team Fortress 2 content before shifting to Overwatch gameplay and funny moments in late 2016 and then to Fortnite, where he sits at over 8 million subscribers. He is a founding member of the Click podcast and management collective alongside LazarBeam and others, and in January 2020 signed an exclusive YouTube streaming deal with Lannan Eacott.",
       "graphWeight": 5
     },
     "mewtru": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "internet content with a focus on gaming",
+      "summary": "Mewtru is an English-speaking Twitch Partner and software engineer who streams live coding sessions, primarily in the Software and Game Development category. Her work centres on TypeScript and React, with on-stream projects including drawydrawing.com and a VSCode extension that exposes editor controls through Twitch channel point redemptions. She is part of Team POGrammers, a coding-streamer collective, and her Twitch account dates to 2015 with regular streaming starting February 2019.",
       "graphWeight": 5
     },
     "misfit-minds": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "internet content with a focus on creator",
-      "graphWeight": 5
+      "summary": "Misfit Minds is an Australian prank channel run by Seb and Will, with Sam also part of the team, and is frequently described as the biggest YouTube channel in Australia in its category. The channel focuses on real public pranks - bits like serving deliberately bad beer or pranking the country with a fake celebrity - with the team emphasising authentic, in-the-wild reactions over staged setups. They have also discussed handling backlash and influences such as Chris Lilley in podcast appearances.",
+      "graphWeight": 4
     },
     "squishy": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "gaming content with a focus on internet",
+      "summary": "Mariano Arruda, born November 29, 2000, started playing Rocket League in the 2015 beta and became one of the most decorated players in the game's history, winning a world championship and five Major LANs over a career that earned roughly $500,000 in prize money. He retired from professional competition in 2024 and rejoined Cloud9 as a content creator and co-owner, with around 1.4 million YouTube subscribers and 1.2 million Twitch followers focused on freestyling, ranked play and high-level Rocket League content.",
       "graphWeight": 5
     },
     "corridor-crew": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "vfx content with a focus on film, breakdowns",
+      "summary": "Corridor Crew is the second YouTube channel of Corridor Digital, the LA-based filmmaking studio founded by Sam Gorski and Niko Pueringer, who met as junior-high students in Stillwater, Minnesota. The channel posts behind-the-scenes content, stunt and animation experiments, and the popular VFX Artists React and Stuntmen React series, hosted by core team members including Wren Weichman, Clinton Jones, Jordan Harvey and Niko. As of late 2024 it has surpassed ten million subscribers.",
       "graphWeight": 5
     },
     "film-booth": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "content craft content with a focus on youtube, storytelling",
+      "summary": "Film Booth is run by Ed Lawrence, a UK-based YouTube strategist who went viral as a creator in roughly six weeks before pivoting to teaching educators and niche creators how to grow profitable channels. His videos focus on idea selection, titles and thumbnails, storytelling structure, and turning audiences into product buyers rather than chasing pure view count. According to a Starter Story breakdown, Film Booth scaled to several hundred thousand dollars per month using only YouTube and email, with a newsletter of over 13,000 subscribers.",
       "graphWeight": 5
     },
     "michelle-khare": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "challenge videos content with a focus on production, discipline",
-      "graphWeight": 5
+      "summary": "Michelle Khare is an American YouTuber, television host and stunt performer who was previously a professional cyclist and a BuzzFeed video producer. She is the co-creator (with Garrett Kennell) and host of Challenge Accepted, a documentary-style web series that premiered on YouTube in May 2018 in which she trains for and attempts intense physical and mental challenges. The show has won the Streamy Award for Best Unscripted Series (2022) and Show of the Year (2023), surpassed 5 million subscribers, and joined the Primetime Emmy ballot for outstanding hosted nonfiction series.",
+      "graphWeight": 4
     },
     "zach-king": {
-      "source": "wikipedia",
-      "wikiTitle": "Zach King",
-      "wikiUrl": "https://en.wikipedia.org/wiki/Zach_King",
-      "summary": "Zachary Michael King is an American internet personality and filmmaker known for creating short videos featuring visual effects. He began posting content on YouTube in 2008 and gained widespread recognition on Vine in 2013 for his six-second \"magic vines.\" King later expanded his presence to TikTok, where he has amassed tens of millions of followers for his digitally edited videos, which he describes as \"digital sleight of hand.\"",
+      "source": "research",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "Zach King is an American filmmaker and internet personality born February 4, 1990, who started posting on YouTube in 2008 and broke out on Vine in 2013 with his six-second 'magic vines.' He calls his style 'digital sleight of hand' - everyday illusions built entirely with practical tricks and visual effects in post. He has tens of millions of followers on TikTok and YouTube, and his 2019 TikTok 'Zach King's Magic Broomstick' was certified by Guinness World Records as the most viewed video on TikTok at over 2.2 billion views.",
       "graphWeight": 5
     },
     "gothamchess": {
-      "source": "wikipedia",
-      "wikiTitle": "Levy Rozman",
-      "wikiUrl": "https://en.wikipedia.org/wiki/Levy_Rozman",
-      "summary": "Levy Rozman, known online as GothamChess, is an American chess international master, content creator, commentator, and author. Often referred to as \"The Internet's Chess Teacher\", he produces content on the online platforms Twitch, Facebook, TikTok, Instagram, and YouTube.",
+      "source": "research",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "Levy Rozman is an American chess International Master (title earned 2018, peak rating 2421) who runs GothamChess, named after his hometown New York. The channel exploded during the COVID-19 pandemic and the release of The Queen's Gambit in 2020 and became the first chess channel on YouTube to surpass one billion views. He posts daily game recaps, opening guides, beginner lessons and tournament commentary, and authored the 2023 #1 Amazon best-seller How To Win At Chess: The Ultimate Guide For Beginners And Beyond.",
       "graphWeight": 5
     },
     "chess-vibes": {
-      "source": "fallback",
+      "source": "research",
       "wikiTitle": null,
       "wikiUrl": null,
-      "summary": "chess content with a focus on teaching",
+      "summary": "Chess Vibes is the YouTube channel of Nelson Lopez, an American chess National Master born February 5, 1988. He posted his first video in September 2020 and his content focuses on chess principles, opening tricks, puzzle walk-throughs and rating-climb commentary aimed at intermediate club players rather than super-GM coverage. After the channel took off he quit his job in software development to do chess content full time, and in July 2024 he launched the course site Breaking 1500. (Note: this is a different person from Antonio Radic / Agadmator.)",
       "graphWeight": 5
     },
     "foil-arms-and-hog": {
-      "source": "wikipedia",
-      "wikiTitle": "Foil Arms and Hog",
-      "wikiUrl": "https://en.wikipedia.org/wiki/Foil_Arms_and_Hog",
-      "summary": "Foil Arms and Hog are an Irish sketch comedy group comprising Sean 'Foil' Finegan, Conor 'Arms' McKenna and Sean 'Hog' Flanagan.",
-      "graphWeight": 1
+      "source": "research",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "Foil Arms and Hog are an Irish sketch comedy group made up of Sean 'Foil' Finegan (the comedy foil), Conor 'Arms' McKenna ('all arms and legs') and Sean 'Hog' Flanagan (who hogs the limelight). They met in the drama society at University College Dublin while studying architecture, genetics and engineering, and formed the group in 2008. They post a new sketch on YouTube most Thursdays, tour internationally including regular Edinburgh Fringe runs, and are best known for short character-driven sketches about Irish identity, language and politics.",
+      "graphWeight": 4
     },
     "jimmy-carr": {
-      "source": "wikipedia",
-      "wikiTitle": "Jimmy Carr",
-      "wikiUrl": "https://en.wikipedia.org/wiki/Jimmy_Carr",
-      "summary": "James Anthony Patrick Carr is a British and Irish comedian. He began his stand-up career in 1997. He has regularly appeared on television as the host of Channel 4 panel shows such as The Big Fat Quiz of the Year, 8 Out of 10 Cats (2005–2021), and 8 Out of 10 Cats Does Countdown. Carr is known for his rapid-fire deadpan delivery of one-liners.",
-      "graphWeight": 1
+      "source": "research",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "Jimmy Carr is a British-Irish comedian, writer and television host known for his dry delivery, distinctive laugh, and tightly written one-liner style with a focus on taboo topics. He hosts the long-running panel show 8 Out of 10 Cats and its spin-off 8 Out of 10 Cats Does Countdown on Channel 4, and was the first British comic to release a Netflix stand-up special with Funny Business. He has released numerous DVD specials including Comedian (2007), Making People Laugh (2010) and Laughing and Joking (2013), and the Netflix special His Dark Material (2021).",
+      "graphWeight": 4
     },
     "matt-rife": {
-      "source": "wikipedia",
-      "wikiTitle": "Matt Rife",
-      "wikiUrl": "https://en.wikipedia.org/wiki/Matt_Rife",
-      "summary": "Matthew Steven Rife is an American comedian and actor. He is best known for his self-produced comedy specials Only Fans (2021), Matthew Steven Rife (2023), and Walking Red Flag (2023), his 2023 Netflix specials Natural Selection and Lucid, his Christmas special Unwrapped and his previous recurring role on the sketch improv comedy and rap show Wild 'n Out.",
-      "graphWeight": 3
+      "source": "research",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "Matt Rife is an American stand-up comic who rose to mainstream fame in 2022-2023 after clips of his crowd work went viral on TikTok, filling arenas across the US. His Netflix debut Natural Selection (November 2023) was followed by Lucid - A Crowd Work Special (2024), Netflix's first full-length crowd-work-only stand-up special, filmed at The Comedy Zone in Charlotte, and Unwrapped - A Christmas Crowd Work Special (Dec 2 2025), filmed in Phoenix and directed by fellow comedian Erik Griffin.",
+      "graphWeight": 5
     },
     "tyler-oliveira": {
-      "source": "wikipedia",
-      "wikiTitle": "Tyler Oliveira",
-      "wikiUrl": "https://en.wikipedia.org/wiki/Tyler_Oliveira",
-      "summary": "Tyler Oliveira is an American YouTuber. He made several challenge videos before transitioning to videos centered on man-on-the-street interviews, documenting drug decriminalization in Canada and the Springfield pet-eating hoax. News organizations and civil rights advocacy groups, such as the Anti-Defamation League and The Forward, have argued that Oliveira has spread misinformation and misrepresented interviewees.",
-      "graphWeight": 1
+      "source": "research",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "Tyler Oliveira (born January 6, 2000) is an American YouTuber with over 8.5 million subscribers and 2.2 billion views. He started in challenge content before pivoting to man-on-the-street interviews, social experiments and self-styled investigative documentaries on underreported or controversial subjects, including drug decriminalization in Canada, Jeffrey Epstein's island and the Springfield pet-eating hoax. His content is not comedy; it presents itself as investigative journalism, though outlets including the Anti-Defamation League and The Forward have argued some of his videos misrepresent interviewees and traffic in misleading editing or stereotypes.",
+      "graphWeight": 4
     },
     "mark-tilbury": {
-      "source": "wikipedia",
-      "wikiTitle": "Mark Tilbury",
-      "wikiUrl": "https://en.wikipedia.org/wiki/Mark_Tilbury",
-      "summary": "Mark Stephen Tilbury is a British entrepreneur, investor, podcaster and content creator at YouTube and Instagram. His net worth as of 2025 was estimated to be US$8 million. His primary residence is in Monaco. He is the founder and CEO of two companies. On his YouTube channel, he offers advice and on guides on investments, making money and handling business. His channels on YouTube, TikTok and Instagram have combined followers of more than 12 million.",
+      "source": "research",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "Mark Tilbury is a British entrepreneur and investor who left school at 16 with no qualifications, started by making wooden trash cans for under $2 an hour, and went on to build a multi-million-dollar business. His YouTube channel has over 7 million subscribers and his content covers personal finance, side hustles, investing fundamentals and small-business advice, mostly delivered as punchy vertical shorts on TikTok and YouTube Shorts with longer explainer videos on the main channel. His content is finance/self-improvement, not comedy, and some critics have described his style as 'finfluencer' content rather than rigorous financial advice.",
       "graphWeight": 5
     }
   },
   "semanticEdges": [
     {
-      "source": "salem-techsperts",
+      "source": "coding-with-lewis",
       "target": "theo",
-      "score": 0.7681
+      "score": 0.6253
+    },
+    {
+      "source": "mewtru",
+      "target": "theo",
+      "score": 0.5848
     },
     {
       "source": "fireship",
       "target": "theo",
-      "score": 0.7287
+      "score": 0.574
     },
     {
-      "source": "gamelinked",
-      "target": "theo",
-      "score": 0.7169
-    },
-    {
-      "source": "hyperplexed",
-      "target": "theo",
-      "score": 0.6984
-    },
-    {
-      "source": "mralextech",
+      "source": "theo",
       "target": "theprimeagen",
-      "score": 0.6378
-    },
-    {
-      "source": "salem-techsperts",
-      "target": "theprimeagen",
-      "score": 0.6361
+      "score": 0.5637
     },
     {
       "source": "prime-time",
       "target": "theprimeagen",
-      "score": 0.6227
+      "score": 0.747
     },
     {
-      "source": "finzar",
+      "source": "mewtru",
       "target": "theprimeagen",
-      "score": 0.6209
+      "score": 0.6192
     },
     {
-      "source": "computerphile",
-      "target": "prime-time",
-      "score": 0.6846
+      "source": "devops-toolbox",
+      "target": "theprimeagen",
+      "score": 0.5937
     },
     {
-      "source": "mralextech",
+      "source": "mewtru",
       "target": "prime-time",
-      "score": 0.6594
+      "score": 0.5838
+    },
+    {
+      "source": "fireship",
+      "target": "prime-time",
+      "score": 0.5775
     },
     {
       "source": "prime-time",
-      "target": "salem-techsperts",
-      "score": 0.6434
+      "target": "theo",
+      "score": 0.5631
     },
     {
-      "source": "film-booth",
-      "target": "prime-time",
-      "score": 0.6414
-    },
-    {
-      "source": "devtoolbox",
+      "source": "coding-with-lewis",
       "target": "fireship",
-      "score": 0.7043
-    },
-    {
-      "source": "fireship",
-      "target": "salem-techsperts",
-      "score": 0.6891
+      "score": 0.6181
     },
     {
       "source": "fireship",
       "target": "hyperplexed",
-      "score": 0.6695
+      "score": 0.55
     },
     {
       "source": "core-dumped",
       "target": "low-level",
-      "score": 0.7221
+      "score": 0.6075
+    },
+    {
+      "source": "low-level",
+      "target": "networkchuck",
+      "score": 0.5484
     },
     {
       "source": "computerscience-lessons",
       "target": "low-level",
-      "score": 0.6813
+      "score": 0.511
     },
     {
       "source": "computerphile",
       "target": "low-level",
-      "score": 0.6144
-    },
-    {
-      "source": "low-level",
-      "target": "theprimeagen",
-      "score": 0.5708
+      "score": 0.503
     },
     {
       "source": "arjan-codes",
       "target": "coding-with-lewis",
-      "score": 0.6187
+      "score": 0.5354
     },
     {
       "source": "arjan-codes",
-      "target": "diy-perks",
-      "score": 0.5973
+      "target": "fireship",
+      "score": 0.5334
     },
     {
       "source": "arjan-codes",
-      "target": "computerscience-lessons",
-      "score": 0.5912
+      "target": "core-dumped",
+      "score": 0.5092
     },
     {
       "source": "arjan-codes",
-      "target": "computerphile",
-      "score": 0.5798
-    },
-    {
-      "source": "devtoolbox",
-      "target": "mralextech",
-      "score": 0.7672
-    },
-    {
-      "source": "devtoolbox",
-      "target": "finzar",
-      "score": 0.7319
+      "target": "theprimeagen",
+      "score": 0.5057
     },
     {
       "source": "devops-toolbox",
-      "target": "devtoolbox",
-      "score": 0.7175
-    },
-    {
-      "source": "devops-toolbox",
-      "target": "salem-techsperts",
-      "score": 0.6348
-    },
-    {
-      "source": "devops-toolbox",
-      "target": "mralextech",
-      "score": 0.6302
+      "target": "fireship",
+      "score": 0.5374
     },
     {
       "source": "devops-toolbox",
       "target": "theo",
-      "score": 0.6181
+      "score": 0.5222
+    },
+    {
+      "source": "core-dumped",
+      "target": "devops-toolbox",
+      "score": 0.519
     },
     {
       "source": "hyperplexed",
       "target": "juxtoposed",
-      "score": 0.8063
-    },
-    {
-      "source": "hyperplexed",
-      "target": "mralextech",
-      "score": 0.6456
-    },
-    {
-      "source": "computerphile",
-      "target": "computerscience-lessons",
-      "score": 0.8051
-    },
-    {
-      "source": "computerphile",
-      "target": "core-dumped",
-      "score": 0.7205
-    },
-    {
-      "source": "computerphile",
-      "target": "salem-techsperts",
-      "score": 0.6998
-    },
-    {
-      "source": "coding-with-lewis",
-      "target": "computerphile",
-      "score": 0.6995
-    },
-    {
-      "source": "coding-with-lewis",
-      "target": "computerscience-lessons",
-      "score": 0.7688
-    },
-    {
-      "source": "computerscience-lessons",
-      "target": "core-dumped",
-      "score": 0.7072
-    },
-    {
-      "source": "computerscience-lessons",
-      "target": "salem-techsperts",
-      "score": 0.6837
-    },
-    {
-      "source": "coding-with-lewis",
-      "target": "salem-techsperts",
-      "score": 0.6766
-    },
-    {
-      "source": "coding-with-lewis",
-      "target": "mralextech",
-      "score": 0.6546
+      "score": 0.5476
     },
     {
       "source": "core-dumped",
-      "target": "salem-techsperts",
-      "score": 0.6737
+      "target": "hyperplexed",
+      "score": 0.5088
+    },
+    {
+      "source": "coding-with-lewis",
+      "target": "hyperplexed",
+      "score": 0.5064
+    },
+    {
+      "source": "computerphile",
+      "target": "numberphile",
+      "score": 0.664
+    },
+    {
+      "source": "computerphile",
+      "target": "computerscience-lessons",
+      "score": 0.65
+    },
+    {
+      "source": "computerphile",
+      "target": "core-dumped",
+      "score": 0.621
+    },
+    {
+      "source": "3blue1brown",
+      "target": "computerphile",
+      "score": 0.563
+    },
+    {
+      "source": "computerscience-lessons",
+      "target": "core-dumped",
+      "score": 0.6147
+    },
+    {
+      "source": "computerscience-lessons",
+      "target": "networkchuck",
+      "score": 0.5106
+    },
+    {
+      "source": "coding-with-lewis",
+      "target": "mewtru",
+      "score": 0.6104
+    },
+    {
+      "source": "coding-with-lewis",
+      "target": "theprimeagen",
+      "score": 0.5622
+    },
+    {
+      "source": "core-dumped",
+      "target": "networkchuck",
+      "score": 0.558
     },
     {
       "source": "finzar",
       "target": "mralextech",
-      "score": 0.7283
+      "score": 0.599
+    },
+    {
+      "source": "film-booth",
+      "target": "finzar",
+      "score": 0.5518
     },
     {
       "source": "finzar",
-      "target": "fireship",
-      "score": 0.6203
+      "target": "mark-tilbury",
+      "score": 0.4824
     },
     {
-      "source": "networkchuck",
+      "source": "finzar",
+      "target": "zach-king",
+      "score": 0.4803
+    },
+    {
+      "source": "computerphile",
+      "target": "networkchuck",
+      "score": 0.5273
+    },
+    {
+      "source": "fireship",
+      "target": "networkchuck",
+      "score": 0.5158
+    },
+    {
+      "source": "ltt",
       "target": "salem-techsperts",
-      "score": 0.628
+      "score": 0.5813
     },
     {
-      "source": "ltt-offshoots",
-      "target": "networkchuck",
-      "score": 0.6212
+      "source": "salem-techsperts",
+      "target": "zachs-tech-turf",
+      "score": 0.5663
     },
     {
-      "source": "camman18",
-      "target": "networkchuck",
-      "score": 0.6075
+      "source": "salem-techsperts",
+      "target": "shortcircuit",
+      "score": 0.5336
     },
     {
-      "source": "devops-toolbox",
-      "target": "networkchuck",
-      "score": 0.6061
-    },
-    {
-      "source": "mralextech",
+      "source": "diy-perks",
       "target": "salem-techsperts",
-      "score": 0.7841
+      "score": 0.5321
+    },
+    {
+      "source": "ltt",
+      "target": "thiojoe",
+      "score": 0.5684
     },
     {
       "source": "salem-techsperts",
       "target": "thiojoe",
-      "score": 0.7112
-    },
-    {
-      "source": "salem-techsperts",
-      "target": "techlinked",
-      "score": 0.7079
-    },
-    {
-      "source": "mralextech",
-      "target": "thiojoe",
-      "score": 0.6932
+      "score": 0.5254
     },
     {
       "source": "theo",
       "target": "thiojoe",
-      "score": 0.6412
+      "score": 0.5075
     },
     {
-      "source": "core-dumped",
+      "source": "prime-time",
       "target": "thiojoe",
-      "score": 0.6307
-    },
-    {
-      "source": "juxtoposed",
-      "target": "theo",
-      "score": 0.6211
+      "score": 0.5075
     },
     {
       "source": "fireship",
-      "target": "juxtoposed",
-      "score": 0.6175
+      "target": "mralextech",
+      "score": 0.5183
     },
     {
-      "source": "finzar",
+      "source": "mralextech",
+      "target": "networkchuck",
+      "score": 0.4931
+    },
+    {
+      "source": "coding-with-lewis",
+      "target": "mralextech",
+      "score": 0.4901
+    },
+    {
+      "source": "juxtoposed",
+      "target": "mralextech",
+      "score": 0.478
+    },
+    {
+      "source": "juxtoposed",
+      "target": "prime-time",
+      "score": 0.4715
+    },
+    {
+      "source": "arjan-codes",
       "target": "juxtoposed",
-      "score": 0.6042
+      "score": 0.4659
     },
     {
       "source": "veritasium",
       "target": "vsauce",
-      "score": 0.6433
+      "score": 0.6464
     },
     {
-      "source": "numberphile",
+      "source": "cleo-abrams",
       "target": "veritasium",
-      "score": 0.5791
+      "score": 0.5568
+    },
+    {
+      "source": "real-engineering",
+      "target": "veritasium",
+      "score": 0.5523
+    },
+    {
+      "source": "computerphile",
+      "target": "veritasium",
+      "score": 0.5454
+    },
+    {
+      "source": "bright-side",
+      "target": "vsauce",
+      "score": 0.5643
+    },
+    {
+      "source": "infographics-show",
+      "target": "vsauce",
+      "score": 0.5556
     },
     {
       "source": "3blue1brown",
-      "target": "veritasium",
-      "score": 0.5588
-    },
-    {
-      "source": "nilered",
-      "target": "veritasium",
-      "score": 0.5532
-    },
-    {
-      "source": "3blue1brown",
       "target": "vsauce",
-      "score": 0.6505
-    },
-    {
-      "source": "numberphile",
-      "target": "vsauce",
-      "score": 0.616
-    },
-    {
-      "source": "nilered",
-      "target": "vsauce",
-      "score": 0.5855
+      "score": 0.5456
     },
     {
       "source": "3blue1brown",
       "target": "numberphile",
-      "score": 0.7041
+      "score": 0.617
     },
     {
       "source": "3blue1brown",
-      "target": "electroboom",
-      "score": 0.5542
+      "target": "real-engineering",
+      "score": 0.5304
     },
     {
-      "source": "computerphile",
-      "target": "numberphile",
-      "score": 0.5479
+      "source": "numberphile",
+      "target": "veritasium",
+      "score": 0.5361
     },
     {
-      "source": "astrum",
-      "target": "infographics-show",
-      "score": 0.6369
-    },
-    {
-      "source": "astrum",
-      "target": "bright-side",
-      "score": 0.6256
+      "source": "numberphile",
+      "target": "vsauce",
+      "score": 0.5274
     },
     {
       "source": "astrum",
-      "target": "ltt-offshoots",
-      "score": 0.6237
+      "target": "cleo-abrams",
+      "score": 0.5317
     },
     {
       "source": "astrum",
-      "target": "electroboom",
-      "score": 0.59
+      "target": "veritasium",
+      "score": 0.5119
+    },
+    {
+      "source": "astrum",
+      "target": "vsauce",
+      "score": 0.498
+    },
+    {
+      "source": "astrum",
+      "target": "real-engineering",
+      "score": 0.471
     },
     {
       "source": "infographics-show",
       "target": "real-engineering",
-      "score": 0.6079
+      "score": 0.5293
+    },
+    {
+      "source": "hacksmith",
+      "target": "real-engineering",
+      "score": 0.5209
     },
     {
       "source": "electroboom",
-      "target": "real-engineering",
-      "score": 0.5919
+      "target": "veritasium",
+      "score": 0.5366
     },
     {
-      "source": "bright-side",
-      "target": "real-engineering",
-      "score": 0.5916
+      "source": "electroboom",
+      "target": "hacksmith",
+      "score": 0.4862
     },
     {
-      "source": "computerphile",
-      "target": "real-engineering",
-      "score": 0.5858
-    },
-    {
-      "source": "computerphile",
+      "source": "diy-perks",
       "target": "electroboom",
-      "score": 0.6764
+      "score": 0.4791
     },
     {
       "source": "electroboom",
-      "target": "shortcircuit",
-      "score": 0.6762
+      "target": "real-engineering",
+      "score": 0.4762
     },
     {
-      "source": "bright-side",
-      "target": "electroboom",
-      "score": 0.6696
+      "source": "nilered",
+      "target": "veritasium",
+      "score": 0.4947
     },
     {
-      "source": "electroboom",
-      "target": "nilered",
-      "score": 0.6618
-    },
-    {
-      "source": "bright-side",
-      "target": "nilered",
-      "score": 0.636
-    },
-    {
-      "source": "infographics-show",
-      "target": "nilered",
-      "score": 0.6153
+      "source": "nilered",
+      "target": "vsauce",
+      "score": 0.4718
     },
     {
       "source": "computerphile",
       "target": "nilered",
-      "score": 0.5972
+      "score": 0.4712
+    },
+    {
+      "source": "mark-rober",
+      "target": "nilered",
+      "score": 0.4702
     },
     {
       "source": "hacksmith",
       "target": "mark-rober",
-      "score": 0.5592
-    },
-    {
-      "source": "jerryrigeverything",
-      "target": "mark-rober",
-      "score": 0.5402
+      "score": 0.5769
     },
     {
       "source": "mark-rober",
       "target": "veritasium",
-      "score": 0.528
+      "score": 0.5363
     },
     {
       "source": "mark-rober",
-      "target": "vsauce",
-      "score": 0.5232
+      "target": "real-engineering",
+      "score": 0.5204
     },
     {
-      "source": "bright-side",
-      "target": "cleo-abrams",
-      "score": 0.6433
-    },
-    {
-      "source": "cleo-abrams",
-      "target": "salem-techsperts",
-      "score": 0.6178
+      "source": "diy-perks",
+      "target": "mark-rober",
+      "score": 0.5011
     },
     {
       "source": "cleo-abrams",
-      "target": "mralextech",
-      "score": 0.6159
+      "target": "computerphile",
+      "score": 0.5146
     },
     {
       "source": "cleo-abrams",
-      "target": "techlinked",
-      "score": 0.6152
+      "target": "real-engineering",
+      "score": 0.5112
     },
     {
       "source": "bright-side",
       "target": "infographics-show",
-      "score": 0.7072
+      "score": 0.5869
+    },
+    {
+      "source": "bright-side",
+      "target": "veritasium",
+      "score": 0.5158
     },
     {
       "source": "bright-side",
       "target": "computerphile",
-      "score": 0.6786
+      "score": 0.4956
     },
     {
-      "source": "bright-side",
-      "target": "camman18",
-      "score": 0.6439
-    },
-    {
-      "source": "fireship",
-      "target": "infographics-show",
-      "score": 0.6461
-    },
-    {
-      "source": "computerphile",
-      "target": "infographics-show",
-      "score": 0.6389
-    },
-    {
-      "source": "ltt",
-      "target": "techlinked",
-      "score": 0.5648
-    },
-    {
-      "source": "ltt",
-      "target": "mkbhd",
-      "score": 0.5419
+      "source": "infographics-show",
+      "target": "veritasium",
+      "score": 0.533
     },
     {
       "source": "ltt",
       "target": "shortcircuit",
-      "score": 0.5383
+      "score": 0.6655
+    },
+    {
+      "source": "ltt",
+      "target": "wan-show",
+      "score": 0.6357
     },
     {
       "source": "jakkuh",
       "target": "ltt",
-      "score": 0.5256
+      "score": 0.628
+    },
+    {
+      "source": "ltt",
+      "target": "techlinked",
+      "score": 0.6228
     },
     {
       "source": "techlinked",
       "target": "wan-show",
-      "score": 0.793
-    },
-    {
-      "source": "ltt-offshoots",
-      "target": "wan-show",
-      "score": 0.7446
-    },
-    {
-      "source": "jakkuh",
-      "target": "wan-show",
-      "score": 0.7321
+      "score": 0.6458
     },
     {
       "source": "shortcircuit",
       "target": "wan-show",
-      "score": 0.725
+      "score": 0.5516
+    },
+    {
+      "source": "gamelinked",
+      "target": "wan-show",
+      "score": 0.5488
     },
     {
       "source": "shortcircuit",
       "target": "techlinked",
-      "score": 0.8112
-    },
-    {
-      "source": "ltt-offshoots",
-      "target": "shortcircuit",
-      "score": 0.8055
-    },
-    {
-      "source": "jakkuh",
-      "target": "shortcircuit",
-      "score": 0.7691
+      "score": 0.6305
     },
     {
       "source": "gamelinked",
       "target": "shortcircuit",
-      "score": 0.7572
+      "score": 0.5605
     },
     {
       "source": "gamelinked",
       "target": "techlinked",
-      "score": 0.8795
-    },
-    {
-      "source": "jakkuh",
-      "target": "techlinked",
-      "score": 0.8246
-    },
-    {
-      "source": "ltt-offshoots",
-      "target": "techlinked",
-      "score": 0.8125
+      "score": 0.7802
     },
     {
       "source": "gamelinked",
-      "target": "ltt-offshoots",
-      "score": 0.7673
-    },
-    {
-      "source": "gamelinked",
-      "target": "mewtru",
-      "score": 0.753
+      "target": "ltt",
+      "score": 0.5531
     },
     {
       "source": "diy-perks",
       "target": "zachs-tech-turf",
-      "score": 0.8153
+      "score": 0.5581
     },
     {
       "source": "diy-perks",
-      "target": "shortcircuit",
-      "score": 0.7547
+      "target": "ltt",
+      "score": 0.5442
     },
     {
       "source": "diy-perks",
-      "target": "mkbhd",
-      "score": 0.7369
-    },
-    {
-      "source": "diy-perks",
-      "target": "techlinked",
-      "score": 0.7116
+      "target": "hacksmith",
+      "score": 0.5396
     },
     {
       "source": "jerryrigeverything",
-      "target": "mkbhd",
-      "score": 0.5216
-    },
-    {
-      "source": "hacksmith",
-      "target": "jerryrigeverything",
-      "score": 0.5213
-    },
-    {
-      "source": "jerryrigeverything",
-      "target": "zachs-tech-turf",
-      "score": 0.5183
-    },
-    {
-      "source": "hacksmith",
       "target": "mrwhosetheboss",
-      "score": 0.496
+      "score": 0.524
+    },
+    {
+      "source": "jerryrigeverything",
+      "target": "mkbhd",
+      "score": 0.5229
+    },
+    {
+      "source": "jerryrigeverything",
+      "target": "salem-techsperts",
+      "score": 0.488
+    },
+    {
+      "source": "jerryrigeverything",
+      "target": "john-malecki",
+      "score": 0.483
     },
     {
       "source": "hacksmith",
-      "target": "john-malecki",
-      "score": 0.4859
-    },
-    {
-      "source": "blacktail-studio",
-      "target": "john-malecki",
-      "score": 0.7166
+      "target": "mumbo-jumbo",
+      "score": 0.4933
     },
     {
       "source": "blacktail-studio",
       "target": "four-eyes",
-      "score": 0.712
+      "score": 0.615
+    },
+    {
+      "source": "blacktail-studio",
+      "target": "john-malecki",
+      "score": 0.5976
+    },
+    {
+      "source": "blacktail-studio",
+      "target": "salem-techsperts",
+      "score": 0.4891
     },
     {
       "source": "blacktail-studio",
       "target": "diy-perks",
-      "score": 0.6566
+      "score": 0.4627
     },
     {
-      "source": "blacktail-studio",
-      "target": "shortcircuit",
-      "score": 0.5725
+      "source": "four-eyes",
+      "target": "john-malecki",
+      "score": 0.6299
+    },
+    {
+      "source": "four-eyes",
+      "target": "salem-techsperts",
+      "score": 0.4955
     },
     {
       "source": "diy-perks",
       "target": "four-eyes",
-      "score": 0.7054
-    },
-    {
-      "source": "four-eyes",
-      "target": "john-malecki",
-      "score": 0.6956
-    },
-    {
-      "source": "four-eyes",
-      "target": "zachs-tech-turf",
-      "score": 0.5917
+      "score": 0.4875
     },
     {
       "source": "diy-perks",
       "target": "john-malecki",
-      "score": 0.7083
+      "score": 0.5166
     },
     {
       "source": "john-malecki",
-      "target": "kyle-sockwell",
-      "score": 0.6494
+      "target": "mkbhd",
+      "score": 0.487
     },
     {
       "source": "jarrods-tech",
       "target": "zachs-tech-turf",
-      "score": 0.737
+      "score": 0.5526
     },
     {
       "source": "jarrods-tech",
-      "target": "kyle-sockwell",
-      "score": 0.7315
+      "target": "ltt",
+      "score": 0.5292
     },
     {
       "source": "jarrods-tech",
       "target": "mkbhd",
-      "score": 0.7188
+      "score": 0.4891
     },
     {
       "source": "jarrods-tech",
       "target": "shortcircuit",
-      "score": 0.6959
+      "score": 0.4763
     },
     {
-      "source": "kyle-sockwell",
+      "source": "ltt",
       "target": "zachs-tech-turf",
-      "score": 0.7257
-    },
-    {
-      "source": "mkbhd",
-      "target": "zachs-tech-turf",
-      "score": 0.7252
-    },
-    {
-      "source": "kyle-sockwell",
-      "target": "mkbhd",
-      "score": 0.755
-    },
-    {
-      "source": "mkbhd",
-      "target": "shortcircuit",
-      "score": 0.7485
+      "score": 0.6107
     },
     {
       "source": "mkbhd",
       "target": "mrwhosetheboss",
-      "score": 0.5574
+      "score": 0.6407
+    },
+    {
+      "source": "ltt",
+      "target": "mkbhd",
+      "score": 0.5961
+    },
+    {
+      "source": "mkbhd",
+      "target": "shortcircuit",
+      "score": 0.5121
+    },
+    {
+      "source": "ltt",
+      "target": "mrwhosetheboss",
+      "score": 0.5504
     },
     {
       "source": "mrwhosetheboss",
@@ -1254,408 +1185,373 @@
     },
     {
       "source": "kyle-sockwell",
-      "target": "mrwhosetheboss",
-      "score": 0.5192
-    },
-    {
-      "source": "mralextech",
-      "target": "mrwhosetheboss",
-      "score": 0.5169
+      "target": "squishy",
+      "score": 0.4365
     },
     {
       "source": "kyle-sockwell",
-      "target": "shortcircuit",
-      "score": 0.7153
+      "target": "max-klymenko",
+      "score": 0.4271
+    },
+    {
+      "source": "coding-with-lewis",
+      "target": "max-klymenko",
+      "score": 0.5393
     },
     {
       "source": "mark-tilbury",
       "target": "max-klymenko",
-      "score": 0.5392
+      "score": 0.5048
     },
     {
-      "source": "max-klymenko",
-      "target": "zach-king",
-      "score": 0.5037
-    },
-    {
-      "source": "dantdm",
+      "source": "film-booth",
       "target": "max-klymenko",
-      "score": 0.4749
+      "score": 0.4765
     },
     {
-      "source": "max-klymenko",
-      "target": "stampy",
-      "score": 0.4675
+      "source": "cleo-abrams",
+      "target": "max-klymenko",
+      "score": 0.4652
     },
     {
       "source": "jakkuh",
-      "target": "ltt-offshoots",
-      "score": 0.786
+      "target": "techlinked",
+      "score": 0.5553
+    },
+    {
+      "source": "jakkuh",
+      "target": "shortcircuit",
+      "score": 0.536
+    },
+    {
+      "source": "gamelinked",
+      "target": "jakkuh",
+      "score": 0.5307
     },
     {
       "source": "caeleb-dressel",
-      "target": "katie-ledecky",
-      "score": 0.6251
+      "target": "michael-phelps",
+      "score": 0.6396
+    },
+    {
+      "source": "caeleb-dressel",
+      "target": "summer-mcintosh",
+      "score": 0.6238
     },
     {
       "source": "caeleb-dressel",
       "target": "david-popovici",
-      "score": 0.6218
+      "score": 0.6121
     },
     {
       "source": "caeleb-dressel",
+      "target": "katie-ledecky",
+      "score": 0.5934
+    },
+    {
+      "source": "katie-ledecky",
+      "target": "michael-phelps",
+      "score": 0.6109
+    },
+    {
+      "source": "michael-phelps",
       "target": "summer-mcintosh",
-      "score": 0.5137
+      "score": 0.6002
     },
     {
-      "source": "caeleb-dressel",
-      "target": "michael-helps",
-      "score": 0.4409
+      "source": "david-popovici",
+      "target": "michael-phelps",
+      "score": 0.5164
     },
     {
-      "source": "michael-helps",
+      "source": "david-popovici",
       "target": "summer-mcintosh",
-      "score": 0.7431
-    },
-    {
-      "source": "mewtru",
-      "target": "michael-helps",
-      "score": 0.5195
-    },
-    {
-      "source": "michael-helps",
-      "target": "mralextech",
-      "score": 0.5009
-    },
-    {
-      "source": "coding-with-lewis",
-      "target": "michael-helps",
-      "score": 0.4916
+      "score": 0.5587
     },
     {
       "source": "david-popovici",
       "target": "katie-ledecky",
-      "score": 0.506
-    },
-    {
-      "source": "david-popovici",
-      "target": "summer-mcintosh",
-      "score": 0.4906
+      "score": 0.5322
     },
     {
       "source": "katie-ledecky",
       "target": "summer-mcintosh",
-      "score": 0.5568
-    },
-    {
-      "source": "camman18",
-      "target": "summer-mcintosh",
-      "score": 0.5041
-    },
-    {
-      "source": "katie-ledecky",
-      "target": "michael-helps",
-      "score": 0.4329
+      "score": 0.6634
     },
     {
       "source": "game-makers-toolkit",
       "target": "lets-game-it-out",
-      "score": 0.7029
+      "score": 0.5481
     },
     {
       "source": "game-makers-toolkit",
-      "target": "misfit-minds",
-      "score": 0.6382
+      "target": "mkbhd",
+      "score": 0.4897
     },
     {
       "source": "game-makers-toolkit",
-      "target": "squishy",
-      "score": 0.6195
+      "target": "gamelinked",
+      "score": 0.4801
     },
     {
       "source": "game-makers-toolkit",
-      "target": "mumbo-jumbo",
-      "score": 0.6108
+      "target": "muselk",
+      "score": 0.4622
+    },
+    {
+      "source": "jacksepticeye",
+      "target": "lazarbeam",
+      "score": 0.5574
+    },
+    {
+      "source": "jacksepticeye",
+      "target": "stampy",
+      "score": 0.5422
     },
     {
       "source": "jacksepticeye",
       "target": "muselk",
-      "score": 0.8238
+      "score": 0.5358
     },
     {
       "source": "jacksepticeye",
-      "target": "squishy",
-      "score": 0.8193
-    },
-    {
-      "source": "jacksepticeye",
-      "target": "mewtru",
-      "score": 0.7901
-    },
-    {
-      "source": "camman18",
-      "target": "jacksepticeye",
-      "score": 0.7634
+      "target": "lets-game-it-out",
+      "score": 0.5333
     },
     {
       "source": "dantdm",
       "target": "stampy",
-      "score": 0.6053
-    },
-    {
-      "source": "dantdm",
-      "target": "jacksepticeye",
-      "score": 0.5672
-    },
-    {
-      "source": "dantdm",
-      "target": "veritasium",
-      "score": 0.547
+      "score": 0.5904
     },
     {
       "source": "camman18",
       "target": "dantdm",
-      "score": 0.5347
+      "score": 0.5443
     },
     {
-      "source": "camman18",
+      "source": "dantdm",
+      "target": "jacksepticeye",
+      "score": 0.5319
+    },
+    {
+      "source": "dantdm",
       "target": "mumbo-jumbo",
-      "score": 0.8044
+      "score": 0.5304
     },
     {
       "source": "mumbo-jumbo",
       "target": "stampy",
-      "score": 0.757
+      "score": 0.5199
     },
     {
-      "source": "mumbo-jumbo",
-      "target": "muselk",
-      "score": 0.6813
-    },
-    {
-      "source": "mewtru",
+      "source": "camman18",
       "target": "mumbo-jumbo",
-      "score": 0.6773
+      "score": 0.5049
     },
     {
       "source": "camman18",
-      "target": "mewtru",
-      "score": 0.8136
-    },
-    {
-      "source": "camman18",
-      "target": "stampy",
-      "score": 0.7973
-    },
-    {
-      "source": "camman18",
-      "target": "muselk",
-      "score": 0.7792
-    },
-    {
-      "source": "jacksepticeye",
       "target": "lazarbeam",
-      "score": 0.7429
+      "score": 0.5189
+    },
+    {
+      "source": "camman18",
+      "target": "stampy",
+      "score": 0.4795
     },
     {
       "source": "lachlan",
       "target": "lazarbeam",
-      "score": 0.7231
+      "score": 0.6692
     },
     {
       "source": "lazarbeam",
       "target": "muselk",
-      "score": 0.722
+      "score": 0.6676
+    },
+    {
+      "source": "lachlan",
+      "target": "muselk",
+      "score": 0.5777
+    },
+    {
+      "source": "lachlan",
+      "target": "squishy",
+      "score": 0.5457
+    },
+    {
+      "source": "jacksepticeye",
+      "target": "lachlan",
+      "score": 0.5032
+    },
+    {
+      "source": "lets-game-it-out",
+      "target": "muselk",
+      "score": 0.4819
     },
     {
       "source": "lazarbeam",
       "target": "lets-game-it-out",
-      "score": 0.7146
+      "score": 0.4766
     },
     {
-      "source": "jacksepticeye",
-      "target": "lachlan",
-      "score": 0.7292
-    },
-    {
-      "source": "camman18",
-      "target": "lachlan",
-      "score": 0.7257
-    },
-    {
-      "source": "gamelinked",
-      "target": "lachlan",
-      "score": 0.7228
-    },
-    {
-      "source": "lets-game-it-out",
-      "target": "misfit-minds",
-      "score": 0.6875
-    },
-    {
-      "source": "lets-game-it-out",
-      "target": "squishy",
-      "score": 0.6818
-    },
-    {
-      "source": "jacksepticeye",
+      "source": "lazarbeam",
       "target": "stampy",
-      "score": 0.6962
-    },
-    {
-      "source": "lachlan",
-      "target": "stampy",
-      "score": 0.6897
-    },
-    {
-      "source": "mewtru",
-      "target": "muselk",
-      "score": 0.8682
+      "score": 0.5156
     },
     {
       "source": "muselk",
       "target": "squishy",
-      "score": 0.8327
-    },
-    {
-      "source": "mewtru",
-      "target": "squishy",
-      "score": 0.8316
-    },
-    {
-      "source": "mewtru",
-      "target": "misfit-minds",
-      "score": 0.7976
-    },
-    {
-      "source": "camman18",
-      "target": "misfit-minds",
-      "score": 0.7747
-    },
-    {
-      "source": "misfit-minds",
-      "target": "squishy",
-      "score": 0.7744
+      "score": 0.4871
     },
     {
       "source": "misfit-minds",
       "target": "muselk",
-      "score": 0.7723
+      "score": 0.4292
     },
     {
-      "source": "corridor-crew",
-      "target": "film-booth",
-      "score": 0.6946
+      "source": "lazarbeam",
+      "target": "squishy",
+      "score": 0.5041
     },
     {
-      "source": "corridor-crew",
-      "target": "michelle-khare",
-      "score": 0.5979
-    },
-    {
-      "source": "corridor-crew",
-      "target": "misfit-minds",
-      "score": 0.5957
+      "source": "jacksepticeye",
+      "target": "squishy",
+      "score": 0.4628
     },
     {
       "source": "corridor-crew",
       "target": "hyperplexed",
-      "score": 0.5954
+      "score": 0.4923
+    },
+    {
+      "source": "corridor-crew",
+      "target": "vsauce",
+      "score": 0.4707
+    },
+    {
+      "source": "corridor-crew",
+      "target": "ltt",
+      "score": 0.4632
+    },
+    {
+      "source": "corridor-crew",
+      "target": "salem-techsperts",
+      "score": 0.4631
     },
     {
       "source": "film-booth",
+      "target": "mark-tilbury",
+      "score": 0.5078
+    },
+    {
+      "source": "coding-with-lewis",
+      "target": "film-booth",
+      "score": 0.4992
+    },
+    {
+      "source": "max-klymenko",
       "target": "michelle-khare",
-      "score": 0.6691
-    },
-    {
-      "source": "film-booth",
-      "target": "stampy",
-      "score": 0.6538
+      "score": 0.4448
     },
     {
       "source": "michelle-khare",
-      "target": "prime-time",
-      "score": 0.5595
-    },
-    {
-      "source": "michelle-khare",
-      "target": "misfit-minds",
-      "score": 0.5561
-    },
-    {
-      "source": "dantdm",
-      "target": "zach-king",
-      "score": 0.5301
-    },
-    {
-      "source": "film-booth",
-      "target": "zach-king",
-      "score": 0.5095
-    },
-    {
-      "source": "mark-rober",
-      "target": "zach-king",
-      "score": 0.5004
-    },
-    {
-      "source": "chess-vibes",
-      "target": "gothamchess",
-      "score": 0.5903
-    },
-    {
-      "source": "gothamchess",
-      "target": "jacksepticeye",
-      "score": 0.4897
-    },
-    {
-      "source": "gothamchess",
-      "target": "lazarbeam",
-      "score": 0.4574
-    },
-    {
-      "source": "dantdm",
-      "target": "gothamchess",
-      "score": 0.4564
-    },
-    {
-      "source": "chess-vibes",
-      "target": "coding-with-lewis",
-      "score": 0.6304
-    },
-    {
-      "source": "camman18",
-      "target": "chess-vibes",
-      "score": 0.6077
-    },
-    {
-      "source": "chess-vibes",
-      "target": "computerphile",
-      "score": 0.6044
-    },
-    {
-      "source": "chess-vibes",
-      "target": "muselk",
-      "score": 0.6022
+      "target": "tyler-oliveira",
+      "score": 0.4252
     },
     {
       "source": "matt-rife",
       "target": "zach-king",
-      "score": 0.4245
+      "score": 0.4739
     },
     {
-      "source": "mark-tilbury",
+      "source": "camman18",
       "target": "zach-king",
-      "score": 0.4888
+      "score": 0.4654
     },
     {
       "source": "dantdm",
-      "target": "mark-tilbury",
-      "score": 0.484
+      "target": "zach-king",
+      "score": 0.4635
     },
     {
-      "source": "mark-rober",
-      "target": "mark-tilbury",
-      "score": 0.4807
+      "source": "chess-vibes",
+      "target": "gothamchess",
+      "score": 0.6573
+    },
+    {
+      "source": "gothamchess",
+      "target": "lazarbeam",
+      "score": 0.4506
+    },
+    {
+      "source": "gothamchess",
+      "target": "prime-time",
+      "score": 0.4495
+    },
+    {
+      "source": "gothamchess",
+      "target": "theprimeagen",
+      "score": 0.446
+    },
+    {
+      "source": "chess-vibes",
+      "target": "networkchuck",
+      "score": 0.4727
+    },
+    {
+      "source": "chess-vibes",
+      "target": "theprimeagen",
+      "score": 0.4431
+    },
+    {
+      "source": "chess-vibes",
+      "target": "lets-game-it-out",
+      "score": 0.4358
+    },
+    {
+      "source": "foil-arms-and-hog",
+      "target": "jimmy-carr",
+      "score": 0.4284
+    },
+    {
+      "source": "jimmy-carr",
+      "target": "matt-rife",
+      "score": 0.4607
+    },
+    {
+      "source": "jacksepticeye",
+      "target": "jimmy-carr",
+      "score": 0.4324
+    },
+    {
+      "source": "matt-rife",
+      "target": "muselk",
+      "score": 0.4442
+    },
+    {
+      "source": "mark-tilbury",
+      "target": "tyler-oliveira",
+      "score": 0.4597
+    },
+    {
+      "source": "tyler-oliveira",
+      "target": "veritasium",
+      "score": 0.4594
+    },
+    {
+      "source": "tyler-oliveira",
+      "target": "vsauce",
+      "score": 0.4421
+    },
+    {
+      "source": "bright-side",
+      "target": "tyler-oliveira",
+      "score": 0.4401
+    },
+    {
+      "source": "mark-tilbury",
+      "target": "mkbhd",
+      "score": 0.4837
     }
   ]
 }

@@ -1,0 +1,25 @@
+{
+  "slug": "david-popovici",
+  "name": "David Popovici",
+  "realName": "David Popovici",
+  "oneLine": "Romanian sprint freestyler, Olympic 200m free champion and former 100m free world record holder.",
+  "bio": "David Popovici is a Romanian sprinter coached since age nine by Adrian Radulescu at Aqua Team Bucharest. At Paris 2024 he won Olympic gold in the 200m freestyle (1:44.72) and bronze in the 100m freestyle, finishing 0.01s behind Kyle Chalmers. In August 2022 at the European Championships in Rome, he set the 100m freestyle world record at 46.86, becoming the youngest swimmer to do so at age 17 and breaking Cesar Cielo's 13-year-old supersuit-era mark. His style stands out for an unusually low stroke rate, long underwater pull, and a fast back half.",
+  "topics": ["100m freestyle", "200m freestyle", "Olympics", "European Championships", "World Championships", "sprint freestyle"],
+  "style": "Long, smooth, low-rate freestyle with strong underwaters and a devastating back-half negative split.",
+  "notable": [
+    "Olympic gold 200m freestyle, Paris 2024 (1:44.72)",
+    "Olympic bronze 100m freestyle, Paris 2024",
+    "World record 100m freestyle 46.86, August 2022 (since broken by Pan Zhanle)",
+    "World Championships gold 100m and 200m free, Budapest 2022",
+    "Youngest swimmer to break the 100m freestyle world record"
+  ],
+  "associatedWith": ["Adrian Radulescu", "Aqua Team Bucharest", "Kyle Chalmers", "Pan Zhanle", "Matthew Richards", "Caeleb Dressel"],
+  "sources": [
+    "https://en.wikipedia.org/wiki/David_Popovici",
+    "https://www.worldaquatics.com/athletes/1248035/david-popovici",
+    "https://swimswam.com/david-popovici-crushes-46-51-100freestyle-for-world-championships-gold-european-record/",
+    "https://www.olympics.com/en/athletes/david-popovici",
+    "https://www.cbc.ca/sports/olympics/summer/aquatics/david-popovici-world-swim-record-freestyle-1.6550718",
+    "https://www.worldaquatics.com/news/4236735/david-popovici-named-romanias-male-athletes-of-the-year-2024"
+  ]
+}

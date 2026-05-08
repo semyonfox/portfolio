@@ -1,0 +1,38 @@
+{
+  "slug": "theo",
+  "name": "Theo - t3.gg",
+  "realName": "Theo Browne",
+  "oneLine": "Opinionated TypeScript YouTuber and founder of Ping Labs who created the T3 Stack and runs T3 Chat.",
+  "bio": "Theo Browne is the CEO of Ping Labs (Y Combinator) and a TypeScript-focused YouTuber and streamer. He created the T3 Stack and create-t3-app (Next.js + tRPC + Prisma + Tailwind), Uploadthing, Ping.gg, and the T3 Chat AI client. His channel mixes hot-take reactions to web dev news, deep TypeScript and React commentary, and product-building vlogs, drawing roughly 4M views per month.",
+  "topics": [
+    "TypeScript ergonomics",
+    "Next.js and React Server Components",
+    "tRPC and end-to-end type safety",
+    "create-t3-app",
+    "Uploadthing",
+    "T3 Chat",
+    "web dev industry takes",
+    "JavaScript framework wars"
+  ],
+  "style": "Reaction and commentary videos plus long-form Twitch streams reposted to YouTube, often built around screenshotted tweets and live code reading.",
+  "notable": [
+    "create-t3-app",
+    "T3 Stack",
+    "Uploadthing",
+    "Ping.gg",
+    "T3 Chat"
+  ],
+  "associatedWith": [
+    "ThePrimeagen",
+    "Jason Lengstorf",
+    "Lee Robinson",
+    "Dan Abramov",
+    "Fireship"
+  ],
+  "sources": [
+    "https://t3.gg/",
+    "https://www.youtube.com/@t3dotgg",
+    "https://github.com/t3dotgg",
+    "https://grokipedia.com/page/theo-browne"
+  ]
+}

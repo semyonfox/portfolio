@@ -1,0 +1,16 @@
+{
+  "slug": "numberphile",
+  "name": "Numberphile",
+  "realName": "Brady Haran",
+  "oneLine": "Math channel where journalist Brady Haran interviews mathematicians about specific numbers, theorems, and curiosities, often illustrated on brown paper.",
+  "bio": "Brady Haran, an Australian-British video journalist, started Numberphile in 2011. The channel's signature format is a casual interview with a mathematician sketching ideas on brown paper. Originally each episode focused on a specific number; it has since expanded to advanced topics like the Riemann hypothesis and Fermat's Last Theorem. Haran was awarded the 2024 Christopher Zeeman Medal for math communication.",
+  "topics": ["number theory", "famous unsolved problems", "Graham's number", "prime numbers", "Riemann hypothesis", "combinatorics", "mathematical curiosities", "Fermat's Last Theorem"],
+  "style": "interview-led whiteboard/brown-paper explanations with multiple recurring guest mathematicians",
+  "notable": ["Graham's Number videos with Ron Graham", "Parker Square (Matt Parker)", "TREE(3) with Tony Padilla", "spinoff channels Computerphile, Sixty Symbols, Periodic Videos", "The Numberphile Podcast"],
+  "associatedWith": ["Matt Parker", "James Grime", "Cliff Stoll", "Tony Padilla", "3Blue1Brown", "Computerphile", "Sixty Symbols"],
+  "sources": [
+    "https://en.wikipedia.org/wiki/Numberphile",
+    "https://www.numberphile.com/about",
+    "https://en.wikipedia.org/wiki/Brady_Haran"
+  ]
+}

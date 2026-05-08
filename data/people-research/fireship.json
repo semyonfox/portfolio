@@ -1,0 +1,35 @@
+{
+  "slug": "fireship",
+  "name": "Fireship",
+  "realName": "Jeff Delaney",
+  "oneLine": "Creator of the #100SecondsOfCode format, delivering tightly-edited high-density tutorials on web and AI tooling.",
+  "bio": "Jeff Delaney runs Fireship, a web-development channel known for fast-cut, joke-heavy explainers strictly clocked at 100 seconds. The channel launched its 100 Seconds of Code series in 2019 and has grown to 4M+ subscribers and 650M+ views by late 2025. Beyond shorts, Fireship publishes weekly tech news roundups (Code Report) and longer paid courses on fireship.io covering Firebase, Next.js, Flutter, and full-stack TypeScript.",
+  "topics": [
+    "100 Seconds of Code",
+    "web framework explainers",
+    "Firebase",
+    "Next.js",
+    "Flutter",
+    "AI coding tools",
+    "weekly tech news (Code Report)",
+    "JavaScript ecosystem"
+  ],
+  "style": "Heavily-edited 100-second explainers and 5-10 minute Code Report news videos, packed with cuts, memes, and overlay text.",
+  "notable": [
+    "100 Seconds of Code series",
+    "Code Report news show",
+    "fireship.io courses",
+    "The Angular Project (early channel content)"
+  ],
+  "associatedWith": [
+    "Theo Browne",
+    "Web Dev Simplified",
+    "Traversy Media",
+    "ThePrimeagen"
+  ],
+  "sources": [
+    "https://www.youtube.com/@Fireship",
+    "https://grokipedia.com/page/fireship-youtube-channel",
+    "https://youtube.fandom.com/wiki/Fireship"
+  ]
+}

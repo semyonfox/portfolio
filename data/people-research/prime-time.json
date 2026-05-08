@@ -1,0 +1,30 @@
+{
+  "slug": "prime-time",
+  "name": "Prime Time",
+  "realName": "Michael B. Paulson",
+  "oneLine": "ThePrimeagen's secondary YouTube channel hosting longer reaction and article-reading streams from his Twitch broadcasts.",
+  "bio": "Prime Time is ThePrimeagen's clip and reaction channel, separate from his main @ThePrimeagen channel. It re-publishes his Twitch streams in close-to-full form, focused on article reactions, blog post breakdowns, paper readings, and tech news commentary rather than the shorter edited highlights that go on the main channel. The format is unedited or lightly edited live talking-head with screen-share reading.",
+  "topics": [
+    "tech news reactions",
+    "blog post breakdowns",
+    "academic paper reading",
+    "JavaScript and TypeScript drama",
+    "AI coding tools",
+    "developer culture"
+  ],
+  "style": "Long-form Twitch VOD reposts, mostly screen-share reading and live commentary with minimal editing.",
+  "notable": [
+    "article reaction series",
+    "paper-reading streams",
+    "Twitch VOD archive"
+  ],
+  "associatedWith": [
+    "ThePrimeagen (main channel)",
+    "Theo Browne",
+    "TJ DeVries"
+  ],
+  "sources": [
+    "https://www.youtube.com/channel/UC7Kj6SG3AOu3mtn4oaA0-Jg",
+    "https://www.twitch.tv/theprimeagen"
+  ]
+}

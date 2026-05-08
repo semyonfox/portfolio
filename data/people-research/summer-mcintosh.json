@@ -1,0 +1,26 @@
+{
+  "slug": "summer-mcintosh",
+  "name": "Summer McIntosh",
+  "realName": "Summer McIntosh",
+  "oneLine": "Canadian middle-distance and IM star, three-time Paris 2024 gold medalist and multiple world record holder.",
+  "bio": "Summer McIntosh is a Canadian swimmer who specializes in the individual medleys, 200m butterfly, and middle-distance freestyle. At Paris 2024 she won three gold medals (200m butterfly, 200m IM, 400m IM, all with Olympic records or close to it) plus silver in the 400m freestyle, becoming the first Canadian athlete with three golds at a single Games. She holds long-course world records in the 400m freestyle, 200m IM, and 400m IM, plus short-course records, and her 400m IM mark she has reset multiple times. At the 2025 World Aquatics Championships she won four golds (400 IM, 200 fly, 200 IM, 400 free), making her the most decorated Canadian in World Aquatics history.",
+  "topics": ["200m IM", "400m IM", "200m butterfly", "400m freestyle", "Olympics", "World Championships"],
+  "style": "Versatile range across IM, fly, and middle-distance free; strong aerobic base with a sharp closing speed.",
+  "notable": [
+    "3 Olympic golds at Paris 2024 (200m fly, 200m IM, 400m IM) plus 400m free silver",
+    "First Canadian athlete with 3 golds at a single Olympic Games",
+    "World record 400m freestyle long course",
+    "World record 200m IM long course",
+    "World record 400m IM long course",
+    "4 golds at 2025 World Aquatics Championships (400 IM, 200 fly, 200 IM, 400 free)"
+  ],
+  "associatedWith": ["Katie Ledecky", "Ariarne Titmus", "Kaylee McKeown", "Swimming Canada"],
+  "sources": [
+    "https://en.wikipedia.org/wiki/Summer_McIntosh",
+    "https://www.swimming.ca/swimmer/summer-mcintosh/",
+    "https://olympic.ca/team-canada/summer-mcintosh/",
+    "https://www.olympics.com/en/athletes/summer-mcintosh",
+    "https://www.olympics.com/en/news/2025-canadian-swimming-trials-summer-mcintosh-400-individual-medley-world-record",
+    "https://olympic.ca/2025/08/03/mcintosh-claims-fourth-gold-medal-at-world-aquatics-championships/"
+  ]
+}

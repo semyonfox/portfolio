@@ -1,0 +1,15 @@
+{
+  "slug": "dantdm",
+  "name": "DanTDM",
+  "realName": "Daniel Robert Middleton",
+  "oneLine": "English Minecraft YouTuber whose family-friendly let's plays made him one of the most-watched gaming creators of the 2010s.",
+  "bio": "Daniel Middleton, born 1991 in Aldershot, launched TheDiamondMinecart in 2012 focused on Minecraft mod reviews and showcases. The channel was rebranded to DanTDM in 2016 and has grown to roughly 29 million subscribers and over 20 billion views, holding a Guinness World Record for most views on a dedicated Minecraft channel. Long-running series include the modded Diamond Dimensions, plus expansions into Roblox, Fortnite and broader gaming content.",
+  "topics": ["Minecraft", "Minecraft mods", "family-friendly let's plays", "Roblox", "Pokemon"],
+  "style": "kid-friendly let's-play and mod showcase",
+  "notable": ["The Diamond Dimensions modded series", "Pokemobs Pokemon mod let's play", "TDM Vlogs", "Guinness World Record for Minecraft views"],
+  "associatedWith": ["Stampylonghead", "iBallisticSquid", "ThnxCya"],
+  "sources": [
+    "https://en.wikipedia.org/wiki/DanTDM",
+    "https://minecraft.wiki/w/DanTDM"
+  ]
+}

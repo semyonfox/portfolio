@@ -1,0 +1,16 @@
+{
+  "slug": "infographics-show",
+  "name": "The Infographics Show",
+  "realName": null,
+  "oneLine": "Animated explainer channel that tackles history, true crime, hypotheticals, and science with colorful 2D motion graphics.",
+  "bio": "The Infographics Show is a faceless studio-run YouTube channel that publishes near-daily animated videos in a recognizable flat 2D style produced in Adobe Illustrator and After Effects. Topics span true crime, military history, survival hypotheticals, comparison videos, and pop science. As of late 2024 the channel had roughly 14.7 million subscribers and over 6 billion total views, and operates spinoff channels including Fact Fiend and similar formats.",
+  "topics": ["true crime", "military and war", "hypothetical scenarios", "historical events", "survival situations", "comparison videos", "psychology and behavior", "pop science"],
+  "style": "narrated 2D motion-graphics infographic videos with character cutouts, near-daily upload cadence",
+  "notable": ["'What if' hypothetical series", "true-crime episodes", "military comparison videos", "survival scenario series", "spinoff channels"],
+  "associatedWith": ["RealLifeLore", "Fact Fiend", "TopTenz", "Be Amazed", "AsapSCIENCE"],
+  "sources": [
+    "https://www.youtube.com/channel/UCfdNM3NAhaBOXCafH7krzrA",
+    "https://grokipedia.com/page/the-infographics-show",
+    "https://wiki.sportskeeda.com/youtube/the-infographics-show"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "slug": "hacksmith",
+  "name": "Hacksmith Industries",
+  "realName": "James Hobson",
+  "oneLine": "Kitchener, Ontario engineering studio that builds working real-world versions of fictional movie and game gadgets.",
+  "bio": "Hacksmith Industries is a Canadian YouTube channel and engineering company founded by James Hobson (born February 10, 1990), an engineering graduate who went full-time on YouTube in late 2015 after a viral pneumatic-exoskeleton video. The studio's signature 'Make It Real' series builds functional replicas of fictional weapons and tools. Hobson holds a Guinness World Record (Dec 2020) for the first retractable proto-plasma lightsaber, which reached around 2,200 C.",
+  "topics": ["retractable plasma lightsabers", "electromagnetic Captain America shield", "Iron Man suit components", "Cybertruck half-scale builds", "exoskeleton and pneumatic strength rigs"],
+  "style": "team-built engineering project series with CNC, welding, and electronics shop footage and a recurring crew",
+  "notable": ["'Make It Real' series", "Guinness-recognized plasma lightsaber", "Captain America electromagnetic shield (20M+ views)", "Thor's Stormbreaker"],
+  "associatedWith": ["Tormach"],
+  "sources": [
+    "https://en.wikipedia.org/wiki/The_Hacksmith",
+    "https://www.cbc.ca/news/canada/kitchener-waterloo/the-hacksmith-youtube-kitchener-avengers-end-game-1.5107790",
+    "https://torontolife.com/life/internet-famous-how-james-hobson-a-k-a-the-hacksmith-brings-in-500000-a-year-building-superhero-props-on-youtube/"
+  ]
+}

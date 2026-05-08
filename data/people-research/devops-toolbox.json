@@ -1,0 +1,34 @@
+{
+  "slug": "devops-toolbox",
+  "name": "DevOps Toolbox",
+  "realName": "Omer Hamerman",
+  "oneLine": "Practitioner channel about Neovim, tmux, and the modern DevOps CLI workflow run by engineer Omerxx.",
+  "bio": "DevOps Toolbox is hosted by Omer (Omerxx), a working DevOps engineer who publishes Friday tutorials on terminal-first workflows: Neovim, tmux, Zsh, Docker, Kubernetes, and infrastructure-as-code. The channel is heavy on dotfile walkthroughs and reproducible setups, with a companion GitHub (omerxx/devops-toolbox) hosting his configs. Style is hands-on screen-share with the host's terminal as the main subject.",
+  "topics": [
+    "Neovim configuration",
+    "tmux",
+    "Zsh and shell tooling",
+    "Docker and Kubernetes",
+    "Terraform",
+    "dotfiles",
+    "developer productivity CLI",
+    "DevSecOps"
+  ],
+  "style": "Screen-share terminal tutorials around 10-20 minutes, focused on live config edits and live tool demos.",
+  "notable": [
+    "omerxx/devops-toolbox dotfiles repo",
+    "Neovim from scratch playlist",
+    "tmux workflow series"
+  ],
+  "associatedWith": [
+    "ThePrimeagen",
+    "TJ DeVries",
+    "typecraft",
+    "Mischa van den Burg"
+  ],
+  "sources": [
+    "https://www.youtube.com/channel/UCYeiozh-4QwuC1sjgCmB92w",
+    "https://www.dotb.sh/",
+    "https://github.com/omerxx/devops-toolbox"
+  ]
+}

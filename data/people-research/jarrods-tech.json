@@ -1,0 +1,16 @@
+{
+  "slug": "jarrods-tech",
+  "name": "Jarrod'sTech",
+  "realName": "Jarrod",
+  "oneLine": "Australian gaming-laptop reviewer focused on rigorous, repeatable benchmark methodology and large comparison datasets.",
+  "bio": "Jarrod'sTech is a YouTube channel and companion site (jarrods.tech) dedicated to gaming-laptop reviews and benchmark comparisons. New laptops are tested weekly on a standardised pipeline measuring performance, thermals, battery life, and fan noise, and results are catalogued on the website for cross-model comparison. The channel is known for sweeping multi-GPU comparison videos, including one testing 34 laptop and desktop GPUs across 25 games at 1080p, 1440p, and 4K.",
+  "topics": ["gaming laptop reviews", "laptop GPU vs desktop GPU comparisons", "thermal throttling analysis", "undervolting and repaste tests", "fan noise and battery measurements"],
+  "style": "data-dense, chart-heavy benchmark reviews with consistent test methodology and minimal hype",
+  "notable": ["34-GPU laptop vs desktop comparison", "weekly laptop benchmark drops", "jarrods.tech benchmark database"],
+  "associatedWith": [],
+  "sources": [
+    "https://jarrods.tech/",
+    "https://www.youtube.com/channel/UC2Rzju32yQPkQ7oIhmeuLwg",
+    "https://jarrods.tech/laptop-desktop-graphics-comparison/"
+  ]
+}

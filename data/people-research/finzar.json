@@ -1,0 +1,17 @@
+{
+  "slug": "finzar",
+  "name": "Finzar",
+  "realName": "Fin",
+  "oneLine": "UK-based filmmaker who teaches Premiere Pro editing and YouTube growth.",
+  "bio": "Finzar (first name Fin) is a British filmmaker and editor who started making stop-motion shorts as a teenager and went on to work at film studios including Pinewood before launching his YouTube channel. He posts Premiere Pro tutorials, editing breakdowns and YouTube growth advice, and runs Storezar, a shop selling editing presets and courses including a flagship Premiere Pro course.",
+  "topics": ["Adobe Premiere Pro", "video editing tutorials", "YouTube growth", "editing presets", "color grading"],
+  "style": "Talking-head tutorials and editing breakdowns on YouTube long-form, plus shorts",
+  "notable": ["Storezar editing presets and courses", "How To Edit Like a Pro In Premiere Pro course", "BecomeThePremierePro collab series with Adobe Video"],
+  "associatedWith": ["Adobe Video", "Storezar"],
+  "sources": [
+    "https://www.youtube.com/@finzar",
+    "https://storezar.com/about/",
+    "https://storezar.com/how-to-edit-premiere-pro-course-finzar/",
+    "https://www.famousbirthdays.com/people/finzar.html"
+  ]
+}

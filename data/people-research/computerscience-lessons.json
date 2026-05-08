@@ -1,0 +1,33 @@
+{
+  "slug": "computerscience-lessons",
+  "name": "ComputerScienceLessons",
+  "realName": null,
+  "oneLine": "UK-curriculum-aligned CS revision channel with structured lessons mapping to GCSE and A-Level specifications.",
+  "bio": "ComputerScienceLessons is a UK-focused educational channel covering the GCSE and A-Level Computer Science curriculum: data representation, computer architecture, networks, databases, algorithms, and programming theory. Videos are organised as exam-board-aligned playlists rather than reaction or news content, aimed at students revising for AQA, OCR, and Edexcel papers. The host is not publicly named on the channel.",
+  "topics": [
+    "GCSE Computer Science",
+    "A-Level Computer Science",
+    "binary and data representation",
+    "CPU architecture",
+    "networking fundamentals",
+    "Boolean logic",
+    "sorting and searching algorithms",
+    "databases and SQL"
+  ],
+  "style": "Slide-driven narrated lessons, 5-15 minutes, structured as a sequenced curriculum playlist rather than standalone videos.",
+  "notable": [
+    "GCSE Computer Science playlist",
+    "A-Level Computer Science playlist",
+    "exam-board-aligned revision series"
+  ],
+  "associatedWith": [
+    "Craig'n'Dave",
+    "MrBrownCS",
+    "ComputerScienceUK",
+    "Mr Jamil Stalker"
+  ],
+  "sources": [
+    "https://www.youtube.com/channel/UCSX3MR0gnKDxyXAyljWzm0Q",
+    "https://www.thestudentroom.co.uk/revision/these-youtubers-can-help-get-your-exam-revision-on-track"
+  ]
+}
