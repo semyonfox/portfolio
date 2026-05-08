@@ -63,7 +63,8 @@ const rawPeople: RawPerson[] = [
     category: 'dev',
     weight: 5,
     href: youtubeSearch('Theo t3.gg'),
-    summary: 'T3 Stack creator with strong TypeScript opinions and startup energy',
+    summary:
+      'T3 Stack creator with strong TypeScript opinions and startup energy',
     tags: ['web dev', 'opinionated', 'startup energy'],
     connections: ['theprimeagen', 'fireship', 'prime-time', 'hyperplexed'],
   },
@@ -73,7 +74,8 @@ const rawPeople: RawPerson[] = [
     category: 'dev',
     weight: 5,
     href: youtubeSearch('ThePrimeagen'),
-    summary: 'ex-Netflix engineer obsessed with Neovim, performance, and dev opinions',
+    summary:
+      'ex-Netflix engineer obsessed with Neovim, performance, and dev opinions',
     tags: ['vim', 'systems', 'dev culture'],
     connections: ['theo', 'prime-time', 'fireship', 'low-level'],
   },
@@ -104,7 +106,8 @@ const rawPeople: RawPerson[] = [
     category: 'dev',
     weight: 4,
     href: youtubeSearch('Low Level Learning'),
-    summary: 'cybersecurity researcher teaching systems, security, and low-level CS',
+    summary:
+      'cybersecurity researcher teaching systems, security, and low-level CS',
     wikiSearch: false,
     tags: ['systems', 'security', 'cs fundamentals'],
     connections: ['theprimeagen', 'computerphile', 'core-dumped'],
@@ -185,7 +188,8 @@ const rawPeople: RawPerson[] = [
     category: 'creative',
     weight: 3,
     href: youtubeSearch('Finzar'),
-    summary: 'Premiere Pro tutorials, video editing tips, and YouTuber growth advice',
+    summary:
+      'Premiere Pro tutorials, video editing tips, and YouTuber growth advice',
     tags: ['video editing', 'premiere pro', 'youtube'],
     connections: ['corridor-crew', 'film-booth'],
   },
@@ -195,7 +199,8 @@ const rawPeople: RawPerson[] = [
     category: 'dev',
     weight: 5,
     href: youtubeSearch('NetworkChuck'),
-    summary: 'IT certification training for networking, cybersecurity, and Linux',
+    summary:
+      'IT certification training for networking, cybersecurity, and Linux',
     tags: ['networking', 'homelab', 'security'],
     connections: ['devops-toolbox', 'ltt', 'fireship'],
   },
@@ -243,7 +248,8 @@ const rawPeople: RawPerson[] = [
     category: 'science',
     weight: 5,
     href: youtubeSearch('Veritasium'),
-    summary: 'science videos that challenge intuition and explore physics deeply',
+    summary:
+      'science videos that challenge intuition and explore physics deeply',
     tags: ['science', 'intuition', 'big questions'],
     connections: ['vsauce', '3blue1brown', 'astrum'],
   },
@@ -253,7 +259,8 @@ const rawPeople: RawPerson[] = [
     category: 'science',
     weight: 5,
     href: youtubeSearch('VSauce'),
-    summary: 'Michael Stevens exploring weird questions about math, science, and existence',
+    summary:
+      'Michael Stevens exploring weird questions about math, science, and existence',
     tags: ['curiosity', 'weird questions', 'science'],
     connections: ['veritasium', 'numberphile'],
   },
@@ -263,7 +270,8 @@ const rawPeople: RawPerson[] = [
     category: 'science',
     weight: 5,
     href: youtubeSearch('3Blue1Brown'),
-    summary: 'beautiful visual math explanations, especially linear algebra and calculus',
+    summary:
+      'beautiful visual math explanations, especially linear algebra and calculus',
     tags: ['math', 'visual intuition', 'learning'],
     connections: ['veritasium', 'numberphile'],
   },
@@ -293,7 +301,8 @@ const rawPeople: RawPerson[] = [
     category: 'science',
     weight: 4,
     href: youtubeSearch('Real Engineering'),
-    summary: 'engineering breakdowns of aircraft, infrastructure, and megaprojects',
+    summary:
+      'engineering breakdowns of aircraft, infrastructure, and megaprojects',
     tags: ['engineering', 'infrastructure', 'systems'],
     connections: ['astrum', 'mark-rober'],
   },
@@ -323,7 +332,8 @@ const rawPeople: RawPerson[] = [
     category: 'science',
     weight: 4,
     href: youtubeSearch('Mark Rober'),
-    summary: 'ex-NASA engineer building elaborate science gadgets and glitter bombs',
+    summary:
+      'ex-NASA engineer building elaborate science gadgets and glitter bombs',
     tags: ['engineering', 'fun builds', 'education'],
     connections: ['real-engineering', 'electroboom', 'hacksmith'],
   },
@@ -528,7 +538,7 @@ const rawPeople: RawPerson[] = [
     category: 'creative',
     weight: 3,
     href: youtubeSearch('Max Klymenko'),
-    summary: 'Career Ladder street interviews guessing people\'s jobs',
+    summary: "Career Ladder street interviews guessing people's jobs",
     tags: ['interviews', 'careers', 'shorts'],
   },
   {
@@ -557,7 +567,8 @@ const rawPeople: RawPerson[] = [
     category: 'swimming',
     weight: 5,
     href: webSearch('Michael Phelps'),
-    summary: 'most decorated Olympian ever with 23 golds, butterfly and IM legend',
+    summary:
+      'most decorated Olympian ever with 23 golds, butterfly and IM legend',
     tags: ['butterfly', 'IM', 'olympic legend'],
     connections: ['caeleb-dressel', 'katie-ledecky'],
   },
@@ -787,7 +798,7 @@ const rawPeople: RawPerson[] = [
     category: 'comedy',
     weight: 2,
     href: youtubeSearch('Jimmy Carr'),
-    summary: 'British comedian\'s stand-up clips and TV show highlights',
+    summary: "British comedian's stand-up clips and TV show highlights",
     tags: ['comedy', 'stand-up'],
   },
   {

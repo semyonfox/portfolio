@@ -970,7 +970,8 @@ const defaultPerson = graphNodes[0];
 
   graphSvg?.addEventListener('pointerdown', (event) => {
     if (!graphSvg) return;
-    const onNode = event.target instanceof Element && event.target.closest('[data-node]');
+    const onNode =
+      event.target instanceof Element && event.target.closest('[data-node]');
     if (onNode) return;
     pointerState = {
       x: event.clientX,
