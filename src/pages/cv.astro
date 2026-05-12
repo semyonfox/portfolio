@@ -13,7 +13,7 @@ import Layout from '../layouts/Layout.astro';
       </h1>
       <a
         href="/cv.pdf"
-        download
+        download="SEMYON_FOX_CV.pdf"
         class="shrink-0 border border-border text-muted text-xs px-4 py-2 rounded-lg hover:text-heading hover:border-muted transition-colors"
       >
         download PDF
@@ -46,9 +46,10 @@ import Layout from '../layouts/Layout.astro';
     </div>
 
     <p class="text-muted text-sm leading-relaxed italic mb-12">
-      Second-year Computer Science student building full-stack web applications
-      and running a 45-container homelab. Currently serving as Treasurer of the
-      446-member Computer Science Society, previously Auditor.
+      Builder, swimmer, filmmaker. Second-year Computer Science student at the
+      University of Galway with First Class Honours in year 1. Auditor turned
+      Treasurer of CompSoc, a 450+ member computing society. Builds React and
+      Next.js frontends, Rust APIs, and self-hosted infrastructure.
     </p>
 
     <!-- technical skills -->
@@ -59,24 +60,26 @@ import Layout from '../layouts/Layout.astro';
       <div class="space-y-2 text-sm">
         <p>
           <span class="text-heading font-semibold">Languages:</span>
-          <span class="text-muted">JavaScript, Java, C, SQL, Python, Rust</span>
+          <span class="text-muted"
+            >JavaScript, TypeScript, Java, C, SQL, Python, Rust</span
+          >
         </p>
         <p>
           <span class="text-heading font-semibold">Web:</span>
           <span class="text-muted"
-            >React, Node.js/Express, REST APIs, HTML/CSS, Tailwind CSS, Astro,
-            Next.js</span
+            >React, Next.js, Astro, Node.js/Express, REST APIs, HTML/CSS,
+            Tailwind CSS</span
           >
         </p>
         <p>
           <span class="text-heading font-semibold">Databases:</span>
-          <span class="text-muted">PostgreSQL, MySQL, TimescaleDB, Redis</span>
+          <span class="text-muted">PostgreSQL, TimescaleDB, MySQL, Redis</span>
         </p>
         <p>
           <span class="text-heading font-semibold">Infrastructure:</span>
           <span class="text-muted"
-            >Docker, Git/GitHub, Linux, Nginx, Cloudflare Workers, Restic,
-            Btrfs, JWT, CSRF</span
+            >Docker, Jenkins CI/CD, Git/GitHub, Linux, Nginx, Cloudflare
+            Workers, Tunnels, Zero Trust, AWS, Btrfs, NFS</span
           >
         </p>
       </div>
@@ -88,7 +91,8 @@ import Layout from '../layouts/Layout.astro';
       <div class="border-l border-border pl-6">
         <h3 class="text-heading font-bold">University of Galway</h3>
         <p class="text-muted text-sm">
-          BSc (Hons) Computer Science & IT &middot; Expected August 2028
+          Bachelor of Science (Honours) in Computer Science and Information
+          Technology &middot; Expected August 2028
         </p>
         <p class="text-muted text-sm mt-1">
           2nd Year &middot; <span class="text-heading font-semibold"
@@ -96,9 +100,10 @@ import Layout from '../layouts/Layout.astro';
           > (Year 1)
         </p>
         <p class="text-dim text-xs mt-2">
-          Web Development, Algorithms & Data Structures, Database Systems,
-          Software Engineering, OOP (Java), Discrete Mathematics, Calculus,
-          Statistics
+          Software Engineering, Database Systems, OOP (Java), Data Structures &
+          Algorithms, Networks & Data Communication, Computer Systems &
+          Organisation, Digital Security & Cryptography, Modelling, Discrete
+          Mathematics, Linear Algebra, Statistics
         </p>
       </div>
     </div>
@@ -112,13 +117,15 @@ import Layout from '../layouts/Layout.astro';
         <div class="bg-surface border border-heading/[0.06] rounded-bento p-4">
           <div class="flex justify-between items-start">
             <h3 class="text-heading font-bold text-sm">
-              Best Intervarsity Competition - CompSoc "Capture the Flag"
+              Best Intervarsity Award - CompSoc "Capture the Flag"
             </h3>
-            <span class="text-dim text-xs shrink-0 ml-4">Mar 2025</span>
+            <span class="text-dim text-xs shrink-0 ml-4"
+              >Mar 2025, Mar 2026</span
+            >
           </div>
           <p class="text-muted text-xs mt-1">
-            University of Galway Societies Award. Selected by panel of judges;
-            represented university at BICS National Society Awards.
+            University of Galway Societies Awards 2025 and 2026; BICS National
+            Society Award 2025, nominated again in 2026.
           </p>
         </div>
         <div class="bg-surface border border-heading/[0.06] rounded-bento p-4">
@@ -153,58 +160,79 @@ import Layout from '../layouts/Layout.astro';
       <div class="space-y-4">
         <div class="bg-surface border border-heading/[0.06] rounded-bento p-4">
           <div class="flex justify-between items-start">
-            <h3 class="text-heading font-bold text-sm">
-              Swimming Club Management System
-            </h3>
-            <span class="text-dim text-xs shrink-0 ml-4">In Development</span>
+            <h3 class="text-heading font-bold text-sm">OghmaNotes</h3>
+            <span class="text-dim text-xs shrink-0 ml-4">MVP Deployed</span>
+          </div>
+          <p class="text-dim text-xs mt-1">
+            Next.js, TypeScript, PostgreSQL, pgvector, Redis, AWS, Docker
+          </p>
+          <p class="text-muted text-xs mt-2">
+            Markdown e-learning platform with RAG search, quizzing, FSRS spaced
+            repetition, Canvas LMS import, PDF extraction, and embedding
+            pipeline. Migrated from AWS to self-hosted on-prem to cut costs.
+          </p>
+        </div>
+        <div class="bg-surface border border-heading/[0.06] rounded-bento p-4">
+          <div class="flex justify-between items-start">
+            <h3 class="text-heading font-bold text-sm">Uisce</h3>
+            <span class="text-dim text-xs shrink-0 ml-4"
+              >Targeting Aug 2026</span
+            >
           </div>
           <p class="text-dim text-xs mt-1">
             React 19, Node.js/Express, PostgreSQL, Redis, Docker, Jest
           </p>
           <p class="text-muted text-xs mt-2">
-            Full-stack platform for 200 swimmers, 5 coaches, and 10 committee
-            members. 58-table PostgreSQL schema. Production-grade security with
-            JWT, CSRF, rate limiting.
+            Full-stack platform with role-based access for swimmers, coaches,
+            and committee members. 58-table PostgreSQL schema covering
+            attendance, meet results, training schedules, squad analytics, and
+            equipment.
           </p>
         </div>
         <div class="bg-surface border border-heading/[0.06] rounded-bento p-4">
           <div class="flex justify-between items-start">
-            <h3 class="text-heading font-bold text-sm">Home Lab Server</h3>
+            <h3 class="text-heading font-bold text-sm">Canvas MCP Server</h3>
+            <span class="text-dim text-xs shrink-0 ml-4">Open Source</span>
+          </div>
+          <p class="text-dim text-xs mt-1">
+            TypeScript, Model Context Protocol SDK, Zod
+          </p>
+          <p class="text-muted text-xs mt-2">
+            MCP server exposing the full Canvas LMS REST API to AI assistants
+            across 15 domains. Merged and normalised 12 open-source Canvas MCP
+            projects.
+          </p>
+        </div>
+        <div class="bg-surface border border-heading/[0.06] rounded-bento p-4">
+          <div class="flex justify-between items-start">
+            <h3 class="text-heading font-bold text-sm">
+              Irish Rail Data Pipeline
+            </h3>
+            <span class="text-dim text-xs shrink-0 ml-4">Running 24/7</span>
+          </div>
+          <p class="text-dim text-xs mt-1">
+            Python, asyncio/aiohttp, TimescaleDB, Rust, axum, Docker
+          </p>
+          <p class="text-muted text-xs mt-2">
+            Polls Irish Rail every 3 seconds, storing train positions and
+            station data in TimescaleDB. Rust API serves a live map and
+            delay-tracking dashboard.
+          </p>
+        </div>
+        <div class="bg-surface border border-heading/[0.06] rounded-bento p-4">
+          <div class="flex justify-between items-start">
+            <h3 class="text-heading font-bold text-sm">
+              Home Lab & CI/CD Infrastructure
+            </h3>
             <span class="text-dim text-xs shrink-0 ml-4">Ongoing</span>
           </div>
           <p class="text-dim text-xs mt-1">
-            Docker, Linux, Nginx, Restic, Btrfs
+            Docker, Jenkins, Nginx, Cloudflare Tunnels, Btrfs, NFS, Pi-hole
           </p>
           <p class="text-muted text-xs mt-2">
-            Self-host 45+ services on repurposed hardware with Nginx reverse
-            proxy. Automated encrypted backups with daily/weekly/monthly
-            retention.
-          </p>
-        </div>
-        <div class="bg-surface border border-heading/[0.06] rounded-bento p-4">
-          <div class="flex justify-between items-start">
-            <h3 class="text-heading font-bold text-sm">OghmaNotes</h3>
-            <span class="text-dim text-xs shrink-0 ml-4">CT216 Capstone</span>
-          </div>
-          <p class="text-dim text-xs mt-1">
-            Next.js, PostgreSQL, S3, Tailwind CSS
-          </p>
-          <p class="text-muted text-xs mt-2">
-            Full-featured note-taking app with AI RAG chat, Canvas LMS import,
-            quiz generation with spaced repetition (FSRS).
-          </p>
-        </div>
-        <div class="bg-surface border border-heading/[0.06] rounded-bento p-4">
-          <div class="flex justify-between items-start">
-            <h3 class="text-heading font-bold text-sm">Irish Rail Nabber</h3>
-            <span class="text-dim text-xs shrink-0 ml-4">Data Pipeline</span>
-          </div>
-          <p class="text-dim text-xs mt-1">
-            Python, TimescaleDB, Docker Compose
-          </p>
-          <p class="text-muted text-xs mt-2">
-            Real-time Irish Rail data collector. Train positions every 3 seconds
-            with interactive network visualizations.
+            Self-hosts 30+ services in 54 containers. Six Jenkins pipelines
+            auto-deploy projects on GitHub push, with Cloudflare Zero Trust
+            tunnels, internal Nginx reverse proxying, and GFS backups to NAS.
           </p>
         </div>
       </div>
@@ -224,7 +252,7 @@ import Layout from '../layouts/Layout.astro';
         <div>
           <h3 class="text-heading font-bold">Laptop Repair Technician</h3>
           <p class="text-muted text-sm">
-            Cahill Computers, Athenry &middot; 8 months
+            Cahill Computers, Athenry & Galway &middot; part-time, 8 months
           </p>
           <p class="text-dim text-xs mt-2">
             Hardware upgrades, repairs, diagnostics. System administration, OS
@@ -233,12 +261,10 @@ import Layout from '../layouts/Layout.astro';
         </div>
         <div>
           <h3 class="text-heading font-bold">Work Experience Placements</h3>
-          <p class="text-muted text-sm">
-            Lapteck (2023), Old Barracks Kitchen (2023-2025)
-          </p>
+          <p class="text-muted text-sm">Lapteck TY placement (2023)</p>
           <p class="text-dim text-xs mt-2">
-            Diverse roles developing reliability and technical troubleshooting
-            in fast-paced environments.
+            Hardware upgrades, screen and battery replacements, OS installation,
+            drive cloning, and diagnostics.
           </p>
         </div>
       </div>
@@ -252,13 +278,15 @@ import Layout from '../layouts/Layout.astro';
       <div class="border-l border-border pl-6">
         <h3 class="text-heading font-bold">CompSoc Treasurer</h3>
         <p class="text-muted text-sm">
-          University of Galway Computer Science Society &middot; 2025 - present
+          University of Galway Computer Society &middot; Nov 2024 - present
         </p>
         <p class="text-dim text-xs mt-2">
-          Managing society finances for 446 members. Previously Auditor - led
-          committee, chaired meetings, organised CTF 2026 (Ireland's largest
-          student-run cybersecurity competition). Stepped down to treasurer to
-          diversify skills and gain financial management experience.
+          Led 450+ member student society across finance, communications, and
+          event strategy. Organised CompSoc CTF 2026 with 110+ participants,
+          four corporate sponsors, and university grant funding. Reduced
+          participant costs by 50%, increased event profit, and fixed CI/CD and
+          JSX bugs on the compsoc.ie React/TypeScript frontend. Previously PR
+          Officer and Auditor.
         </p>
       </div>
     </div>
@@ -267,8 +295,9 @@ import Layout from '../layouts/Layout.astro';
     <div>
       <h2 class="text-xs text-dim uppercase tracking-[3px] mb-4">Interests</h2>
       <p class="text-muted text-sm leading-relaxed">
-        Self-hosting and home networking, Linux tinkering, competitive swimming,
-        hands-on tech experimentation.
+        Competitive pool swimming with regular training and meets. Video
+        production, colour grading, VFX, and editing in DaVinci Resolve.
+        Woodworking and hand-built live-edge furniture.
       </p>
     </div>
   </section>

@@ -22,13 +22,13 @@ export const GET: APIRoute = async () => {
 
   const md = `# Semyon Fox
 
-Developer, swimmer, tinkerer. Second-year Computer Science & IT student at the University of Galway (first-class honours, year 1). Auditor of CompSoc (450+ members); previously PR officer. Organised CTF 2026 — Ireland's largest student-run cybersecurity competition.
+Developer, swimmer, tinkerer. Second-year Computer Science & IT student at the University of Galway (first-class honours, year 1). Treasurer of CompSoc (450+ members); previously Auditor and PR Officer. Organised CTF 2026 with 110+ participants and four corporate sponsors.
 
-Builds and breaks things with curiosity. Currently running 45+ containers on a repurposed Dell XPS 15 homelab and chasing sub-1min 100m freestyle.
+Builds and breaks things with curiosity. Currently running 54 containers on a repurposed Dell XPS 15 homelab and chasing sub-1min 100m freestyle.
 
 ## Tech
 
-JavaScript, TypeScript, React, Next.js, Node.js/Express, Java, Python, Rust, C, C++, SQL, PostgreSQL, MySQL, TimescaleDB, Redis, Docker, Linux, Nginx, Cloudflare Workers, AWS, Tailwind, Astro.
+JavaScript, TypeScript, React, Next.js, Node.js/Express, Java, Python, Rust, C, SQL, PostgreSQL, MySQL, TimescaleDB, Redis, Docker, Jenkins CI/CD, Linux, Nginx, Cloudflare Workers, Tunnels, Zero Trust, AWS, Tailwind, Astro.
 
 ## Featured project
 
