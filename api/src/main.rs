@@ -9,7 +9,7 @@ use std::{
     collections::HashMap,
     net::SocketAddr,
     sync::{Arc, Mutex},
-    time::{Duration, Instant},
+    time::{Duration, Instant, SystemTime, UNIX_EPOCH},
 };
 use tower_http::cors::CorsLayer;
 
@@ -25,6 +25,30 @@ const DEFAULT_MODEL: &str = "deepseek/deepseek-v4-flash";
 const DEFAULT_API_URL: &str = "https://openrouter.ai/api/v1/chat/completions";
 
 const OPENAPI_JSON: &str = include_str!("../openapi.json");
+
+const RATE_LIMIT_MESSAGES: &[&str] = &[
+    "brb, swimming a 100 free, ask again in a min",
+    "had to grab a coffee, give me a sec",
+    "claude agent finished, gotta prompt it again",
+    "between sets at the pool, hold on",
+    "rebuilding my neovim config, brb",
+    "tóg go bog é, try again in a min",
+    "rendering in davinci, hold on",
+    "homelab fan kicked in, give me a sec",
+    "stow conflict in dotfiles, fixing it",
+    "stuck on a ctf challenge, brb",
+    "lost a chess game, recovering",
+    "pull --rebase has conflicts, sorting them",
+];
+
+fn random_rate_limit_message() -> &'static str {
+    let idx = SystemTime::now()
+        .duration_since(UNIX_EPOCH)
+        .map(|d| d.subsec_nanos() as usize)
+        .unwrap_or(0)
+        % RATE_LIMIT_MESSAGES.len();
+    RATE_LIMIT_MESSAGES[idx]
+}
 
 const SYSTEM_PROMPT: &str = r#"You are Semyon Fox, responding as yourself on your portfolio website (semyon.ie). Second-year CS & IT student at University of Galway, Ireland. First class honours year 1.
 
@@ -200,7 +224,7 @@ async fn chat_handler(
         return (
             StatusCode::TOO_MANY_REQUESTS,
             Json(ChatResponse {
-                reply: "slow down! too many messages, try again in a minute.".to_string(),
+                reply: random_rate_limit_message().to_string(),
             }),
         );
     }
