@@ -1,0 +1,112 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Semyon Fox — Chat API",
+    "version": "0.1.0",
+    "description": "Conversational endpoint that roleplays as Semyon Fox to answer questions about him, his projects, blog, and background. Rate limited per-IP (20 req/min). Non-streaming, no reasoning tokens, 300-token reply cap, last 5 user/assistant turns kept server-side.",
+    "contact": {
+      "name": "Semyon Fox",
+      "email": "semyon.fox@gmail.com",
+      "url": "https://semyon.ie"
+    },
+    "license": { "name": "MIT" }
+  },
+  "servers": [{ "url": "https://semyon.ie" }],
+  "paths": {
+    "/api/chat": {
+      "post": {
+        "summary": "Send a chat message",
+        "description": "Submits a list of recent messages. The server prepends a fixed system prompt and keeps only the last 5 user/assistant turns. Returns a single plain-text reply. No streaming.",
+        "operationId": "chat",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ChatRequest" },
+              "examples": {
+                "minimal": {
+                  "summary": "Single user message",
+                  "value": { "messages": [{ "role": "user", "content": "what are you working on lately?" }] }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Assistant reply",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ChatResponse" },
+                "examples": {
+                  "reply": { "value": { "reply": "lately been grinding on the homelab and shipping a new feature for SWIM. also chasing that sub-1min 100m free." } }
+                }
+              }
+            }
+          },
+          "400": { "description": "Invalid request body", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ChatResponse" } } } },
+          "429": { "description": "Rate limited (20 requests/minute/IP)", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ChatResponse" } } } },
+          "502": { "description": "Upstream model failure", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ChatResponse" } } } }
+        }
+      }
+    },
+    "/api/chat/health": {
+      "get": {
+        "summary": "Health check",
+        "operationId": "health",
+        "responses": {
+          "200": {
+            "description": "Service is up",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["status"],
+                  "properties": { "status": { "type": "string", "const": "ok" } }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/chat/openapi.json": {
+      "get": {
+        "summary": "This OpenAPI document",
+        "operationId": "openapi",
+        "responses": {
+          "200": { "description": "OpenAPI 3.1 spec", "content": { "application/json": { "schema": { "type": "object" } } } }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ChatMessage": {
+        "type": "object",
+        "required": ["role", "content"],
+        "properties": {
+          "role": { "type": "string", "enum": ["user", "assistant"] },
+          "content": { "type": "string", "minLength": 1, "maxLength": 4000 }
+        }
+      },
+      "ChatRequest": {
+        "type": "object",
+        "required": ["messages"],
+        "properties": {
+          "messages": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 40,
+            "items": { "$ref": "#/components/schemas/ChatMessage" }
+          }
+        }
+      },
+      "ChatResponse": {
+        "type": "object",
+        "required": ["reply"],
+        "properties": { "reply": { "type": "string" } }
+      }
+    }
+  }
+}

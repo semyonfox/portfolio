@@ -1,0 +1,17 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://semyon.ie/api/chat",
+      "service-desc": [
+        { "href": "https://semyon.ie/api/chat/openapi.json", "type": "application/json" }
+      ],
+      "service-doc": [
+        { "href": "https://semyon.ie/docs/chat-api", "type": "text/html" },
+        { "href": "https://semyon.ie/docs/chat-api.md", "type": "text/markdown" }
+      ],
+      "status": [
+        { "href": "https://semyon.ie/api/chat/health", "type": "application/json" }
+      ]
+    }
+  ]
+}

@@ -1,8 +1,8 @@
 use axum::{
     Json, Router,
-    extract::ConnectInfo,
-    http::StatusCode,
-    response::IntoResponse,
+    extract::{ConnectInfo, DefaultBodyLimit, State},
+    http::{StatusCode, header},
+    response::{IntoResponse, Response},
 };
 use serde::{Deserialize, Serialize};
 use std::{
@@ -13,18 +13,30 @@ use std::{
 };
 use tower_http::cors::CorsLayer;
 
-const MODEL: &str = "deepseek/deepseek-v4-flash";
+const MAX_MESSAGES: usize = 40;
+const MAX_CONTENT_LEN: usize = 4000;
+const MAX_HISTORY: usize = 5;
+const MAX_BODY_BYTES: usize = 16 * 1024;
+const REPLY_TOKENS: u32 = 300;
+const TEMPERATURE: f32 = 0.6;
+const RATE_LIMIT_REQUESTS: usize = 20;
+const RATE_LIMIT_WINDOW_SECS: u64 = 60;
+const DEFAULT_MODEL: &str = "deepseek/deepseek-v4-flash";
+const DEFAULT_API_URL: &str = "https://openrouter.ai/api/v1/chat/completions";
+
+const OPENAPI_JSON: &str = include_str!("../openapi.json");
 
 const SYSTEM_PROMPT: &str = r#"You are Semyon Fox, responding as yourself on your portfolio website (semyon.ie). Second-year CS & IT student at University of Galway, Ireland. First class honours year 1.
 
 Background:
 - got into tech as a kid through CoderDojo (scratch, then python/JS at whizzkidz camp). took a break, but fascination never faded -- built PCs, watched linus tech tips, eventually chose CS. wrote about this journey in a blog post "why am I studying computer science"
 - competitive swimmer chasing sub-1min 100m freestyle. built a split comparison tool in C to analyze pacing
-- treasurer of CompSoc (446 members, 18-person committee), previously auditor. organised CTF 2026 as auditor -- ireland's largest student-run cybersecurity competition. stepped down to treasurer for financial management experience
+- auditor of CompSoc (450+ members), previously PR officer (sept 2024-feb 2025). organised CTF 2026 -- ireland's largest student-run cybersecurity competition. 110+ participants, secured 4 corporate sponsors (evernorth, siren, centripetal networks, libertyIT), reduced participant costs by 50%
 - worked as laptop repair tech at cahill computers (8 months -- hardware diagnostics, OS installs, drive cloning)
 - awards: best intervarsity competition (BICS national), brian o maoilchiarain outstanding student award, GRETB STEM award
 - daily drives arch linux with hyprland + neovim (lazyvim). cross-platform dotfiles (stow-managed, bash/zsh, 70+ git aliases)
-- hobbies: sci-fi, chess, woodworking, self-hosting, open source
+- hobbies: sci-fi, chess, woodworking, self-hosting, open source, video production (davinci resolve -- colour grading, VFX, editing)
+- languages: fluent in irish, pretty good french, basics in russian and german
 
 Major projects:
 - SWIM: swimming club dashboard (react 19, node/express, postgres, redis, docker, jest). 58-table schema, JWT+CSRF auth, rate limiting. 200 swimmers, 5 coaches. migrated from mysql to postgres for performance
@@ -56,7 +68,7 @@ How to respond:
 - naturally weave in skills and projects when relevant. confident but not braggy
 - mention specific tech decisions and why when discussing projects
 - if someone mentions hiring/internships/jobs: enthusiastic but not desperate. highlight relevant experience, point to cv page (/cv). mention cloudflare internship app as showing initiative
-- if asked about teamwork: compsoc (446 members, ran committee), CTF organisation, OghmaNotes 3-person team
+- if asked about teamwork: compsoc (450+ members, lead committee as auditor), CTF organisation, OghmaNotes 3-person team
 - if asked what makes you different: you don't just code -- you run production infrastructure, self-host, understand full stack from network packets to UI pixels. homelab proves you learn by doing
 - be honest. if you don't know something, say so. redirect to projects (/projects) or blog (/blog) when relevant
 - if someone wants to get in touch, work together, hire you, or has a question this chat can't answer: point them to the contact page (/contact). alternatively mention email semyon.fox@gmail.com or linkedin (linkedin.com/in/semyonfox). be natural about it, don't force it
@@ -107,11 +119,18 @@ struct ChatResponse {
 }
 
 #[derive(Serialize)]
+struct ReasoningConfig {
+    enabled: bool,
+}
+
+#[derive(Serialize)]
 struct UpstreamRequest {
     model: String,
     messages: Vec<ChatMessage>,
     temperature: f32,
     max_tokens: u32,
+    stream: bool,
+    reasoning: ReasoningConfig,
 }
 
 #[derive(Deserialize)]
@@ -132,15 +151,49 @@ struct UpstreamMessage {
 struct AppState {
     api_key: String,
     api_url: String,
+    model: String,
     http_client: reqwest::Client,
     rate_limiter: RateLimiter,
 }
 
+fn validate(req: &ChatRequest) -> Result<(), &'static str> {
+    if req.messages.is_empty() {
+        return Err("messages must not be empty");
+    }
+    if req.messages.len() > MAX_MESSAGES {
+        return Err("too many messages");
+    }
+    for m in &req.messages {
+        if m.content.trim().is_empty() {
+            return Err("message content must not be empty");
+        }
+        if m.content.len() > MAX_CONTENT_LEN {
+            return Err("message content too long");
+        }
+        if m.role != "user" && m.role != "assistant" && m.role != "system" {
+            return Err("invalid role");
+        }
+    }
+    Ok(())
+}
+
+async fn health_handler() -> impl IntoResponse {
+    Json(serde_json::json!({"status": "ok"}))
+}
+
+async fn openapi_handler() -> Response {
+    (
+        [(header::CONTENT_TYPE, "application/json; charset=utf-8")],
+        OPENAPI_JSON,
+    )
+        .into_response()
+}
+
 async fn chat_handler(
     ConnectInfo(addr): ConnectInfo<SocketAddr>,
-    state: axum::extract::State<Arc<AppState>>,
+    State(state): State<Arc<AppState>>,
     Json(payload): Json<ChatRequest>,
-) -> impl IntoResponse {
+) -> (StatusCode, Json<ChatResponse>) {
     let ip = addr.ip().to_string();
 
     if !state.rate_limiter.check(&ip) {
@@ -152,26 +205,36 @@ async fn chat_handler(
         );
     }
 
-    // build messages: system prompt + last 20 user/assistant messages
+    if let Err(err) = validate(&payload) {
+        return (
+            StatusCode::BAD_REQUEST,
+            Json(ChatResponse {
+                reply: format!("invalid request: {err}"),
+            }),
+        );
+    }
+
+    // system prompt + last MAX_HISTORY user/assistant turns. client system msgs dropped.
     let mut messages = vec![ChatMessage {
         role: "system".to_string(),
         content: SYSTEM_PROMPT.to_string(),
     }];
 
-    let user_messages: Vec<_> = payload
+    let history: Vec<_> = payload
         .messages
         .into_iter()
         .filter(|m| m.role == "user" || m.role == "assistant")
         .collect();
-    let start = user_messages.len().saturating_sub(20);
-    messages.extend(user_messages[start..].to_vec());
+    let start = history.len().saturating_sub(MAX_HISTORY);
+    messages.extend(history[start..].iter().cloned());
 
-    // hardcoded model -- client cannot override
     let upstream_req = UpstreamRequest {
-        model: MODEL.to_string(),
+        model: state.model.clone(),
         messages,
-        temperature: 0.7,
-        max_tokens: 300,
+        temperature: TEMPERATURE,
+        max_tokens: REPLY_TOKENS,
+        stream: false,
+        reasoning: ReasoningConfig { enabled: false },
     };
 
     let result = state
@@ -185,37 +248,44 @@ async fn chat_handler(
         .await;
 
     match result {
-        Ok(res) if res.status().is_success() => {
-            match res.json::<UpstreamResponse>().await {
-                Ok(data) => {
-                    let reply = data
-                        .choices
-                        .first()
-                        .map(|c| c.message.content.clone())
-                        .unwrap_or_else(|| "hmm, i blanked. try asking again?".to_string());
-                    (StatusCode::OK, Json(ChatResponse { reply }))
-                }
-                Err(e) => {
-                    tracing::error!("parse error: {e}");
-                    (StatusCode::BAD_GATEWAY, Json(ChatResponse {
-                        reply: "got a weird response, try again?".to_string(),
-                    }))
-                }
+        Ok(res) if res.status().is_success() => match res.json::<UpstreamResponse>().await {
+            Ok(data) => {
+                let reply = data
+                    .choices
+                    .first()
+                    .map(|c| c.message.content.clone())
+                    .unwrap_or_else(|| "hmm, i blanked. try asking again?".to_string());
+                (StatusCode::OK, Json(ChatResponse { reply }))
             }
-        }
+            Err(e) => {
+                tracing::error!("parse error: {e}");
+                (
+                    StatusCode::BAD_GATEWAY,
+                    Json(ChatResponse {
+                        reply: "got a weird response, try again?".to_string(),
+                    }),
+                )
+            }
+        },
         Ok(res) => {
             let status = res.status();
             let body = res.text().await.unwrap_or_default();
             tracing::error!("upstream {status}: {body}");
-            (StatusCode::BAD_GATEWAY, Json(ChatResponse {
-                reply: "something went wrong on my end, try again in a sec.".to_string(),
-            }))
+            (
+                StatusCode::BAD_GATEWAY,
+                Json(ChatResponse {
+                    reply: "something went wrong on my end, try again in a sec.".to_string(),
+                }),
+            )
         }
         Err(e) => {
             tracing::error!("request failed: {e}");
-            (StatusCode::BAD_GATEWAY, Json(ChatResponse {
-                reply: "couldn't reach my brain right now. try again later!".to_string(),
-            }))
+            (
+                StatusCode::BAD_GATEWAY,
+                Json(ChatResponse {
+                    reply: "couldn't reach my brain right now. try again later!".to_string(),
+                }),
+            )
         }
     }
 }
@@ -226,7 +296,8 @@ async fn main() {
     let _ = dotenvy::dotenv();
 
     let api_key = std::env::var("OPENROUTER_API_KEY").expect("OPENROUTER_API_KEY must be set");
-    let api_url = "https://openrouter.ai/api/v1/chat/completions".to_string();
+    let api_url = std::env::var("CHAT_API_URL").unwrap_or_else(|_| DEFAULT_API_URL.to_string());
+    let model = std::env::var("CHAT_MODEL").unwrap_or_else(|_| DEFAULT_MODEL.to_string());
     let port: u16 = std::env::var("PORT")
         .ok()
         .and_then(|p| p.parse().ok())
@@ -235,22 +306,35 @@ async fn main() {
     let state = Arc::new(AppState {
         api_key,
         api_url: api_url.clone(),
+        model: model.clone(),
         http_client: reqwest::Client::new(),
-        rate_limiter: RateLimiter::new(20, Duration::from_secs(60)),
+        rate_limiter: RateLimiter::new(
+            RATE_LIMIT_REQUESTS,
+            Duration::from_secs(RATE_LIMIT_WINDOW_SECS),
+        ),
     });
 
     let cors = CorsLayer::very_permissive();
 
     let app = Router::new()
         .route("/api/chat", axum::routing::post(chat_handler))
+        .route("/api/chat/health", axum::routing::get(health_handler))
+        .route(
+            "/api/chat/openapi.json",
+            axum::routing::get(openapi_handler),
+        )
+        .layer(DefaultBodyLimit::max(MAX_BODY_BYTES))
         .layer(cors)
         .with_state(state);
 
     let addr = SocketAddr::from(([0, 0, 0, 0], port));
-    println!("chat proxy running on http://{addr} -> {api_url}");
+    println!("chat proxy running on http://{addr} -> {api_url} ({model})");
 
     let listener = tokio::net::TcpListener::bind(addr).await.unwrap();
-    axum::serve(listener, app.into_make_service_with_connect_info::<SocketAddr>())
-        .await
-        .unwrap();
+    axum::serve(
+        listener,
+        app.into_make_service_with_connect_info::<SocketAddr>(),
+    )
+    .await
+    .unwrap();
 }
