@@ -8,14 +8,14 @@ const QUIPS = [
   "click me if you're lost",
   'hey, over here!',
   'poke me, i dare you',
-  'ask me anything about semyon',
+  'i know semyon’s work, ask away',
 ];
 
 // shown when rate limited (429)
 const RATE_LIMIT_MSGS = [
   'brb, gone to swim a 100 free',
   'warming up for a 50 back, ask again in a min',
-  'my ai agents need a prompt, hold on',
+  'retuning the assistant brain, hold on',
   'gone for a coffee, try again shortly',
   'between sets at the pool, give me a sec',
   'the homelab needs a breather, one moment',
@@ -41,7 +41,8 @@ export default function Chatbot() {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'assistant',
-      content: 'yo! what do you want to know about me or my projects?',
+      content:
+        'hey, i’m semyon’s assistant. i can help with his projects, background, experience, and what he’s working on.',
     },
   ]);
   const [input, setInput] = useState('');
@@ -115,7 +116,7 @@ export default function Chatbot() {
         >
           <img
             src="/foxbot.png"
-            alt="Chat with Semyon"
+            alt="Chat with Semyon’s assistant"
             class="w-full h-full object-cover scale-125"
           />
         </button>
@@ -129,7 +130,9 @@ export default function Chatbot() {
       <div class="flex items-center justify-between px-4 py-3 border-b border-border">
         <div class="flex items-center gap-2">
           <img src="/foxbot.png" alt="" class="w-6 h-6 rounded-full" />
-          <span class="text-heading text-sm font-semibold">ask semyon</span>
+          <span class="text-heading text-sm font-semibold">
+            semyon&apos;s assistant
+          </span>
         </div>
         <button
           onClick={() => setOpen(false)}
