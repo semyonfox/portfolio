@@ -2,7 +2,7 @@ import type { APIRoute } from 'astro';
 
 const md = `# Chat API
 
-Ask the site a question and get a reply written as Semyon. Roleplays as him to answer questions about his background, projects, and blog. Rate limited.
+Ask the site's assistant a question and get a reply. Answers in third person about Semyon's background, projects, and blog. Rate limited.
 
 ## Endpoint
 
@@ -28,7 +28,7 @@ Content-Type: \`application/json\`
 ### Response (200)
 
 \`\`\`json
-{ "reply": "lately been grinding on the homelab and shipping a new feature for SWIM..." }
+{ "reply": "lately semyon's been grinding on the homelab and shipping a new feature for uisce..." }
 \`\`\`
 
 - Single plain-text reply, max ~300 tokens, non-streaming.
@@ -61,7 +61,7 @@ curl -sS https://semyon.ie/api/chat \\
 ## Notes for agents
 
 - Public endpoint, no auth.
-- Personality is fixed: lowercase casual responses, no markdown formatting in replies.
+- Personality is fixed: third-person assistant, lowercase casual responses, no markdown, no emojis, no emdashes.
 - For longer-form, programmatic content about Semyon, prefer page markdown variants (request any page with \`Accept: text/markdown\`).
 `;
 

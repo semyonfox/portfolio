@@ -3,7 +3,7 @@
   "info": {
     "title": "Semyon Fox — Chat API",
     "version": "0.1.0",
-    "description": "Conversational endpoint that roleplays as Semyon Fox to answer questions about him, his projects, blog, and background. Rate limited per-IP (20 req/min). Non-streaming, no reasoning tokens, 300-token reply cap, last 5 user/assistant turns kept server-side.",
+    "description": "Conversational endpoint backing Semyon Fox's personal-site assistant. Answers as a third-person assistant representing him about his projects, blog, and background. Rate limited per-IP (20 req/min). Non-streaming, no reasoning tokens, 300-token reply cap, last 5 user/assistant turns kept server-side.",
     "contact": {
       "name": "Semyon Fox",
       "email": "semyon.fox@gmail.com",
@@ -39,7 +39,7 @@
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ChatResponse" },
                 "examples": {
-                  "reply": { "value": { "reply": "lately been grinding on the homelab and shipping a new feature for SWIM. also chasing that sub-1min 100m free." } }
+                  "reply": { "value": { "reply": "lately semyon's been grinding on the homelab and shipping a new feature for uisce. he's also chasing a sub-1min 100m free." } }
                 }
               }
             }

@@ -47,7 +47,7 @@ Tags: ${featured.data.tags.join(', ')}${featured.data.github ? `\nGitHub: ${feat
 - [/blog](https://semyon.ie/blog) — ${posts.length} posts
 - [/games](https://semyon.ie/games) — ${games.length} games
 - [/cv](https://semyon.ie/cv) — full CV (PDF at /cv.pdf)
-- [/docs/chat-api](https://semyon.ie/docs/chat-api) — POST /api/chat ("ask Semyon" endpoint)
+- [/docs/chat-api](https://semyon.ie/docs/chat-api) — POST /api/chat (site assistant endpoint)
 
 ## For agents
 
