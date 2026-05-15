@@ -137,6 +137,7 @@ const graphNodes = categoryOrder.flatMap((category) => {
     return {
       ...person,
       semantic: semanticGraph.nodes[person.slug],
+      research: researchMap[person.slug] || null,
       x,
       y,
       visualWeight: Math.max(
@@ -184,8 +185,6 @@ for (const edge of semanticGraph.semanticEdges) {
     score: edge.score,
   });
 }
-
-const defaultPerson = graphNodes[0];
 ---
 
 <Layout
@@ -354,67 +353,91 @@ const defaultPerson = graphNodes[0];
         id="people-detail"
         class="bg-surface border border-heading/[0.06] rounded-bento p-5"
       >
-        <p class="text-dim text-[11px] uppercase tracking-[3px] mb-3">
-          selected node
-        </p>
-        <button
-          id="graph-reset"
-          type="button"
-          class="mb-4 border border-border text-muted text-[11px] px-2.5 py-1 rounded hover:text-heading hover:border-muted transition-colors"
-        >
-          reset view
-        </button>
-        <div class="flex items-start justify-between gap-4 mb-3">
-          <div>
-            <h2 id="detail-name" class="text-heading text-xl font-bold">
-              {defaultPerson.name}
-            </h2>
-            <p id="detail-category" class="text-dim text-xs mt-1">
-              {categoryMeta[defaultPerson.category].label} · signal {
-                defaultPerson.weight
-              }/5 · graph {
-                defaultPerson.semantic?.graphWeight || defaultPerson.weight
-              }/5
+        <div id="people-empty-state">
+          <p class="text-dim text-[11px] uppercase tracking-[3px] mb-3">
+            signal map
+          </p>
+          <p class="text-muted text-sm leading-relaxed mb-5">
+            click a node to read about a person and highlight their connections.
+            scroll the directory below for a structured view.
+          </p>
+          <p class="text-dim text-[11px] uppercase tracking-[3px] mb-2.5">
+            categories
+          </p>
+          <ul class="space-y-1.5">
+            {
+              categoryOrder.map((category) => (
+                <li class="flex items-center gap-2.5 text-xs">
+                  <span
+                    class="w-2 h-2 rounded-full shrink-0"
+                    style={`background:${graphColors[category]}`}
+                  />
+                  <span class="text-muted">{categoryMeta[category].label}</span>
+                  <span class="text-dim ml-auto tabular-nums">
+                    {grouped[category].length}
+                  </span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <div id="people-detail-content" class="hidden">
+          <div class="flex items-center justify-between gap-3 mb-3">
+            <p class="text-dim text-[11px] uppercase tracking-[3px]">
+              selected node
             </p>
+            <button
+              id="graph-reset"
+              type="button"
+              class="text-dim text-[11px] hover:text-heading transition-colors"
+            >
+              clear
+            </button>
           </div>
-          <a
-            id="detail-primary"
-            href={defaultPerson.links.primary}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="shrink-0 border border-border text-muted text-xs px-3 py-1.5 rounded-lg hover:text-heading hover:border-muted transition-colors"
+          <div class="flex items-start justify-between gap-4 mb-3">
+            <div class="min-w-0">
+              <h2 id="detail-name" class="text-heading text-xl font-bold"></h2>
+              <p
+                id="detail-real-name"
+                class="text-dim text-[11px] mt-0.5 hidden"
+              >
+              </p>
+              <p id="detail-category" class="text-dim text-xs mt-1"></p>
+            </div>
+            <a
+              id="detail-primary"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="shrink-0 border border-border text-muted text-xs px-3 py-1.5 rounded-lg hover:text-heading hover:border-muted transition-colors"
+            >
+              open
+            </a>
+          </div>
+
+          <p
+            id="detail-summary"
+            class="text-muted text-sm leading-relaxed mb-4"
           >
-            open
-          </a>
-        </div>
+          </p>
 
-        <p id="detail-summary" class="text-muted text-sm leading-relaxed mb-4">
-          {defaultPerson.summary}
-        </p>
+          <div id="detail-tags" class="flex flex-wrap gap-1.5 mb-4"></div>
 
-        <div id="detail-tags" class="flex flex-wrap gap-1.5 mb-4">
-          {
-            defaultPerson.tags.map((tag) => (
-              <span class="bg-border px-2 py-0.5 rounded text-[11px] text-muted">
-                {tag}
-              </span>
-            ))
-          }
-        </div>
+          <div class="space-y-3">
+            <div>
+              <p class="text-dim text-[11px] uppercase tracking-[3px] mb-2">
+                links
+              </p>
+              <div id="detail-links" class="flex flex-wrap gap-2"></div>
+            </div>
 
-        <div class="space-y-3">
-          <div>
-            <p class="text-dim text-[11px] uppercase tracking-[3px] mb-2">
-              links
-            </p>
-            <div id="detail-links" class="flex flex-wrap gap-2"></div>
-          </div>
-
-          <div>
-            <p class="text-dim text-[11px] uppercase tracking-[3px] mb-2">
-              nearby nodes
-            </p>
-            <div id="detail-connections" class="flex flex-wrap gap-2"></div>
+            <div>
+              <p class="text-dim text-[11px] uppercase tracking-[3px] mb-2">
+                nearby nodes
+              </p>
+              <div id="detail-connections" class="flex flex-wrap gap-2"></div>
+            </div>
           </div>
         </div>
       </aside>
@@ -429,67 +452,172 @@ const defaultPerson = graphNodes[0];
       </span>
     </div>
 
-    <div class="space-y-8">
+    <div class="space-y-3">
       {
         categoryOrder.map((category) => (
-          <section>
-            <div class="mb-4">
-              <h2 class="text-heading text-xl font-bold tracking-tight">
-                {categoryMeta[category].label}
-              </h2>
-              <p class="text-muted text-sm mt-1">
-                {categoryMeta[category].blurb}
-              </p>
-            </div>
+          <details
+            open
+            class="people-cat bg-surface border border-heading/[0.06] rounded-bento overflow-hidden"
+          >
+            <summary class="list-none cursor-pointer p-5 flex items-center gap-3 hover:bg-heading/[0.02] transition-colors">
+              <span
+                class="w-2.5 h-2.5 rounded-full shrink-0"
+                style={`background:${graphColors[category]}`}
+              />
+              <div class="flex-1 min-w-0">
+                <h2 class="text-heading text-base font-semibold tracking-tight">
+                  {categoryMeta[category].label}
+                </h2>
+                <p class="text-dim text-xs mt-0.5">
+                  {categoryMeta[category].blurb}
+                </p>
+              </div>
+              <span class="text-dim text-[11px] tabular-nums shrink-0">
+                {grouped[category].length}
+              </span>
+              <svg
+                class="people-chevron w-3 h-3 text-dim transition-transform shrink-0"
+                viewBox="0 0 12 12"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M3 4.5L6 7.5L9 4.5"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </summary>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
-              {grouped[category].map((person) => (
-                <article class="bg-surface border border-heading/[0.06] rounded-bento p-5 hover:border-heading/10 transition-colors">
-                  <div class="flex items-start justify-between gap-4 mb-3">
-                    <div>
-                      <h3 class="text-heading text-sm font-semibold">
-                        {person.name}
-                      </h3>
-                      <p class="text-dim text-[11px] mt-1">
-                        signal {person.weight}/5
-                      </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 px-5 pb-5">
+              {grouped[category].map((person) => {
+                const research = researchMap[person.slug];
+                const hasExtras =
+                  !!research &&
+                  (!!research.bio ||
+                    (research.topics && research.topics.length > 0) ||
+                    (research.notable && research.notable.length > 0) ||
+                    (research.associatedWith &&
+                      research.associatedWith.length > 0));
+                const blurb = research?.oneLine || person.summary;
+                return (
+                  <article class="bg-bg/40 border border-heading/[0.06] rounded-bento p-4 hover:border-heading/10 transition-colors flex flex-col">
+                    <div class="flex items-start justify-between gap-3 mb-2">
+                      <div class="min-w-0">
+                        <h3 class="text-heading text-sm font-semibold truncate">
+                          {person.name}
+                        </h3>
+                        {research?.realName && (
+                          <p class="text-dim text-[11px] mt-0.5 truncate">
+                            {research.realName}
+                          </p>
+                        )}
+                      </div>
+                      <a
+                        href={person.links.primary}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="shrink-0 border border-border text-muted text-[11px] px-2.5 py-1 rounded hover:text-heading hover:border-muted transition-colors"
+                      >
+                        open
+                      </a>
                     </div>
-                    <a
-                      href={person.links.primary}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="shrink-0 border border-border text-muted text-[11px] px-2.5 py-1 rounded hover:text-heading hover:border-muted transition-colors"
-                    >
-                      open
-                    </a>
-                  </div>
 
-                  <p class="text-muted text-xs leading-relaxed mb-3">
-                    {person.summary}
-                  </p>
-
-                  <div class="flex flex-wrap gap-1.5 mb-3">
-                    {person.tags.map((tag) => (
-                      <span class="bg-border px-2 py-0.5 rounded text-[11px] text-muted">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  {person.connections && person.connections.length > 0 && (
-                    <p class="text-dim text-[11px] leading-relaxed">
-                      explicit links: {person.connections.length}
+                    <p class="text-muted text-xs leading-relaxed mb-3">
+                      {blurb}
                     </p>
-                  )}
-                </article>
-              ))}
+
+                    <div class="flex flex-wrap gap-1 mb-3">
+                      {person.tags.slice(0, 3).map((tag) => (
+                        <span class="bg-border px-1.5 py-0.5 rounded text-[10px] text-muted">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    {hasExtras && (
+                      <details class="people-more mt-auto">
+                        <summary class="list-none cursor-pointer text-fox/80 text-[11px] hover:text-fox transition-colors select-none">
+                          <span class="people-more-label-closed">
+                            read more
+                          </span>
+                          <span class="people-more-label-open">show less</span>
+                        </summary>
+                        <div class="mt-3 space-y-3 text-[11px] text-muted leading-relaxed">
+                          {research.bio && <p>{research.bio}</p>}
+                          {research.topics && research.topics.length > 0 && (
+                            <div>
+                              <p class="text-dim uppercase tracking-[2px] text-[9px] mb-1.5">
+                                topics
+                              </p>
+                              <div class="flex flex-wrap gap-1">
+                                {research.topics.slice(0, 8).map((t) => (
+                                  <span class="bg-border px-1.5 py-0.5 rounded text-[10px]">
+                                    {t}
+                                  </span>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                          {research.notable && research.notable.length > 0 && (
+                            <div>
+                              <p class="text-dim uppercase tracking-[2px] text-[9px] mb-1.5">
+                                notable
+                              </p>
+                              <ul class="space-y-0.5 list-disc list-inside marker:text-dim">
+                                {research.notable.slice(0, 5).map((n) => (
+                                  <li class="text-muted">{n}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+                          {research.associatedWith &&
+                            research.associatedWith.length > 0 && (
+                              <div>
+                                <p class="text-dim uppercase tracking-[2px] text-[9px] mb-1.5">
+                                  associated
+                                </p>
+                                <p class="text-muted">
+                                  {research.associatedWith.join(', ')}
+                                </p>
+                              </div>
+                            )}
+                        </div>
+                      </details>
+                    )}
+                  </article>
+                );
+              })}
             </div>
-          </section>
+          </details>
         ))
       }
     </div>
   </section>
 </Layout>
+
+<style is:global>
+  .people-cat > summary::-webkit-details-marker {
+    display: none;
+  }
+  .people-more > summary::-webkit-details-marker {
+    display: none;
+  }
+  .people-cat[open] .people-chevron {
+    transform: rotate(180deg);
+  }
+  .people-more .people-more-label-open {
+    display: none;
+  }
+  .people-more[open] .people-more-label-closed {
+    display: none;
+  }
+  .people-more[open] .people-more-label-open {
+    display: inline;
+  }
+</style>
 
 <script
   define:vars={{
@@ -533,14 +661,27 @@ const defaultPerson = graphNodes[0];
   );
 
   const detailName = document.getElementById('detail-name');
+  const detailRealName = document.getElementById('detail-real-name');
   const detailCategory = document.getElementById('detail-category');
   const detailSummary = document.getElementById('detail-summary');
   const detailPrimary = document.getElementById('detail-primary');
   const detailTags = document.getElementById('detail-tags');
   const detailLinks = document.getElementById('detail-links');
   const detailConnections = document.getElementById('detail-connections');
+  const detailContent = document.getElementById('people-detail-content');
+  const emptyState = document.getElementById('people-empty-state');
   const resetBtn = document.getElementById('graph-reset');
   const graphBackground = document.getElementById('people-graph-bg');
+
+  function showEmpty() {
+    detailContent?.classList.add('hidden');
+    emptyState?.classList.remove('hidden');
+  }
+
+  function showDetail() {
+    emptyState?.classList.add('hidden');
+    detailContent?.classList.remove('hidden');
+  }
 
   const nodeMap = new Map(nodes.map((node) => [node.slug, node]));
   const positionMap = new Map(
@@ -907,12 +1048,23 @@ const defaultPerson = graphNodes[0];
       }
     });
 
+    showDetail();
+
     if (detailName) detailName.textContent = person.name;
+    if (detailRealName) {
+      if (person.research?.realName) {
+        detailRealName.textContent = person.research.realName;
+        detailRealName.classList.remove('hidden');
+      } else {
+        detailRealName.textContent = '';
+        detailRealName.classList.add('hidden');
+      }
+    }
     if (detailCategory) {
       detailCategory.textContent = `${categoryMeta[person.category].label} · signal ${person.weight}/5 · graph ${person.semantic?.graphWeight || person.weight}/5`;
     }
     if (detailSummary) {
-      detailSummary.textContent = person.summary;
+      detailSummary.textContent = person.research?.oneLine || person.summary;
     }
     if (detailPrimary) detailPrimary.href = person.links.primary;
 
@@ -940,7 +1092,7 @@ const defaultPerson = graphNodes[0];
   resetBtn?.addEventListener('click', () => {
     resetViewBox();
     resetGraph();
-    if (nodes[0]) selectNode(nodes[0].slug);
+    showEmpty();
   });
 
   graphSvg?.addEventListener(
@@ -1022,13 +1174,10 @@ const defaultPerson = graphNodes[0];
       (event.target === graphSvg || event.target === graphBackground)
     ) {
       resetGraph();
+      showEmpty();
     }
   });
 
   applyViewBox();
   settleLayout();
-
-  if (nodes[0]) {
-    selectNode(nodes[0].slug);
-  }
 </script>
