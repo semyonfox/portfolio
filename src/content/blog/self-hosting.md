@@ -2,7 +2,7 @@
 title: "Why I Self-Host Everything"
 date: "2026-04-10"
 author: "Semyon Fox"
-description: "It started with a broken laptop and no money. Now I run 30+ containers and can't stop tinkering."
+description: "It started with a broken laptop and no money. Now I run 30+ containers and can't stop building."
 tags: ["Self-Hosting", "Homelab", "Infrastructure"]
 ---
 
@@ -32,9 +32,9 @@ Is self-hosting actually cheaper than paying for cloud services? No, probably no
 
 Privacy was a discovery, not the motivation. I learnt about all the privacy benefits as I went and I was like, wait, I can do all of this? And I just kept building.
 
-But the real reason I self-host? The tinkering. That's my cocaine. Cron jobs, cleanups, maintenance schedules, failure planning, redundancy. Sensor monitoring, phone alerts, dashboards, running my own website. It's an endless rabbit hole and I love every minute of it.
+But the real reason I self-host? The hands-on building. That's my cocaine. Cron jobs, cleanups, maintenance schedules, failure planning, redundancy. Sensor monitoring, phone alerts, dashboards, running my own website. It's an endless rabbit hole and I love every minute of it.
 
-Years of Linus Tech Tips videos, tutorials, AI assistance, all that accumulated knowledge in my head finally had somewhere to go. I could just do it. Tinker. Break things. Fix them. I'm free to do whatever I want with my own hardware.
+Years of Linus Tech Tips videos, tutorials, AI assistance, all that accumulated knowledge in my head finally had somewhere to go. I could just do it. Build. Break things. Fix them. I'm free to do whatever I want with my own hardware.
 
 The homelab taught me more than any single module at university. Linux, networking, containerisation, system administration, monitoring. All of that paired with coding games, building apps, Rust backends, databases, AWS. It's what makes a developer understand the full system, not just their little corner of it.
 
