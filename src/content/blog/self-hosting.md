@@ -26,7 +26,7 @@ Then came networking. The Wi-Fi was patchy so I ran a cable to the attic and put
 
 That 2.5G link turned out to be really useful. I edited a short film called Transit with a friend, cutting directly off the NAS with no issues. That film ended up on [RTE Fresh Screens 2026](https://www.rte.ie/player/series/fresh-screens-2026/10021055-00-0000?epguid=AI10021056-01-0001), got awards, and was in a bunch of competitions. Can't do that kind of editing over Google Cloud.
 
-Speaking of Google. The family uses Jellyfin on the server. Some dubiously acquired movies and series, but they watch what interests them. Saves hundreds compared to paying 20 euro a month for every streaming subscription just to keep watching the shows you like.
+Speaking of Google. The family uses Jellyfin on the server for our media library. Saves hundreds compared to paying 20 euro a month for every streaming subscription just to keep watching the shows you like.
 
 Is self-hosting actually cheaper than paying for cloud services? No, probably not if you're just counting money. But Google training AI on my photos while I'm paying them for storage? I should be getting paid for that. Plus I can put 4x1TB drives in the NAS, or 4x30TB. One upfront cost, as much storage as I actually need, and I can scale whenever I want. DAS, more NAS units, actual server infrastructure with JBODs if I ever go that far.
 
