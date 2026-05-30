@@ -46,9 +46,7 @@ const { Content } = await render(post);
       )
     }
     <div class="flex items-center gap-4 mb-8">
-      <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">
-        {post.data.title}
-      </h1>
+      <h1 class="type-page-title">{post.data.title}</h1>
       <button
         id="read-aloud"
         class="shrink-0 border border-border text-muted text-xs px-3 py-1.5 rounded-lg hover:text-heading hover:border-muted transition-colors"
@@ -58,10 +56,7 @@ const { Content } = await render(post);
         read aloud
       </button>
     </div>
-    <div
-      id="post-content"
-      class="prose prose-invert prose-sm max-w-none text-muted leading-relaxed space-y-4 [&>p]:text-muted [&>h2]:text-heading [&>h2]:text-xl [&>h2]:font-bold [&>h2]:mt-8 [&>h2]:mb-4 [&>h3]:text-heading [&>h3]:font-semibold [&>h3]:mt-6 [&>h3]:mb-3"
-    >
+    <div id="post-content" class="type-prose">
       <Content />
     </div>
   </article>

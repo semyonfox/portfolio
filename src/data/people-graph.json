@@ -58,6 +58,13 @@
       "summary": "Hyperplexed is a front-end-focused YouTube channel (~656k subs, ~98M views) that picks a striking visual effect from a real site (Apple, Awwwards, indie portfolios) and walks through rebuilding it from scratch with HTML, CSS, and vanilla JS or GSAP. All demo code is published free at hyperplexed.io with no paywall. The host stays anonymous on camera, narrating over a fast-paced screen-share build.",
       "graphWeight": 5
     },
+    "pimp-my-type": {
+      "source": "research",
+      "wikiTitle": null,
+      "wikiUrl": null,
+      "summary": "Oliver Schöndorfer runs Pimp My Type, a practical typography education resource for UI and web designers. He teaches font choice, hierarchy, line length, line height, readability, accessibility, and typographic systems through YouTube, articles, Font Friday, workshops, talks, and mentoring.",
+      "graphWeight": 4
+    },
     "computerphile": {
       "source": "research",
       "wikiTitle": null,

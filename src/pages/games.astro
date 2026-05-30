@@ -23,12 +23,8 @@ const gameLabels: Record<string, string> = {
   description="Games and apps I've built that you can actually play."
 >
   <section class="pt-20 pb-16 md:pt-28">
-    <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight mb-2">
-      Games & Apps
-    </h1>
-    <p class="text-muted text-sm mb-12">
-      games and other interactive things i've built
-    </p>
+    <h1 class="type-page-title mb-3">Games & Apps</h1>
+    <p class="type-body mb-12">games and other interactive things i've built</p>
 
     <!-- catalog grid -->
     <div id="game-catalog" class="grid grid-cols-2 md:grid-cols-3 gap-3">
@@ -45,12 +41,12 @@ const gameLabels: Record<string, string> = {
             data-game-noembed={game.data.noEmbed || ''}
           >
             <div class="bg-border h-32 md:h-40 flex items-center justify-center">
-              <span class="text-2xl font-black text-dim/40 tracking-tighter">
+              <span class="text-2xl font-black text-dim/40">
                 {gameLabels[game.id] || '?'}
               </span>
             </div>
             <div class="p-4">
-              <h3 class="text-heading text-sm font-semibold group-hover:text-fox/90 transition-colors">
+              <h3 class="type-small-title group-hover:text-fox/90 transition-colors">
                 {game.data.title}
               </h3>
               <p class="text-muted text-xs mt-1.5 line-clamp-2 leading-relaxed">
@@ -67,11 +63,7 @@ const gameLabels: Record<string, string> = {
     <div id="game-player" class="hidden">
       <div class="flex items-center justify-between mb-4">
         <div>
-          <h2
-            id="player-title"
-            class="text-heading text-xl font-bold tracking-tight"
-          >
-          </h2>
+          <h2 id="player-title" class="type-section-title"></h2>
           <p id="player-tech" class="text-dim text-xs mt-1"></p>
         </div>
         <div class="flex gap-2">

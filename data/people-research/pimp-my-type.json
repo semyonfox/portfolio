@@ -1,0 +1,34 @@
+{
+  "slug": "pimp-my-type",
+  "name": "Pimp My Type",
+  "realName": "Oliver Schöndorfer",
+  "oneLine": "Typography education from Oliver Schöndorfer, focused on stronger UI and web typography for better UX.",
+  "bio": "Oliver Schöndorfer is an Austrian typography consultant and UI designer with 15+ years of experience helping teams improve usability, accessibility, brand consistency, and typographic systems. Pimp My Type collects his practical typography teaching across YouTube, articles, Font Friday, talks, workshops, and mentoring.",
+  "topics": [
+    "UI typography",
+    "typographic hierarchy",
+    "font selection and pairing",
+    "line length and line height",
+    "readability and accessibility",
+    "typographic systems"
+  ],
+  "style": "Friendly, practical typography breakdowns for designers and developers, usually turning fuzzy visual taste into concrete UI decisions.",
+  "notable": [
+    "Typographic hierarchy guidance",
+    "Right font size guidance",
+    "Font Friday newsletter",
+    "Font Matrix and pairing resources",
+    "free Type Check"
+  ],
+  "associatedWith": [
+    "Font Friday",
+    "Interaction Design Foundation",
+    "I Love Typography"
+  ],
+  "sources": [
+    "https://pimpmytype.com/",
+    "https://pimpmytype.com/bio/",
+    "https://pimpmytype.com/start/",
+    "https://www.youtube.com/@pimpmytpe"
+  ]
+}

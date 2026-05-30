@@ -140,7 +140,23 @@ const rawPeople: RawPerson[] = [
     href: youtubeSearch('Hyperplexed'),
     summary: 'recreating stunning CSS effects and frontend micro-interactions',
     tags: ['frontend', 'css', 'creative web'],
-    connections: ['theo', 'fireship', 'juxtoposed'],
+    connections: ['theo', 'fireship', 'juxtoposed', 'pimp-my-type'],
+  },
+  {
+    slug: 'pimp-my-type',
+    name: 'Pimp My Type',
+    category: 'dev',
+    weight: 4,
+    href: 'https://pimpmytype.com/',
+    links: {
+      primary: 'https://pimpmytype.com/',
+      website: 'https://pimpmytype.com/',
+      youtube: 'https://www.youtube.com/@pimpmytpe',
+    },
+    summary:
+      'Oliver Schöndorfer teaching practical web and UI typography for better UX',
+    tags: ['typography', 'ui design', 'ux'],
+    connections: ['hyperplexed', 'juxtoposed', 'arjan-codes'],
   },
   {
     slug: 'computerphile',

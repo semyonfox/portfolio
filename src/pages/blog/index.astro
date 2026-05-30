@@ -12,10 +12,8 @@ const posts = (await getCollection('blog')).sort(
   description="Thoughts, experiences, and insights from my journey in computer science."
 >
   <section class="pt-20 pb-16 md:pt-28">
-    <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight mb-2">
-      Blog
-    </h1>
-    <p class="text-muted text-sm mb-12">
+    <h1 class="type-page-title mb-3">Blog</h1>
+    <p class="type-body mb-12">
       thoughts, experiences, and things i've learned
     </p>
 
@@ -33,12 +31,10 @@ const posts = (await getCollection('blog')).sort(
                 year: 'numeric',
               })}
             </p>
-            <h2 class="text-heading text-lg font-bold tracking-tight mb-2 group-hover:text-fox/90 transition-colors">
+            <h2 class="type-card-title mb-2 group-hover:text-fox/90 transition-colors">
               {post.data.title}
             </h2>
-            <p class="text-muted text-sm leading-relaxed">
-              {post.data.description}
-            </p>
+            <p class="type-body">{post.data.description}</p>
             {post.data.tags.length > 0 && (
               <div class="flex flex-wrap gap-1.5 mt-4">
                 {post.data.tags.map((tag) => (

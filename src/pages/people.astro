@@ -3,6 +3,14 @@ import Layout from '../layouts/Layout.astro';
 import { categoryOrder, people, type PersonCategory } from '../data/people';
 import semanticGraph from '../data/people-graph.json';
 
+type SemanticNode = {
+  source: string;
+  wikiTitle: string | null;
+  wikiUrl: string | null;
+  summary: string;
+  graphWeight: number;
+};
+
 interface Research {
   slug: string;
   name: string;
@@ -15,6 +23,11 @@ interface Research {
   associatedWith?: string[];
   sources?: string[];
 }
+
+const semanticNodes = semanticGraph.nodes as Record<
+  string,
+  SemanticNode | undefined
+>;
 
 const researchModules = import.meta.glob<Research>(
   '../../data/people-research/*.json',
@@ -136,7 +149,7 @@ const graphNodes = categoryOrder.flatMap((category) => {
 
     return {
       ...person,
-      semantic: semanticGraph.nodes[person.slug],
+      semantic: semanticNodes[person.slug],
       research: researchMap[person.slug] || null,
       x,
       y,
@@ -144,7 +157,7 @@ const graphNodes = categoryOrder.flatMap((category) => {
         person.weight,
         Math.round(
           (person.weight +
-            (semanticGraph.nodes[person.slug]?.graphWeight || person.weight)) /
+            (semanticNodes[person.slug]?.graphWeight || person.weight)) /
             2,
         ),
       ),
@@ -192,13 +205,11 @@ for (const edge of semanticGraph.semanticEdges) {
   description="Interesting people, channels, and internet rabbit holes I keep coming back to."
 >
   <section class="pt-20 pb-16 md:pt-28">
-    <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight mb-2">
-      Interesting People/Videos
-    </h1>
-    <p class="text-muted text-sm mb-4">
+    <h1 class="type-page-title mb-3">Interesting People/Videos</h1>
+    <p class="type-body mb-4">
       some of my favorite content creators and internet people
     </p>
-    <p class="text-dim text-xs max-w-2xl leading-relaxed">
+    <p class="type-caption max-w-2xl">
       weight roughly means how central they are to my feed, interests, or
       thinking. solid links are direct connections i care about; faint links are
       inferred from semantic similarity using embedded wiki or fallback profile
@@ -209,9 +220,8 @@ for (const edge of semanticGraph.semanticEdges) {
 
   <section class="pb-16">
     <div class="flex items-center gap-3 mb-6">
-      <span class="text-dim text-xs uppercase tracking-[3px]">signal map</span>
-      <span class="text-dim text-xs">weighted nodes, clustered by interest</span
-      >
+      <span class="type-kicker">signal map</span>
+      <span class="type-caption">weighted nodes, clustered by interest</span>
     </div>
 
     <div
@@ -354,16 +364,12 @@ for (const edge of semanticGraph.semanticEdges) {
         class="bg-surface border border-heading/[0.06] rounded-bento p-5"
       >
         <div id="people-empty-state">
-          <p class="text-dim text-[11px] uppercase tracking-[3px] mb-3">
-            signal map
-          </p>
-          <p class="text-muted text-sm leading-relaxed mb-5">
+          <p class="type-micro uppercase mb-3">signal map</p>
+          <p class="type-body mb-5">
             click a node to read about a person and highlight their connections.
             scroll the directory below for a structured view.
           </p>
-          <p class="text-dim text-[11px] uppercase tracking-[3px] mb-2.5">
-            categories
-          </p>
+          <p class="type-micro uppercase mb-2.5">categories</p>
           <ul class="space-y-1.5">
             {
               categoryOrder.map((category) => (
@@ -384,9 +390,7 @@ for (const edge of semanticGraph.semanticEdges) {
 
         <div id="people-detail-content" class="hidden">
           <div class="flex items-center justify-between gap-3 mb-3">
-            <p class="text-dim text-[11px] uppercase tracking-[3px]">
-              selected node
-            </p>
+            <p class="type-micro uppercase">selected node</p>
             <button
               id="graph-reset"
               type="button"
@@ -397,7 +401,7 @@ for (const edge of semanticGraph.semanticEdges) {
           </div>
           <div class="flex items-start justify-between gap-4 mb-3">
             <div class="min-w-0">
-              <h2 id="detail-name" class="text-heading text-xl font-bold"></h2>
+              <h2 id="detail-name" class="type-section-title"></h2>
               <p
                 id="detail-real-name"
                 class="text-dim text-[11px] mt-0.5 hidden"
@@ -416,26 +420,18 @@ for (const edge of semanticGraph.semanticEdges) {
             </a>
           </div>
 
-          <p
-            id="detail-summary"
-            class="text-muted text-sm leading-relaxed mb-4"
-          >
-          </p>
+          <p id="detail-summary" class="type-body mb-4"></p>
 
           <div id="detail-tags" class="flex flex-wrap gap-1.5 mb-4"></div>
 
           <div class="space-y-3">
             <div>
-              <p class="text-dim text-[11px] uppercase tracking-[3px] mb-2">
-                links
-              </p>
+              <p class="type-micro uppercase mb-2">links</p>
               <div id="detail-links" class="flex flex-wrap gap-2"></div>
             </div>
 
             <div>
-              <p class="text-dim text-[11px] uppercase tracking-[3px] mb-2">
-                nearby nodes
-              </p>
+              <p class="type-micro uppercase mb-2">nearby nodes</p>
               <div id="detail-connections" class="flex flex-wrap gap-2"></div>
             </div>
           </div>
@@ -446,8 +442,8 @@ for (const edge of semanticGraph.semanticEdges) {
 
   <section class="pb-16">
     <div class="flex items-center gap-3 mb-6">
-      <span class="text-dim text-xs uppercase tracking-[3px]">directory</span>
-      <span class="text-dim text-xs">
+      <span class="type-kicker">directory</span>
+      <span class="type-caption">
         grouped entries with quick links out to content
       </span>
     </div>
@@ -465,9 +461,7 @@ for (const edge of semanticGraph.semanticEdges) {
                 style={`background:${graphColors[category]}`}
               />
               <div class="flex-1 min-w-0">
-                <h2 class="text-heading text-base font-semibold tracking-tight">
-                  {categoryMeta[category].label}
-                </h2>
+                <h2 class="type-panel-title">{categoryMeta[category].label}</h2>
                 <p class="text-dim text-xs mt-0.5">
                   {categoryMeta[category].blurb}
                 </p>
@@ -506,9 +500,7 @@ for (const edge of semanticGraph.semanticEdges) {
                   <article class="bg-bg/40 border border-heading/[0.06] rounded-bento p-4 hover:border-heading/10 transition-colors flex flex-col">
                     <div class="flex items-start justify-between gap-3 mb-2">
                       <div class="min-w-0">
-                        <h3 class="text-heading text-sm font-semibold truncate">
-                          {person.name}
-                        </h3>
+                        <h3 class="type-small-title truncate">{person.name}</h3>
                         {research?.realName && (
                           <p class="text-dim text-[11px] mt-0.5 truncate">
                             {research.realName}
@@ -549,7 +541,7 @@ for (const edge of semanticGraph.semanticEdges) {
                           {research.bio && <p>{research.bio}</p>}
                           {research.topics && research.topics.length > 0 && (
                             <div>
-                              <p class="text-dim uppercase tracking-[2px] text-[9px] mb-1.5">
+                              <p class="text-dim uppercase text-[9px] mb-1.5">
                                 topics
                               </p>
                               <div class="flex flex-wrap gap-1">
@@ -563,7 +555,7 @@ for (const edge of semanticGraph.semanticEdges) {
                           )}
                           {research.notable && research.notable.length > 0 && (
                             <div>
-                              <p class="text-dim uppercase tracking-[2px] text-[9px] mb-1.5">
+                              <p class="text-dim uppercase text-[9px] mb-1.5">
                                 notable
                               </p>
                               <ul class="space-y-0.5 list-disc list-inside marker:text-dim">
@@ -576,7 +568,7 @@ for (const edge of semanticGraph.semanticEdges) {
                           {research.associatedWith &&
                             research.associatedWith.length > 0 && (
                               <div>
-                                <p class="text-dim uppercase tracking-[2px] text-[9px] mb-1.5">
+                                <p class="text-dim uppercase text-[9px] mb-1.5">
                                   associated
                                 </p>
                                 <p class="text-muted">
