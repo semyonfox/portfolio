@@ -18,7 +18,7 @@ const { Content } = await render(post);
   title={`${post.data.title} | Semyon Fox`}
   description={post.data.description}
 >
-  <article class="pt-20 pb-16 md:pt-28 max-w-2xl">
+  <article class="pt-20 pb-16 md:pt-28 max-w-[65ch]">
     <a
       href="/blog"
       class="text-dim text-xs hover:text-muted transition-colors mb-6 inline-block"
@@ -45,54 +45,9 @@ const { Content } = await render(post);
         </div>
       )
     }
-    <div class="flex items-center gap-4 mb-8">
-      <h1 class="type-page-title">{post.data.title}</h1>
-      <button
-        id="read-aloud"
-        class="shrink-0 border border-border text-muted text-xs px-3 py-1.5 rounded-lg hover:text-heading hover:border-muted transition-colors"
-        aria-label="Read post aloud"
-        aria-pressed="false"
-      >
-        read aloud
-      </button>
-    </div>
+    <h1 class="type-page-title mb-8">{post.data.title}</h1>
     <div id="post-content" class="type-prose">
       <Content />
     </div>
   </article>
 </Layout>
-
-<script>
-  const btn = document.getElementById('read-aloud');
-  const content = document.getElementById('post-content');
-  const synth = window.speechSynthesis;
-
-  if (btn && content && synth) {
-    let speaking = false;
-
-    btn.addEventListener('click', () => {
-      if (speaking) {
-        synth.cancel();
-        btn.textContent = 'read aloud';
-        btn.setAttribute('aria-pressed', 'false');
-        speaking = false;
-        return;
-      }
-
-      const text = (content.textContent || '').trim();
-      if (!text) return;
-
-      const utter = new SpeechSynthesisUtterance(text);
-      utter.onend = utter.onerror = () => {
-        btn.textContent = 'read aloud';
-        btn.setAttribute('aria-pressed', 'false');
-        speaking = false;
-      };
-
-      btn.textContent = 'stop';
-      btn.setAttribute('aria-pressed', 'true');
-      speaking = true;
-      synth.speak(utter);
-    });
-  }
-</script>

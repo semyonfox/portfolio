@@ -9,6 +9,8 @@
   body {
     @apply bg-bg text-heading font-sans antialiased;
     font-synthesis: none;
+    font-size: 1rem;
+    line-height: 1.5;
   }
 
   h1,
@@ -69,36 +71,37 @@
   }
 
   .type-kicker {
-    @apply text-dim text-xs font-semibold uppercase;
+    @apply text-dim text-xs font-bold uppercase;
     line-height: 1.4;
     letter-spacing: 0;
   }
 
   .type-micro {
-    @apply text-dim text-[11px];
-    line-height: 1.45;
+    @apply text-dim text-xs;
+    line-height: 1.35;
     letter-spacing: 0;
   }
 
   .type-caption {
-    @apply text-dim text-xs;
-    line-height: 1.45;
+    @apply text-dim text-sm;
+    line-height: 1.5;
     letter-spacing: 0;
   }
 
   .type-body {
-    @apply text-muted text-sm;
-    line-height: 1.7;
+    @apply text-muted text-base;
+    line-height: 1.6;
   }
 
   .type-body-lg {
     @apply text-muted text-base;
-    line-height: 1.7;
+    line-height: 1.6;
   }
 
   .type-prose {
-    @apply max-w-none text-muted text-sm;
-    line-height: 1.75;
+    @apply text-muted text-base;
+    max-width: 65ch;
+    line-height: 1.65;
   }
 
   .type-prose > * + * {
@@ -111,15 +114,15 @@
 
   .type-prose > h2 {
     @apply text-heading text-2xl font-extrabold;
-    line-height: 1.2;
-    margin-top: 2.5rem;
+    line-height: 1.12;
+    margin-top: 2.75rem;
     margin-bottom: 0.75rem;
     letter-spacing: 0;
   }
 
   .type-prose > h3 {
     @apply text-heading text-lg font-bold;
-    line-height: 1.25;
+    line-height: 1.15;
     margin-top: 2rem;
     margin-bottom: 0.5rem;
     letter-spacing: 0;

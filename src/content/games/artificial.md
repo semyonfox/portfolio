@@ -1,8 +1,9 @@
 ---
-title: "Artificial"
+title: 'Artificial'
 description: "Progressive clicker exploring humanity's artificial creations through history. Built for a game jam in pure JavaScript."
-tech: "JavaScript"
-github: "https://github.com/semyonfox/artificial"
-embed: "https://artificial.semyon.ie"
+tech: 'JavaScript'
+github: 'https://github.com/semyonfox/artificial'
+embed: 'https://artificial.semyon.ie'
+thumbnail: '/game-thumbnails/artificial.webp'
 order: 4
 ---

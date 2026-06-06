@@ -29,24 +29,34 @@ const secondPost = posts[1];
       <span class="text-muted">Swim</span><span class="text-fox">.</span><br />
       <span class="text-dim">Build</span><span class="text-fox">.</span>
     </h1>
-    <p class="type-body md:text-base max-w-md mb-8">
-      I build things with code and break things with curiosity. Currently
-      running 54 containers on a repurposed laptop and racing toward sub-1min
-      100m.
-    </p>
-    <div class="flex gap-3">
-      <a
-        href="/projects"
-        class="bg-fox text-heading font-semibold text-sm px-5 py-2.5 rounded-lg hover:brightness-110 transition-all"
-      >
-        view projects
-      </a>
-      <a
-        href="/blog"
-        class="border border-border text-muted font-medium text-sm px-5 py-2.5 rounded-lg hover:text-heading hover:border-muted transition-colors"
-      >
-        read blog
-      </a>
+    <div class="hero-copy max-w-md">
+      <p class="type-body mb-8">
+        <span class="block"
+          >I build things with <span class="hero-mark">code</span> and break things
+          with <span class="hero-mark">curiosity</span>.</span
+        >
+        <span class="block"
+          >Currently running <span class="hero-mark">54 containers</span> on a repurposed
+          laptop</span
+        >
+        <span class="block"
+          >and racing toward <span class="hero-mark">sub-1min 100m</span>.</span
+        >
+      </p>
+      <div class="flex gap-3">
+        <a
+          href="/projects"
+          class="bg-fox text-heading font-semibold text-sm px-5 py-2.5 rounded-lg hover:brightness-110 transition-all"
+        >
+          view projects
+        </a>
+        <a
+          href="/blog"
+          class="border border-border text-muted font-medium text-sm px-5 py-2.5 rounded-lg hover:text-heading hover:border-muted transition-colors"
+        >
+          read blog
+        </a>
+      </div>
     </div>
   </section>
 
@@ -89,9 +99,21 @@ const secondPost = posts[1];
             href="/games"
             class="md:col-span-2 bg-surface border border-heading/[0.06] rounded-bento overflow-hidden hover:border-heading/10 transition-colors group"
           >
-            <div class="bg-border h-28 flex items-center justify-center">
-              <span class="text-lg font-black text-dim/40">PLAY</span>
-            </div>
+            {latestGame.data.thumbnail ? (
+              <img
+                src={latestGame.data.thumbnail}
+                alt=""
+                width="960"
+                height="540"
+                class="w-full h-28 object-cover border-b border-border"
+                loading="lazy"
+                decoding="async"
+              />
+            ) : (
+              <div class="bg-border h-28 flex items-center justify-center">
+                <span class="text-lg font-black text-dim/40">PLAY</span>
+              </div>
+            )}
             <div class="p-4">
               <p class="type-micro uppercase mb-1">game</p>
               <h3 class="type-small-title group-hover:text-fox/90 transition-colors">
@@ -258,40 +280,33 @@ const secondPost = posts[1];
   <section class="pb-16">
     <h2 class="type-section-title mb-6">About me</h2>
     <div class="grid md:grid-cols-[3fr_1fr] gap-8 items-start">
-      <div class="space-y-4 type-body">
+      <div class="space-y-4 type-body max-w-[70ch]">
         <p>
-          Hi there! I'm Semyon, a passionate web developer and competitive
-          swimmer hailing from Ireland.
+          I am Semyon, a Computer Science student in Galway. Most of my projects
+          come from something I actually needed: tracking swimming work,
+          automating admin, running my own services, or learning how a system
+          behaves when it is not just a tutorial.
         </p>
         <p>
-          When I'm not coding up sleek, responsive websites, you can find me
-          perfecting my freestyle technique, always chasing that sub-one-minute
-          mark in the 100-meter race.
+          The homelab started with an old Dell XPS that was no longer useful as
+          a laptop. It turned into a place for Docker, Jenkins, Nginx,
+          Cloudflare tunnels, storage, backups, dashboards, and the sort of
+          mistakes that actually teach you something.
         </p>
         <p>
-          A lover of all things science fiction, I often find myself dreaming
-          about futuristic worlds, where my HTML, CSS, and JavaScript skills
-          might just come in handy for building a spaceship interface, or at
-          least a cool sci-fi-themed website.
+          Swimming is the other big part of my week. I train, race, track
+          progress, and keep trying to make the 100m clock less annoying.
         </p>
         <p>
-          In between swims and coding sessions, I like to challenge myself with
-          a good game of chess, proving that strategy is just as important on
-          the board as it is in life (and web development!).
+          CompSoc has been a good pressure test outside normal coursework. I
+          have worked on events, CTF logistics, sponsorships, finance,
+          communications, and the bits of software that have to survive real
+          users.
         </p>
         <p>
-          And when I need a break from the screen, you'll find me in the
-          workshop, turning pieces of wood into something functional and
-          beautiful, because who says a coder can't also be a craftsman?
-        </p>
-        <p>
-          I'm actively involved in the university community as a member of
-          CompSoc (Computer Society), where I've served as PRO, Committee
-          Member, Auditor, and now Treasurer.
-        </p>
-        <p>
-          Whether it's in the pool, on the web, or in the workshop, I believe in
-          pushing limits and thinking creatively.
+          Away from code, I edit video, make things in the workshop, and watch a
+          lot of people who explain hard topics well. This site is where the
+          useful parts of all that end up.
         </p>
       </div>
       <div class="hidden md:block">
@@ -307,3 +322,21 @@ const secondPost = posts[1];
     </div>
   </section>
 </Layout>
+
+<style>
+  .hero-copy {
+    position: relative;
+  }
+
+  .hero-mark {
+    color: #d4d0ca;
+    font-weight: 600;
+    background: linear-gradient(
+      180deg,
+      transparent 64%,
+      rgba(249, 115, 22, 0.3) 64%
+    );
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+</style>

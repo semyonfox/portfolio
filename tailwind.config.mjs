@@ -4,13 +4,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        bg: '#0c0c0c',
-        surface: '#141414',
-        border: '#1e1e1e',
-        muted: '#7a7a7a',
-        dim: '#4a4a4a',
+        bg: '#0b0b0b',
+        surface: '#151515',
+        border: '#252525',
+        muted: '#949494',
+        dim: '#6a6a6a',
         fox: '#e8702a',
-        heading: '#e0e0e0',
+        heading: '#f0f0f0',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],

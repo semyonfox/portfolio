@@ -28,7 +28,7 @@ const RATE_LIMIT_MSGS = [
 // shown on server errors (500, timeouts, network issues)
 const ERROR_MSGS = [
   "my brain isn't connected yet - the rust backend is coming soon!",
-  'the server gremlins got me, try again in a sec',
+  'the server tripped over a cable, try again in a sec',
 ];
 
 interface Message {
@@ -105,8 +105,8 @@ export default function Chatbot() {
 
   if (!open) {
     return (
-      <div class="fixed bottom-5 right-5 z-50 flex items-end gap-2">
-        <div class="bg-surface border border-heading/10 rounded-xl rounded-br-none px-3 py-2 text-[11px] text-heading/70 max-w-[180px] shadow-lg mb-1">
+      <div class="fixed bottom-4 right-4 sm:bottom-5 sm:right-5 z-50 flex items-end gap-2 group">
+        <div class="hidden sm:block bg-surface border border-heading/10 rounded-xl rounded-br-none px-3 py-2 text-xs text-heading/75 max-w-[190px] shadow-lg mb-1 opacity-0 translate-y-1 pointer-events-none transition-all group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:translate-y-0">
           {quip}
         </div>
         <button
@@ -125,7 +125,7 @@ export default function Chatbot() {
   }
 
   return (
-    <div class="fixed bottom-6 right-6 z-50 w-[340px] max-h-[480px] bg-surface border border-heading/10 rounded-xl shadow-2xl flex flex-col overflow-hidden">
+    <div class="fixed bottom-4 left-4 right-4 sm:left-auto sm:bottom-6 sm:right-6 z-50 w-auto sm:w-[340px] max-h-[min(520px,calc(100vh-2rem))] bg-surface border border-heading/10 rounded-xl shadow-2xl flex flex-col overflow-hidden">
       {/* header */}
       <div class="flex items-center justify-between px-4 py-3 border-b border-border">
         <div class="flex items-center gap-2">
