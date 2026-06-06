@@ -6,15 +6,14 @@ const games = (await getCollection('games')).sort(
   (a, b) => a.data.order - b.data.order,
 );
 
-// short labels for thumbnail placeholders until screenshots are added
-const gameLabels: Record<string, string> = {
-  'space-invaders': 'SI',
-  'maze-chase': 'A*',
-  'game-of-life': 'GOL',
-  artificial: 'ART',
-  'cellular-caves': 'CA',
-  'gacha-bot': 'GB',
-  'clicker-game': 'CLK',
+const gamePreviewClass: Record<string, string> = {
+  'space-invaders': 'game-thumb--space-invaders',
+  'maze-chase': 'game-thumb--maze-chase',
+  'game-of-life': 'game-thumb--game-of-life',
+  artificial: 'game-thumb--artificial',
+  'cellular-caves': 'game-thumb--cellular-caves',
+  'gacha-bot': 'game-thumb--gacha-bot',
+  'clicker-game': 'game-thumb--clicker-game',
 };
 ---
 
@@ -27,7 +26,10 @@ const gameLabels: Record<string, string> = {
     <p class="type-body mb-12">games and other interactive things i've built</p>
 
     <!-- catalog grid -->
-    <div id="game-catalog" class="grid grid-cols-2 md:grid-cols-3 gap-3">
+    <div
+      id="game-catalog"
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"
+    >
       {
         games.map((game) => (
           <button
@@ -40,19 +42,35 @@ const gameLabels: Record<string, string> = {
             data-game-embed={game.data.embed || ''}
             data-game-noembed={game.data.noEmbed || ''}
           >
-            <div class="bg-border h-32 md:h-40 flex items-center justify-center">
-              <span class="text-2xl font-black text-dim/40">
-                {gameLabels[game.id] || '?'}
-              </span>
-            </div>
+            {game.data.thumbnail ? (
+              <img
+                src={game.data.thumbnail}
+                alt=""
+                width="960"
+                height="540"
+                class="w-full h-36 md:h-44 object-cover border-b border-border"
+                loading="lazy"
+                decoding="async"
+              />
+            ) : (
+              <div
+                class:list={[
+                  'game-thumb',
+                  gamePreviewClass[game.id] || 'game-thumb--default',
+                ]}
+                aria-hidden="true"
+              >
+                <span class="game-thumb-screen" />
+              </div>
+            )}
             <div class="p-4">
               <h3 class="type-small-title group-hover:text-fox/90 transition-colors">
                 {game.data.title}
               </h3>
-              <p class="text-muted text-xs mt-1.5 line-clamp-2 leading-relaxed">
+              <p class="text-muted text-sm mt-1.5 line-clamp-2 leading-relaxed">
                 {game.data.description}
               </p>
-              <p class="text-dim text-[11px] mt-2">{game.data.tech}</p>
+              <p class="text-dim text-xs mt-2">{game.data.tech}</p>
             </div>
           </button>
         ))
@@ -105,6 +123,260 @@ const gameLabels: Record<string, string> = {
     </div>
   </section>
 </Layout>
+
+<style is:global>
+  .game-thumb {
+    position: relative;
+    height: 9rem;
+    overflow: hidden;
+    border-bottom: 1px solid #252525;
+    background: #1f1f1f;
+    isolation: isolate;
+  }
+
+  @media (min-width: 48rem) {
+    .game-thumb {
+      height: 11rem;
+    }
+  }
+
+  .game-thumb::before,
+  .game-thumb::after,
+  .game-thumb-screen {
+    content: '';
+    position: absolute;
+    display: block;
+  }
+
+  .game-thumb-screen {
+    inset: 0;
+    z-index: 3;
+    background:
+      linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px) 0 0 /
+        100% 10px,
+      radial-gradient(
+        circle at 30% 20%,
+        rgba(255, 255, 255, 0.08),
+        transparent 18%
+      ),
+      linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.22));
+    opacity: 0.7;
+    pointer-events: none;
+  }
+
+  .game-thumb--space-invaders {
+    background:
+      radial-gradient(circle at 18% 24%, #f0f0f0 0 1px, transparent 1.5px),
+      radial-gradient(circle at 64% 18%, #f0f0f0 0 1px, transparent 1.5px),
+      radial-gradient(circle at 78% 56%, #f0f0f0 0 1px, transparent 1.5px),
+      linear-gradient(180deg, #111827, #151515);
+  }
+
+  .game-thumb--space-invaders::before {
+    width: 12px;
+    height: 12px;
+    left: 50%;
+    top: 35%;
+    translate: -50% -50%;
+    background: #8fe6ff;
+    box-shadow:
+      -44px 0 0 #8fe6ff,
+      44px 0 0 #8fe6ff,
+      -22px 24px 0 #e8702a,
+      22px 24px 0 #e8702a;
+  }
+
+  .game-thumb--space-invaders::after {
+    width: 58px;
+    height: 10px;
+    left: 50%;
+    bottom: 28px;
+    translate: -50% 0;
+    background: #e8702a;
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  }
+
+  .game-thumb--maze-chase {
+    background:
+      linear-gradient(90deg, transparent 47%, #2f5cff 48% 52%, transparent 53%),
+      linear-gradient(transparent 30%, #2f5cff 31% 35%, transparent 36%),
+      linear-gradient(
+        90deg,
+        #2f5cff 8%,
+        transparent 8% 28%,
+        #2f5cff 28% 32%,
+        transparent 32% 70%,
+        #2f5cff 70% 74%,
+        transparent 74%
+      ),
+      #111421;
+  }
+
+  .game-thumb--maze-chase::before {
+    width: 18px;
+    height: 18px;
+    left: 28%;
+    top: 56%;
+    border-radius: 999px;
+    background: #e8702a;
+    box-shadow: 84px -42px 0 #8fe6ff;
+  }
+
+  .game-thumb--maze-chase::after {
+    width: 42px;
+    height: 4px;
+    left: 48%;
+    top: 50%;
+    background: #f0f0f0;
+    opacity: 0.5;
+  }
+
+  .game-thumb--game-of-life {
+    background:
+      linear-gradient(#242424 1px, transparent 1px) 0 0 / 18px 18px,
+      linear-gradient(90deg, #242424 1px, transparent 1px) 0 0 / 18px 18px,
+      #111;
+  }
+
+  .game-thumb--game-of-life::before {
+    width: 12px;
+    height: 12px;
+    left: 36%;
+    top: 36%;
+    background: #8fe6ff;
+    box-shadow:
+      18px 0 0 #8fe6ff,
+      36px 0 0 #e8702a,
+      18px 18px 0 #8fe6ff,
+      36px 18px 0 #8fe6ff,
+      54px 36px 0 #e8702a,
+      18px 54px 0 #8fe6ff;
+  }
+
+  .game-thumb--artificial {
+    background:
+      linear-gradient(90deg, rgba(232, 112, 42, 0.18), transparent),
+      linear-gradient(180deg, #1a1411, #151515);
+  }
+
+  .game-thumb--artificial::before {
+    width: 72%;
+    height: 2px;
+    left: 14%;
+    top: 52%;
+    background: #e8702a;
+    box-shadow:
+      0 -30px 0 rgba(232, 112, 42, 0.28),
+      0 30px 0 rgba(232, 112, 42, 0.18);
+  }
+
+  .game-thumb--artificial::after {
+    width: 14px;
+    height: 14px;
+    left: 22%;
+    top: 47%;
+    border-radius: 999px;
+    background: #f0f0f0;
+    box-shadow:
+      64px 0 0 #e8702a,
+      128px 0 0 #8fe6ff,
+      192px 0 0 #e8702a;
+  }
+
+  .game-thumb--cellular-caves {
+    background:
+      radial-gradient(
+        circle at 22% 50%,
+        transparent 0 24px,
+        #193f35 25px 48px,
+        transparent 49px
+      ),
+      radial-gradient(
+        circle at 63% 34%,
+        transparent 0 34px,
+        #193f35 35px 62px,
+        transparent 63px
+      ),
+      radial-gradient(
+        circle at 74% 72%,
+        transparent 0 30px,
+        #193f35 31px 58px,
+        transparent 59px
+      ),
+      #0f1614;
+  }
+
+  .game-thumb--cellular-caves::before {
+    inset: 18px;
+    border: 1px solid rgba(143, 230, 255, 0.18);
+  }
+
+  .game-thumb--cellular-caves::after {
+    width: 36px;
+    height: 6px;
+    right: 28px;
+    bottom: 30px;
+    background: #8fe6ff;
+    opacity: 0.8;
+  }
+
+  .game-thumb--gacha-bot {
+    background: linear-gradient(180deg, #101010, #171717);
+  }
+
+  .game-thumb--gacha-bot::before {
+    width: 70%;
+    height: 8px;
+    left: 16%;
+    top: 30%;
+    background: #6a6a6a;
+    box-shadow:
+      0 20px 0 #e8702a,
+      0 40px 0 #6a6a6a,
+      0 60px 0 #949494;
+  }
+
+  .game-thumb--gacha-bot::after {
+    content: '> run pull --rare';
+    left: 16%;
+    bottom: 24px;
+    color: #e8702a;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .game-thumb--clicker-game {
+    background: linear-gradient(180deg, #17120f, #151515);
+  }
+
+  .game-thumb--clicker-game::before {
+    width: 56px;
+    height: 56px;
+    left: 50%;
+    top: 46%;
+    translate: -50% -50%;
+    border-radius: 8px;
+    border: 2px solid #e8702a;
+    background: rgba(232, 112, 42, 0.12);
+  }
+
+  .game-thumb--clicker-game::after {
+    width: 34px;
+    height: 5px;
+    left: 50%;
+    bottom: 28px;
+    translate: -50% 0;
+    background: #949494;
+    box-shadow:
+      -42px 0 0 #6a6a6a,
+      42px 0 0 #6a6a6a;
+  }
+
+  .game-thumb--default {
+    background:
+      linear-gradient(135deg, rgba(232, 112, 42, 0.2), transparent), #151515;
+  }
+</style>
 
 <script>
   const catalog = document.getElementById('game-catalog');

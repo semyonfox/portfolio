@@ -228,7 +228,7 @@ for (const edge of semanticGraph.semanticEdges) {
       class="grid xl:grid-cols-[2.15fr_minmax(300px,0.85fr)] 2xl:grid-cols-[2.3fr_minmax(320px,0.8fr)] gap-4"
     >
       <div
-        class="bg-surface border border-heading/[0.06] rounded-bento p-3 md:p-4 overflow-hidden"
+        class="hidden md:block bg-surface border border-heading/[0.06] rounded-bento p-3 md:p-4 overflow-hidden"
       >
         <svg
           id="people-graph"
@@ -365,9 +365,13 @@ for (const edge of semanticGraph.semanticEdges) {
       >
         <div id="people-empty-state">
           <p class="type-micro uppercase mb-3">signal map</p>
-          <p class="type-body mb-5">
+          <p class="type-body mb-5 hidden md:block">
             click a node to read about a person and highlight their connections.
             scroll the directory below for a structured view.
+          </p>
+          <p class="type-body mb-5 md:hidden">
+            the interactive graph opens on wider screens. on mobile, use the
+            directory below; only the first section starts open.
           </p>
           <p class="type-micro uppercase mb-2.5">categories</p>
           <ul class="space-y-1.5">
@@ -452,7 +456,7 @@ for (const edge of semanticGraph.semanticEdges) {
       {
         categoryOrder.map((category) => (
           <details
-            open
+            open={category === 'dev'}
             class="people-cat bg-surface border border-heading/[0.06] rounded-bento overflow-hidden"
           >
             <summary class="list-none cursor-pointer p-5 flex items-center gap-3 hover:bg-heading/[0.02] transition-colors">
@@ -462,7 +466,7 @@ for (const edge of semanticGraph.semanticEdges) {
               />
               <div class="flex-1 min-w-0">
                 <h2 class="type-panel-title">{categoryMeta[category].label}</h2>
-                <p class="text-dim text-xs mt-0.5">
+                <p class="text-dim text-sm mt-0.5">
                   {categoryMeta[category].blurb}
                 </p>
               </div>
@@ -500,9 +504,9 @@ for (const edge of semanticGraph.semanticEdges) {
                   <article class="bg-bg/40 border border-heading/[0.06] rounded-bento p-4 hover:border-heading/10 transition-colors flex flex-col">
                     <div class="flex items-start justify-between gap-3 mb-2">
                       <div class="min-w-0">
-                        <h3 class="type-small-title truncate">{person.name}</h3>
+                        <h3 class="type-small-title">{person.name}</h3>
                         {research?.realName && (
-                          <p class="text-dim text-[11px] mt-0.5 truncate">
+                          <p class="text-dim text-xs mt-0.5">
                             {research.realName}
                           </p>
                         )}
@@ -511,19 +515,19 @@ for (const edge of semanticGraph.semanticEdges) {
                         href={person.links.primary}
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="shrink-0 border border-border text-muted text-[11px] px-2.5 py-1 rounded hover:text-heading hover:border-muted transition-colors"
+                        class="shrink-0 border border-border text-muted text-xs px-2.5 py-1 rounded hover:text-heading hover:border-muted transition-colors"
                       >
                         open
                       </a>
                     </div>
 
-                    <p class="text-muted text-xs leading-relaxed mb-3">
+                    <p class="text-muted text-sm leading-relaxed mb-3">
                       {blurb}
                     </p>
 
                     <div class="flex flex-wrap gap-1 mb-3">
                       {person.tags.slice(0, 3).map((tag) => (
-                        <span class="bg-border px-1.5 py-0.5 rounded text-[10px] text-muted">
+                        <span class="bg-border px-1.5 py-0.5 rounded text-xs text-muted">
                           {tag}
                         </span>
                       ))}
@@ -531,13 +535,13 @@ for (const edge of semanticGraph.semanticEdges) {
 
                     {hasExtras && (
                       <details class="people-more mt-auto">
-                        <summary class="list-none cursor-pointer text-fox/80 text-[11px] hover:text-fox transition-colors select-none">
+                        <summary class="list-none cursor-pointer text-fox/80 text-xs hover:text-fox transition-colors select-none">
                           <span class="people-more-label-closed">
                             read more
                           </span>
                           <span class="people-more-label-open">show less</span>
                         </summary>
-                        <div class="mt-3 space-y-3 text-[11px] text-muted leading-relaxed">
+                        <div class="mt-3 space-y-3 text-xs text-muted leading-relaxed">
                           {research.bio && <p>{research.bio}</p>}
                           {research.topics && research.topics.length > 0 && (
                             <div>
@@ -546,7 +550,7 @@ for (const edge of semanticGraph.semanticEdges) {
                               </p>
                               <div class="flex flex-wrap gap-1">
                                 {research.topics.slice(0, 8).map((t) => (
-                                  <span class="bg-border px-1.5 py-0.5 rounded text-[10px]">
+                                  <span class="bg-border px-1.5 py-0.5 rounded text-xs">
                                     {t}
                                   </span>
                                 ))}
