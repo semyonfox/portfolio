@@ -29,7 +29,7 @@ const OPENAPI_JSON: &str = include_str!("../openapi.json");
 const RATE_LIMIT_MESSAGES: &[&str] = &[
     "brb, swimming a 100 free, ask again in a min",
     "had to grab a coffee, give me a sec",
-    "claude agent finished, gotta prompt it again",
+    "local build finished, give me a sec",
     "between sets at the pool, hold on",
     "rebuilding my neovim config, brb",
     "tóg go bog é, try again in a min",

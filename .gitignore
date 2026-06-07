@@ -23,6 +23,7 @@ api/target/
 
 # superpowers brainstorming
 .superpowers/
+docs/superpowers/
 
 # env / secrets
 .env

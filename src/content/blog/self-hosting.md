@@ -18,7 +18,7 @@ I genuinely considered wiping it and finding something with a desktop. But I cou
 
 That one lazy decision changed everything.
 
-I started with Docker. ChatGPT helped me with the commands at first. I got fluent with navigating, finding things, common commands. Found Portainer, which made managing containers way easier. Then I realised I needed proper storage.
+I started with Docker and learned the commands the hard way: navigating, finding things, reading logs, fixing small mistakes, repeating it until it stuck. Found Portainer, which made managing containers way easier. Then I realised I needed proper storage.
 
 See, a while back I lost 400GB of gaming footage to a failed HDD in my PC. Just gone. That stung. So when I started thinking about storing files and photos on the server, I knew I needed redundancy. I bought a TerraMaster enclosure, 4x 4TB Seagate IronWolf drives, set up RAID 10 via OpenMediaVault with Btrfs. If a drive dies, I don't lose everything this time.
 

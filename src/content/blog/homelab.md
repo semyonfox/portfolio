@@ -16,7 +16,7 @@ I had a spare 500GB SSD lying around. I installed Ubuntu Server on it and booted
 
 That was terrifying. But it pushed me to actually learn the command line.
 
-Over the past year I've gone from copy-pasting YAML into ChatGPT to comfortably managing 30+ Docker containers. Media services, dashboards, file sharing, DNS with Pi-hole, VPN, NGINX reverse proxies, PostgreSQL with pgAdmin. The list keeps growing.
+Over the past year I've gone from blindly copy-pasting YAML to comfortably managing 30+ Docker containers. Media services, dashboards, file sharing, DNS with Pi-hole, VPN, NGINX reverse proxies, PostgreSQL with pgAdmin. The list keeps growing.
 
 I experimented with different filesystems and ended up building a NAS. TerraMaster enclosure, 4x 4TB Seagate IronWolf drives, RAID 10 via OpenMediaVault with Btrfs. It holds family photos and media now, with subvolumes mapped to network folders so my family can access their stuff securely.
 
