@@ -41,6 +41,8 @@ const gamePreviewClass: Record<string, string> = {
             data-game-private={game.data.private ? 'true' : 'false'}
             data-game-embed={game.data.embed || ''}
             data-game-noembed={game.data.noEmbed || ''}
+            data-game-display-width={game.data.displayWidth || ''}
+            data-game-display-height={game.data.displayHeight || ''}
           >
             {game.data.thumbnail ? (
               <img
@@ -118,6 +120,8 @@ const gamePreviewClass: Record<string, string> = {
         <iframe
           id="player-frame"
           class="w-full aspect-video"
+          allow="fullscreen"
+          tabindex="0"
           title="Game player"></iframe>
       </div>
     </div>
@@ -413,8 +417,17 @@ const gamePreviewClass: Record<string, string> = {
 
       if (embedUrl && frame) {
         frame.src = embedUrl;
+        window.setTimeout(() => frame.focus(), 0);
+        const displayWidth = Number(el.dataset.gameDisplayWidth);
+        const displayHeight = Number(el.dataset.gameDisplayHeight);
+        if (displayWidth > 0 && displayHeight > 0) {
+          frame.style.aspectRatio = `${displayWidth} / ${displayHeight}`;
+        } else {
+          frame.style.aspectRatio = '';
+        }
       } else if (frame) {
         const msg = el.dataset.gameNoembed || 'Game embed coming soon';
+        frame.style.aspectRatio = '';
         frame.srcdoc = `<div style="display:flex;align-items:center;justify-content:center;height:100%;background:#0a0a0a;color:#666;font-family:system-ui;font-size:14px;"><p>${msg}</p></div>`;
       }
 

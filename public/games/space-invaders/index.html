@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Space Invaders</title>
+    <link rel="stylesheet" href="/games/java-shell.css" />
+    <script src="https://cjrtnc.leaningtech.com/4.3/loader.js"></script>
+  </head>
+  <body>
+    <div id="cheerpj-display" aria-label="Space Invaders game"></div>
+    <div id="game-status">loading</div>
+    <script id="java-game-config" type="application/json">
+      {
+        "mainClass": "InvadersApplication",
+        "classPath": "/app/games/java/space-invaders.jar",
+        "userDir": "/app/games/java-assets/space-invaders"
+      }
+    </script>
+    <script src="/games/java-runner.js"></script>
+  </body>
+</html>

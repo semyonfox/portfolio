@@ -38,6 +38,8 @@ const games = defineCollection({
     private: z.boolean().default(false),
     embed: z.string().optional(),
     noEmbed: z.string().optional(),
+    displayWidth: z.number().optional(),
+    displayHeight: z.number().optional(),
     thumbnail: z.string().optional(),
     order: z.number().default(0),
   }),
