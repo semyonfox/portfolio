@@ -22,8 +22,12 @@ const gamePreviewClass: Record<string, string> = {
   description="Games and apps I've built that you can actually play."
 >
   <section class="pt-20 pb-16 md:pt-28">
-    <h1 class="type-page-title mb-3">Games & Apps</h1>
-    <p class="type-body mb-12">games and other interactive things i've built</p>
+    <div id="games-intro">
+      <h1 class="type-page-title mb-3">Games & Apps</h1>
+      <p class="type-body mb-12">
+        games and other interactive things i've built
+      </p>
+    </div>
 
     <!-- catalog grid -->
     <div
@@ -81,7 +85,9 @@ const gamePreviewClass: Record<string, string> = {
 
     <!-- game player (hidden by default) -->
     <div id="game-player" class="hidden">
-      <div class="flex items-center justify-between mb-4">
+      <div
+        class="max-w-6xl mx-auto flex items-center justify-between gap-4 mb-4"
+      >
         <div>
           <h2 id="player-title" class="type-section-title"></h2>
           <p id="player-tech" class="text-dim text-xs mt-1"></p>
@@ -116,10 +122,10 @@ const gamePreviewClass: Record<string, string> = {
           </button>
         </div>
       </div>
-      <div class="bg-black rounded-bento overflow-hidden border border-border">
+      <div id="player-stage" class="game-stage">
         <iframe
           id="player-frame"
-          class="w-full aspect-video"
+          class="game-frame"
           allow="fullscreen"
           tabindex="0"
           title="Game player"></iframe>
@@ -380,10 +386,60 @@ const gamePreviewClass: Record<string, string> = {
     background:
       linear-gradient(135deg, rgba(232, 112, 42, 0.2), transparent), #151515;
   }
+
+  #game-player {
+    margin-inline: calc(50% - 50vw);
+    padding-inline: clamp(1rem, 2vw, 2rem);
+    scroll-margin-top: 5rem;
+  }
+
+  .game-stage {
+    width: 100%;
+    max-width: min(
+      100%,
+      calc((100vh - 7rem) * var(--game-aspect-value, 1.777)),
+      96rem
+    );
+    margin-inline: auto;
+    overflow: hidden;
+    border: 1px solid #252525;
+    border-radius: 0.75rem;
+    background: #000;
+  }
+
+  .game-frame {
+    display: block;
+    width: 100%;
+    min-height: 28rem;
+    border: 0;
+    aspect-ratio: var(--game-aspect, 16 / 9);
+  }
+
+  .game-stage:fullscreen {
+    width: 100vw;
+    height: 100vh;
+    max-width: none;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .game-stage:fullscreen .game-frame {
+    width: 100vw;
+    height: 100vh;
+    min-height: 0;
+    aspect-ratio: auto;
+  }
+
+  @media (max-width: 48rem) {
+    .game-frame {
+      min-height: 22rem;
+    }
+  }
 </style>
 
 <script>
   const catalog = document.getElementById('game-catalog');
+  const intro = document.getElementById('games-intro');
   const player = document.getElementById('game-player');
   const frame = document.getElementById('player-frame') as HTMLIFrameElement;
   const title = document.getElementById('player-title');
@@ -394,6 +450,7 @@ const gamePreviewClass: Record<string, string> = {
   const privateRepo = document.getElementById('player-private');
   const backBtn = document.getElementById('player-back');
   const fullscreenBtn = document.getElementById('player-fullscreen');
+  const stage = document.getElementById('player-stage');
 
   document.querySelectorAll('.game-card').forEach((card) => {
     card.addEventListener('click', () => {
@@ -421,28 +478,38 @@ const gamePreviewClass: Record<string, string> = {
         const displayWidth = Number(el.dataset.gameDisplayWidth);
         const displayHeight = Number(el.dataset.gameDisplayHeight);
         if (displayWidth > 0 && displayHeight > 0) {
-          frame.style.aspectRatio = `${displayWidth} / ${displayHeight}`;
+          const aspect = displayWidth / displayHeight;
+          stage?.style.setProperty(
+            '--game-aspect',
+            `${displayWidth} / ${displayHeight}`,
+          );
+          stage?.style.setProperty('--game-aspect-value', String(aspect));
         } else {
-          frame.style.aspectRatio = '';
+          stage?.style.removeProperty('--game-aspect');
+          stage?.style.removeProperty('--game-aspect-value');
         }
       } else if (frame) {
         const msg = el.dataset.gameNoembed || 'Game embed coming soon';
-        frame.style.aspectRatio = '';
+        stage?.style.removeProperty('--game-aspect');
+        stage?.style.removeProperty('--game-aspect-value');
         frame.srcdoc = `<div style="display:flex;align-items:center;justify-content:center;height:100%;background:#0a0a0a;color:#666;font-family:system-ui;font-size:14px;"><p>${msg}</p></div>`;
       }
 
       catalog?.classList.add('hidden');
+      intro?.classList.add('hidden');
       player?.classList.remove('hidden');
+      player?.scrollIntoView({ block: 'start' });
     });
   });
 
   backBtn?.addEventListener('click', () => {
     player?.classList.add('hidden');
+    intro?.classList.remove('hidden');
     catalog?.classList.remove('hidden');
     if (frame) frame.src = '';
   });
 
   fullscreenBtn?.addEventListener('click', () => {
-    frame?.requestFullscreen?.();
+    stage?.requestFullscreen?.();
   });
 </script>

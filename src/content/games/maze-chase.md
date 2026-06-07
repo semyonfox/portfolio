@@ -4,7 +4,7 @@ description: 'Navigate a maze while an AI enemy hunts you using A* pathfinding. 
 tech: 'Java (Swing)'
 github: 'https://github.com/semyonfox/astar-maze-chase'
 embed: '/games/astar-maze-chase/index.html'
-displayWidth: 800
+displayWidth: 1280
 displayHeight: 800
 thumbnail: '/game-thumbnails/maze-chase.webp'
 order: 2
