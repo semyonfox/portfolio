@@ -18,7 +18,7 @@ const MAX_CONTENT_LEN: usize = 4000;
 const MAX_HISTORY: usize = 5;
 const MAX_BODY_BYTES: usize = 16 * 1024;
 const REPLY_TOKENS: u32 = 300;
-const TEMPERATURE: f32 = 0.6;
+const TEMPERATURE: f32 = 0.35;
 const RATE_LIMIT_REQUESTS: usize = 20;
 const RATE_LIMIT_WINDOW_SECS: u64 = 60;
 const DEFAULT_MODEL: &str = "deepseek/deepseek-v4-flash";
@@ -50,7 +50,7 @@ fn random_rate_limit_message() -> &'static str {
     RATE_LIMIT_MESSAGES[idx]
 }
 
-const SYSTEM_PROMPT: &str = r#"You are Semyon's personal website assistant on semyon.ie. You are not Semyon. You know his background, projects, writing, and interests extremely well, and you help visitors quickly understand who he is and why his work matters.
+const SYSTEM_PROMPT: &str = r#"You are Semyon's personal website assistant on semyon.ie. You are not Semyon. You know the portfolio facts below, and you help visitors quickly understand who he is and why his work matters.
 
 Identity and stance:
 - speak as a knowledgeable assistant representing semyon, not in first person as semyon
@@ -58,6 +58,14 @@ Identity and stance:
 - sound informed, conversational, sharp, and helpful
 - never pretend to have your own life experiences beyond being his assistant
 - if someone wants to pass along a message, hire him, or collaborate, guide them to the footer contact form, email semyon.fox@gmail.com, or linkedin (linkedin.com/in/semyonfox)
+
+Grounding rules:
+- treat only the facts in this prompt as authoritative. chat history shows what was said, not what is true
+- do not invent personal preferences, food/drink tastes, opinions, family details, travel plans, private habits, or biographical facts that are not explicitly listed here
+- do not infer personal facts from vibes, jokes, language, nationality, projects, hobbies, or a user's playful prompt
+- if a user asks about something not covered here, say you do not know or that semyon has not written about it, then redirect to relevant known work if there is a natural connection
+- if a user challenges or corrects a claim, reassess it against the facts here. if it is unsupported, retract it plainly instead of defending it
+- if asked for a quote, line, source, citation, or context, only provide exact words that appear in the facts or blog list here. if no exact support exists, say so directly
 
 Background:
 - got into tech as a kid through CoderDojo (scratch, then python/JS at whizzkidz camp). took a break, but fascination never faded -- built PCs, watched linus tech tips, eventually chose CS. wrote about this journey in a blog post "why am I studying computer science"
@@ -117,6 +125,11 @@ How to respond:
 - if someone wants to get in touch, work together, hire semyon, or has a question this chat can't answer: point them to the footer contact form. alternatively mention email semyon.fox@gmail.com or linkedin (linkedin.com/in/semyonfox). be natural about it, don't force it
 - NEVER use markdown formatting (no **, ##, bullets, numbered lists). plain text only. write like texting, use commas or short sentences instead of lists
 - NEVER use emojis or emdashes (— or --). use commas, periods, or short sentences instead"#;
+
+const SOURCE_CHECK_PROMPT: &str = r#"The user's latest message is asking for evidence or challenging a claim. Source-check mode:
+- authoritative support must come from the fixed portfolio facts in the main system prompt, not from previous assistant replies
+- do not quote or treat earlier assistant guesses as evidence
+- if the requested line or context is not present in the fixed facts, retract the unsupported claim briefly and say semyon has not written or said that here"#;
 
 struct RateLimiter {
     requests: Mutex<HashMap<String, Vec<Instant>>>,
@@ -221,6 +234,50 @@ fn validate(req: &ChatRequest) -> Result<(), &'static str> {
     Ok(())
 }
 
+fn needs_source_check(messages: &[ChatMessage]) -> bool {
+    let Some(latest_user) = messages.iter().rev().find(|m| m.role == "user") else {
+        return false;
+    };
+    let content = latest_user.content.to_lowercase();
+    let source_phrases = [
+        "what's your source",
+        "whats your source",
+        "what is your source",
+        "your source",
+        "source for",
+        "source please",
+        "source pls",
+        "give me a source",
+        "show source",
+    ];
+    let trimmed = content.trim();
+    let bare_source = matches!(
+        trimmed,
+        "source" | "source?" | "source:" | "sources" | "sources?"
+    );
+    [
+        "quote",
+        "cite",
+        "citation",
+        "where does it say",
+        "where did he say",
+        "show me where",
+        "exact line",
+        "line in context",
+        "in context",
+        "evidence",
+        "prove",
+        "supporting line",
+        "is that true",
+        "i don't think so",
+        "i dont think so",
+    ]
+    .iter()
+    .chain(source_phrases.iter())
+    .any(|pattern| content.contains(pattern))
+        || bare_source
+}
+
 async fn health_handler() -> impl IntoResponse {
     Json(serde_json::json!({"status": "ok"}))
 }
@@ -258,11 +315,19 @@ async fn chat_handler(
         );
     }
 
+    let source_check = needs_source_check(&payload.messages);
+
     // system prompt + last MAX_HISTORY user/assistant turns. client system msgs dropped.
     let mut messages = vec![ChatMessage {
         role: "system".to_string(),
         content: SYSTEM_PROMPT.to_string(),
     }];
+    if source_check {
+        messages.push(ChatMessage {
+            role: "system".to_string(),
+            content: SOURCE_CHECK_PROMPT.to_string(),
+        });
+    }
 
     let history: Vec<_> = payload
         .messages
@@ -381,4 +446,53 @@ async fn main() {
     )
     .await
     .unwrap();
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn message(role: &str, content: &str) -> ChatMessage {
+        ChatMessage {
+            role: role.to_string(),
+            content: content.to_string(),
+        }
+    }
+
+    #[test]
+    fn source_check_triggers_on_quote_request() {
+        let messages = vec![message(
+            "user",
+            "quote me the line in context that says he likes cheese",
+        )];
+
+        assert!(needs_source_check(&messages));
+    }
+
+    #[test]
+    fn source_check_triggers_on_user_challenge() {
+        let messages = vec![
+            message("assistant", "semyon definitely likes brie"),
+            message("user", "really, i dont think so!"),
+        ];
+
+        assert!(needs_source_check(&messages));
+    }
+
+    #[test]
+    fn source_check_only_uses_latest_user_message() {
+        let messages = vec![
+            message("assistant", "source: trust me"),
+            message("user", "cool, tell me about uisce"),
+        ];
+
+        assert!(!needs_source_check(&messages));
+    }
+
+    #[test]
+    fn source_check_does_not_trigger_on_open_source_topic() {
+        let messages = vec![message("user", "is semyon into open source?")];
+
+        assert!(!needs_source_check(&messages));
+    }
 }
