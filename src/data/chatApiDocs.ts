@@ -65,6 +65,10 @@ export const chatApiDocs = {
       description:
         'The server prepends a fixed system prompt and keeps only the last 5 user/assistant turns.',
     },
+    {
+      term: 'conversation_id',
+      description: `Optional client-generated id (e.g. a UUID) so multi-turn conversations group together server-side. Max ${requestSchema.properties.conversation_id.maxLength} chars, alphanumeric and dashes.`,
+    },
   ],
   responseSummary:
     'Returns one plain-text reply with a roughly 300-token cap. Streaming and reasoning tokens are disabled.',
@@ -111,6 +115,7 @@ export const chatApiDocs = {
     'Public endpoint, no auth.',
     'Assistant persona is fixed: third-person, casual lowercase, plain text, no markdown, no emojis.',
     'For broader context about Semyon, request page URLs with Accept: text/markdown or use the explicit .md suffix.',
+    'Questions and replies are stored with a coarse country code (never a raw IP) to improve the assistant. Details: /privacy.',
   ],
 } as const;
 

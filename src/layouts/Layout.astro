@@ -2,6 +2,13 @@
 import { ClientRouter } from 'astro:transitions';
 import Chatbot from '../components/Chatbot.tsx';
 import '../styles/global.css';
+// self-hosted inter, same weights the google fonts link used to serve
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/400-italic.css';
+import '@fontsource/inter/600.css';
+import '@fontsource/inter/700.css';
+import '@fontsource/inter/800.css';
+import '@fontsource/inter/900.css';
 
 interface Props {
   title: string;
@@ -53,12 +60,6 @@ const navLinks = [
       href="/favicon-16x16.png?v=2"
     />
     <link rel="manifest" href="/site.webmanifest" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap"
-      rel="stylesheet"
-    />
     <!-- og -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -272,13 +273,43 @@ const navLinks = [
                 >
               </a>
             </div>
-            <p class="text-dim text-xs mt-8">&copy; 2026 Semyon Fox</p>
+            <p class="text-dim text-xs mt-8">
+              &copy; 2026 Semyon Fox &middot;
+              <a href="/privacy" class="hover:text-heading transition-colors">
+                privacy
+              </a>
+            </p>
           </div>
         </div>
       </div>
     </footer>
 
     {showChatbot && <Chatbot client:load />}
+
+    <script>
+      import { track } from '../lib/track';
+      // fires on initial load and after every view-transition navigation
+      document.addEventListener('astro:page-load', () => track('pageview'));
+
+      // outbound links, including mailto. delegated so it survives
+      // view transitions, keepalive so it survives the navigation itself
+      document.addEventListener('click', (e) => {
+        const link = (e.target as Element | null)?.closest?.('a[href]');
+        if (!(link instanceof HTMLAnchorElement)) return;
+        const external =
+          (link.protocol === 'http:' || link.protocol === 'https:') &&
+          link.origin !== location.origin;
+        if (external || link.protocol === 'mailto:') {
+          track('outbound_click', link.href);
+        }
+      });
+
+      // contact form navigates away to formspree, keepalive covers the ping
+      document.addEventListener('submit', (e) => {
+        const form = e.target as HTMLFormElement | null;
+        if (form?.action?.includes('formspree')) track('form_submit');
+      });
+    </script>
 
     <script>
       const btn = document.getElementById('mobile-menu-btn');

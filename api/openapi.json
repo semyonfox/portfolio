@@ -3,7 +3,7 @@
   "info": {
     "title": "Semyon Fox — Chat API",
     "version": "0.1.0",
-    "description": "Conversational endpoint backing Semyon Fox's personal-site assistant. Answers as a third-person assistant representing him about his projects, blog, and background. Rate limited per-IP (20 req/min). Non-streaming, no reasoning tokens, 300-token reply cap, last 5 user/assistant turns kept server-side.",
+    "description": "Conversational endpoint backing Semyon Fox's personal-site assistant. Answers as a third-person assistant representing him about his projects, blog, and background. Rate limited per-IP (20 req/min). Non-streaming, no reasoning tokens, 300-token reply cap, last 5 user/assistant turns kept server-side. Questions and replies are stored (with a coarse country code, never a raw IP) to improve the assistant; see https://semyon.ie/privacy.",
     "contact": {
       "name": "Semyon Fox",
       "email": "semyon.fox@gmail.com",
@@ -47,6 +47,32 @@
           "400": { "description": "Invalid request body", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ChatResponse" } } } },
           "429": { "description": "Rate limited (20 requests/minute/IP)", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ChatResponse" } } } },
           "502": { "description": "Upstream model failure", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ChatResponse" } } } }
+        }
+      }
+    },
+    "/api/events": {
+      "post": {
+        "summary": "Record a usage event",
+        "description": "Cookieless first-party analytics ping sent by the site itself (page views, chat opens, game launches, outbound clicks, form submissions, 404s). Stores the path, optional external referrer, optional target, campaign tag, device class, browser/OS family and first Accept-Language tag (parsed server-side, raw user agent never stored), a coarse country code, and a daily-rotating anonymous visitor hash. Never stores raw IPs. Requests carrying DNT: 1 or Sec-GPC: 1 are accepted but not recorded. Rate limited per-IP (60 req/min).",
+        "operationId": "event",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/EventRequest" },
+              "examples": {
+                "pageview": {
+                  "summary": "Page view",
+                  "value": { "kind": "pageview", "path": "/blog", "referrer": null }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": { "description": "Recorded (or silently skipped for opted-out visitors)" },
+          "400": { "description": "Unknown event kind or invalid path/referrer" },
+          "429": { "description": "Rate limited (60 requests/minute/IP)" }
         }
       }
     },
@@ -99,6 +125,40 @@
             "minItems": 1,
             "maxItems": 40,
             "items": { "$ref": "#/components/schemas/ChatMessage" }
+          },
+          "conversation_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64,
+            "pattern": "^[A-Za-z0-9-]+$",
+            "description": "Optional client-generated id (e.g. a UUID) so multi-turn conversations can be grouped server-side."
+          }
+        }
+      },
+      "EventRequest": {
+        "type": "object",
+        "required": ["kind", "path"],
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": ["pageview", "chat_open", "game_open", "outbound_click", "form_submit", "not_found"]
+          },
+          "path": { "type": "string", "maxLength": 512, "pattern": "^/" },
+          "referrer": { "type": ["string", "null"], "maxLength": 512 },
+          "target": {
+            "type": ["string", "null"],
+            "maxLength": 512,
+            "description": "What was acted on: destination URL for outbound_click, game id for game_open."
+          },
+          "source": {
+            "type": ["string", "null"],
+            "maxLength": 128,
+            "description": "Campaign tag from the landing URL (utm_source or ref query param)."
+          },
+          "screen": {
+            "type": ["string", "null"],
+            "enum": ["mobile", "tablet", "desktop", null],
+            "description": "Coarse device class derived from viewport width."
           }
         }
       },

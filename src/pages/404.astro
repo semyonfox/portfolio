@@ -9,3 +9,9 @@ import Layout from '../layouts/Layout.astro';
     <a href="/" class="text-fox text-sm hover:underline">back home</a>
   </section>
 </Layout>
+
+<script>
+  import { track } from '../lib/track';
+  // the layout's pageview records the missing path too, this marks it as a 404
+  track('not_found');
+</script>

@@ -13,13 +13,20 @@ services:
       dockerfile: Dockerfile
     env_file:
       - ${PORTFOLIO_ENV_FILE:-.env}
+    environment:
+      - DB_PATH=/data/portfolio.db
+    volumes:
+      - chat-data:/data
     restart: unless-stopped
 
   tunnel:
     image: cloudflare/cloudflared:latest
-    command: tunnel --no-autoupdate run
+    command: tunnel --no-autoupdate --protocol http2 run
     environment:
       - TUNNEL_TOKEN=${TUNNEL_TOKEN}
     depends_on:
       - portfolio
     restart: unless-stopped
+
+volumes:
+  chat-data:

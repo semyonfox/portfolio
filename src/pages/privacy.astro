@@ -1,0 +1,36 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { privacyIntro, privacyMeta, privacySections } from '../data/privacy';
+---
+
+<Layout
+  title={`${privacyMeta.title} | Semyon Fox`}
+  description={privacyMeta.pageDescription}
+>
+  <section class="pt-20 pb-16 md:pt-28 max-w-3xl">
+    <p class="type-kicker mb-4">no banners needed</p>
+    <h1 class="type-page-title mb-3">{privacyMeta.title}</h1>
+    <p class="text-dim text-xs mb-6">Last updated: {privacyMeta.updated}</p>
+    <p class="type-body mb-10">{privacyIntro}</p>
+
+    {
+      privacySections.map((section) => (
+        <>
+          <h2 class="type-section-title mb-3">{section.heading}</h2>
+          {section.paragraphs?.map((paragraph) => (
+            <p class="type-body mb-8">{paragraph}</p>
+          ))}
+          {section.items && (
+            <ul class="text-muted text-sm leading-relaxed space-y-1 mb-8 list-disc pl-5">
+              {section.items.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          )}
+        </>
+      ))
+    }
+
+    <a href="/" class="text-fox text-sm hover:underline">&larr; back home</a>
+  </section>
+</Layout>

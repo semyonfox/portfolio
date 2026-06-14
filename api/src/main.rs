@@ -1,10 +1,13 @@
+mod db;
+
 use axum::{
     Json, Router,
     extract::{ConnectInfo, DefaultBodyLimit, State},
-    http::{StatusCode, header},
+    http::{HeaderMap, StatusCode, header},
     response::{IntoResponse, Response},
 };
 use serde::{Deserialize, Serialize};
+use sha2::{Digest, Sha256};
 use std::{
     collections::HashMap,
     net::SocketAddr,
@@ -21,6 +24,22 @@ const REPLY_TOKENS: u32 = 300;
 const TEMPERATURE: f32 = 0.35;
 const RATE_LIMIT_REQUESTS: usize = 20;
 const RATE_LIMIT_WINDOW_SECS: u64 = 60;
+const EVENT_RATE_LIMIT_REQUESTS: usize = 60;
+const MAX_EVENT_FIELD_LEN: usize = 512;
+const MAX_CONVERSATION_ID_LEN: usize = 64;
+// also listed in api/openapi.json and src/lib/track.ts, keep all three in sync
+const EVENT_KINDS: &[&str] = &[
+    "pageview",
+    "chat_open",
+    "game_open",
+    "outbound_click",
+    "form_submit",
+    "not_found",
+];
+const SCREEN_CLASSES: &[&str] = &["mobile", "tablet", "desktop"];
+const MAX_SOURCE_LEN: usize = 128;
+const MAX_LANG_LEN: usize = 16;
+const DEFAULT_DB_PATH: &str = "portfolio.db";
 const DEFAULT_MODEL: &str = "deepseek/deepseek-v4-flash";
 const DEFAULT_API_URL: &str = "https://openrouter.ai/api/v1/chat/completions";
 
@@ -162,6 +181,9 @@ impl RateLimiter {
 #[derive(Deserialize)]
 struct ChatRequest {
     messages: Vec<ChatMessage>,
+    // optional per-tab id so multi-turn conversations can be grouped in logs
+    #[serde(default)]
+    conversation_id: Option<String>,
 }
 
 #[derive(Serialize, Deserialize, Clone)]
@@ -211,6 +233,9 @@ struct AppState {
     model: String,
     http_client: reqwest::Client,
     rate_limiter: RateLimiter,
+    event_rate_limiter: RateLimiter,
+    log_tx: tokio::sync::mpsc::UnboundedSender<db::LogEntry>,
+    analytics_salt: String,
 }
 
 fn validate(req: &ChatRequest) -> Result<(), &'static str> {
@@ -231,7 +256,132 @@ fn validate(req: &ChatRequest) -> Result<(), &'static str> {
             return Err("invalid role");
         }
     }
+    if req.conversation_id.is_some() && sanitize_conversation_id(&req.conversation_id).is_none() {
+        return Err("invalid conversation_id");
+    }
     Ok(())
+}
+
+fn sanitize_conversation_id(id: &Option<String>) -> Option<String> {
+    id.as_deref()
+        .map(str::trim)
+        .filter(|s| {
+            !s.is_empty()
+                && s.len() <= MAX_CONVERSATION_ID_LEN
+                && s.chars().all(|c| c.is_ascii_alphanumeric() || c == '-')
+        })
+        .map(String::from)
+}
+
+// real client ip. behind the cloudflare tunnel + nginx the socket addr is
+// just the proxy, so prefer the edge headers
+fn client_ip(headers: &HeaderMap, addr: &SocketAddr) -> String {
+    for name in ["cf-connecting-ip", "x-real-ip"] {
+        if let Some(ip) = headers.get(name).and_then(|v| v.to_str().ok()) {
+            let ip = ip.trim();
+            if !ip.is_empty() {
+                return ip.to_string();
+            }
+        }
+    }
+    if let Some(ip) = headers
+        .get("x-forwarded-for")
+        .and_then(|v| v.to_str().ok())
+        .and_then(|v| v.split(',').next())
+    {
+        let ip = ip.trim();
+        if !ip.is_empty() {
+            return ip.to_string();
+        }
+    }
+    addr.ip().to_string()
+}
+
+// country code resolved by cloudflare at the edge. we never geolocate or
+// store the ip ourselves. XX/T1 are cloudflare's unknown/tor markers
+fn visitor_country(headers: &HeaderMap) -> Option<String> {
+    headers
+        .get("cf-ipcountry")
+        .and_then(|v| v.to_str().ok())
+        .map(|c| c.trim().to_ascii_uppercase())
+        .filter(|c| c.len() == 2 && c != "XX" && c != "T1")
+}
+
+fn user_agent(headers: &HeaderMap) -> &str {
+    headers
+        .get(header::USER_AGENT)
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("")
+}
+
+// browser and os family parsed server-side, the raw user agent is never stored
+fn browser_os(ua: &str) -> (Option<String>, Option<String>) {
+    if ua.is_empty() {
+        return (None, None);
+    }
+    let clean = |s: &str| {
+        let s = s.trim();
+        (!s.is_empty() && s != "UNKNOWN").then(|| s.to_string())
+    };
+    match woothee::parser::Parser::new().parse(ua) {
+        Some(result) => (clean(result.name), clean(result.os)),
+        None => (None, None),
+    }
+}
+
+// first tag of accept-language, e.g. "en-IE"
+fn visitor_lang(headers: &HeaderMap) -> Option<String> {
+    headers
+        .get(header::ACCEPT_LANGUAGE)
+        .and_then(|v| v.to_str().ok())
+        .and_then(|v| v.split(',').next())
+        .map(|tag| tag.split(';').next().unwrap_or(tag).trim().to_string())
+        .filter(|tag| !tag.is_empty() && tag.len() <= MAX_LANG_LEN && tag != "*")
+}
+
+// browsers signal opt-out via global privacy control or do-not-track.
+// the client checks these too, this is the server-side backstop
+fn opted_out(headers: &HeaderMap) -> bool {
+    ["sec-gpc", "dnt"].iter().any(|name| {
+        headers
+            .get(*name)
+            .and_then(|v| v.to_str().ok())
+            .map(str::trim)
+            == Some("1")
+    })
+}
+
+// daily-rotating anonymous visitor id: sha256(salt, day, ip, ua) truncated.
+// the raw ip is never stored and ids can't be linked across days
+fn visitor_hash(salt: &str, ip: &str, ua: &str) -> String {
+    let day = SystemTime::now()
+        .duration_since(UNIX_EPOCH)
+        .map(|d| d.as_secs() / 86400)
+        .unwrap_or(0);
+    let mut hasher = Sha256::new();
+    hasher.update(salt.as_bytes());
+    hasher.update(day.to_le_bytes());
+    hasher.update(ip.as_bytes());
+    hasher.update(ua.as_bytes());
+    hasher
+        .finalize()
+        .iter()
+        .take(8)
+        .map(|b| format!("{b:02x}"))
+        .collect()
+}
+
+// random per-boot fallback when ANALYTICS_SALT isn't set. unique-visitor
+// counts won't survive restarts but ips stay unlinkable either way
+fn boot_salt() -> String {
+    use std::collections::hash_map::RandomState;
+    use std::hash::{BuildHasher, Hasher};
+    let state = RandomState::new();
+    let mut a = state.build_hasher();
+    a.write_u64(1);
+    let mut b = state.build_hasher();
+    b.write_u64(2);
+    format!("{:016x}{:016x}", a.finish(), b.finish())
 }
 
 fn needs_source_check(messages: &[ChatMessage]) -> bool {
@@ -293,11 +443,34 @@ async fn openapi_handler() -> Response {
 async fn chat_handler(
     ConnectInfo(addr): ConnectInfo<SocketAddr>,
     State(state): State<Arc<AppState>>,
+    headers: HeaderMap,
     Json(payload): Json<ChatRequest>,
 ) -> (StatusCode, Json<ChatResponse>) {
-    let ip = addr.ip().to_string();
+    let ip = client_ip(&headers, &addr);
+    let visitor = visitor_hash(&state.analytics_salt, &ip, user_agent(&headers));
+    let country = visitor_country(&headers);
+    let conversation_id = sanitize_conversation_id(&payload.conversation_id);
+    // char-truncate since rate-limited requests skip validation
+    let question: String = payload
+        .messages
+        .iter()
+        .rev()
+        .find(|m| m.role == "user")
+        .map(|m| m.content.chars().take(MAX_CONTENT_LEN).collect())
+        .unwrap_or_default();
 
     if !state.rate_limiter.check(&ip) {
+        let _ = state.log_tx.send(db::LogEntry::Chat(db::ChatLog {
+            conversation_id,
+            visitor,
+            country,
+            question,
+            reply: None,
+            status: "rate_limited",
+            model: None,
+            latency_ms: None,
+            source_check: false,
+        }));
         return (
             StatusCode::TOO_MANY_REQUESTS,
             Json(ChatResponse {
@@ -346,6 +519,7 @@ async fn chat_handler(
         reasoning: ReasoningConfig { enabled: false },
     };
 
+    let started = Instant::now();
     let result = state
         .http_client
         .post(&state.api_url)
@@ -355,8 +529,9 @@ async fn chat_handler(
         .json(&upstream_req)
         .send()
         .await;
+    let latency_ms = started.elapsed().as_millis() as i64;
 
-    match result {
+    let (code, reply, status) = match result {
         Ok(res) if res.status().is_success() => match res.json::<UpstreamResponse>().await {
             Ok(data) => {
                 let reply = data
@@ -364,15 +539,14 @@ async fn chat_handler(
                     .first()
                     .map(|c| c.message.content.clone())
                     .unwrap_or_else(|| "hmm, i blanked. try asking again?".to_string());
-                (StatusCode::OK, Json(ChatResponse { reply }))
+                (StatusCode::OK, reply, "ok")
             }
             Err(e) => {
                 tracing::error!("parse error: {e}");
                 (
                     StatusCode::BAD_GATEWAY,
-                    Json(ChatResponse {
-                        reply: "got a weird response, try again?".to_string(),
-                    }),
+                    "got a weird response, try again?".to_string(),
+                    "upstream_error",
                 )
             }
         },
@@ -382,21 +556,113 @@ async fn chat_handler(
             tracing::error!("upstream {status}: {body}");
             (
                 StatusCode::BAD_GATEWAY,
-                Json(ChatResponse {
-                    reply: "something went wrong on my end, try again in a sec.".to_string(),
-                }),
+                "something went wrong on my end, try again in a sec.".to_string(),
+                "upstream_error",
             )
         }
         Err(e) => {
             tracing::error!("request failed: {e}");
             (
                 StatusCode::BAD_GATEWAY,
-                Json(ChatResponse {
-                    reply: "couldn't reach my brain right now. try again later!".to_string(),
-                }),
+                "couldn't reach my brain right now. try again later!".to_string(),
+                "upstream_error",
             )
         }
+    };
+
+    let _ = state.log_tx.send(db::LogEntry::Chat(db::ChatLog {
+        conversation_id,
+        visitor,
+        country,
+        question,
+        reply: (status == "ok").then(|| reply.clone()),
+        status,
+        model: (status == "ok").then(|| state.model.clone()),
+        latency_ms: Some(latency_ms),
+        source_check,
+    }));
+
+    (code, Json(ChatResponse { reply }))
+}
+
+#[derive(Deserialize)]
+struct EventRequest {
+    kind: String,
+    path: String,
+    #[serde(default)]
+    referrer: Option<String>,
+    // what was acted on: destination url for outbound_click, game id for game_open
+    #[serde(default)]
+    target: Option<String>,
+    // campaign tag from the landing url: utm_source or ref query param
+    #[serde(default)]
+    source: Option<String>,
+    // coarse device class: mobile | tablet | desktop
+    #[serde(default)]
+    screen: Option<String>,
+}
+
+fn validate_event(req: &EventRequest) -> Result<(), &'static str> {
+    if !EVENT_KINDS.contains(&req.kind.as_str()) {
+        return Err("unknown event kind");
     }
+    if !req.path.starts_with('/') || req.path.len() > MAX_EVENT_FIELD_LEN {
+        return Err("invalid path");
+    }
+    for field in [&req.referrer, &req.target] {
+        if let Some(value) = field {
+            if value.len() > MAX_EVENT_FIELD_LEN {
+                return Err("field too long");
+            }
+        }
+    }
+    if let Some(source) = &req.source {
+        if source.len() > MAX_SOURCE_LEN {
+            return Err("source too long");
+        }
+    }
+    if let Some(screen) = &req.screen {
+        if !SCREEN_CLASSES.contains(&screen.as_str()) {
+            return Err("invalid screen class");
+        }
+    }
+    Ok(())
+}
+
+async fn event_handler(
+    ConnectInfo(addr): ConnectInfo<SocketAddr>,
+    State(state): State<Arc<AppState>>,
+    headers: HeaderMap,
+    Json(payload): Json<EventRequest>,
+) -> StatusCode {
+    let ip = client_ip(&headers, &addr);
+    if !state.event_rate_limiter.check(&ip) {
+        return StatusCode::TOO_MANY_REQUESTS;
+    }
+    if validate_event(&payload).is_err() {
+        return StatusCode::BAD_REQUEST;
+    }
+    if opted_out(&headers) {
+        return StatusCode::NO_CONTENT;
+    }
+
+    let ua = user_agent(&headers);
+    let (browser, os) = browser_os(ua);
+    let _ = state.log_tx.send(db::LogEntry::Event(db::EventLog {
+        kind: payload.kind,
+        path: payload.path,
+        referrer: payload.referrer.filter(|r| !r.trim().is_empty()),
+        target: payload.target.filter(|t| !t.trim().is_empty()),
+        visitor: visitor_hash(&state.analytics_salt, &ip, ua),
+        country: visitor_country(&headers),
+        browser,
+        os,
+        lang: visitor_lang(&headers),
+        source: payload.source.filter(|s| !s.trim().is_empty()),
+        screen: payload.screen,
+    }));
+
+    StatusCode::NO_CONTENT
 }
 
 #[tokio::main]
@@ -411,6 +677,21 @@ async fn main() {
         .ok()
         .and_then(|p| p.parse().ok())
         .unwrap_or(3001);
+    let db_path = std::env::var("DB_PATH").unwrap_or_else(|_| DEFAULT_DB_PATH.to_string());
+    // set ANALYTICS_SALT to keep unique-visitor counts stable across restarts
+    let analytics_salt = std::env::var("ANALYTICS_SALT").unwrap_or_else(|_| boot_salt());
+
+    let log_tx = db::spawn_writer(db_path);
+
+    // enforce the retention promised on /privacy. first tick fires at boot
+    let prune_tx = log_tx.clone();
+    tokio::spawn(async move {
+        let mut interval = tokio::time::interval(Duration::from_secs(6 * 60 * 60));
+        loop {
+            interval.tick().await;
+            let _ = prune_tx.send(db::LogEntry::Prune);
+        }
+    });
 
     let state = Arc::new(AppState {
         api_key,
@@ -421,6 +702,12 @@ async fn main() {
             RATE_LIMIT_REQUESTS,
             Duration::from_secs(RATE_LIMIT_WINDOW_SECS),
         ),
+        event_rate_limiter: RateLimiter::new(
+            EVENT_RATE_LIMIT_REQUESTS,
+            Duration::from_secs(RATE_LIMIT_WINDOW_SECS),
+        ),
+        log_tx,
+        analytics_salt,
     });
 
     let cors = CorsLayer::very_permissive();
@@ -428,6 +715,7 @@ async fn main() {
     let app = Router::new()
         .route("/api/chat", axum::routing::post(chat_handler))
         .route("/api/chat/health", axum::routing::get(health_handler))
+        .route("/api/events", axum::routing::post(event_handler))
         .route(
             "/api/chat/openapi.json",
             axum::routing::get(openapi_handler),
@@ -494,5 +782,79 @@ mod tests {
         let messages = vec![message("user", "is semyon into open source?")];
 
         assert!(!needs_source_check(&messages));
+    }
+
+    #[test]
+    fn sanitize_conversation_id_accepts_uuid() {
+        let id = Some("550e8400-e29b-41d4-a716-446655440000".to_string());
+
+        assert_eq!(
+            sanitize_conversation_id(&id),
+            Some("550e8400-e29b-41d4-a716-446655440000".to_string())
+        );
+    }
+
+    #[test]
+    fn sanitize_conversation_id_rejects_junk() {
+        assert_eq!(sanitize_conversation_id(&Some("a".repeat(65))), None);
+        assert_eq!(
+            sanitize_conversation_id(&Some("drop table; --".to_string())),
+            None
+        );
+        assert_eq!(sanitize_conversation_id(&Some("  ".to_string())), None);
+    }
+
+    #[test]
+    fn validate_event_enforces_kind_allowlist_and_path() {
+        let event = |kind: &str, path: &str| EventRequest {
+            kind: kind.to_string(),
+            path: path.to_string(),
+            referrer: None,
+            target: None,
+            source: None,
+            screen: None,
+        };
+        let bad_screen = EventRequest {
+            screen: Some("4k-ultrawide".to_string()),
+            ..event("pageview", "/")
+        };
+
+        assert!(validate_event(&event("pageview", "/blog")).is_ok());
+        assert!(validate_event(&event("keylogger", "/")).is_err());
+        assert!(validate_event(&event("pageview", "https://elsewhere.example")).is_err());
+        assert!(validate_event(&bad_screen).is_err());
+    }
+
+    #[test]
+    fn visitor_lang_takes_first_tag_without_quality() {
+        let mut headers = HeaderMap::new();
+        headers.insert(
+            header::ACCEPT_LANGUAGE,
+            "en-IE,en;q=0.9,ga;q=0.8".parse().unwrap(),
+        );
+
+        assert_eq!(visitor_lang(&headers), Some("en-IE".to_string()));
+        assert_eq!(visitor_lang(&HeaderMap::new()), None);
+    }
+
+    #[test]
+    fn browser_os_parses_family_only() {
+        let (browser, os) = browser_os(
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 \
+             (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+        );
+
+        assert_eq!(browser.as_deref(), Some("Chrome"));
+        assert_eq!(os.as_deref(), Some("Windows 10"));
+        assert_eq!(browser_os(""), (None, None));
+    }
+
+    #[test]
+    fn visitor_hash_is_short_and_salt_dependent() {
+        let a = visitor_hash("salt-a", "203.0.113.7", "Mozilla/5.0");
+        let b = visitor_hash("salt-b", "203.0.113.7", "Mozilla/5.0");
+
+        assert_eq!(a.len(), 16);
+        assert_ne!(a, b);
     }
 }

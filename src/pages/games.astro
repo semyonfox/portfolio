@@ -438,6 +438,8 @@ const gamePreviewClass: Record<string, string> = {
 </style>
 
 <script>
+  import { track } from '../lib/track';
+
   const catalog = document.getElementById('game-catalog');
   const intro = document.getElementById('games-intro');
   const player = document.getElementById('game-player');
@@ -456,6 +458,7 @@ const gamePreviewClass: Record<string, string> = {
     card.addEventListener('click', () => {
       const el = card as HTMLElement;
       const embedUrl = el.dataset.gameEmbed;
+      track('game_open', el.dataset.gameId);
 
       if (title) title.textContent = el.dataset.gameTitle || '';
       if (tech) tech.textContent = el.dataset.gameTech || '';

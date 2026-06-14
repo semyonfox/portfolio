@@ -1,6 +1,15 @@
 import { useState, useRef, useEffect } from 'preact/hooks';
+import { track } from '../lib/track';
 
 const CHAT_API = import.meta.env.PUBLIC_CHAT_API_URL || '/api/chat';
+
+// per-tab id so the backend can group a conversation's turns. lives in
+// memory only, never touches cookies or storage
+function newConversationId() {
+  return typeof crypto !== 'undefined' && 'randomUUID' in crypto
+    ? crypto.randomUUID()
+    : Math.random().toString(36).slice(2);
+}
 
 // rotating bubble text on the collapsed chatbot
 const QUIPS = [
@@ -49,6 +58,7 @@ export default function Chatbot() {
   const [loading, setLoading] = useState(false);
   const [quip, setQuip] = useState(QUIPS[0]);
   const messagesEnd = useRef<HTMLDivElement>(null);
+  const conversationId = useRef(newConversationId());
 
   // rotate quips
   useEffect(() => {
@@ -76,7 +86,10 @@ export default function Chatbot() {
       const res = await fetch(CHAT_API, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: [...messages, userMsg] }),
+        body: JSON.stringify({
+          messages: [...messages, userMsg],
+          conversation_id: conversationId.current,
+        }),
       });
 
       if (res.status === 429) {
@@ -110,7 +123,10 @@ export default function Chatbot() {
           {quip}
         </div>
         <button
-          onClick={() => setOpen(true)}
+          onClick={() => {
+            setOpen(true);
+            track('chat_open');
+          }}
           class="w-12 h-12 rounded-full shadow-lg shadow-fox/25 flex items-center justify-center hover:scale-110 transition-all overflow-hidden border-2 border-fox"
           aria-label="Open chat"
         >
