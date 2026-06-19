@@ -1,10 +1,18 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 
-const allProjects = (await getCollection('projects')).sort(
-  (a, b) => a.data.order - b.data.order,
-);
+const allProjects = await Promise.all(
+  (await getCollection('projects')).map(async (project) => {
+    const { Content } = await render(project);
+
+    return {
+      ...project,
+      Content,
+      hasDetails: (project.body ?? '').trim().length > 0,
+    };
+  }),
+).then((projects) => projects.sort((a, b) => a.data.order - b.data.order));
 const personal = allProjects.filter((p) => p.data.category === 'personal');
 const academic = allProjects.filter((p) => p.data.category === 'academic');
 ---
@@ -85,6 +93,14 @@ const academic = allProjects.filter((p) => p.data.category === 'academic');
                 </div>
               </div>
               <p class="type-body mb-4">{project.data.description}</p>
+              {project.hasDetails && (
+                <details class="project-details mb-4">
+                  <summary>read more</summary>
+                  <div class="project-details-content type-prose">
+                    <project.Content />
+                  </div>
+                </details>
+              )}
               <div class="flex flex-wrap gap-1.5">
                 {project.data.tags.map((tag) => (
                   <span class="bg-border px-2 py-0.5 rounded text-[11px] text-muted">
@@ -149,6 +165,14 @@ const academic = allProjects.filter((p) => p.data.category === 'academic');
                 </div>
               </div>
               <p class="type-body mb-4">{project.data.description}</p>
+              {project.hasDetails && (
+                <details class="project-details mb-4">
+                  <summary>read more</summary>
+                  <div class="project-details-content type-prose">
+                    <project.Content />
+                  </div>
+                </details>
+              )}
               <div class="flex flex-wrap gap-1.5">
                 {project.data.tags.map((tag) => (
                   <span class="bg-border px-2 py-0.5 rounded text-[11px] text-muted">

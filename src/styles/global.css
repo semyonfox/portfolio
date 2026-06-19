@@ -153,6 +153,27 @@
     @apply text-heading;
   }
 
+  .project-details {
+    @apply rounded-xl border border-border bg-bg/35 px-4 py-3;
+  }
+
+  .project-details > summary {
+    @apply text-dim text-sm font-semibold cursor-pointer select-none transition-colors;
+  }
+
+  .project-details > summary:hover,
+  .project-details[open] > summary {
+    @apply text-heading;
+  }
+
+  .project-details-content {
+    @apply mt-3 border-t border-border pt-3;
+  }
+
+  .project-details-content > :first-child {
+    margin-top: 0;
+  }
+
   @media (min-width: 48rem) {
     .type-hero {
       @apply text-6xl;
