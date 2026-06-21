@@ -616,15 +616,16 @@ for (const edge of semanticGraph.semanticEdges) {
 </style>
 
 <script
+  is:inline
   define:vars={{
     people: graphNodes,
-    edges: graphEdges,
+    connections: graphEdges,
     categoryMeta,
     categoryCenters,
   }}
 >
   const nodes = people;
-  const edgeList = edges;
+  const edgeList = connections;
   const nodeEls = Array.from(document.querySelectorAll('[data-node]'));
   const labelEls = Array.from(document.querySelectorAll('[data-label]'));
   const edgeEls = Array.from(
