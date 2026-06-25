@@ -1,0 +1,211 @@
+\documentclass[11pt]{article}
+% -------------------------------
+% Packages
+% -------------------------------
+\usepackage[a4paper,margin=0.6in]{geometry}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{array}
+\usepackage{lmodern}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage[T1]{fontenc}
+\usepackage{fontawesome}
+
+% -------------------------------
+% Colors
+% -------------------------------
+\definecolor{primary}{HTML}{2E86AB}
+\definecolor{secondary}{HTML}{555555}
+
+% -------------------------------
+% Hyperlink settings
+% -------------------------------
+\hypersetup{
+    colorlinks=true,
+    linkcolor=primary,
+    urlcolor=primary,
+    citecolor=primary
+}
+
+% -------------------------------
+% Section formatting
+% -------------------------------
+\titleformat{\section}{\Large\bfseries\color{primary}}{}{0pt}{}[\vspace{0.1em}\titlerule]
+\titlespacing*{\section}{0pt}{0.85em}{0.45em}
+\setlist[itemize]{noitemsep, topsep=3pt, left=1.5em, after=\vspace{1pt}}
+
+% -------------------------------
+% Entry command for consistent formatting
+% -------------------------------
+\newcommand{\cventry}[4]{%
+  \noindent\textbf{\large #1} \hfill \emph{#2}\\
+  {\color{secondary}#3} \hfill {\color{secondary}#4}%
+}
+
+% -------------------------------
+% Header formatting (6 args: name, location, email, website, github, linkedin)
+% -------------------------------
+\newcommand{\cvheader}[6]{
+\begin{center}
+{\LARGE\bfseries #1} \\[4pt]
+{\color{secondary} #2 \quad$\cdot$\quad \faEnvelope\ \href{mailto:#3}{#3}}\\[2pt]
+{\color{secondary}\faGlobe\ \href{https://#4}{#4} \quad$\cdot$\quad
+\faGithub\ \href{https://#5}{#5} \quad$\cdot$\quad
+\faLinkedinSquare\ \href{https://#6}{#6}}
+\end{center}
+\vspace{0.2em}
+\noindent\rule{\linewidth}{0.8pt}
+\vspace{0.3em}
+}
+
+
+\begin{document}
+\pagestyle{empty}
+
+% -------------------------------
+% Header
+% -------------------------------
+\cvheader{Semyon Fox}
+         {Galway, Ireland}
+         {semyon.fox@gmail.com}
+         {semyon.ie}
+         {github.com/semyonfox}
+         {linkedin.com/in/semyonfox}
+
+% -------------------------------
+% Professional Summary
+% -------------------------------
+\vspace{-0.3em}
+\begin{center}
+{\color{primary}\bfseries\large Builder, swimmer, filmmaker.}\\[3pt]
+\color{secondary}\emph{2nd-year CS at Galway (First Class Honours). Auditor turned Treasurer of CompSoc, a 450+ member computing society. Builds: React/Next.js frontends, Rust APIs, self-hosted infra.}
+\end{center}
+\vspace{0.2em}
+
+% -------------------------------
+% Technical Skills
+% -------------------------------
+\section*{Technical Skills}
+\noindent
+\begin{tabular}{@{} >{\bfseries}l @{\hspace{1em}} p{0.82\linewidth}}
+Languages & JavaScript, TypeScript, Java, C, SQL, Python, Rust\\[3pt]
+Web & React, Next.js, Astro, Node.js/Express, REST APIs, HTML/CSS, Tailwind CSS\\[3pt]
+Databases & PostgreSQL, TimescaleDB, MySQL, Redis\\[3pt]
+Infrastructure & Docker, Jenkins CI/CD, Git/GitHub, Linux, Nginx, Cloudflare (Workers, Tunnels, Zero Trust), AWS (Fargate, RDS, S3, SES/SQS, IAM), Btrfs, NFS
+\end{tabular}
+
+% -------------------------------
+% Education
+% -------------------------------
+\section*{Education}
+\cventry{University of Galway}{Galway, Ireland}
+        {\emph{Bachelor of Science (Honours) in Computer Science and Information Technology}}
+        {\textbf{Expected:} August 2028}
+\vspace{5pt}
+
+\noindent\textbf{Year 2}, with Year 1 First Class Honours.\\[4pt]
+\textbf{Modules:} Software Engineering, Database Systems (SQL), OOP (Java), Data Structures \& Algorithms, Networks \& Data Communication, Computer Systems \& Organisation, Digital Security \& Cryptography, Modelling (Python/NumPy/Matplotlib), Discrete Mathematics, Linear Algebra, Statistics
+
+% -------------------------------
+% Honours & Awards
+% -------------------------------
+\section*{Honours \& Awards}
+\begin{itemize}[itemsep=4pt]
+  \item \textbf{Best Intervarsity Award, CompSoc ``Capture the Flag''} \hfill Mar 2025, Mar 2026\\
+        University of Galway Societies Awards 2025 and 2026; BICS National Society Award 2025 (nominated 2026)
+  \item \textbf{Brian Ó Maoilchiaráin Award} \hfill Jun 2024\\
+        Outstanding Student, Leaving Certificate year, Coláiste an Eachréidh
+  \item \textbf{STEM Award, GRETB} \hfill Jun 2024
+\end{itemize}
+
+% -------------------------------
+% Work Experience
+% -------------------------------
+\section*{Work Experience}
+
+\cventry{University of Galway Computer Society (CompSoc)}{Galway, Ireland}
+        {Treasurer -- Volunteer}{Nov 2024--Present}
+\begin{itemize}
+  \item Led 450+ member student society across finance, communications, and event strategy
+  \item Organised CompSoc CTF 2026 (110+ participants), securing four corporate sponsors (Evernorth, Siren, Centripetal Networks, LibertyIT) and university grant funding
+  \item Reduced participant costs by 50\%; increased event profit
+  \item Fixed CI/CD pipeline and JSX syntax bugs on the \href{https://compsoc.ie}{compsoc.ie} React/TypeScript frontend
+  \item Held three committee roles: Public Relations Of\char"200C ficer (Nov 2024--Feb 2025), Auditor (Feb 2025--Mar 2026), Treasurer (Mar 2026--Present)
+\end{itemize}
+
+\vspace{5pt}
+\cventry{Computer Repair Technician}{Athenry \& Galway}
+        {\href{https://www.cahillcomputers.com/}{Cahill Computers} (part-time, 8 months) \quad|\quad Lapteck (TY placement, 2023)}{}
+\begin{itemize}
+  \item Hardware upgrades, screen and battery replacements, OS installation, drive cloning, and diagnostics
+\end{itemize}
+
+% -------------------------------
+% Projects
+% -------------------------------
+\section*{Projects}
+
+\cventry{OghmaNotes}{MVP Deployed}
+        {Next.js, TypeScript, PostgreSQL (pgvector), Redis, AWS, Docker}{}
+\begin{itemize}
+  \item Markdown e-learning platform (3-person team) with RAG search, quizzing, and FSRS spaced repetition for university students
+  \item Canvas LMS integration with PDF extraction and embedding pipeline for automatic course material import
+  \item Migrated from AWS (S3, RDS, ElastiCache, Fargate) to self-hosted on-prem (pgvector, RustFS) to cut costs
+  \item Live at \href{https://oghmanotes.ie}{oghmanotes.ie}
+\end{itemize}
+
+\vspace{5pt}
+\cventry{Uisce}{In Development, targeting Aug 2026}
+        {React 19, Node.js/Express, PostgreSQL, Redis, Docker, Jest}{}
+\begin{itemize}
+  \item Full-stack platform with role-based access for swimmers, coaches, and committee members
+  \item 58-table PostgreSQL schema (5 logical schemas) covering attendance, meet results, training schedules, squad analytics, equipment
+\end{itemize}
+
+\vspace{5pt}
+\cventry{Canvas MCP Server}{Open Source}
+        {TypeScript, Model Context Protocol SDK, Zod}{}
+\begin{itemize}
+  \item MCP server exposing the full Canvas LMS REST API to AI assistants across 15 domains (courses, assignments, grades, etc.)
+  \item Merged and normalised 12 open-source Canvas MCP projects; on \href{https://github.com/semyonfox/canvas-mcp}{github.com/semyonfox/canvas-mcp}
+\end{itemize}
+
+\vspace{5pt}
+\cventry{Irish Rail Data Pipeline}{Running 24/7}
+        {Python (asyncio/aiohttp), TimescaleDB, Rust (axum), Docker}{}
+\begin{itemize}
+  \item Polls Irish Rail API every 3 seconds, storing train positions and station data in TimescaleDB
+  \item Rust (axum) API serving a live map and delay-tracking dashboard
+\end{itemize}
+
+\vspace{5pt}
+\cventry{Home Lab \& CI/CD Infrastructure}{Ongoing}
+        {Docker, Jenkins, Nginx, Cloudflare Tunnels, Btrfs, NFS, Pi-hole}{}
+\begin{itemize}
+  \item Self-host 30+ services (Jellyfin, Immich, Vaultwarden, Firefly III, n8n, etc.) in 54 containers, behind a router-level VPN
+  \item 6 Jenkins pipelines auto-deploying OghmaNotes, Uisce, Portfolio, etc. on GitHub push
+  \item Cloudflare Zero Trust tunnels (no open ports for public access); Nginx reverse proxy across 21 vhosts internally
+  \item GFS backup strategy (7 daily, 4 weekly, 12 monthly, yearly-forever) to NAS (RAID) via NFS4 with Btrfs snapshots
+\end{itemize}
+
+\vspace{5pt}
+\cventry{Portfolio Website}{\href{https://semyon.ie}{semyon.ie}}
+        {Astro, Preact, Tailwind CSS v4, Rust (axum), Docker, Jenkins}{}
+\begin{itemize}
+  \item More projects, write-ups, and experiments than fit on a CV
+  \item Astro/Preact frontend with Rust (axum) API backend; auto-deployed via Jenkins CI/CD on push
+  \item AI chatbot answering questions about me, with a system prompt built from data scraped across my own social profiles, served from the Rust backend
+\end{itemize}
+
+% -------------------------------
+% Interests
+% -------------------------------
+\section*{Interests}
+\noindent\textbf{Swimming:} competitive pool swimmer with regular training and meets.\\[3pt]
+\textbf{Video Production:} colour grading, VFX, and editing in DaVinci Resolve for short films and personal projects.\\[3pt]
+\textbf{Woodworking:} hand-built live-edge furniture pieces.
+
+\end{document}

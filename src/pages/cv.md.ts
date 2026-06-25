@@ -5,6 +5,7 @@ const md = `# Semyon Fox
 Galway, Ireland · semyon.fox@gmail.com · https://semyon.ie · https://github.com/semyonfox · https://linkedin.com/in/semyonfox
 
 PDF version: https://semyon.ie/cv.pdf
+TeX source: https://semyon.ie/cv.tex
 
 Builder, swimmer, filmmaker.
 2nd-year CS at Galway (First Class Honours). Auditor turned Treasurer of CompSoc, a 450+ member computing society. Builds React/Next.js frontends, Rust APIs, and self-hosted infra.
