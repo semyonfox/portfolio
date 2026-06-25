@@ -45,7 +45,7 @@ Production runs with Docker Compose:
 - `chat-api`: Rust Axum backend on port `3001`.
 - `tunnel`: Cloudflare tunnel entrypoint.
 
-Jenkins installs dependencies, runs lint/test steps when available, and rebuilds the compose stack from `main`. `pnpm run deploy` is a manual SSH deploy shortcut.
+Jenkins installs dependencies, runs lint/test steps when available, and rebuilds the compose stack from `main` after a push. `pnpm run deploy` is intentionally local-only: it verifies the site with `check` and `build`, then reminds you that Jenkins owns the actual deployment.
 
 ## License
 

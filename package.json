@@ -15,7 +15,7 @@
     "lint": "prettier --check 'src/**/*.{astro,ts,tsx,css}'",
     "format": "prettier --write 'src/**/*.{astro,ts,tsx,css}'",
     "check": "astro check && pnpm run lint",
-    "deploy": "ssh semyon@server 'cd portfolio && git pull && docker compose build && docker compose up -d'"
+    "deploy": "pnpm run check && pnpm run build && echo 'Deploy is handled by Jenkins after pushing main.'"
   },
   "dependencies": {
     "@astrojs/preact": "^5.1.2",
