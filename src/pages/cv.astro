@@ -11,29 +11,61 @@ import Layout from '../layouts/Layout.astro';
       class="flex flex-col gap-4 mb-1 sm:flex-row sm:items-center sm:justify-between"
     >
       <h1 class="type-page-title">Semyon Fox</h1>
-      <form
-        class="flex shrink-0 items-center gap-2"
-        data-cv-download-form
-        aria-label="Download CV"
+      <div
+        class="relative flex shrink-0 items-stretch text-sm"
+        data-cv-download
+        data-cv-format="pdf"
       >
-        <label class="sr-only" for="cv-download-format">CV format</label>
-        <select
-          id="cv-download-format"
-          class="border border-border bg-surface text-muted text-xs px-3 py-2 rounded-lg hover:text-heading hover:border-muted transition-colors"
-          data-cv-format
-        >
-          <option value="pdf" selected>PDF</option>
-          <option value="tex">TeX</option>
-        </select>
         <a
           href="/cv.pdf"
           download="SEMYON_FOX_CV.pdf"
-          class="border border-border text-muted text-xs px-4 py-2 rounded-lg hover:text-heading hover:border-muted transition-colors"
+          class="inline-flex min-h-11 min-w-44 items-center justify-between gap-4 rounded-l-xl border border-border border-r-0 bg-surface/60 px-4 py-2 font-medium tracking-[0.01em] text-heading transition-colors hover:border-muted hover:bg-heading/[0.03]"
+          aria-label="Download CV as PDF"
           data-cv-download-link
         >
-          download
+          <span>Download CV</span>
+          <span class="type-micro font-semibold uppercase tracking-[0.08em]"
+            >PDF</span
+          >
         </a>
-      </form>
+        <button
+          type="button"
+          class="inline-flex min-h-11 w-11 items-center justify-center rounded-r-xl border border-border bg-surface/60 text-muted transition-colors hover:border-muted hover:bg-heading/[0.03] hover:text-heading"
+          aria-label="Choose CV format"
+          aria-expanded="false"
+          data-cv-menu-toggle
+        >
+          <svg
+            aria-hidden="true"
+            class="size-3.5"
+            viewBox="0 0 16 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M4 6L8 10L12 6"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+        </button>
+        <div
+          class="absolute inset-x-0 top-full z-20 mt-2 hidden overflow-hidden rounded-xl border border-border bg-surface shadow-xl shadow-black/20"
+          data-cv-menu
+        >
+          <button
+            type="button"
+            class="flex min-h-11 w-full items-center justify-between gap-4 px-4 py-2 text-left text-sm font-medium tracking-[0.01em] text-heading transition-colors hover:bg-heading/[0.04]"
+            data-cv-option="tex"
+          >
+            <span>TeX source</span>
+            <span class="type-micro font-semibold uppercase tracking-[0.08em]"
+              >TEX</span
+            >
+          </button>
+        </div>
+      </div>
     </div>
     <p class="text-muted text-sm mb-2">Galway, Ireland</p>
     <div class="flex flex-wrap gap-3 text-xs text-muted mb-8">
@@ -307,24 +339,103 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <script>
-    const form = document.querySelector('[data-cv-download-form]');
-    const select = form?.querySelector('[data-cv-format]');
-    const link = form?.querySelector('[data-cv-download-link]');
+    const wrapper = document.querySelector('[data-cv-download]');
+    const link = wrapper?.querySelector('[data-cv-download-link]');
+    const toggle = wrapper?.querySelector('[data-cv-menu-toggle]');
+    const menu = wrapper?.querySelector('[data-cv-menu]');
 
     const downloads = {
-      pdf: { href: '/cv.pdf', filename: 'SEMYON_FOX_CV.pdf' },
-      tex: { href: '/cv.tex', filename: 'SEMYON_FOX_CV.tex' },
+      pdf: {
+        href: '/cv.pdf',
+        filename: 'SEMYON_FOX_CV.pdf',
+        badge: 'PDF',
+        optionTitle: 'PDF version',
+      },
+      tex: {
+        href: '/cv.tex',
+        filename: 'SEMYON_FOX_CV.tex',
+        badge: 'TEX',
+        optionTitle: 'TeX source',
+      },
+    };
+
+    const renderDownloadLabel = (badge: string) =>
+      `<span>Download CV</span><span class="type-micro font-semibold uppercase tracking-[0.08em]">${badge}</span>`;
+
+    const renderOptionLabel = (format: 'pdf' | 'tex') => {
+      const option = downloads[format];
+
+      return `<span>${option.optionTitle}</span><span class="type-micro font-semibold uppercase tracking-[0.08em]">${option.badge}</span>`;
+    };
+
+    const setMenuOpen = (open: boolean) => {
+      if (
+        !(toggle instanceof HTMLButtonElement) ||
+        !(menu instanceof HTMLElement)
+      ) {
+        return;
+      }
+
+      menu.classList.toggle('hidden', !open);
+      toggle.setAttribute('aria-expanded', String(open));
+    };
+
+    const setFormat = (format: 'pdf' | 'tex') => {
+      if (
+        !(wrapper instanceof HTMLElement) ||
+        !(link instanceof HTMLAnchorElement)
+      ) {
+        return;
+      }
+
+      const activeFormat = format === 'tex' ? 'tex' : 'pdf';
+      const alternateFormat = activeFormat === 'pdf' ? 'tex' : 'pdf';
+      const download = downloads[activeFormat];
+      const option = menu?.querySelector('[data-cv-option]');
+
+      wrapper.dataset.cvFormat = activeFormat;
+      link.href = download.href;
+      link.download = download.filename;
+      link.setAttribute('aria-label', `Download CV as ${download.badge}`);
+      link.innerHTML = renderDownloadLabel(download.badge);
+
+      if (option instanceof HTMLButtonElement) {
+        option.dataset.cvOption = alternateFormat;
+        option.innerHTML = renderOptionLabel(alternateFormat);
+      }
     };
 
     if (
-      select instanceof HTMLSelectElement &&
-      link instanceof HTMLAnchorElement
+      wrapper instanceof HTMLElement &&
+      toggle instanceof HTMLButtonElement &&
+      menu instanceof HTMLElement
     ) {
-      select.addEventListener('change', () => {
-        const format = select.value === 'tex' ? 'tex' : 'pdf';
-        const download = downloads[format];
-        link.href = download.href;
-        link.download = download.filename;
+      toggle.addEventListener('click', () => {
+        setMenuOpen(toggle.getAttribute('aria-expanded') !== 'true');
+      });
+
+      menu.addEventListener('click', (event) => {
+        const option =
+          event.target instanceof Element
+            ? event.target.closest('[data-cv-option]')
+            : null;
+
+        if (option instanceof HTMLButtonElement) {
+          setFormat(option.dataset.cvOption === 'pdf' ? 'pdf' : 'tex');
+          setMenuOpen(false);
+        }
+      });
+
+      document.addEventListener('click', (event) => {
+        if (event.target instanceof Node && !wrapper.contains(event.target)) {
+          setMenuOpen(false);
+        }
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          setMenuOpen(false);
+        }
       });
     }
   </script>
