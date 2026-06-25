@@ -12,25 +12,25 @@ import Layout from '../layouts/Layout.astro';
     >
       <h1 class="type-page-title">Semyon Fox</h1>
       <div
-        class="relative flex shrink-0 items-stretch text-sm"
+        class="group relative flex shrink-0 items-stretch text-xs"
         data-cv-download
         data-cv-format="pdf"
       >
         <a
           href="/cv.pdf"
           download="SEMYON_FOX_CV.pdf"
-          class="inline-flex min-h-11 min-w-44 items-center justify-between gap-4 rounded-l-xl border border-border border-r-0 bg-surface/60 px-4 py-2 font-medium tracking-[0.01em] text-heading transition-colors hover:border-muted hover:bg-heading/[0.03]"
+          class="inline-flex min-h-10 min-w-32 items-center justify-between gap-3 rounded-l-lg border border-border border-r-0 bg-surface/60 px-3.5 py-2 font-medium tracking-[0.01em] text-heading transition-colors group-hover:border-muted group-hover:bg-heading/[0.03]"
           aria-label="Download CV as PDF"
           data-cv-download-link
         >
-          <span>Download CV</span>
+          <span>Download</span>
           <span class="type-micro font-semibold uppercase tracking-[0.08em]"
             >PDF</span
           >
         </a>
         <button
           type="button"
-          class="inline-flex min-h-11 w-11 items-center justify-center rounded-r-xl border border-border bg-surface/60 text-muted transition-colors hover:border-muted hover:bg-heading/[0.03] hover:text-heading"
+          class="inline-flex min-h-10 w-10 items-center justify-center rounded-r-lg border border-border bg-surface/60 text-muted transition-colors group-hover:border-muted group-hover:bg-heading/[0.03] hover:text-heading"
           aria-label="Choose CV format"
           aria-expanded="false"
           data-cv-menu-toggle
@@ -51,12 +51,12 @@ import Layout from '../layouts/Layout.astro';
           </svg>
         </button>
         <div
-          class="absolute inset-x-0 top-full z-20 mt-2 hidden overflow-hidden rounded-xl border border-border bg-surface shadow-xl shadow-black/20"
+          class="absolute inset-x-0 top-full z-20 mt-2 hidden overflow-hidden rounded-lg border border-border bg-surface shadow-xl shadow-black/20"
           data-cv-menu
         >
           <button
             type="button"
-            class="flex min-h-11 w-full items-center justify-between gap-4 px-4 py-2 text-left text-sm font-medium tracking-[0.01em] text-heading transition-colors hover:bg-heading/[0.04]"
+            class="flex min-h-10 w-full items-center justify-between gap-3 px-3.5 py-2 text-left text-xs font-medium tracking-[0.01em] text-heading transition-colors hover:bg-heading/[0.04]"
             data-cv-option="tex"
           >
             <span>TeX source</span>
@@ -360,7 +360,7 @@ import Layout from '../layouts/Layout.astro';
     };
 
     const renderDownloadLabel = (badge: string) =>
-      `<span>Download CV</span><span class="type-micro font-semibold uppercase tracking-[0.08em]">${badge}</span>`;
+      `<span>Download</span><span class="type-micro font-semibold uppercase tracking-[0.08em]">${badge}</span>`;
 
     const renderOptionLabel = (format: 'pdf' | 'tex') => {
       const option = downloads[format];
