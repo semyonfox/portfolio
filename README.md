@@ -47,6 +47,8 @@ Production runs with Docker Compose:
 
 Jenkins installs dependencies, runs lint/test steps when available, and rebuilds the compose stack from `main` after a push. `pnpm run deploy` is intentionally local-only: it verifies the site with `check` and `build`, then reminds you that Jenkins owns the actual deployment.
 
+GitHub Pages is not the production deployment path for this repo. The root `.nojekyll` marker is present only to prevent GitHub's default Pages/Jekyll fallback from trying to parse Astro source files if branch-based Pages remains enabled in repository settings.
+
 ## License
 
 MIT
