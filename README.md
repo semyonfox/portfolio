@@ -29,7 +29,10 @@ pnpm preview
 pnpm check
 ```
 
-For the chat API or tunnel, copy `.env.example` to `.env` and set `OPENROUTER_API_KEY` and `TUNNEL_TOKEN`.
+Environment setup depends on how you run the chat API:
+
+- For the Docker Compose stack, copy the root `.env.example` to `.env` and set `OPENROUTER_API_KEY`; set `TUNNEL_TOKEN` only when running the Cloudflare tunnel.
+- For standalone API development from `api/`, copy `api/.env.example` to `api/.env` and set the API-local values such as `OPENROUTER_API_KEY`, `CHAT_MODEL`, `CHAT_API_URL`, and `PORT`.
 
 ## Content And Docs
 
