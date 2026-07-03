@@ -38,13 +38,16 @@ grep '^VARIABLE_NAME=' /home/semyon/code/personal/server-stacks/jenkins/env/port
 Replace `VARIABLE_NAME` with the required setting name. If the value is missing,
 recover it from the provider dashboard or password vault, not Git history.
 
-## Vaultwarden CLI
+## Bitwarden CLI
 
-Vault server:
+Bitwarden Cloud server:
 
 ```text
-https://vaultwarden.semyon.ie
+https://vault.bitwarden.com
 ```
+
+If the account is on Bitwarden EU Cloud instead, use
+`https://vault.bitwarden.eu`.
 
 Bitwarden CLI local app data on this Linux device is stored here by default:
 
@@ -56,20 +59,26 @@ Install and unlock the CLI:
 
 ```sh
 npm install -g @bitwarden/cli
-bw config server https://vaultwarden.semyon.ie
+bw config server https://vault.bitwarden.com
 bw login
 export BW_SESSION="$(bw unlock --raw)"
 bw sync
 ```
 
-Vaultwarden items for `portfolio`:
+If `bw` is already configured, check it first:
+
+```sh
+bw config server
+```
+
+Bitwarden Cloud items for `portfolio`:
 
 ```text
 server-stacks / portfolio env          -> /home/semyon/code/personal/server-stacks/portfolio/stack.env
 server-stacks / portfolio jenkins env  -> /home/semyon/code/personal/server-stacks/jenkins/env/portfolio.env
 ```
 
-Restore from Vaultwarden to the ignored local files:
+Restore from Bitwarden Cloud to the ignored local files:
 
 ```sh
 umask 077
