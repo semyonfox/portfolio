@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'preact/hooks';
 import { track } from '../lib/track';
 
 const CHAT_API = import.meta.env.PUBLIC_CHAT_API_URL || '/api/chat';
+const FOXBOT_SRC = '/foxbot.webp';
 
 // per-tab id so the backend can group a conversation's turns. lives in
 // memory only, never touches cookies or storage
@@ -131,8 +132,11 @@ export default function Chatbot() {
           aria-label="Open chat"
         >
           <img
-            src="/foxbot.png"
+            src={FOXBOT_SRC}
             alt="Chat with Semyon’s assistant"
+            width={192}
+            height={192}
+            decoding="async"
             class="w-full h-full object-cover scale-125"
           />
         </button>
@@ -145,7 +149,14 @@ export default function Chatbot() {
       {/* header */}
       <div class="flex items-center justify-between px-4 py-3 border-b border-border">
         <div class="flex items-center gap-2">
-          <img src="/foxbot.png" alt="" class="w-6 h-6 rounded-full" />
+          <img
+            src={FOXBOT_SRC}
+            alt=""
+            width={48}
+            height={48}
+            decoding="async"
+            class="w-6 h-6 rounded-full"
+          />
           <span class="text-heading text-sm font-semibold">
             semyon&apos;s assistant
           </span>
