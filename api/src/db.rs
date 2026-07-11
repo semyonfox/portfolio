@@ -40,7 +40,9 @@ CREATE TABLE IF NOT EXISTS events (
     os       TEXT,
     lang     TEXT,
     source   TEXT,
-    screen   TEXT
+    screen   TEXT,
+    placement TEXT,
+    attribution TEXT
 );
 CREATE INDEX IF NOT EXISTS idx_events_ts ON events(ts);
 CREATE INDEX IF NOT EXISTS idx_events_path ON events(path);
@@ -70,6 +72,8 @@ pub struct EventLog {
     pub lang: Option<String>,
     pub source: Option<String>,
     pub screen: Option<String>,
+    pub placement: Option<String>,
+    pub attribution: Option<String>,
 }
 
 pub enum LogEntry {
@@ -111,8 +115,8 @@ fn insert(conn: &Connection, entry: LogEntry) -> rusqlite::Result<()> {
             conn.execute(
                 "INSERT INTO events
                     (ts, kind, path, referrer, target, visitor, country,
-                     browser, os, lang, source, screen)
-                 VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12)",
+                     browser, os, lang, source, screen, placement, attribution)
+                 VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14)",
                 params![
                     now_unix(),
                     e.kind,
@@ -125,7 +129,9 @@ fn insert(conn: &Connection, entry: LogEntry) -> rusqlite::Result<()> {
                     e.os,
                     e.lang,
                     e.source,
-                    e.screen
+                    e.screen,
+                    e.placement,
+                    e.attribution
                 ],
             )?;
         }
@@ -169,6 +175,21 @@ pub fn spawn_writer(path: String) -> mpsc::UnboundedSender<LogEntry> {
         if let Err(e) = conn.execute_batch(SCHEMA) {
             tracing::error!("failed to create sqlite schema: {e}");
             return;
+        }
+        // CREATE TABLE IF NOT EXISTS does not upgrade existing deployments.
+        for column in ["placement", "attribution"] {
+            let exists = conn
+                .prepare("SELECT 1 FROM pragma_table_info('events') WHERE name = ?1")
+                .and_then(|mut stmt| stmt.exists([column]))
+                .unwrap_or(false);
+            if !exists {
+                if let Err(e) =
+                    conn.execute(&format!("ALTER TABLE events ADD COLUMN {column} TEXT"), [])
+                {
+                    tracing::error!("failed to add events.{column}: {e}");
+                    return;
+                }
+            }
         }
         tracing::info!("sqlite data layer ready at {path}");
 

@@ -38,6 +38,7 @@ Environment setup depends on how you run the chat API:
 
 - Content collections are typed in `src/content.config.ts`.
 - The Chat API HTML and Markdown docs render from `src/data/chatApiDocs.ts`, with endpoint/schema details pulled from `api/openapi.json`.
+- Privacy-first event vocabulary, aggregate queries, dashboard boundaries, and metric caveats are documented in `docs/privacy-first-analytics.md`.
 - Page Markdown variants are available by sending `Accept: text/markdown` or by requesting the explicit `.md` route.
 
 ## Deployment
