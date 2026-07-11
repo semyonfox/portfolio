@@ -4,7 +4,7 @@ export const privacyMeta = {
   title: 'Privacy',
   pageDescription:
     'What semyon.ie collects and why. No cookies, no banners, no raw IPs.',
-  updated: '10 June 2026',
+  updated: '11 July 2026',
 };
 
 export interface PrivacySection {
@@ -21,10 +21,10 @@ export const privacySections: PrivacySection[] = [
     heading: 'What gets collected',
     items: [
       'Assistant chats: the messages you send, the reply you get, a timestamp, response time, and which model answered. Chats are read later to improve the assistant and to spot what people look for, so please don’t type personal details into it.',
-      'Usage events: page views, chat opens, game launches, outbound link clicks, contact form submissions, and requests for pages that don’t exist, with the page path and, for visits arriving from elsewhere, the referring site and any campaign tag on the link.',
+      'Usage events: page views, aggregate internal navigation between site paths, coarse link placement (header, footer, content, or call to action), chat opens, game launches, outbound link clicks, contact form submissions, and requests for pages that don’t exist. Event URLs are limited to paths or external origins and paths, without query strings or fragments. Page views are classified only as direct or external arrivals; navigation events are not tied together into a browsing history.',
       'Device context per event: browser and operating system family (parsed from the user agent, the raw string is never kept), preferred language, and a coarse device class (mobile, tablet, or desktop).',
       'Rough location: a two-letter country code resolved by Cloudflare at the network edge. This site never looks up or stores your IP address itself.',
-      'An anonymous visitor id: a salted hash of your IP and browser that rotates every day, used to count unique visitors. It can’t be reversed to your IP and can’t link your visits across days.',
+      'An anonymous visitor id: a salted hash of your IP and browser that rotates every day, used to estimate daily unique visitors. It is designed not to reveal your IP and can’t link your visits across days.',
     ],
   },
   {
@@ -32,7 +32,7 @@ export const privacySections: PrivacySection[] = [
     items: [
       'Raw IP addresses. They’re used transiently in memory for rate limiting, then discarded.',
       'Names, emails, or accounts, unless you type them into the chat or the contact form yourself.',
-      'Anything stored on or read from your device.',
+      'Anything stored in or read from browser storage.',
     ],
   },
   {

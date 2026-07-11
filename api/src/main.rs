@@ -33,10 +33,13 @@ const EVENT_KINDS: &[&str] = &[
     "chat_open",
     "game_open",
     "outbound_click",
+    "navigation",
     "form_submit",
     "not_found",
 ];
 const SCREEN_CLASSES: &[&str] = &["mobile", "tablet", "desktop"];
+const LINK_PLACEMENTS: &[&str] = &["header", "footer", "content", "cta"];
+const ATTRIBUTION_KINDS: &[&str] = &["direct", "external"];
 const MAX_SOURCE_LEN: usize = 128;
 const MAX_LANG_LEN: usize = 16;
 const DEFAULT_DB_PATH: &str = "portfolio.db";
@@ -358,6 +361,10 @@ fn visitor_hash(salt: &str, ip: &str, ua: &str) -> String {
         .duration_since(UNIX_EPOCH)
         .map(|d| d.as_secs() / 86400)
         .unwrap_or(0);
+    visitor_hash_for_day(salt, day, ip, ua)
+}
+
+fn visitor_hash_for_day(salt: &str, day: u64, ip: &str, ua: &str) -> String {
     let mut hasher = Sha256::new();
     hasher.update(salt.as_bytes());
     hasher.update(day.to_le_bytes());
@@ -369,6 +376,43 @@ fn visitor_hash(salt: &str, ip: &str, ua: &str) -> String {
         .take(8)
         .map(|b| format!("{b:02x}"))
         .collect()
+}
+
+// Minimize client-controlled dimensions again at the storage boundary.
+fn sanitize_url(value: Option<String>, origin_only: bool) -> Option<String> {
+    let raw = value?.trim().to_string();
+    if !origin_only && raw.eq_ignore_ascii_case("email") {
+        return Some("email".to_string());
+    }
+    let parsed = url::Url::parse(&raw).ok()?;
+    if parsed.scheme() != "http" && parsed.scheme() != "https" {
+        return None;
+    }
+    let host = parsed.host_str()?;
+    let mut safe = format!("{}://{}", parsed.scheme(), host);
+    if let Some(port) = parsed.port() {
+        safe.push_str(&format!(":{port}"));
+    }
+    if !origin_only {
+        safe.push_str(parsed.path());
+    }
+    (safe.len() <= MAX_EVENT_FIELD_LEN).then_some(safe)
+}
+
+// Keep first-party routes to a path only: never accept query strings/fragments.
+fn sanitize_path(value: String) -> Option<String> {
+    let path = value.split(['?', '#']).next()?.trim();
+    (path.starts_with('/') && path.len() <= MAX_EVENT_FIELD_LEN).then(|| path.to_string())
+}
+
+fn sanitize_source(value: Option<String>) -> Option<String> {
+    let source = value?.trim().to_ascii_lowercase();
+    (!source.is_empty()
+        && source.len() <= 64
+        && source
+            .chars()
+            .all(|c| c.is_ascii_alphanumeric() || c == '_' || c == '-'))
+    .then_some(source)
 }
 
 // random per-boot fallback when ANALYTICS_SALT isn't set. unique-visitor
@@ -591,9 +635,15 @@ struct EventRequest {
     path: String,
     #[serde(default)]
     referrer: Option<String>,
-    // what was acted on: destination url for outbound_click, game id for game_open
+    // what was acted on: destination url/path for link events, game id for game_open
     #[serde(default)]
     target: Option<String>,
+    // link surface for navigation and outbound_click
+    #[serde(default)]
+    placement: Option<String>,
+    // direct or external acquisition on pageviews only
+    #[serde(default)]
+    attribution: Option<String>,
     // campaign tag from the landing url: utm_source or ref query param
     #[serde(default)]
     source: Option<String>,
@@ -606,7 +656,7 @@ fn validate_event(req: &EventRequest) -> Result<(), &'static str> {
     if !EVENT_KINDS.contains(&req.kind.as_str()) {
         return Err("unknown event kind");
     }
-    if !req.path.starts_with('/') || req.path.len() > MAX_EVENT_FIELD_LEN {
+    if sanitize_path(req.path.clone()).is_none() {
         return Err("invalid path");
     }
     for field in [&req.referrer, &req.target] {
@@ -626,6 +676,16 @@ fn validate_event(req: &EventRequest) -> Result<(), &'static str> {
             return Err("invalid screen class");
         }
     }
+    if let Some(placement) = &req.placement {
+        if !LINK_PLACEMENTS.contains(&placement.as_str()) {
+            return Err("invalid link placement");
+        }
+    }
+    if let Some(attribution) = &req.attribution {
+        if !ATTRIBUTION_KINDS.contains(&attribution.as_str()) {
+            return Err("invalid attribution");
+        }
+    }
     Ok(())
 }
 
@@ -635,6 +695,10 @@ async fn event_handler(
     headers: HeaderMap,
     Json(payload): Json<EventRequest>,
 ) -> StatusCode {
+    // Opted-out requests should not even enter the per-IP analytics limiter.
+    if opted_out(&headers) {
+        return StatusCode::NO_CONTENT;
+    }
     let ip = client_ip(&headers, &addr);
     if !state.event_rate_limiter.check(&ip) {
         return StatusCode::TOO_MANY_REQUESTS;
@@ -642,24 +706,41 @@ async fn event_handler(
     if validate_event(&payload).is_err() {
         return StatusCode::BAD_REQUEST;
     }
-    if opted_out(&headers) {
-        return StatusCode::NO_CONTENT;
-    }
 
     let ua = user_agent(&headers);
     let (browser, os) = browser_os(ua);
+    let is_outbound = payload.kind == "outbound_click";
+    let is_navigation = payload.kind == "navigation";
+    let is_pageview = payload.kind == "pageview";
+    let referrer = sanitize_url(payload.referrer, true);
+    // Derive this server-side so clients cannot turn a referral into direct traffic.
+    let attribution = is_pageview.then(|| {
+        if referrer.is_some() {
+            "external".to_string()
+        } else {
+            "direct".to_string()
+        }
+    });
     let _ = state.log_tx.send(db::LogEntry::Event(db::EventLog {
         kind: payload.kind,
-        path: payload.path,
-        referrer: payload.referrer.filter(|r| !r.trim().is_empty()),
-        target: payload.target.filter(|t| !t.trim().is_empty()),
+        path: sanitize_path(payload.path).expect("validated path"),
+        referrer,
+        target: if is_outbound {
+            sanitize_url(payload.target, false)
+        } else if is_navigation {
+            payload.target.and_then(sanitize_path)
+        } else {
+            payload.target.filter(|t| !t.trim().is_empty())
+        },
         visitor: visitor_hash(&state.analytics_salt, &ip, ua),
         country: visitor_country(&headers),
         browser,
         os,
         lang: visitor_lang(&headers),
-        source: payload.source.filter(|s| !s.trim().is_empty()),
+        source: sanitize_source(payload.source),
         screen: payload.screen,
+        placement: payload.placement,
+        attribution,
     }));
 
     StatusCode::NO_CONTENT
@@ -811,6 +892,8 @@ mod tests {
             path: path.to_string(),
             referrer: None,
             target: None,
+            placement: None,
+            attribution: None,
             source: None,
             screen: None,
         };
@@ -818,11 +901,21 @@ mod tests {
             screen: Some("4k-ultrawide".to_string()),
             ..event("pageview", "/")
         };
+        let bad_placement = EventRequest {
+            placement: Some("sidebar".to_string()),
+            ..event("navigation", "/blog")
+        };
+        let bad_attribution = EventRequest {
+            attribution: Some("internal".to_string()),
+            ..event("pageview", "/")
+        };
 
-        assert!(validate_event(&event("pageview", "/blog")).is_ok());
+        assert!(validate_event(&event("navigation", "/blog")).is_ok());
         assert!(validate_event(&event("keylogger", "/")).is_err());
         assert!(validate_event(&event("pageview", "https://elsewhere.example")).is_err());
         assert!(validate_event(&bad_screen).is_err());
+        assert!(validate_event(&bad_placement).is_err());
+        assert!(validate_event(&bad_attribution).is_err());
     }
 
     #[test]
@@ -856,5 +949,62 @@ mod tests {
 
         assert_eq!(a.len(), 16);
         assert_ne!(a, b);
+    }
+
+    #[test]
+    fn visitor_hash_rotates_daily() {
+        let salt = boot_salt();
+        let a = visitor_hash_for_day(&salt, 10, "203.0.113.7", "Mozilla/5.0");
+        let same = visitor_hash_for_day(&salt, 10, "203.0.113.7", "Mozilla/5.0");
+        let next = visitor_hash_for_day(&salt, 11, "203.0.113.7", "Mozilla/5.0");
+        assert_eq!(a, same);
+        assert_ne!(a, next);
+        assert!(
+            a.chars()
+                .all(|c| c.is_ascii_hexdigit() && !c.is_ascii_uppercase())
+        );
+    }
+
+    #[test]
+    fn privacy_signals_are_honoured() {
+        for name in ["dnt", "sec-gpc"] {
+            let mut headers = HeaderMap::new();
+            headers.insert(name, " 1 ".parse().unwrap());
+            assert!(opted_out(&headers));
+        }
+        assert!(!opted_out(&HeaderMap::new()));
+    }
+
+    #[test]
+    fn analytics_dimensions_are_minimized() {
+        assert_eq!(
+            sanitize_url(
+                Some("https://search.example/results?q=private#x".into()),
+                true
+            ),
+            Some("https://search.example".into())
+        );
+        assert_eq!(
+            sanitize_url(Some("https://example.com/cv?token=secret#x".into()), false),
+            Some("https://example.com/cv".into())
+        );
+        assert_eq!(
+            sanitize_url(Some("mailto:person@example.com".into()), false),
+            None
+        );
+        assert_eq!(
+            sanitize_url(Some("email".into()), false),
+            Some("email".into())
+        );
+        assert_eq!(
+            sanitize_source(Some(" GitHub_2026 ".into())),
+            Some("github_2026".into())
+        );
+        assert_eq!(sanitize_source(Some("person@example.com".into())), None);
+        assert_eq!(
+            sanitize_path("/projects?token=private#section".into()),
+            Some("/projects".into())
+        );
+        assert_eq!(sanitize_path("https://elsewhere.example/path".into()), None);
     }
 }

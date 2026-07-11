@@ -53,7 +53,7 @@
     "/api/events": {
       "post": {
         "summary": "Record a usage event",
-        "description": "Cookieless first-party analytics ping sent by the site itself (page views, chat opens, game launches, outbound clicks, form submissions, 404s). Stores the path, optional external referrer, optional target, campaign tag, device class, browser/OS family and first Accept-Language tag (parsed server-side, raw user agent never stored), a coarse country code, and a daily-rotating anonymous visitor hash. Never stores raw IPs. Requests carrying DNT: 1 or Sec-GPC: 1 are accepted but not recorded. Rate limited per-IP (60 req/min).",
+        "description": "Cookieless first-party analytics ping sent by the site itself (page views, aggregate internal navigation transitions, chat opens, game launches, outbound clicks, form submissions, 404s). Navigation records only a source path, destination path, and coarse placement; it does not create a browser or session identifier. Stores an optional external referrer origin, optional query-free target, direct/external acquisition classification, normalized campaign source, device class, browser/OS family and first Accept-Language tag (parsed server-side, raw user agent never stored), a coarse country code, and a daily-rotating anonymous visitor hash. Never stores raw IPs. Requests carrying DNT: 1 or Sec-GPC: 1 are accepted but not recorded. Rate limited per-IP (60 req/min).",
         "operationId": "event",
         "requestBody": {
           "required": true,
@@ -141,19 +141,30 @@
         "properties": {
           "kind": {
             "type": "string",
-            "enum": ["pageview", "chat_open", "game_open", "outbound_click", "form_submit", "not_found"]
+            "enum": ["pageview", "chat_open", "game_open", "outbound_click", "navigation", "form_submit", "not_found"]
           },
           "path": { "type": "string", "maxLength": 512, "pattern": "^/" },
-          "referrer": { "type": ["string", "null"], "maxLength": 512 },
+          "referrer": { "type": ["string", "null"], "maxLength": 512, "description": "External origin only; path, query and fragment are discarded server-side." },
           "target": {
             "type": ["string", "null"],
             "maxLength": 512,
-            "description": "What was acted on: destination URL for outbound_click, game id for game_open."
+            "description": "What was acted on: query-free destination origin/path for outbound_click (or email), path-only internal destination for navigation, or game id for game_open."
+          },
+          "placement": {
+            "type": ["string", "null"],
+            "enum": ["header", "footer", "content", "cta", null],
+            "description": "Coarse link placement for navigation and outbound_click."
+          },
+          "attribution": {
+            "type": ["string", "null"],
+            "enum": ["direct", "external", null],
+            "description": "Direct or external acquisition classification on pageviews."
           },
           "source": {
             "type": ["string", "null"],
-            "maxLength": 128,
-            "description": "Campaign tag from the landing URL (utm_source or ref query param)."
+            "maxLength": 64,
+            "pattern": "^[a-z0-9_-]+$",
+            "description": "Normalized campaign tag from the landing URL (utm_source or ref query param)."
           },
           "screen": {
             "type": ["string", "null"],

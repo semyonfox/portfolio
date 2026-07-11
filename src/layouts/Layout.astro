@@ -87,6 +87,7 @@ const navLinks = [
 
     <!-- nav -->
     <header
+      data-analytics-placement="header"
       class="sticky top-0 z-40 border-b border-border backdrop-blur-md bg-bg/80"
     >
       <div
@@ -181,7 +182,10 @@ const navLinks = [
     </main>
 
     <!-- contact footer -->
-    <footer class="border-t border-border mt-24">
+    <footer
+      data-analytics-placement="footer"
+      class="border-t border-border mt-24"
+    >
       <div class="max-w-6xl mx-auto px-6 py-16">
         <div class="grid md:grid-cols-2 gap-12">
           <div>
@@ -287,20 +291,33 @@ const navLinks = [
     {showChatbot && <Chatbot client:load />}
 
     <script>
-      import { track } from '../lib/track';
+      import {
+        linkPlacement,
+        safeInternalTarget,
+        safeOutboundTarget,
+        track,
+      } from '../lib/track';
       // fires on initial load and after every view-transition navigation
       document.addEventListener('astro:page-load', () => track('pageview'));
 
-      // outbound links, including mailto. delegated so it survives
-      // view transitions, keepalive so it survives the navigation itself
+      // Delegated so it survives view transitions. It records independent
+      // aggregate link actions only; it creates no browser/session state.
       document.addEventListener('click', (e) => {
         const link = (e.target as Element | null)?.closest?.('a[href]');
         if (!(link instanceof HTMLAnchorElement)) return;
         const external =
           (link.protocol === 'http:' || link.protocol === 'https:') &&
           link.origin !== location.origin;
+        const placement = linkPlacement(link);
         if (external || link.protocol === 'mailto:') {
-          track('outbound_click', link.href);
+          const target = safeOutboundTarget(link.href);
+          if (target) track('outbound_click', target, placement);
+          return;
+        }
+
+        const target = safeInternalTarget(link.href);
+        if (target && target !== location.pathname) {
+          track('navigation', target, placement);
         }
       });
 
