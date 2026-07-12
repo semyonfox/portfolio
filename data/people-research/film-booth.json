@@ -4,9 +4,19 @@
   "realName": "Ed Lawrence",
   "oneLine": "YouTube growth coach who teaches ideation, packaging and storytelling for educators.",
   "bio": "Film Booth is run by Ed Lawrence, a UK-based YouTube strategist who went viral as a creator in roughly six weeks before pivoting to teaching educators and niche creators how to grow profitable channels. His videos focus on idea selection, titles and thumbnails, storytelling structure, and turning audiences into product buyers rather than chasing pure view count. According to a Starter Story breakdown, Film Booth scaled to several hundred thousand dollars per month using only YouTube and email, with a newsletter of over 13,000 subscribers.",
-  "topics": ["YouTube strategy", "thumbnails and titles", "video storytelling", "creator business", "info products"],
+  "topics": [
+    "YouTube strategy",
+    "thumbnails and titles",
+    "video storytelling",
+    "creator business",
+    "info products"
+  ],
   "style": "Talking-head educational long-form with packaging breakdowns",
-  "notable": ["Film Booth coaching program", "Film Booth newsletter", "Creator Science podcast appearances"],
+  "notable": [
+    "Film Booth coaching program",
+    "Film Booth newsletter",
+    "Creator Science podcast appearances"
+  ],
   "associatedWith": ["Creator Science (Jay Clouse)", "Ali Abdaal community"],
   "sources": [
     "https://film-booth.com/",

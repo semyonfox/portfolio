@@ -4,7 +4,14 @@
   "realName": "Kathleen Genevieve Ledecky",
   "oneLine": "American distance freestyler, the most decorated female swimmer in history and undefeated in the 800m and 1500m at major championships.",
   "bio": "Katie Ledecky is an American distance freestyler who specializes in the 400m, 800m, and 1500m freestyle. She is the most decorated female swimmer in history with 14 Olympic medals, including 9 golds across four Games (London 2012 through Paris 2024). She holds the long-course world records in the 800m and 1500m freestyle, owns 18 of the 20 fastest 1500m free times ever, and is undefeated at Olympics and World Championships in the 800m (9-0) and 1500m (6-0). At Paris 2024 she added gold in the 800m and 1500m, silver in the 4x200m free relay, and bronze in the 400m. Her style is defined by relentless pace, near-metronomic stroke rhythm, and an unusually aggressive front-end.",
-  "topics": ["400m freestyle", "800m freestyle", "1500m freestyle", "Olympics", "World Championships", "distance freestyle"],
+  "topics": [
+    "400m freestyle",
+    "800m freestyle",
+    "1500m freestyle",
+    "Olympics",
+    "World Championships",
+    "distance freestyle"
+  ],
   "style": "Distance freestyle defined by aggressive front-end pacing, sustained turnover, and a lopsided high-elbow catch.",
   "notable": [
     "9 Olympic gold medals (most by any female swimmer)",
@@ -15,7 +22,14 @@
     "Undefeated at Olympics/Worlds in 800m free (9-0) and 1500m free (6-0)",
     "First woman to win the same individual swimming event at four Olympics (800m free, 2012-2024)"
   ],
-  "associatedWith": ["Summer McIntosh", "Ariarne Titmus", "Bruce Gemmell", "Anthony Nesty", "Stanford swimming", "Michael Phelps"],
+  "associatedWith": [
+    "Summer McIntosh",
+    "Ariarne Titmus",
+    "Bruce Gemmell",
+    "Anthony Nesty",
+    "Stanford swimming",
+    "Michael Phelps"
+  ],
   "sources": [
     "https://en.wikipedia.org/wiki/Katie_Ledecky",
     "https://www.olympics.com/en/athletes/katie-ledecky",

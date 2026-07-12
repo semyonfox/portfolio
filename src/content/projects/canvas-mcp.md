@@ -1,9 +1,9 @@
 ---
-title: "Canvas MCP"
-description: "Unified MCP server for Canvas LMS with student tools enabled by default and instructor or admin tooling available for selective enablement."
-tags: ["TypeScript", "MCP", "Canvas LMS", "Node.js"]
+title: 'Canvas MCP'
+description: 'Unified MCP server for Canvas LMS with student tools enabled by default and instructor or admin tooling available for selective enablement.'
+tags: ['TypeScript', 'MCP', 'Canvas LMS', 'Node.js']
 category: personal
-github: "https://github.com/semyonfox/canvas-mcp"
+github: 'https://github.com/semyonfox/canvas-mcp'
 order: 9
 ---
 

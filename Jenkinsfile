@@ -44,8 +44,7 @@ pipeline {
         expression { !params.DEPLOY_ONLY }
       }
       steps {
-        sh 'corepack enable'
-        sh 'pnpm install --frozen-lockfile'
+        sh 'vp install --frozen-lockfile'
       }
     }
 
@@ -56,7 +55,7 @@ pipeline {
       steps {
         sh '''
           if node -e "const s=require('./package.json').scripts||{}; process.exit(s.lint ? 0 : 1)"; then
-            pnpm run lint
+            vp run check
           else
             echo "no lint script found, skipping"
           fi
@@ -71,7 +70,7 @@ pipeline {
       steps {
         sh '''
           if node -e "const s=require('./package.json').scripts||{}; process.exit(s.test ? 0 : 1)"; then
-            pnpm run test
+            vp run test
           else
             echo "no test script found, skipping"
           fi

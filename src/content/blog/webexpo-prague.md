@@ -1,9 +1,9 @@
 ---
-title: "WebExpo Prague, AI, and Remembering Why I Want to Travel"
-date: "2026-05-30"
-author: "Semyon Fox"
-description: "WebExpo was AI, UX, product, sponsor chats, cheap beer, Prague public transport, and a reminder that travelling for tech is really about people."
-tags: ["WebExpo", "AI", "Travel", "Career"]
+title: 'WebExpo Prague, AI, and Remembering Why I Want to Travel'
+date: '2026-05-30'
+author: 'Semyon Fox'
+description: 'WebExpo was AI, UX, product, sponsor chats, cheap beer, Prague public transport, and a reminder that travelling for tech is really about people.'
+tags: ['WebExpo', 'AI', 'Travel', 'Career']
 ---
 
 I went to WebExpo Prague with University of Limerick to skill maxx for the web apps and SaaS ideas I'm building.

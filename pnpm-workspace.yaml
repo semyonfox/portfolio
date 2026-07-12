@@ -1,0 +1,15 @@
+overrides:
+  '@babel/core': ^7.29.6
+  vite: 'catalog:'
+  fast-uri: ^3.1.2
+  yaml: ^2.8.3
+  devalue: ^5.8.1
+  esbuild: ^0.28.1
+catalog:
+  vite: npm:@voidzero-dev/vite-plus-core@0.2.4
+  vite-plus: 0.2.4
+peerDependencyRules:
+  allowAny:
+    - vite
+  allowedVersions:
+    vite: '*'

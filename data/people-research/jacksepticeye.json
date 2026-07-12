@@ -4,9 +4,22 @@
   "realName": "Seán William McLoughlin",
   "oneLine": "Irish let's-play YouTuber known for high-energy commentary across indie horror, narrative games and PlayStation exclusives.",
   "bio": "Seán McLoughlin from Offaly, Ireland, started uploading to YouTube in 2012 and grew into one of the platform's most-subscribed gaming creators, hitting 10 million subs by 2016 and over 30 million by 2024. His channel mixes long let's plays of Sony exclusives and story-driven games with indie horror, comedy formats and reactions. He has also done voice work, including Shawn Flynn in Bendy and the Ink Machine, a role in Sonic Prime, and a part in the 2025 game Dispatch.",
-  "topics": ["let's plays", "indie horror", "narrative games", "PlayStation exclusives", "comedy gaming", "reactions"],
+  "topics": [
+    "let's plays",
+    "indie horror",
+    "narrative games",
+    "PlayStation exclusives",
+    "comedy gaming",
+    "reactions"
+  ],
   "style": "high-energy let's-play and reaction commentary",
-  "notable": ["Happy Wheels series", "Five Nights at Freddy's playthroughs", "Subnautica", "Detroit: Become Human", "Bendy and the Ink Machine voice role"],
+  "notable": [
+    "Happy Wheels series",
+    "Five Nights at Freddy's playthroughs",
+    "Subnautica",
+    "Detroit: Become Human",
+    "Bendy and the Ink Machine voice role"
+  ],
   "associatedWith": ["Markiplier", "PewDiePie", "CrankGameplays"],
   "sources": [
     "https://en.wikipedia.org/wiki/Jacksepticeye",

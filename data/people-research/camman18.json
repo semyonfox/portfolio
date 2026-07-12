@@ -4,9 +4,19 @@
   "realName": "Cameron Manning",
   "oneLine": "American Minecraft YouTuber best known for short-form challenge videos and trivia-style commentary.",
   "bio": "Cameron Manning, born February 22, 2004, runs camman18, a Minecraft-focused channel that exploded on YouTube Shorts and TikTok with rapid-fire challenge clips and rare-fact commentary. Content centres on Minecraft challenges, speedruns, hardcore runs and trivia about obscure mechanics. The brand has expanded to multiple sister channels covering vods, shorts and live content.",
-  "topics": ["Minecraft challenges", "Minecraft trivia", "Minecraft hardcore", "speedruns", "short-form content"],
+  "topics": [
+    "Minecraft challenges",
+    "Minecraft trivia",
+    "Minecraft hardcore",
+    "speedruns",
+    "short-form content"
+  ],
   "style": "short-form challenge and commentary",
-  "notable": ["But Every X Y Minecraft challenge format", "Minecraft hardcore series", "1.21 Tricky Trials challenges"],
+  "notable": [
+    "But Every X Y Minecraft challenge format",
+    "Minecraft hardcore series",
+    "1.21 Tricky Trials challenges"
+  ],
   "associatedWith": null,
   "sources": [
     "https://youtube.fandom.com/wiki/Camman18",

@@ -4,10 +4,25 @@
   "realName": null,
   "oneLine": "LMG unboxing and first-impressions channel for tech products that don't warrant a full LTT review.",
   "bio": "ShortCircuit is a Linus Media Group channel that premiered around early 2020 as a home for unboxing and quick product reveal videos, separating fast-paced first-look content from the higher-production main reviews on Linus Tech Tips. Hosts rotate from the LMG roster and have included Linus Sebastian, Anthony Young, Alex Clark, Riley Murdock, and guests, with Jonathan Tan serving as channel manager. The channel intentionally revives the looser style of early NCIX-era unboxings.",
-  "topics": ["smartphone unboxings", "weird Aliexpress and Indiegogo gadgets", "prebuilt PCs first-looks", "handheld gaming devices", "obscure region-locked hardware"],
+  "topics": [
+    "smartphone unboxings",
+    "weird Aliexpress and Indiegogo gadgets",
+    "prebuilt PCs first-looks",
+    "handheld gaming devices",
+    "obscure region-locked hardware"
+  ],
   "style": "single-take desk unboxings with minimal scripting and rotating LMG hosts",
-  "notable": ["'Best. Unboxing. Ever.' running gag intros", "regular handheld and mini-PC coverage", "cheap prebuilt roundups"],
-  "associatedWith": ["Linus Tech Tips", "Linus Media Group", "Anthony Young", "Riley Murdock"],
+  "notable": [
+    "'Best. Unboxing. Ever.' running gag intros",
+    "regular handheld and mini-PC coverage",
+    "cheap prebuilt roundups"
+  ],
+  "associatedWith": [
+    "Linus Tech Tips",
+    "Linus Media Group",
+    "Anthony Young",
+    "Riley Murdock"
+  ],
   "sources": [
     "https://www.youtube.com/shortcircuit",
     "https://linustechtips.com/topic/1221059-what-is-the-exact-purpose-of-short-circuit-compared-to-normal-linus-videos/",

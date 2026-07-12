@@ -1,7 +1,7 @@
 ---
-title: "CityLink Student Booker"
-description: "Browser extension automating bulk CityLink ticket booking for students. Batch booking, progress tracking, encrypted credential storage."
-tags: ["JavaScript", "Browser Extensions", "Automation"]
+title: 'CityLink Student Booker'
+description: 'Browser extension automating bulk CityLink ticket booking for students. Batch booking, progress tracking, encrypted credential storage.'
+tags: ['JavaScript', 'Browser Extensions', 'Automation']
 order: 8
 ---
 

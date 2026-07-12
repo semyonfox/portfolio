@@ -4,9 +4,19 @@
   "realName": null,
   "oneLine": "Weekly Friday tech-news livestream and podcast hosted by Linus Sebastian and Luke Lafreniere.",
   "bio": "The WAN Show is Linus Media Group's flagship podcast, livestreamed every Friday on the Linus Tech Tips YouTube channel and distributed via Apple Podcasts and Spotify. Running since 2013 and routinely over three hours long, it features Linus Sebastian and Luke Lafreniere covering the week's tech news, LMG company updates, sponsored merch segments, and live audience chat questions in an informal, conversational format.",
-  "topics": ["weekly tech news roundup", "LMG behind-the-scenes updates", "industry controversies", "merch messages from chat", "consumer rights and right-to-repair"],
+  "topics": [
+    "weekly tech news roundup",
+    "LMG behind-the-scenes updates",
+    "industry controversies",
+    "merch messages from chat",
+    "consumer rights and right-to-repair"
+  ],
   "style": "long-form (3+ hour) Friday livestream podcast with two-host desk setup and live chat interaction",
-  "notable": ["Friday 5:30pm Pacific livestream slot", "Merch Messages segment", "long history of one-take format dating to 2013"],
+  "notable": [
+    "Friday 5:30pm Pacific livestream slot",
+    "Merch Messages segment",
+    "long history of one-take format dating to 2013"
+  ],
   "associatedWith": ["Linus Tech Tips", "Luke Lafreniere", "Linus Media Group"],
   "sources": [
     "https://www.youtube.com/@WANShow",

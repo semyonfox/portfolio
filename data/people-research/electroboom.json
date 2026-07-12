@@ -4,10 +4,29 @@
   "realName": "Mehdi Sadaghdar",
   "oneLine": "Iranian-Canadian electrical engineer who teaches electronics through slapstick and intentionally-staged shocks, sparks, and small explosions.",
   "bio": "Mehdi Sadaghdar holds an electronics degree from the University of Tehran and a microelectronics master's from Simon Fraser University. ElectroBOOM mixes earnest electrical engineering tutorials with comedic mishaps where he reacts to shocks, fires, and exploding components for laughs while showing what not to do. Series include the beginner-focused ElectroBOOM101 and a steady stream of debunks of viral 'free energy' and pseudoscience videos.",
-  "topics": ["circuit analysis", "electrical safety", "free-energy debunks", "AC vs DC", "high-voltage experiments", "transformers and inductors", "Tesla coils", "everyday electronics"],
+  "topics": [
+    "circuit analysis",
+    "electrical safety",
+    "free-energy debunks",
+    "AC vs DC",
+    "high-voltage experiments",
+    "transformers and inductors",
+    "Tesla coils",
+    "everyday electronics"
+  ],
   "style": "comedic on-camera electronics demos with slapstick reactions, whiteboard explanations, and bench-lab footage",
-  "notable": ["ElectroBOOM101 tutorial series", "debunks of 'free energy' and overunity claims", "collaborations with major science creators on electricity topics"],
-  "associatedWith": ["Veritasium", "Mark Rober", "Big Clive", "Styropyro", "The Backyard Scientist"],
+  "notable": [
+    "ElectroBOOM101 tutorial series",
+    "debunks of 'free energy' and overunity claims",
+    "collaborations with major science creators on electricity topics"
+  ],
+  "associatedWith": [
+    "Veritasium",
+    "Mark Rober",
+    "Big Clive",
+    "Styropyro",
+    "The Backyard Scientist"
+  ],
   "sources": [
     "https://en.wikipedia.org/wiki/ElectroBOOM",
     "https://www.allaboutcircuits.com/podcast/ep-38-comedy-shocks-educating-ees-on-youtube-electroboom-mehdi-sadaghdar/",

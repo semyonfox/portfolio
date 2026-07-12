@@ -1,9 +1,9 @@
 ---
-title: "Ditching Google Photos for Immich"
-date: "2025-10-10"
-author: "Semyon Fox"
+title: 'Ditching Google Photos for Immich'
+date: '2025-10-10'
+author: 'Semyon Fox'
 description: "Ran out of Google storage, didn't want to pay, so I migrated 20GB of family photos to my homelab."
-tags: ["Immich", "Self-Hosting", "Data Migration"]
+tags: ['Immich', 'Self-Hosting', 'Data Migration']
 ---
 
 I ran out of storage on Google Photos. The obvious move was to pay for more. But the more I thought about it, the more it bothered me that Google was sitting on all my family's photos and memories. I had a homelab. Why not use it?

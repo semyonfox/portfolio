@@ -4,9 +4,19 @@
   "realName": "Mariano Arruda",
   "oneLine": "Canadian Rocket League world champion turned full-time content creator and Cloud9 co-owner.",
   "bio": "Mariano Arruda, born November 29, 2000, started playing Rocket League in the 2015 beta and became one of the most decorated players in the game's history, winning a world championship and five Major LANs over a career that earned roughly $500,000 in prize money. He retired from professional competition in 2024 and rejoined Cloud9 as a content creator and co-owner, with around 1.4 million YouTube subscribers and 1.2 million Twitch followers focused on freestyling, ranked play and high-level Rocket League content.",
-  "topics": ["Rocket League", "Rocket League freestyling", "competitive ranked play", "esports"],
+  "topics": [
+    "Rocket League",
+    "Rocket League freestyling",
+    "competitive ranked play",
+    "esports"
+  ],
   "style": "high-skill gameplay and freestyle content",
-  "notable": ["Rocket League World Champion", "5x Major LAN champion", "Cloud9 co-owner", "RLCS career with NRG and Cloud9"],
+  "notable": [
+    "Rocket League World Champion",
+    "5x Major LAN champion",
+    "Cloud9 co-owner",
+    "RLCS career with NRG and Cloud9"
+  ],
   "associatedWith": ["Cloud9", "NRG Esports", "Garrett G", "JKnaps", "Torment"],
   "sources": [
     "https://liquipedia.net/rocketleague/SquishyMuffinz",

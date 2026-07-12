@@ -4,10 +4,33 @@
   "realName": "Nigel Braun",
   "oneLine": "Montreal chemist who runs absurdly long, multi-step home-lab projects turning everyday materials into unexpected products.",
   "bio": "Nigel Braun, a McGill biochemistry graduate, started NileRed in 2014 after his Pharaoh's Serpent firework demo went viral. The channel is known for ambitious, weeks-long synthesis projects documented in detail, like distilling vodka from thin air or converting Styrofoam into cinnamon candy. Braun also runs the sister channel NileBlue for shorter or more experimental builds, and his style emphasizes patient, narrated bench chemistry over flashy reactions.",
-  "topics": ["organic synthesis", "extraction chemistry", "purification and crystallization", "polymer breakdown", "metal alloys", "lab technique", "household-to-chemical transformations", "chemistry safety"],
+  "topics": [
+    "organic synthesis",
+    "extraction chemistry",
+    "purification and crystallization",
+    "polymer breakdown",
+    "metal alloys",
+    "lab technique",
+    "household-to-chemical transformations",
+    "chemistry safety"
+  ],
   "style": "long-form home-lab synthesis documentaries with calm narration, time-lapses, and step-by-step procedure",
-  "notable": ["Turning Styrofoam into cinnamon candy", "Making transparent wood", "Distilling vodka from thin air", "Purple gold synthesis", "Bismuth from Pepto-Bismol", "NileBlue sister channel"],
-  "associatedWith": ["NileBlue", "Cody's Lab", "ChemicalForce", "Explosions&Fire", "ThePoorMansChemist", "Veritasium"],
+  "notable": [
+    "Turning Styrofoam into cinnamon candy",
+    "Making transparent wood",
+    "Distilling vodka from thin air",
+    "Purple gold synthesis",
+    "Bismuth from Pepto-Bismol",
+    "NileBlue sister channel"
+  ],
+  "associatedWith": [
+    "NileBlue",
+    "Cody's Lab",
+    "ChemicalForce",
+    "Explosions&Fire",
+    "ThePoorMansChemist",
+    "Veritasium"
+  ],
   "sources": [
     "https://en.wikipedia.org/wiki/NileRed",
     "https://thesciencehut.com/blogs/science-on-social-media/science-on-social-media-series-nilered",

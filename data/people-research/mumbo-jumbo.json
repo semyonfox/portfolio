@@ -4,10 +4,28 @@
   "realName": "Oliver Brotherhood",
   "oneLine": "English Minecraft YouTuber known for elaborate redstone contraptions and his long tenure on the Hermitcraft SMP.",
   "bio": "Oli Brotherhood, born 1995, is one of Minecraft's best-known redstone engineers and the most-subscribed member of the Hermitcraft server, which he joined at the start of Season 2. His videos showcase practical and decorative redstone builds, base tours and SMP storylines, with a moustache-themed brand. He has been part of long-running Hermitcraft groups including Architech (with Grian and Iskall85), the Buttercups (with Grian and GoodTimesWithScar) and the C-Team.",
-  "topics": ["Minecraft redstone", "Hermitcraft", "Minecraft base building", "Minecraft SMP storylines", "filmmaking"],
+  "topics": [
+    "Minecraft redstone",
+    "Hermitcraft",
+    "Minecraft base building",
+    "Minecraft SMP storylines",
+    "filmmaking"
+  ],
   "style": "tutorial and showcase let's-play",
-  "notable": ["Hermitcraft Seasons 2 through 9", "redstone tutorial series", "Architech base collaborations", "Buttercups duo with Grian and Scar"],
-  "associatedWith": ["Grian", "Iskall85", "GoodTimesWithScar", "Rendog", "Skizzleman", "VintageBeef"],
+  "notable": [
+    "Hermitcraft Seasons 2 through 9",
+    "redstone tutorial series",
+    "Architech base collaborations",
+    "Buttercups duo with Grian and Scar"
+  ],
+  "associatedWith": [
+    "Grian",
+    "Iskall85",
+    "GoodTimesWithScar",
+    "Rendog",
+    "Skizzleman",
+    "VintageBeef"
+  ],
   "sources": [
     "https://hermitcraft.fandom.com/wiki/MumboJumbo",
     "https://minecraft.wiki/w/Mumbo_Jumbo",

@@ -1,10 +1,10 @@
 ---
-title: "Swimming Monitoring System"
+title: 'Swimming Monitoring System'
 description: "Comprehensive dashboard for swimming coaches and athletes. Digitizing local swimming clubs' workflows with modern web technologies."
-tags: ["React", "Node.js", "PostgreSQL", "JWT", "Tailwind CSS", "Chart.js"]
-github: "https://github.com/semyonfox/swim"
+tags: ['React', 'Node.js', 'PostgreSQL', 'JWT', 'Tailwind CSS', 'Chart.js']
+github: 'https://github.com/semyonfox/swim'
 private: true
-live: "https://swim.semyon.ie"
+live: 'https://swim.semyon.ie'
 order: 2
 ---
 

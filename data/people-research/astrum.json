@@ -4,10 +4,29 @@
   "realName": "Alex McColgan",
   "oneLine": "Solo-run space documentary channel that breaks down solar system science and probe missions using real imagery.",
   "bio": "Alex McColgan launched Astrum in 2013 as a faceless channel dedicated to making space science accessible, with a self-imposed rule of using only real images from probes and telescopes wherever possible. Episodes are weekly long-form video essays on celestial bodies, missions, and astronomical phenomena. The brand has expanded into the Astrum Space and Sleep Space podcasts and a sister channel Astrum Earth.",
-  "topics": ["solar system planets", "moons of Jupiter and Saturn", "space probe missions", "exoplanets", "black holes", "astronomy news", "Voyager and Cassini", "Mars exploration"],
+  "topics": [
+    "solar system planets",
+    "moons of Jupiter and Saturn",
+    "space probe missions",
+    "exoplanets",
+    "black holes",
+    "astronomy news",
+    "Voyager and Cassini",
+    "Mars exploration"
+  ],
   "style": "narrated space documentaries built around real probe and telescope imagery, weekly long-form",
-  "notable": ["Astrum Space podcast", "Sleep Space podcast", "Astrum Earth sister channel", "deep-dive series on Saturn's moons and outer planets"],
-  "associatedWith": ["SEA (Space Engine animations)", "Anton Petrov (What Da Math)", "PBS Space Time", "Scott Manley"],
+  "notable": [
+    "Astrum Space podcast",
+    "Sleep Space podcast",
+    "Astrum Earth sister channel",
+    "deep-dive series on Saturn's moons and outer planets"
+  ],
+  "associatedWith": [
+    "SEA (Space Engine animations)",
+    "Anton Petrov (What Da Math)",
+    "PBS Space Time",
+    "Scott Manley"
+  ],
   "sources": [
     "https://www.patreon.com/astrumspace/about",
     "https://astrumspace.co/",

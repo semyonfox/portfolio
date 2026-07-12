@@ -1,12 +1,11 @@
-FROM node:22-alpine AS build
-RUN corepack enable
+FROM ghcr.io/voidzero-dev/vite-plus:0.2.4 AS build
 WORKDIR /app
-COPY package.json pnpm-lock.yaml ./
-RUN pnpm install --frozen-lockfile
-COPY . .
+COPY --chown=vp:vp package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+RUN vp install --frozen-lockfile
+COPY --chown=vp:vp . .
 ARG PUBLIC_CHAT_API_URL=/api/chat
 ENV PUBLIC_CHAT_API_URL=$PUBLIC_CHAT_API_URL
-RUN pnpm run build
+RUN vp run build
 
 FROM nginx:alpine
 COPY --from=build /app/dist /usr/share/nginx/html

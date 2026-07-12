@@ -1,9 +1,9 @@
 ---
-title: "Why am I studying Computer Science"
-date: "2024-11-03"
-author: "Semyon Fox"
-description: "My journey from CoderDojo to university, and why Computer Science felt like the right path."
-tags: ["Computer Science", "Career", "Personal Story"]
+title: 'Why am I studying Computer Science'
+date: '2024-11-03'
+author: 'Semyon Fox'
+description: 'My journey from CoderDojo to university, and why Computer Science felt like the right path.'
+tags: ['Computer Science', 'Career', 'Personal Story']
 ---
 
 5 weeks ago, I started a new chapter of my life. I began studying Computer Science and IT at NUIG. My journey to this major section of my life began in childhood. Let me fill you in.

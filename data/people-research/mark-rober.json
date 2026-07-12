@@ -4,10 +4,32 @@
   "realName": "Mark Rober",
   "oneLine": "Former NASA JPL engineer who builds elaborate gadgets and large-scale science stunts on YouTube.",
   "bio": "Mark Rober spent nine years at NASA's Jet Propulsion Laboratory, including seven on the Curiosity Mars rover, before going full-time on YouTube. His channel is built around heavily-produced, family-friendly engineering builds, viral stunts, and explainer-flavored science. He is best known for the annual porch-pirate Glitter Bomb series and the charity fundraising event #TeamSeas, and he co-founded the educational platform CrunchLabs.",
-  "topics": ["mechanical engineering builds", "DIY gadgets", "physics demos", "porch-pirate countermeasures", "world-record stunts", "robotics", "science education", "charity fundraising"],
+  "topics": [
+    "mechanical engineering builds",
+    "DIY gadgets",
+    "physics demos",
+    "porch-pirate countermeasures",
+    "world-record stunts",
+    "robotics",
+    "science education",
+    "charity fundraising"
+  ],
   "style": "highly-produced engineering build videos with multi-camera shoots, narration, and big reveal payoffs",
-  "notable": ["Glitter Bomb porch-pirate series", "World's Largest Nerf Gun", "Squirrel Maze series", "#TeamTrees and #TeamSeas charity drives", "CrunchLabs subscription kits"],
-  "associatedWith": ["MrBeast", "Jimmy DiResta", "William Osman", "Michael Reeves", "Veritasium", "Smarter Every Day"],
+  "notable": [
+    "Glitter Bomb porch-pirate series",
+    "World's Largest Nerf Gun",
+    "Squirrel Maze series",
+    "#TeamTrees and #TeamSeas charity drives",
+    "CrunchLabs subscription kits"
+  ],
+  "associatedWith": [
+    "MrBeast",
+    "Jimmy DiResta",
+    "William Osman",
+    "Michael Reeves",
+    "Veritasium",
+    "Smarter Every Day"
+  ],
   "sources": [
     "https://en.wikipedia.org/wiki/Mark_Rober",
     "https://www.asme.org/topics-resources/content/youtube-star-goes-viral-glitter-bomb-part-1",

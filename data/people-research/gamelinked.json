@@ -4,9 +4,19 @@
   "realName": null,
   "oneLine": "LMG's weekly gaming-news channel, the gaming-focused sibling of TechLinked.",
   "bio": "GameLinked is a Linus Media Group channel delivering weekly gaming-industry news, billed as 'TechLinked's gaming-obsessed little brother.' The channel went on indefinite hiatus on November 14, 2024, alongside Mac Address and Techquickie, but resumed weekly uploads on January 29, 2026. It covers video game industry happenings rather than hardware reviews.",
-  "topics": ["AAA studio layoffs and acquisitions", "Steam and platform news", "console hardware updates", "game release commentary", "live-service controversies"],
+  "topics": [
+    "AAA studio layoffs and acquisitions",
+    "Steam and platform news",
+    "console hardware updates",
+    "game release commentary",
+    "live-service controversies"
+  ],
   "style": "TechLinked-style fast-cut news desk reads dedicated to games industry stories",
-  "notable": ["November 2024 hiatus alongside Mac Address and Techquickie", "January 2026 relaunch", "'So, about that Gaming Channel...' announcement video"],
+  "notable": [
+    "November 2024 hiatus alongside Mac Address and Techquickie",
+    "January 2026 relaunch",
+    "'So, about that Gaming Channel...' announcement video"
+  ],
   "associatedWith": ["TechLinked", "Linus Tech Tips", "Linus Media Group"],
   "sources": [
     "https://www.youtube.com/@GameLinked",

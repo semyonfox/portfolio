@@ -4,10 +4,31 @@
   "realName": "Grant Sanderson",
   "oneLine": "Visual mathematics explainer channel built on Grant Sanderson's custom Python animation library, Manim.",
   "bio": "Grant Sanderson, a Stanford math graduate and former Khan Academy contributor, launched 3Blue1Brown in 2015 to teach higher mathematics from a visual perspective. He built the Python animation engine Manim specifically to produce the channel's precise, programmatic visuals, and the tool now has a thriving community fork. Series cover linear algebra, calculus, neural networks, differential equations, and probability with strong emphasis on intuition and discovery.",
-  "topics": ["linear algebra", "calculus", "neural networks", "topology", "complex analysis", "differential equations", "probability", "number theory"],
+  "topics": [
+    "linear algebra",
+    "calculus",
+    "neural networks",
+    "topology",
+    "complex analysis",
+    "differential equations",
+    "probability",
+    "number theory"
+  ],
   "style": "Manim-animated visual proofs and intuition-first lecture series, calm narration, no on-camera presence",
-  "notable": ["Essence of Linear Algebra", "Essence of Calculus", "Neural Networks series", "Summer of Math Exposition (SoME) competition", "Manim animation library"],
-  "associatedWith": ["Numberphile", "Veritasium", "Mathologer", "Stand-up Maths (Matt Parker)", "Khan Academy"],
+  "notable": [
+    "Essence of Linear Algebra",
+    "Essence of Calculus",
+    "Neural Networks series",
+    "Summer of Math Exposition (SoME) competition",
+    "Manim animation library"
+  ],
+  "associatedWith": [
+    "Numberphile",
+    "Veritasium",
+    "Mathologer",
+    "Stand-up Maths (Matt Parker)",
+    "Khan Academy"
+  ],
   "sources": [
     "https://en.wikipedia.org/wiki/3Blue1Brown",
     "https://www.3blue1brown.com/about/",

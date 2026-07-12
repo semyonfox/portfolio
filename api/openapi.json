@@ -26,7 +26,14 @@
               "examples": {
                 "minimal": {
                   "summary": "Single user message",
-                  "value": { "messages": [{ "role": "user", "content": "what are you working on lately?" }] }
+                  "value": {
+                    "messages": [
+                      {
+                        "role": "user",
+                        "content": "what are you working on lately?"
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -39,14 +46,39 @@
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ChatResponse" },
                 "examples": {
-                  "reply": { "value": { "reply": "lately semyon's been grinding on the homelab and shipping a new feature for uisce. he's also chasing a sub-1min 100m free." } }
+                  "reply": {
+                    "value": {
+                      "reply": "lately semyon's been grinding on the homelab and shipping a new feature for uisce. he's also chasing a sub-1min 100m free."
+                    }
+                  }
                 }
               }
             }
           },
-          "400": { "description": "Invalid request body", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ChatResponse" } } } },
-          "429": { "description": "Rate limited (20 requests/minute/IP)", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ChatResponse" } } } },
-          "502": { "description": "Upstream model failure", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ChatResponse" } } } }
+          "400": {
+            "description": "Invalid request body",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ChatResponse" }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited (20 requests/minute/IP)",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ChatResponse" }
+              }
+            }
+          },
+          "502": {
+            "description": "Upstream model failure",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ChatResponse" }
+              }
+            }
+          }
         }
       }
     },
@@ -63,15 +95,23 @@
               "examples": {
                 "pageview": {
                   "summary": "Page view",
-                  "value": { "kind": "pageview", "path": "/blog", "referrer": null }
+                  "value": {
+                    "kind": "pageview",
+                    "path": "/blog",
+                    "referrer": null
+                  }
                 }
               }
             }
           }
         },
         "responses": {
-          "204": { "description": "Recorded (or silently skipped for opted-out visitors)" },
-          "400": { "description": "Unknown event kind or invalid path/referrer" },
+          "204": {
+            "description": "Recorded (or silently skipped for opted-out visitors)"
+          },
+          "400": {
+            "description": "Unknown event kind or invalid path/referrer"
+          },
           "429": { "description": "Rate limited (60 requests/minute/IP)" }
         }
       }
@@ -88,7 +128,9 @@
                 "schema": {
                   "type": "object",
                   "required": ["status"],
-                  "properties": { "status": { "type": "string", "const": "ok" } }
+                  "properties": {
+                    "status": { "type": "string", "const": "ok" }
+                  }
                 }
               }
             }
@@ -101,7 +143,12 @@
         "summary": "This OpenAPI document",
         "operationId": "openapi",
         "responses": {
-          "200": { "description": "OpenAPI 3.1 spec", "content": { "application/json": { "schema": { "type": "object" } } } }
+          "200": {
+            "description": "OpenAPI 3.1 spec",
+            "content": {
+              "application/json": { "schema": { "type": "object" } }
+            }
+          }
         }
       }
     }
@@ -141,10 +188,22 @@
         "properties": {
           "kind": {
             "type": "string",
-            "enum": ["pageview", "chat_open", "game_open", "outbound_click", "navigation", "form_submit", "not_found"]
+            "enum": [
+              "pageview",
+              "chat_open",
+              "game_open",
+              "outbound_click",
+              "navigation",
+              "form_submit",
+              "not_found"
+            ]
           },
           "path": { "type": "string", "maxLength": 512, "pattern": "^/" },
-          "referrer": { "type": ["string", "null"], "maxLength": 512, "description": "External origin only; path, query and fragment are discarded server-side." },
+          "referrer": {
+            "type": ["string", "null"],
+            "maxLength": 512,
+            "description": "External origin only; path, query and fragment are discarded server-side."
+          },
           "target": {
             "type": ["string", "null"],
             "maxLength": 512,

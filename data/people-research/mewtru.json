@@ -4,9 +4,19 @@
   "realName": null,
   "oneLine": "Software engineer and Twitch Partner who streams live programming, mostly in TypeScript and React.",
   "bio": "Mewtru is an English-speaking Twitch Partner and software engineer who streams live coding sessions, primarily in the Software and Game Development category. Her work centres on TypeScript and React, with on-stream projects including drawydrawing.com and a VSCode extension that exposes editor controls through Twitch channel point redemptions. She is part of Team POGrammers, a coding-streamer collective, and her Twitch account dates to 2015 with regular streaming starting February 2019.",
-  "topics": ["live coding", "TypeScript", "React", "web development", "VSCode tooling"],
+  "topics": [
+    "live coding",
+    "TypeScript",
+    "React",
+    "web development",
+    "VSCode tooling"
+  ],
   "style": "live programming streams",
-  "notable": ["drawydrawing.com on-stream project", "VSCode channel-points extension", "Team POGrammers"],
+  "notable": [
+    "drawydrawing.com on-stream project",
+    "VSCode channel-points extension",
+    "Team POGrammers"
+  ],
   "associatedWith": ["Team POGrammers"],
   "sources": [
     "https://www.twitch.tv/mewtru",

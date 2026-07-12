@@ -4,9 +4,18 @@
   "realName": "Joseph Mark Garrett",
   "oneLine": "English Minecraft YouTuber whose Stampy's Lovely World was a defining family-friendly let's-play of the 2010s.",
   "bio": "Joseph Garrett studied TV and video production at Solent University and created the Stampylongnose channel in 2006 for live-action sketches before launching Stampylonghead in 2011. He began Minecraft let's plays in 2012, and the long-running Stampy's Lovely World became one of the most-watched Minecraft series ever, helping push the channel past 10 million subscribers. After a hiatus, Garrett revived Lovely World in August 2020 and concluded it on October 21, 2023 after 823 episodes.",
-  "topics": ["Minecraft", "family-friendly let's plays", "Minecraft mini-games", "kids' content"],
+  "topics": [
+    "Minecraft",
+    "family-friendly let's plays",
+    "Minecraft mini-games",
+    "kids' content"
+  ],
   "style": "narrated family-friendly let's-play",
-  "notable": ["Stampy's Lovely World (823 episodes, ended 2023)", "Wonder Quest co-production", "Cake at Stampy's Lovely World"],
+  "notable": [
+    "Stampy's Lovely World (823 episodes, ended 2023)",
+    "Wonder Quest co-production",
+    "Cake at Stampy's Lovely World"
+  ],
   "associatedWith": ["iBallisticSquid", "AmyLee33", "L for Lee", "Wizard Keen"],
   "sources": [
     "https://en.wikipedia.org/wiki/Stampy",

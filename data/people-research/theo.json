@@ -15,13 +15,7 @@
     "JavaScript framework wars"
   ],
   "style": "Reaction and commentary videos plus long-form Twitch streams reposted to YouTube, often built around screenshotted tweets and live code reading.",
-  "notable": [
-    "create-t3-app",
-    "T3 Stack",
-    "Uploadthing",
-    "Ping.gg",
-    "T3 Chat"
-  ],
+  "notable": ["create-t3-app", "T3 Stack", "Uploadthing", "Ping.gg", "T3 Chat"],
   "associatedWith": [
     "ThePrimeagen",
     "Jason Lengstorf",
