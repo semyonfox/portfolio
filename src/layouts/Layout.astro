@@ -133,6 +133,7 @@ const navLinks = [
           class="md:hidden text-muted hover:text-heading transition-colors"
           aria-label="Toggle menu"
           aria-expanded="false"
+          aria-controls="mobile-menu"
         >
           <svg
             class="w-6 h-6"
@@ -198,7 +199,9 @@ const navLinks = [
               method="POST"
               class="space-y-4"
             >
+              <label class="sr-only" for="contact-name">Your name</label>
               <input
+                id="contact-name"
                 type="text"
                 name="name"
                 autocomplete="name"
@@ -206,7 +209,9 @@ const navLinks = [
                 placeholder="Your name"
                 class="w-full bg-surface border border-border rounded-lg px-4 py-3 text-sm text-heading placeholder:text-dim focus:outline-none focus:border-fox/50 focus:ring-1 focus:ring-fox/25 transition-colors"
               />
+              <label class="sr-only" for="contact-email">Your email</label>
               <input
+                id="contact-email"
                 type="email"
                 name="email"
                 autocomplete="email"
@@ -214,7 +219,9 @@ const navLinks = [
                 placeholder="Your email"
                 class="w-full bg-surface border border-border rounded-lg px-4 py-3 text-sm text-heading placeholder:text-dim focus:outline-none focus:border-fox/50 focus:ring-1 focus:ring-fox/25 transition-colors"
               />
+              <label class="sr-only" for="contact-message">Your message</label>
               <textarea
+                id="contact-message"
                 name="message"
                 required
                 placeholder="Your message"
@@ -332,10 +339,19 @@ const navLinks = [
       const btn = document.getElementById('mobile-menu-btn');
       const menu = document.getElementById('mobile-menu');
       if (btn && menu) {
+        const closeMenu = () => {
+          btn.setAttribute('aria-expanded', 'false');
+          menu.classList.add('hidden');
+        };
         btn.addEventListener('click', () => {
           const expanded = btn.getAttribute('aria-expanded') === 'true';
           btn.setAttribute('aria-expanded', String(!expanded));
           menu.classList.toggle('hidden');
+        });
+        document.addEventListener('keydown', (event) => {
+          if (event.key !== 'Escape' || btn.getAttribute('aria-expanded') !== 'true') return;
+          closeMenu();
+          btn.focus();
         });
       }
     </script>

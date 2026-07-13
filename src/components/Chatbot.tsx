@@ -59,6 +59,9 @@ export default function Chatbot() {
   const [loading, setLoading] = useState(false);
   const [quip, setQuip] = useState(QUIPS[0]);
   const messagesEnd = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const returnFocus = useRef(false);
   const conversationId = useRef(newConversationId());
 
   // rotate quips
@@ -73,6 +76,20 @@ export default function Chatbot() {
   useEffect(() => {
     messagesEnd.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
+
+  useEffect(() => {
+    if (open) {
+      inputRef.current?.focus();
+    } else if (returnFocus.current) {
+      triggerRef.current?.focus();
+      returnFocus.current = false;
+    }
+  }, [open]);
+
+  function closeChat() {
+    returnFocus.current = true;
+    setOpen(false);
+  }
 
   async function send() {
     const text = input.trim();
@@ -124,12 +141,15 @@ export default function Chatbot() {
           {quip}
         </div>
         <button
+          ref={triggerRef}
           onClick={() => {
             setOpen(true);
             track('chat_open');
           }}
           class="w-12 h-12 rounded-full shadow-lg shadow-fox/25 flex items-center justify-center hover:scale-110 transition-all overflow-hidden border-2 border-fox"
           aria-label="Open chat"
+          aria-expanded="false"
+          aria-controls="chat-dialog"
         >
           <img
             src={FOXBOT_SRC}
@@ -145,7 +165,14 @@ export default function Chatbot() {
   }
 
   return (
-    <div class="fixed bottom-4 left-4 right-4 sm:left-auto sm:bottom-6 sm:right-6 z-50 w-auto sm:w-[340px] max-h-[min(520px,calc(100vh-2rem))] bg-surface border border-heading/10 rounded-xl shadow-2xl flex flex-col overflow-hidden">
+    <div
+      id="chat-dialog"
+      role="dialog"
+      aria-modal="false"
+      aria-labelledby="chat-title"
+      onKeyDown={(event) => event.key === 'Escape' && closeChat()}
+      class="fixed bottom-4 left-4 right-4 sm:left-auto sm:bottom-6 sm:right-6 z-50 w-auto sm:w-[340px] max-h-[min(520px,calc(100vh-2rem))] bg-surface border border-heading/10 rounded-xl shadow-2xl flex flex-col overflow-hidden"
+    >
       {/* header */}
       <div class="flex items-center justify-between px-4 py-3 border-b border-border">
         <div class="flex items-center gap-2">
@@ -157,12 +184,12 @@ export default function Chatbot() {
             decoding="async"
             class="w-6 h-6 rounded-full"
           />
-          <span class="text-heading text-sm font-semibold">
+          <h2 id="chat-title" class="text-heading text-sm font-semibold">
             semyon&apos;s assistant
-          </span>
+          </h2>
         </div>
         <button
-          onClick={() => setOpen(false)}
+          onClick={closeChat}
           class="text-dim hover:text-heading transition-colors text-sm"
           aria-label="Close chat"
         >
@@ -197,25 +224,43 @@ export default function Chatbot() {
         )}
         <div ref={messagesEnd} />
       </div>
+      <p class="sr-only" aria-live="polite" aria-atomic="true">
+        {loading
+          ? 'Semyon’s assistant is typing.'
+          : messages.length > 1 &&
+              messages[messages.length - 1].role === 'assistant'
+            ? messages[messages.length - 1].content
+            : ''}
+      </p>
 
       {/* input */}
-      <div class="border-t border-border p-3 flex gap-2">
+      <form
+        class="border-t border-border p-3 flex gap-2"
+        onSubmit={(event) => {
+          event.preventDefault();
+          void send();
+        }}
+      >
+        <label class="sr-only" htmlFor="chat-message">
+          Message for Semyon’s assistant
+        </label>
         <input
+          ref={inputRef}
+          id="chat-message"
           type="text"
           value={input}
           onInput={(e) => setInput((e.target as HTMLInputElement).value)}
-          onKeyDown={(e) => e.key === 'Enter' && send()}
           placeholder="type a message..."
           class="flex-1 bg-border rounded-lg px-3 py-2 text-xs text-heading placeholder:text-dim focus:outline-none focus:ring-1 focus:ring-fox/25"
         />
         <button
-          onClick={send}
+          type="submit"
           disabled={loading || !input.trim()}
           class="bg-white text-black font-semibold text-xs px-3 py-2 rounded-lg hover:bg-white/90 transition-colors disabled:opacity-40"
         >
           send
         </button>
-      </div>
+      </form>
     </div>
   );
 }
