@@ -4,9 +4,19 @@
   "realName": "Jake Tivy",
   "oneLine": "Ex-LTT writer and on-camera host now running an independent channel focused on high-end servers and automotive tech.",
   "bio": "Jake Tivy, known online as Jakkuh, joined Linus Media Group at age 15 and worked there for nearly a decade across Linus Tech Tips, ShortCircuit, and Techquickie before resigning on August 6, 2025. He cited stagnant compensation in increasingly unaffordable Vancouver, the company becoming more corporate, and recent controversies as reasons for leaving. His independent YouTube channel has grown to over 190,000 subscribers and focuses on high-end home/enterprise server builds and car tech.",
-  "topics": ["enterprise and home-lab server builds", "automotive tech and EV teardowns", "former-LMG industry commentary", "extreme storage projects", "creator economy and YouTube pay reality"],
+  "topics": [
+    "enterprise and home-lab server builds",
+    "automotive tech and EV teardowns",
+    "former-LMG industry commentary",
+    "extreme storage projects",
+    "creator economy and YouTube pay reality"
+  ],
   "style": "self-shot single-host explainers and project vlogs, looser and more candid than his LMG-era work",
-  "notable": ["'Why I left Linus Tech Tips' resignation video (Sept 2025)", "post-LMG server build series", "January 2026 dispute over LMG using his old footage in 'The TRUTH about How LTT SPENDS Money'"],
+  "notable": [
+    "'Why I left Linus Tech Tips' resignation video (Sept 2025)",
+    "post-LMG server build series",
+    "January 2026 dispute over LMG using his old footage in 'The TRUTH about How LTT SPENDS Money'"
+  ],
   "associatedWith": ["Linus Tech Tips", "Linus Media Group", "Linus Sebastian"],
   "sources": [
     "https://www.youtube.com/watch?v=gqVxgcKQO2E",

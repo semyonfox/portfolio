@@ -6,15 +6,15 @@ The portfolio's analytics are intentionally first-party and cookieless. Do not a
 
 Native apps can use the same small `object_action` vocabulary when the event answers an operational question:
 
-| Event | Meaning | Optional target |
-| --- | --- | --- |
-| `pageview` | A route was viewed | none |
-| `chat_open` | The assistant UI was opened | none |
-| `game_open` | A game was launched | allowlisted game id |
-| `outbound_click` | A visitor followed an external link | origin + path, without query/fragment; `email` for mail links |
-| `navigation` | An internal link was followed | source path in `path`, destination path in `target`, and header/footer/content/CTA placement |
-| `form_submit` | A contact submission was attempted | none |
-| `not_found` | A missing route was requested | none |
+| Event            | Meaning                             | Optional target                                                                              |
+| ---------------- | ----------------------------------- | -------------------------------------------------------------------------------------------- |
+| `pageview`       | A route was viewed                  | none                                                                                         |
+| `chat_open`      | The assistant UI was opened         | none                                                                                         |
+| `game_open`      | A game was launched                 | allowlisted game id                                                                          |
+| `outbound_click` | A visitor followed an external link | origin + path, without query/fragment; `email` for mail links                                |
+| `navigation`     | An internal link was followed       | source path in `path`, destination path in `target`, and header/footer/content/CTA placement |
+| `form_submit`    | A contact submission was attempted  | none                                                                                         |
+| `not_found`      | A missing route was requested       | none                                                                                         |
 
 Do not add free-form payloads, content, persistent user/session IDs, scroll tracking, heartbeats, or precise device data. New apps should implement event capture natively against their own first-party endpoint and expose only aggregates centrally. Raw rows stay with the app that collected them.
 

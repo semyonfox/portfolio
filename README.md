@@ -13,20 +13,26 @@ Personal site for [semyon.ie](https://semyon.ie). Astro builds the frontend, ngi
 
 ## Local Development
 
-Requires Node `>=22.12.0` and pnpm `10.33.2`.
+The frontend uses Vite+ `0.2.4`, which manages Node `>=22.12.0` and delegates
+dependency installation to pnpm `10.33.2`.
 
 ```bash
-corepack enable
-pnpm install
-pnpm dev
+curl -fsSL https://vite.plus | VP_VERSION=0.2.4 bash
+```
+
+After opening a new shell:
+
+```bash
+vp install
+vp run dev
 ```
 
 Useful commands:
 
 ```bash
-pnpm build
-pnpm preview
-pnpm check
+vp run build
+vp run preview
+vp run check
 ```
 
 Environment setup depends on how you run the chat API:
@@ -49,7 +55,10 @@ Production runs with Docker Compose:
 - `chat-api`: Rust Axum backend on port `3001`.
 - `tunnel`: Cloudflare tunnel entrypoint.
 
-Jenkins installs dependencies, runs lint/test steps when available, and rebuilds the compose stack from `main` after a push. `pnpm run deploy` is intentionally local-only: it verifies the site with `check` and `build`, then reminds you that Jenkins owns the actual deployment.
+Jenkins installs dependencies, runs lint/test steps when available, and rebuilds the compose stack from `main` after a push. `vp run deploy` is intentionally local-only: it verifies the site with `check` and `build`, then reminds you that Jenkins owns the actual deployment.
+
+See [`docs/astro-7-vite-plus-migration.md`](docs/astro-7-vite-plus-migration.md)
+for the frontend toolchain architecture and upgrade notes.
 
 GitHub Pages is not the production deployment path for this repo. The root `.nojekyll` marker is present only to prevent GitHub's default Pages/Jekyll fallback from trying to parse Astro source files if branch-based Pages remains enabled in repository settings.
 

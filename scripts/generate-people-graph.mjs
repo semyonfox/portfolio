@@ -368,7 +368,7 @@ async function embedBatch(model, input) {
 }
 
 async function embedTexts(model, inputs) {
-  const embeddings = new Array(inputs.length);
+  const embeddings = Array.from({ length: inputs.length });
   const missing = [];
 
   for (const [index, input] of inputs.entries()) {
@@ -492,7 +492,7 @@ const output = {
   generatedAt: new Date().toISOString(),
   model,
   nodes: nodeMeta,
-  semanticEdges: semanticEdges.map(({ key, ...edge }) => edge),
+  semanticEdges: semanticEdges.map(({ key: _key, ...edge }) => edge),
 };
 
 await mkdir(new URL('../src/data/', import.meta.url), { recursive: true });

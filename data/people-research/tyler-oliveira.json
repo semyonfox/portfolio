@@ -4,10 +4,23 @@
   "realName": "Tyler Oliveira",
   "oneLine": "American YouTuber making man-on-the-street and investigative-style documentaries on provocative topics.",
   "bio": "Tyler Oliveira (born January 6, 2000) is an American YouTuber with over 8.5 million subscribers and 2.2 billion views. He started in challenge content before pivoting to man-on-the-street interviews, social experiments and self-styled investigative documentaries on underreported or controversial subjects, including drug decriminalization in Canada, Jeffrey Epstein's island and the Springfield pet-eating hoax. His content is not comedy; it presents itself as investigative journalism, though outlets including the Anti-Defamation League and The Forward have argued some of his videos misrepresent interviewees and traffic in misleading editing or stereotypes.",
-  "topics": ["street interviews", "investigative-style documentary", "drug crisis reporting", "social experiments", "controversial subcultures"],
+  "topics": [
+    "street interviews",
+    "investigative-style documentary",
+    "drug crisis reporting",
+    "social experiments",
+    "controversial subcultures"
+  ],
   "style": "Long-form first-person documentary and immersion videos on YouTube (NOT comedy)",
-  "notable": ["I Investigated the Drug Overdose Capital of America", "I Snuck Onto Jeffrey Epstein's Island", "Springfield 'pet-eating' video", "Texas Indian invasion documentary (2026)"],
-  "associatedWith": ["independent Patreon-alternative platform (post-2025 deplatforming)"],
+  "notable": [
+    "I Investigated the Drug Overdose Capital of America",
+    "I Snuck Onto Jeffrey Epstein's Island",
+    "Springfield 'pet-eating' video",
+    "Texas Indian invasion documentary (2026)"
+  ],
+  "associatedWith": [
+    "independent Patreon-alternative platform (post-2025 deplatforming)"
+  ],
   "sources": [
     "https://en.wikipedia.org/wiki/Tyler_Oliveira",
     "https://www.youtube.com/channel/UCY8SLLJjWpS4sx1dEqECaIw",

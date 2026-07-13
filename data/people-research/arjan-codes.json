@@ -21,12 +21,7 @@
     "The Friday Loop newsletter",
     "Code Roast series"
   ],
-  "associatedWith": [
-    "mCoding",
-    "Indently",
-    "Tech With Tim",
-    "Real Python"
-  ],
+  "associatedWith": ["mCoding", "Indently", "Tech With Tim", "Real Python"],
   "sources": [
     "https://arjancodes.com/",
     "https://www.youtube.com/arjancodes",

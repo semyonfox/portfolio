@@ -1,0 +1,6 @@
+.astro
+.git
+.env
+api/target
+dist
+node_modules

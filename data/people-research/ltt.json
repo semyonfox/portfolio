@@ -4,10 +4,30 @@
   "realName": "Linus Gabriel Sebastian",
   "oneLine": "Flagship Canadian tech review channel founded by Linus Sebastian in 2008, now the cornerstone of Linus Media Group.",
   "bio": "Linus Tech Tips is a YouTube channel started in November 2008 by Linus Sebastian while he was the on-camera presenter for Canadian retailer NCIX. It became the foundation of Linus Media Group (LMG), formally launched in 2013, of which Sebastian was CEO until July 2023 when he transitioned to chief vision officer. As of early 2026, the main channel has over 16 million subscribers and 9.2 billion views, covering hardware reviews, extreme PC builds, and tech industry commentary.",
-  "topics": ["consumer GPU and CPU reviews", "extreme PC builds", "data center and home lab projects", "labs-driven hardware testing", "tech industry analysis"],
+  "topics": [
+    "consumer GPU and CPU reviews",
+    "extreme PC builds",
+    "data center and home lab projects",
+    "labs-driven hardware testing",
+    "tech industry analysis"
+  ],
   "style": "high-production, multi-camera, scripted reviews with running gags and lab-test segments",
-  "notable": ["Whole Room Water Cooling", "Petabyte Project storage server series", "LTT Labs hardware testing initiative", "Screwdriver and merch line"],
-  "associatedWith": ["WAN Show", "ShortCircuit", "TechLinked", "GameLinked", "Techquickie", "Mac Address", "Luke Lafreniere", "Jake Tivy"],
+  "notable": [
+    "Whole Room Water Cooling",
+    "Petabyte Project storage server series",
+    "LTT Labs hardware testing initiative",
+    "Screwdriver and merch line"
+  ],
+  "associatedWith": [
+    "WAN Show",
+    "ShortCircuit",
+    "TechLinked",
+    "GameLinked",
+    "Techquickie",
+    "Mac Address",
+    "Luke Lafreniere",
+    "Jake Tivy"
+  ],
   "sources": [
     "https://en.wikipedia.org/wiki/Linus_Sebastian",
     "https://en.wikipedia.org/wiki/Linus_Media_Group",

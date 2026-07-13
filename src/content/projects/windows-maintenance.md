@@ -1,9 +1,9 @@
 ---
-title: "Windows Maintenance Suite"
-description: "Comprehensive PowerShell scripts for automated system cleanup, optimization, and maintenance on Windows machines."
-tags: ["PowerShell", "Automation"]
+title: 'Windows Maintenance Suite'
+description: 'Comprehensive PowerShell scripts for automated system cleanup, optimization, and maintenance on Windows machines.'
+tags: ['PowerShell', 'Automation']
 category: personal
-github: "https://github.com/semyonfox/windows-maintenance"
+github: 'https://github.com/semyonfox/windows-maintenance'
 private: true
 order: 14
 ---

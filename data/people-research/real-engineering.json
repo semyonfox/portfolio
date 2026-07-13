@@ -4,10 +4,30 @@
   "realName": "Brian McManus",
   "oneLine": "Irish engineering channel that breaks down aerospace, energy, and military technology through narrated motion graphics.",
   "bio": "Brian McManus, an Irish biomedical engineer, taught himself animation in 2013 and went viral with 'Why Are Plane Windows Round?', which became the foundation for Real Engineering. The channel covers aviation, aerospace, renewable energy, and military technology with a distinctive flat-vector animation style. McManus runs animation studio Throttle Media in the west of Ireland with a small full-time team, and also operates the sister channel Real Science.",
-  "topics": ["aviation and aircraft design", "aerospace engineering", "renewable energy", "military technology", "materials science", "logistics", "naval engineering", "World War II tech"],
+  "topics": [
+    "aviation and aircraft design",
+    "aerospace engineering",
+    "renewable energy",
+    "military technology",
+    "materials science",
+    "logistics",
+    "naval engineering",
+    "World War II tech"
+  ],
   "style": "narrated motion-graphic essays with custom animations and on-camera segments, often sponsor-supported deep dives",
-  "notable": ["Why Are Plane Windows Round?", "Logistics of D-Day series", "Real Science sister channel", "Throttle Media studio"],
-  "associatedWith": ["Mustard", "Wendover Productions", "Real Life Lore", "Nebula creator collective", "Real Science"],
+  "notable": [
+    "Why Are Plane Windows Round?",
+    "Logistics of D-Day series",
+    "Real Science sister channel",
+    "Throttle Media studio"
+  ],
+  "associatedWith": [
+    "Mustard",
+    "Wendover Productions",
+    "Real Life Lore",
+    "Nebula creator collective",
+    "Real Science"
+  ],
   "sources": [
     "https://en.wikipedia.org/wiki/Brian_McManus_(YouTuber)",
     "https://youtube.fandom.com/wiki/Real_Engineering",

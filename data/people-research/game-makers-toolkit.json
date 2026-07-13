@@ -4,9 +4,22 @@
   "realName": "Mark Brown",
   "oneLine": "British game journalist whose channel dissects game design, level design and production through long-form video essays.",
   "bio": "Mark Brown is a former games journalist with over 15 years covering the industry who founded Game Maker's Toolkit in 2014. The channel produces analytical video essays on mechanics, level design, accessibility and indie development. Since 2017 Brown has hosted the annual GMTK Game Jam on itch.io, which has grown into one of the largest game jams online, and in 2024 he released his own game Mind Over Magnet.",
-  "topics": ["game design analysis", "level design", "video essays", "indie game development", "game jams", "accessibility in games"],
+  "topics": [
+    "game design analysis",
+    "level design",
+    "video essays",
+    "indie game development",
+    "game jams",
+    "accessibility in games"
+  ],
   "style": "long-form analytical video essays",
-  "notable": ["GMTK Game Jam (annual)", "Boss Keys series", "Designing for Disability series", "Platformer Toolkit", "Mind Over Magnet (2024)"],
+  "notable": [
+    "GMTK Game Jam (annual)",
+    "Boss Keys series",
+    "Designing for Disability series",
+    "Platformer Toolkit",
+    "Mind Over Magnet (2024)"
+  ],
   "associatedWith": ["Masahiro Sakurai", "Adam Millard", "Razbuten"],
   "sources": [
     "https://en.wikipedia.org/wiki/Game_Maker's_Toolkit",

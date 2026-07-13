@@ -1,9 +1,9 @@
 ---
-title: "FOSDEM 2026 and Brussels"
-date: "2026-02-05"
-author: "Semyon Fox"
+title: 'FOSDEM 2026 and Brussels'
+date: '2026-02-05'
+author: 'Semyon Fox'
 description: "Stickers, maintainers, Belgian beer, a 50m pool, and the most expensive coffee I've ever bought. FOSDEM was worth every minute."
-tags: ["Open Source", "Travel", "FOSDEM"]
+tags: ['Open Source', 'Travel', 'FOSDEM']
 ---
 
 I went to FOSDEM in Brussels with some of the CompSoc committee and it was one of the best trips I've ever had.

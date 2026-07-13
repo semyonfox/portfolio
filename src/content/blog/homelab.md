@@ -1,9 +1,9 @@
 ---
-title: "From Broken Laptop to Full Homelab"
-date: "2025-08-10"
-author: "Semyon Fox"
+title: 'From Broken Laptop to Full Homelab'
+date: '2025-08-10'
+author: 'Semyon Fox'
 description: "My Dell XPS 15's hinge crushed the screen. A year later it's running 30+ Docker containers."
-tags: ["Homelab", "Docker", "Self-Hosting"]
+tags: ['Homelab', 'Docker', 'Self-Hosting']
 ---
 
 One year ago, my Dell XPS 15's hinge crushed the screen. The 4K touchscreen and hinges were too expensive to replace, but the machine itself was still powerful. It just sat there, half-useless.

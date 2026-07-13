@@ -1,7 +1,17 @@
 ---
-title: "Home Server Infrastructure"
-description: "Repurposed Dell XPS 15 running 45+ Docker containers. A year-long journey into systems administration, networking, and containerization."
-tags: ["Docker", "Ubuntu Server", "NGINX", "PostgreSQL", "Pi-hole", "Immich", "RAID", "OpenWRT"]
+title: 'Home Server Infrastructure'
+description: 'Repurposed Dell XPS 15 running 45+ Docker containers. A year-long journey into systems administration, networking, and containerization.'
+tags:
+  [
+    'Docker',
+    'Ubuntu Server',
+    'NGINX',
+    'PostgreSQL',
+    'Pi-hole',
+    'Immich',
+    'RAID',
+    'OpenWRT',
+  ]
 featured: true
 order: 1
 ---

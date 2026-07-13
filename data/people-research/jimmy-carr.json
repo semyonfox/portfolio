@@ -4,9 +4,20 @@
   "realName": "James Anthony Patrick Carr",
   "oneLine": "British-Irish stand-up comic and TV host known for clipped one-liners and dark humour.",
   "bio": "Jimmy Carr is a British-Irish comedian, writer and television host known for his dry delivery, distinctive laugh, and tightly written one-liner style with a focus on taboo topics. He hosts the long-running panel show 8 Out of 10 Cats and its spin-off 8 Out of 10 Cats Does Countdown on Channel 4, and was the first British comic to release a Netflix stand-up special with Funny Business. He has released numerous DVD specials including Comedian (2007), Making People Laugh (2010) and Laughing and Joking (2013), and the Netflix special His Dark Material (2021).",
-  "topics": ["one-liner comedy", "dark and taboo humour", "panel-show hosting", "crowd work"],
+  "topics": [
+    "one-liner comedy",
+    "dark and taboo humour",
+    "panel-show hosting",
+    "crowd work"
+  ],
   "style": "Tightly written one-liner stand-up plus panel TV",
-  "notable": ["His Dark Material (Netflix, 2021)", "Funny Business (Netflix)", "8 Out of 10 Cats", "8 Out of 10 Cats Does Countdown", "The Big Fat Quiz of the Year"],
+  "notable": [
+    "His Dark Material (Netflix, 2021)",
+    "Funny Business (Netflix)",
+    "8 Out of 10 Cats",
+    "8 Out of 10 Cats Does Countdown",
+    "The Big Fat Quiz of the Year"
+  ],
   "associatedWith": ["Sean Lock", "Jon Richardson", "Channel 4", "Netflix"],
   "sources": [
     "https://en.wikipedia.org/wiki/Jimmy_Carr",

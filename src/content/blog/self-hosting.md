@@ -1,9 +1,9 @@
 ---
-title: "Why I Self-Host Everything"
-date: "2026-04-10"
-author: "Semyon Fox"
+title: 'Why I Self-Host Everything'
+date: '2026-04-10'
+author: 'Semyon Fox'
 description: "It started with a broken laptop and no money. Now I run 30+ containers and can't stop building."
-tags: ["Self-Hosting", "Homelab", "Infrastructure"]
+tags: ['Self-Hosting', 'Homelab', 'Infrastructure']
 ---
 
 I didn't start self-hosting because of privacy. I started because I had a broken laptop and no money.
@@ -38,4 +38,4 @@ Years of Linus Tech Tips videos, tutorials, AI assistance, all that accumulated 
 
 The homelab taught me more than any single module at university. Linux, networking, containerisation, system administration, monitoring. All of that paired with coding games, building apps, Rust backends, databases, AWS. It's what makes a developer understand the full system, not just their little corner of it.
 
-*Currently have a drive down so the NAS is offline to be safe, awaiting RMA. Blog post coming on data recovery, backup plans, and how I'm adapting.*
+_Currently have a drive down so the NAS is offline to be safe, awaiting RMA. Blog post coming on data recovery, backup plans, and how I'm adapting._

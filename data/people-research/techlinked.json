@@ -4,10 +4,25 @@
   "realName": null,
   "oneLine": "LMG's thrice-weekly tech news digest, fronted primarily by Riley Murdock.",
   "bio": "TechLinked is a Linus Media Group news channel uploading every Monday, Wednesday, and Friday. It is the spiritual successor to NCIX's Netlinked Daily, launched after Linus Sebastian's attempt to acquire the NCIX YouTube channel during its 2017 bankruptcy fell through. Riley Murdock, the final Netlinked presenter, became TechLinked's primary writer and host, joined by a rotating cast of LMG hosts. A podcast version is distributed on Spotify and Apple Podcasts.",
-  "topics": ["hardware launch news", "tech-industry layoffs and acquisitions", "AI and chip news", "science briefs", "sponsor-read jokes"],
+  "topics": [
+    "hardware launch news",
+    "tech-industry layoffs and acquisitions",
+    "AI and chip news",
+    "science briefs",
+    "sponsor-read jokes"
+  ],
   "style": "tightly edited 5-7 minute news desk reads with sight gags and pun-heavy writing",
-  "notable": ["MWF release schedule", "Riley Murdock as lead host", "TechLinked podcast feed"],
-  "associatedWith": ["Linus Tech Tips", "ShortCircuit", "Linus Media Group", "Riley Murdock"],
+  "notable": [
+    "MWF release schedule",
+    "Riley Murdock as lead host",
+    "TechLinked podcast feed"
+  ],
+  "associatedWith": [
+    "Linus Tech Tips",
+    "ShortCircuit",
+    "Linus Media Group",
+    "Riley Murdock"
+  ],
   "sources": [
     "https://www.youtube.com/c/techlinked/community",
     "https://podcasts.apple.com/us/podcast/techlinked/id1559402520",

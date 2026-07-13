@@ -4,10 +4,24 @@
   "realName": "Alex",
   "oneLine": "DaVinci Resolve educator focused on tutorials for editors and colorists.",
   "bio": "MrAlexTech (first name Alex) is a YouTube creator dedicated to DaVinci Resolve, Blackmagic Design's editing and color grading suite. His channel runs long playlists of beginner-friendly Resolve tutorials covering the cut and edit pages, Fusion, and color, and he co-hosts The Resolve Creators Podcast. He sells project files, presets and templates through his Ko-fi shop and partners with MotionVFX.",
-  "topics": ["DaVinci Resolve", "Fusion compositing", "color grading", "video editing", "Blackmagic Design workflow"],
+  "topics": [
+    "DaVinci Resolve",
+    "Fusion compositing",
+    "color grading",
+    "video editing",
+    "Blackmagic Design workflow"
+  ],
   "style": "Screen-recorded software tutorials and walkthroughs",
-  "notable": ["DaVinci Resolve tutorial playlist", "The Resolve Creators Podcast", "MotionVFX partnership"],
-  "associatedWith": ["Blackmagic Design", "MotionVFX", "The Resolve Creators Podcast"],
+  "notable": [
+    "DaVinci Resolve tutorial playlist",
+    "The Resolve Creators Podcast",
+    "MotionVFX partnership"
+  ],
+  "associatedWith": [
+    "Blackmagic Design",
+    "MotionVFX",
+    "The Resolve Creators Podcast"
+  ],
   "sources": [
     "https://www.youtube.com/c/mralextech",
     "https://www.mralextech.com/",

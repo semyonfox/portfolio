@@ -1,8 +1,8 @@
 ---
-title: "Artificial - Game Jam Project"
+title: 'Artificial - Game Jam Project'
 description: "Progressive clicker exploring humanity's artificial creations, built for a game jam in pure JavaScript."
-tags: ["JavaScript", "CSS", "Game Design", "Creative Coding"]
-github: "https://github.com/semyonfox/artificial"
+tags: ['JavaScript', 'CSS', 'Game Design', 'Creative Coding']
+github: 'https://github.com/semyonfox/artificial'
 order: 3
 ---
 
