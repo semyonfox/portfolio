@@ -142,8 +142,8 @@ export const cv = {
     siteOrigin: portfolioOrigin,
     contacts: [
       {
-        label: 'semyon.fox@gmail.com',
-        href: 'mailto:semyon.fox@gmail.com',
+        label: 'hello@semyon.ie',
+        href: 'mailto:hello@semyon.ie',
         external: false,
       },
       {

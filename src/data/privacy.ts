@@ -64,7 +64,7 @@ export const privacySections: PrivacySection[] = [
   {
     heading: 'Your rights',
     paragraphs: [
-      'You have the usual GDPR rights: access, correction, deletion, and objection. Email semyon.fox@gmail.com. One honest caveat: because visitor ids rotate daily and IPs aren’t stored, this site usually can’t tell which rows are yours. For chat deletion requests it helps if you can quote part of the conversation.',
+      'You have the usual GDPR rights: access, correction, deletion, and objection. Email hello@semyon.ie. One honest caveat: because visitor ids rotate daily and IPs aren’t stored, this site usually can’t tell which rows are yours. For chat deletion requests it helps if you can quote part of the conversation.',
     ],
   },
 ];

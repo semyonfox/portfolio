@@ -6,7 +6,7 @@
     "description": "Conversational endpoint backing Semyon Fox's personal-site assistant. Answers as a third-person assistant representing him about his projects, blog, and background. Rate limited per-IP (20 req/min). Non-streaming, no reasoning tokens, 300-token reply cap, last 5 user/assistant turns kept server-side. Questions and replies are stored (with a coarse country code, never a raw IP) to improve the assistant; see https://semyon.ie/privacy.",
     "contact": {
       "name": "Semyon Fox",
-      "email": "semyon.fox@gmail.com",
+      "email": "hello@semyon.ie",
       "url": "https://semyon.ie"
     },
     "license": { "name": "MIT", "identifier": "MIT" }

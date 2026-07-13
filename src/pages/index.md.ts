@@ -57,7 +57,7 @@ Discovery: \`Link: </.well-known/api-catalog>; rel="api-catalog"\` on every resp
 
 ## Contact
 
-- Email: semyon.fox@gmail.com
+- Email: hello@semyon.ie
 - LinkedIn: https://www.linkedin.com/in/semyon-fox-968685249/
 - GitHub: https://github.com/semyonfox
 `;
