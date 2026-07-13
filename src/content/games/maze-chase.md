@@ -1,6 +1,6 @@
 ---
 title: 'A* Maze Chase'
-description: 'Navigate a maze while an AI enemy hunts you using A* pathfinding. Mouse-controlled player vs intelligent pathfinding agent.'
+description: 'Mouse-controlled maze game where a pathfinding enemy pursues the player.'
 tech: 'Java (Swing)'
 github: 'https://github.com/semyonfox/astar-maze-chase'
 embed: '/games/astar-maze-chase/index.html'

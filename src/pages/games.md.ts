@@ -6,13 +6,18 @@ export const GET: APIRoute = async () => {
     (a, b) => a.data.order - b.data.order,
   );
 
-  const md = `# Games & Apps
+  const md = `# Games and apps
 
-Stuff I've built that you can actually play. ${games.length} entries.
+Games, simulations, and interactive experiments. ${games.length} entries.
 
 ${games
   .map((g) => {
-    const links = [g.data.github ? `GitHub: ${g.data.github}` : null]
+    const links = [
+      g.data.github && !g.data.private ? `GitHub: ${g.data.github}` : null,
+      g.data.github && g.data.private ? 'Source: private repository' : null,
+      g.data.embed ? `Play: ${g.data.embed}` : null,
+      g.data.noEmbed ? `Availability: ${g.data.noEmbed}` : null,
+    ]
       .filter(Boolean)
       .join(' · ');
     return [

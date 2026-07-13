@@ -9,14 +9,15 @@
       "email": "semyon.fox@gmail.com",
       "url": "https://semyon.ie"
     },
-    "license": { "name": "MIT" }
+    "license": { "name": "MIT", "identifier": "MIT" }
   },
   "servers": [{ "url": "https://semyon.ie" }],
+  "security": [],
   "paths": {
     "/api/chat": {
       "post": {
         "summary": "Send a chat message",
-        "description": "Submits a list of recent messages. The server prepends a fixed system prompt and keeps only the last 5 user/assistant turns. Returns a single plain-text reply. No streaming.",
+        "description": "Submits a list of recent messages. The server prepends a fixed system prompt and keeps only the last 5 user/assistant messages. Returns a single plain-text reply. No streaming.",
         "operationId": "chat",
         "requestBody": {
           "required": true,

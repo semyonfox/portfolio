@@ -2,22 +2,24 @@
 title: 'Ditching Google Photos for Immich'
 date: '2025-10-10'
 author: 'Semyon Fox'
-description: "Ran out of Google storage, didn't want to pay, so I migrated 20GB of family photos to my homelab."
+description: 'I ran out of Google storage, so I moved 20 GB of family photos to Immich on my homelab.'
 tags: ['Immich', 'Self-Hosting', 'Data Migration']
 ---
 
-I ran out of storage on Google Photos. The obvious move was to pay for more. But the more I thought about it, the more it bothered me that Google was sitting on all my family's photos and memories. I had a homelab. Why not use it?
+I ran out of storage on Google Photos. Paying for more would have been the easy answer, but I was uncomfortable leaving all my family's photos and memories with one provider. I already had a [homelab](/blog/homelab), so I decided to use it.
 
-So I migrated everything to Immich.
+## Moving the library
 
-The setup was straightforward enough. Dell XPS laptop server, Btrfs NAS for storage with snapshots and regular backups. I used Google Takeout to export everything, then ran a Dockerized Firefox on the server to download it all overnight. Way faster and more reliable than doing it from my PC.
+I set up Immich on the Dell XPS server and used the Btrfs NAS for storage. Google Takeout exported the library, and a Dockerised Firefox instance on the server downloaded it overnight. That was faster and more reliable in my setup than leaving the job running on my PC.
 
-The annoying part was metadata. Immich handles album structure and search really well, but timestamps from Snapchat, Discord, and WhatsApp photos were all over the place. I spent a while fixing those so everything actually showed up in the right order.
+The awkward part was metadata. Immich handled albums and search well, but timestamps from Snapchat, Discord, and WhatsApp images were inconsistent. I spent time correcting them so the library appeared in the right order.
 
-I was also working on an NGINX reverse proxy to get it accessible from my domain. That turned into its own rabbit hole.
+I also worked on an nginx reverse proxy so the service could be reached through my domain. That became a separate rabbit hole.
 
-The whole migration was only about 20GB. Tiny compared to what Google was storing. But it's mine now. On my hardware. Backed up on my NAS. I know exactly where every photo is and I can upgrade storage whenever I want.
+## Snapshots, backups, and the result
 
-What surprised me most was how close Immich is to Google Photos. It's fast, the search works well, and my family didn't even notice the difference. They just use the app like before, except now it points to my server.
+The migration was about 20 GB—not huge by cloud-storage standards, but still a meaningful collection of family history. It now lives on hardware I manage. Btrfs snapshots make accidental changes easier to roll back, while regular backups provide the separate copies a snapshot cannot.
 
-Along the way I learned more than I expected about Docker volumes, Btrfs snapshots, metadata handling, and what happens when you try to move 20GB of someone's life from one system to another. Worth every minute.
+What surprised me most was how close the everyday experience felt to Google Photos. Immich was fast, search worked well, and my family could keep using an app instead of learning a completely new workflow.
+
+The move taught me more than expected about Docker volumes, Btrfs snapshots, backups, metadata, and the care required when moving 20 GB of somebody's life between systems. Worth every minute.

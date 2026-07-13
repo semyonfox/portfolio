@@ -63,7 +63,7 @@ export const chatApiDocs = {
     {
       term: 'history',
       description:
-        'The server prepends a fixed system prompt and keeps only the last 5 user/assistant turns.',
+        'The server prepends a fixed system prompt and keeps only the last 5 user/assistant messages.',
     },
     {
       term: 'conversation_id',

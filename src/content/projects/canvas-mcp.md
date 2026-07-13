@@ -1,10 +1,8 @@
 ---
 title: 'Canvas MCP'
-description: 'Unified MCP server for Canvas LMS with student tools enabled by default and instructor or admin tooling available for selective enablement.'
+description: 'A unified MCP server combining 12 open-source Canvas LMS integrations, with student tools enabled by default and instructor or admin tools available as opt-ins.'
 tags: ['TypeScript', 'MCP', 'Canvas LMS', 'Node.js']
-category: personal
+category: 'personal'
 github: 'https://github.com/semyonfox/canvas-mcp'
 order: 9
 ---
-
-Consolidates 12 open-source Canvas MCP servers into a single read-heavy toolkit for student workflows, with instructor and admin features left opt-in in-source.

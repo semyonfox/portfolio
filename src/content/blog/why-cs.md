@@ -1,41 +1,35 @@
 ---
-title: 'Why am I studying Computer Science'
+title: 'Why Am I Studying Computer Science?'
 date: '2024-11-03'
 author: 'Semyon Fox'
-description: 'My journey from CoderDojo to university, and why Computer Science felt like the right path.'
+description: 'From childhood curiosity and CoderDojo to studying Computer Science and IT at the University of Galway.'
 tags: ['Computer Science', 'Career', 'Personal Story']
 ---
 
-5 weeks ago, I started a new chapter of my life. I began studying Computer Science and IT at NUIG. My journey to this major section of my life began in childhood. Let me fill you in.
+In September 2024, I began studying Computer Science and IT at the University of Galway. The route there started much earlier.
 
-I remember being harassed in secondary school by my career guidance teacher, constantly demanding I tell her what I wanted to do after the Leaving Cert. I had no idea; all I knew was that I wanted to go to university (there was no way I was going to miss out on the student life!).
+## Choosing a direction
 
-I tried picking a course based on my interests. I had so many, such as swimming, video editing, woodworking, chess... I could continue listing them all day.
+During secondary school, my career guidance teacher regularly asked what I wanted to do after the Leaving Cert. I had no clear answer. I only knew that I wanted to attend university—there was no way I was missing student life.
 
-But then it hit me.
+I tried choosing a course from my interests: swimming, video editing, woodworking, chess, and enough others to fill the page. During long pool sessions, I often let my mind wander while my body moved on autopilot. I knew I wanted work I enjoyed, but first I had to recognise what I kept returning to.
 
-While training in the pool, I would often let my mind wander while my body moved on autopilot. I made mental lists of what I wanted to achieve in life. I wanted a good job that I enjoyed, but I also wanted to know what I truly loved doing.
+## The black box
 
-I remember the day my mom came home from work carrying a black box. She set it on the couch, and my curiosity got the better of me. I dropped my Lego pieces and moved over. I recognized the power button. It was the same as the one on our TV remote, so I pressed it. The screen lit up, just like my eyes in amazement.
+I remember my mum coming home with a black box and placing it on the couch. Curiosity won; I dropped my Lego, recognised the power symbol from the television remote, and pressed it. The screen lit up, and so did I.
 
-A tiny TV?
+A tiny television?
 
-No.
+Not quite.
 
-I later learned that it could do so much more than just display videos. In the coming years it would allow for button clicks, app launches, and a venture into the 8th Wonder of the World: the World Wide Web.
+Over the following years, that computer opened applications, games, and the World Wide Web. My parents noticed the fascination and suggested CoderDojo. I began with Scratch and its floating cat, then moved on to Snake, Donkey Kong, and Space Invaders. One summer at Whizzkidz also introduced me to HTML, CSS, JavaScript, and Python.
 
-My parents noticed my interest in computers and suggested I try CoderDoJo. It started with Scratch, a cat floating across the screen, but quickly became a Snake game, Donkey Kong, and even Space Invaders. I even attended Whizzkidz one summer and learned the basics of HTML, CSS, JavaScript, and Python.
+Eventually, I stopped coding for a while, but the interest in technology stayed. I watched Linus Tech Tips, researched every part before building my own PC, and kept returning to computers even when my other hobbies changed.
 
-But one day, it all just stopped.
+## Making the choice
 
-Despite that, I never lost my fascination with technology. Between watching Linus Tech Tips and investing time into researching computers before building my own PC, I always made time for tech, cherishing every minute. That is why I chose to study Computer Science.
+I still worried that I had forgotten too much Python and JavaScript to keep up at university. With the Leaving Cert approaching and high entry points to reach, I sometimes wondered whether I had chosen the course simply because I needed an answer to the career question.
 
-I was, however, worried about getting lost during lectures after forgetting so much from Python and JavaScript. With the Leaving Cert around the corner and high points required for acceptance, I had doubts about my decision.
+I got the course.
 
-I wondered if I had chosen this path just to avoid saying "I dunno" when asked about university options. Yet, the promise of a fulfilling job propelled me forward.
-
-And it paid off.
-
-I got the course!
-
-This was the most important decision of my life and, so far, the best one. I've met passionate people with similar interests and am enjoying my studies more than I ever expected.
+So far, it has been the right decision. I have met people who care about the same things, rediscovered the enjoyment of building with computers, and found myself more engaged with study than I expected.

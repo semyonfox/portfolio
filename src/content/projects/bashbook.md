@@ -1,7 +1,7 @@
 ---
 title: 'BashBook'
-description: 'Facebook-like CLI social platform built entirely in Bash. User creation, asymmetric friendships, wall messaging, all using file-based storage. CT213 group project.'
+description: 'A CT213 group project: a Bash CLI social platform with user accounts, one-way friendships, wall messages, and file-based storage.'
 tags: ['Bash', 'Shell', 'File I/O']
-category: academic
+category: 'academic'
 order: 20
 ---

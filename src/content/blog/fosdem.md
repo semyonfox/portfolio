@@ -2,24 +2,26 @@
 title: 'FOSDEM 2026 and Brussels'
 date: '2026-02-05'
 author: 'Semyon Fox'
-description: "Stickers, maintainers, Belgian beer, a 50m pool, and the most expensive coffee I've ever bought. FOSDEM was worth every minute."
+description: 'Maintainers, Belgian beer, a 50-metre pool, and the most expensive coffee I have ever bought.'
 tags: ['Open Source', 'Travel', 'FOSDEM']
 ---
 
-I went to FOSDEM in Brussels with some of the CompSoc committee and it was one of the best trips I've ever had.
+I went to FOSDEM in Brussels with members of the CompSoc committee, and it became one of the best trips I have taken.
 
-FOSDEM itself was brilliant. So many cool projects, so many stickers. I got to meet maintainers of tools I actually use and have proper chats with them. The unofficial FOSDEM beer night was something else. Just a room full of people who are way too passionate about open source, drinking Belgian beer and talking about niche projects until stupid hours.
+## Open source in person
 
-Beyond the conference, Brussels was incredible. We were staying near Midi station, which is basically the Camden or Gotham City of Brussels. Not the prettiest area. But the rest of the city more than made up for it.
+FOSDEM itself was brilliant: more interesting projects than I could keep track of and, naturally, a lot of stickers. I met maintainers of tools I actually use and had proper conversations with them. The unofficial beer night was something else—a room full of people who care far too much about open source, drinking Belgian beer and discussing niche projects until stupid hours.
 
-I took a day trip on the train. First class, because why not. Live in luxury for a day. I found a 50m swimming pool and obviously had to do a session. Then just walked around the city for hours. The streets, the architecture, the waffles. Belgian beer from an actual Belgian bar. It was all great.
+Getting to the ULB campus was its own challenge. Reduced weekend transport and thousands of attendees left every bus and tram packed, so I walked for about 50 minutes each way. I chose a different route back and turned the inconvenience into a sightseeing trip.
 
-Getting to FOSDEM at ULB was an experience in itself. Reduced weekend public transport plus thousands of FOSDEM attendees meant every bus and tram was packed. So I walked. 50 minutes each way. But I went a different route back to see more of the city, so it turned into a proper sightseeing trip.
+## Brussels beyond the badge
 
-I stopped at a market and bought the most expensive coffee beans they had. 250g for 50 euro. Jamaica Blue Mountain. One of the most exclusive beans you can get. I tried it at home and I've never had a coffee that good. The flavour, the richness. Worth every penny.
+We stayed near Midi station, which was not the prettiest introduction to the city, but the rest of Brussels more than made up for it.
 
-The trip back was an adventure too. We had a 6 hour layover in Barcelona as a cost-saving measure. I was way too excited to sleep so instead we got face masks, opened the laptops, and just worked through the night at the airport. An incredible all-nighter.
+I took a first-class train for a day trip—luxury for the day—and found a 50-metre swimming pool for a session. Afterwards, I walked for hours and took in the streets, architecture, waffles, and Belgian beer from an actual Belgian bar.
 
-Travelling with committee members I hadn't known that well before made the whole thing special. I met new people, got to know them properly, and came back feeling like the society was more than just a committee. Having that company in a city like Brussels meant a lot.
+At a market, I bought the most expensive coffee beans on offer: 250 g of Jamaica Blue Mountain for €50. I tried them at home and, annoyingly for my bank account, they were worth it.
 
-The whole trip reminded me how much I need to travel during my degree. Experience different cultures, different lifestyles, see what our planet and its people have to offer. FOSDEM was the excuse, but Brussels was the experience.
+The journey back included a six-hour layover in Barcelona. I was too excited to sleep, so we opened the laptops and worked through the night at the airport, with face masks completing the professional look.
+
+Travelling with committee members I had not known well made the trip. I came home with new friends, better connections within the society, and far more than a bag of stickers.

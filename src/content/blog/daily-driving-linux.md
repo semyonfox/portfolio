@@ -2,26 +2,30 @@
 title: 'Daily Driving Linux: From Mint to Hyprland'
 date: '2026-02-15'
 author: 'Semyon Fox'
-description: "Mint was comfortable. Then I wanted to experiment. Now I'm on CachyOS with Hyprland and it's chaos, but it's mine."
+description: 'Mint was comfortable, but I wanted to experiment. CachyOS and Hyprland are still a work in progress, but the setup is mine.'
 tags: ['Linux', 'Hyprland', 'Personal Setup']
 ---
 
-I stuck with Linux Mint for a while and it was great. Stable, comfortable, everything worked. But at some point I got the itch to experiment.
+I [used Linux Mint first](/blog/linux-mint), and it was great: stable, comfortable, and almost everything worked. Eventually, though, I got the itch to experiment.
 
-I switched to EndeavourOS with KDE. That was a nice step up. Then I saw Hyprland.
+## Following the rabbit hole
 
-Tiling window managers had always looked cool to me, and Hyprland seemed like the most polished Wayland compositor out there. I wanted to try it. And since I was switching my whole UI anyway, I had no real attachment to EndeavourOS anymore. I wanted to stick with Arch though. It hadn't let me down yet.
+I moved to EndeavourOS with KDE, which was a comfortable step towards Arch. Then I saw Hyprland.
 
-That's when I came across CachyOS. Arch-based, performance-focused. I installed it.
+Tiling window managers had always looked appealing, and Hyprland seemed like a polished way to try one on Wayland. Since I was replacing the whole desktop interface anyway, I no longer felt attached to EndeavourOS. I did want to stay with Arch, which had treated me well so far.
 
-It took a lot of config to get things going. I started with HyDE, which gave me a nice starting point, but sway tools kept causing locked cores. A lot. So I stripped that out and went fully Hyprland, moving what I could and slowly getting things fixed one by one.
+That led me to CachyOS: Arch-based and focused on performance. I installed it and started configuring.
 
-The lock screen was a disaster for a while. It would crash and I'd have to restart the whole session, losing whatever work or setup I had open. I went without a lock screen entirely for a bit just to avoid the crashes. Eventually I tracked it down and fixed it, but that was a frustrating few weeks.
+HyDE gave me a useful starting point, but some of its Sway-related tools repeatedly caused lock-ups on my machine. I stripped those pieces out, moved fully to Hyprland, and fixed the remaining problems one by one.
 
-It's still not perfectly smooth. I'm always making small tweaks as I encounter issues. Block locking, Wi-Fi and Bluetooth toggles in Waybar, display configs. It's a constant work in progress. But it's good enough to daily drive, and I fix things as they come up rather than waiting for everything to be perfect.
+## Fixing it in public, to myself
 
-The tiling though. I love it. I genuinely feel more productive with it. Having windows snap into place and being able to manage everything from the keyboard just makes sense to me now. Going back to a floating desktop feels wrong.
+Screen locking was the worst part for a while. The lock screen could crash and force me to restart the whole session, losing whatever I had open. I disabled it temporarily, then eventually tracked down the problem and fixed it.
 
-Hyprland has its issues. Some apps just freeze the entire system. PyCharm is the worst offender. Others don't work as expected or don't work at all. Gaming has been rough too. Wine hasn't been cooperating, though Steam games with Proton run perfectly. It's a mixed bag.
+My configuration is still evolving. I keep adjusting screen-lock behaviour, Wi-Fi and Bluetooth controls in Waybar, and display settings as issues appear. It is good enough to use every day, even if it will never be "finished".
 
-But it's my system. Every config file, every keybind, every Waybar module. I built it. And when something breaks, I know exactly where to look.
+The tiling makes that effort worthwhile. Managing windows from the keyboard now feels natural, and returning to a floating desktop feels oddly slow.
+
+There are still compromises on my particular setup. PyCharm has sometimes frozen the system, a few applications behave unpredictably under my configuration, and Wine gaming has been unreliable. Steam games through Proton, on the other hand, have worked well for me.
+
+It is a mixed bag, but it is my mixed bag. Every configuration file, key binding, and Waybar module is something I chose. When it breaks, I usually know where to start looking.

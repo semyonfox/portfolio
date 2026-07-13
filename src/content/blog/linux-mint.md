@@ -2,24 +2,24 @@
 title: 'Why I Switched to Linux Mint'
 date: '2025-05-23'
 author: 'Semyon Fox'
-description: 'Windows 10 was dying, so I wiped my laptop and installed Linux Mint. Best decision I made all year.'
+description: 'Windows 10 was approaching end of support, so I backed up my laptop, installed Linux Mint, and started daily-driving Linux.'
 tags: ['Linux', 'Linux Mint', 'Personal Setup']
 ---
 
-Windows 10 started nagging me about end of support. I'd already been messing around with Ubuntu Server for my home projects and had Kali installed at one point, but I'd never actually daily-driven Linux. So I thought, why not?
+Windows 10 had started warning me about the end of support. I had already experimented with Ubuntu Server for home projects and briefly installed Kali, but I had never used Linux as my everyday desktop. So I backed everything up and wiped the laptop.
 
-I backed everything up and wiped the laptop clean.
+## A comfortable first desktop
 
-I went with Linux Mint Cinnamon. It looked good, it was stable, and the desktop layout felt familiar enough that I wasn't completely lost. I tweaked the theme to a dark blue, installed VS Code, and honestly? It just worked. I could open a terminal without feeling like I was about to break something (though I rarely needed to).
+I chose Linux Mint Cinnamon because it looked good, felt stable, and used a familiar desktop layout. After switching to a dark-blue theme and installing VS Code, it mostly just worked. I could open a terminal without feeling as if I were about to break something, although I rarely needed to.
 
-Wi-Fi was a nightmare at first. My HP EliteBook did not want to cooperate with Eduroam. Some hidden settings buried in the network config, a Reddit thread, and a lot of patience later, it finally connected. The USB-C dock at uni was another story. External monitors would flicker every now and then. No system is perfect, I suppose. I learned to shrug and save the logs for later.
+Wi-Fi was the first exception. My HP EliteBook did not want to connect to eduroam until I found the right hidden network settings, helped by a Reddit thread and plenty of patience. The USB-C dock at university also made external displays flicker occasionally. No system is perfect; I learnt to shrug and save the logs for later.
 
-What actually surprised me was the battery life. An extra 20% during long library sessions. Minecraft even ran slightly better. For anything heavy I still boot into Windows on my desktop, but for coding, Obsidian, lectures... Mint handled all of it without breaking a sweat.
+In my use, battery life improved by about 20% during long library sessions, and even Minecraft ran slightly better. I still used Windows on my desktop for heavier work, but Mint handled coding, Obsidian, and lectures without trouble.
 
-Then one evening I ran a command I didn't fully understand.
+## The command I should have read
 
-It wiped out critical system files.
+One evening, I ran a command I did not fully understand and removed critical system files.
 
-Total panic. But Timeshift had my back. Snapshots restored everything in minutes. Lesson learned: always have backups, and don't blindly paste commands from the internet.
+Total panic. A Timeshift snapshot restored the system within minutes. That snapshot was a convenient rollback point, not a replacement for a separate backup. The lesson was twofold: keep both, and do not paste commands from the internet without understanding them.
 
-Now I open my laptop every morning to a snappy login and the Cinnamon panel waiting for me. I mess with themes on weekends, lurk on the forums, and actually enjoy using my computer. Linux Mint didn't just replace Windows. It made my laptop feel like mine again.
+Mint made the laptop feel like mine again. I enjoyed using it, changing themes, and learning from the community. Eventually that curiosity pulled me further down the rabbit hole, from Mint to [CachyOS and Hyprland](/blog/daily-driving-linux).

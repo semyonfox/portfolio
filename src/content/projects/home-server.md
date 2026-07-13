@@ -1,44 +1,37 @@
 ---
 title: 'Home Server Infrastructure'
-description: 'Repurposed Dell XPS 15 running 45+ Docker containers. A year-long journey into systems administration, networking, and containerization.'
+description: 'A repurposed Dell XPS 15 running dozens of services and containers alongside a custom NAS and home network.'
 tags:
   [
     'Docker',
     'Ubuntu Server',
-    'NGINX',
+    'nginx',
     'PostgreSQL',
     'Pi-hole',
     'Immich',
     'RAID',
-    'OpenWRT',
+    'OpenWrt',
   ]
+category: 'personal'
 featured: true
 order: 1
 ---
 
-What started as a broken Dell XPS 15 laptop became a year-long journey into systems administration, networking, and containerization. When the hinge crushed the 4K touchscreen, I transformed this "half-useless" machine into a powerful learning server.
+When its hinge damaged the 4K touchscreen, my Dell XPS 15 went from a half-usable laptop to a practical introduction to Linux systems administration, networking, storage, and containers.
 
-## The Beginning
+## Server
 
-- **Hardware:** Repurposed Dell XPS 15 with Ubuntu Server on 500GB SSD
-- **Initial Challenge:** Terminal-only interface pushed me to learn command line
-- **Growth:** From copy-pasting YAML to managing complex infrastructure
+- **Host:** Dell XPS 15 running Ubuntu Server from a 500 GB SSD
+- **Services:** Media streaming and management, Immich photo storage, Pi-hole DNS, VPN access, nginx reverse proxies, and PostgreSQL
+- **Monitoring:** Netdata and Glances
 
-## Current Infrastructure (45+ Docker Containers)
+## Storage
 
-- **Media Services:** Streaming, photo storage (Immich), and media management
-- **Network Services:** DNS (Pi-hole), VPN, and reverse proxies with NGINX
-- **Monitoring:** Netdata and Glances for system reliability
-- **Database:** PostgreSQL with pgAdmin for data management
+- **NAS:** TerraMaster enclosure with 4 × 4 TB Seagate IronWolf drives
+- **Filesystems:** RAID 10 managed through OpenMediaVault, with Btrfs subvolumes exposed as network folders
 
-## Custom NAS Build
+## Network
 
-- **Hardware:** TerraMaster enclosure with 4x 4TB Seagate IronWolf drives
-- **Configuration:** RAID 10 via OpenMediaVault with Btrfs filesystem
-- **Features:** Subvolumes mapped to network folders for secure family access
-
-## Network Infrastructure
-
-- **Wi-Fi:** Ubiquiti U6-LR access point in attic with hardwired ethernet
-- **Router:** GL.iNet Flint 2 (OpenWRT-based) replacing aging ISP router
-- **Advanced Features:** VLAN tagging, PPPoE, and proper subnet management
+- **Wi-Fi:** Ubiquiti U6-LR access point in the attic with wired Ethernet backhaul
+- **Router:** GL.iNet Flint 2 with OpenWrt-based firmware, replacing the ISP router
+- **Configuration:** VLAN tagging, PPPoE, and subnet management

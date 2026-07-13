@@ -1,8 +1,8 @@
 ---
 title: 'Split Comparison'
-description: 'CLI tool for comparing swimming race splits. Built in C to analyze pacing and performance.'
+description: 'A C CLI for comparing swimming race splits and analysing pacing.'
 tags: ['C']
-category: personal
+category: 'personal'
 github: 'https://github.com/semyonfox/split-comparison'
 order: 13
 ---

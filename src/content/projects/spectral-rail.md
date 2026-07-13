@@ -1,8 +1,8 @@
 ---
 title: 'Spectral Graph Analysis of Irish Rail'
-description: 'Applying spectral graph theory to Irish Rail network topology. Gaussian elimination, Jacobi eigenvalue solver, algebraic connectivity, and Fiedler vectors in C++17 with Python visualization.'
+description: 'An MA283 project applying spectral graph theory to the Irish Rail network, including algebraic connectivity, Fiedler vectors, and C++17 eigenvalue solvers with Python visualisation.'
 tags: ['C++', 'Python', 'Linear Algebra', 'Graph Theory']
-category: academic
+category: 'academic'
 github: 'https://github.com/semyonfox/ma283-linear-alg'
 order: 22
 ---

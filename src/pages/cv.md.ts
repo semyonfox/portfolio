@@ -1,58 +1,117 @@
 import type { APIRoute } from 'astro';
+import {
+  cv,
+  formatAwardDates,
+  formatDate,
+  formatModules,
+  formatProjectStatus,
+  formatStack,
+  portfolioUrl,
+  projectSupports,
+  textFor,
+  type CVAward,
+  type CVProject,
+  type CVRepairEntry,
+} from '../data/cv';
 
-const md = `# Semyon Fox
+const renderAward = (award: CVAward) => {
+  const dates = formatAwardDates(award.dates, 'markdown');
 
-Galway, Ireland · semyon.fox@gmail.com · https://semyon.ie · https://github.com/semyonfox · https://linkedin.com/in/semyonfox
+  if (award.issuer) {
+    return `- **${award.title}** — ${award.description} (${dates}), ${award.issuer}.`;
+  }
 
-PDF version: https://semyon.ie/cv.pdf
-TeX source: https://semyon.ie/cv.tex
+  const context = award.context ? ` — ${award.context}` : '';
+  return `- **${award.title}**${context} (${dates}). ${award.description}`;
+};
 
-Builder, swimmer, filmmaker.
-2nd-year CS at Galway (First Class Honours). Auditor turned Treasurer of CompSoc, a 450+ member computing society. Builds React/Next.js frontends, Rust APIs, and self-hosted infra.
+const markdownUrl = (url: string) => `<${url}>`;
 
-## Technical skills
+const renderProject = (project: CVProject) => {
+  const status = project.status
+    ? formatProjectStatus(project.status, 'markdown')
+    : '';
+  const leadLinks =
+    project.links
+      ?.filter((link) => link.placement === 'lead')
+      .map((link) => markdownUrl(link.url)) ?? [];
+  const tailLinks =
+    project.links
+      ?.filter((link) => link.placement !== 'lead')
+      .map((link) =>
+        link.label
+          ? `${link.label} ${markdownUrl(link.url)}`
+          : markdownUrl(link.url),
+      ) ?? [];
+  const lead = [...leadLinks, status].filter(Boolean).join('. ');
+  const heading = `**${project.name}** — ${lead ? `${lead}. ` : ''}${formatStack(project.stack, 'markdown')}.`;
 
-- Languages: JavaScript, TypeScript, Java, C, SQL, Python, Rust
-- Web: React, Next.js, Astro, Node.js/Express, REST APIs, HTML/CSS, Tailwind CSS
-- Databases: PostgreSQL, TimescaleDB, MySQL, Redis
-- Infrastructure: Docker, Jenkins CI/CD, Git/GitHub, Linux, Nginx, Cloudflare Workers, Tunnels, Zero Trust, AWS, Btrfs, NFS
+  return `- ${[
+    heading,
+    textFor(project.description, 'markdown'),
+    ...tailLinks.map((link) => `${link}.`),
+  ].join(' ')}`;
+};
 
-## Education
+const markdownProjects = cv.projects.filter((project) =>
+  projectSupports(project, 'markdown'),
+);
+const markdownContact = (href: string) => href.replace(/^mailto:/, '');
+const renderRepairEntry = (entry: CVRepairEntry) => {
+  const workplace = [entry.organisation, entry.location]
+    .filter(Boolean)
+    .join(', ');
+  const context = [entry.context, entry.year].filter(Boolean).join(', ');
 
-**University of Galway** — Bachelor of Science (Honours) in Computer Science and Information Technology · Expected August 2028
-2nd year · First Class Honours (year 1)
-Modules: Software Engineering, Database Systems (SQL), OOP (Java), Data Structures & Algorithms, Networks & Data Communication, Computer Systems & Organisation, Digital Security & Cryptography, Modelling (Python/NumPy/Matplotlib), Discrete Mathematics, Linear Algebra, Statistics
+  return `**${entry.title}** — ${workplace} (${context})\n\n${entry.description}`;
+};
+const roleHistory = cv.leadership.roleHistory
+  .map((role) => `${role.role} (${role.period})`)
+  .join(', ');
 
-## Honours & awards
+const md = `# ${cv.person.name}
 
-- **Best Intervarsity Award** — CompSoc "Capture the Flag" (March 2025, March 2026). University of Galway Societies Awards 2025 and 2026; BICS National Society Award 2025, nominated again in 2026.
-- **Brian O Maoilchiarain Award** — Outstanding Student, Leaving Certificate year (June 2024), Colaiste an Eachréidh.
-- **STEM Award — GRETB** (June 2024). Recognition for excellence in STEM subjects.
+${cv.person.location} · ${cv.person.contacts.map((contact) => markdownContact(contact.href)).join(' · ')}
 
-## Key projects
+${cv.downloads.map((download) => `${download.optionTitle}: <${portfolioUrl(download.href)}>`).join('\n')}
 
-- **OghmaNotes** — MVP deployed. Next.js, TypeScript, PostgreSQL (pgvector), Redis, AWS, Docker. Markdown e-learning platform with RAG search, quizzing, FSRS spaced repetition, Canvas LMS integration, PDF extraction, and embedding pipeline. Migrated from AWS to self-hosted on-prem to cut costs. Live at https://oghmanotes.ie.
-- **Uisce** — In development, targeting August 2026. React 19, Node.js/Express, PostgreSQL, Redis, Docker, Jest. Full-stack platform with role-based access for swimmers, coaches, and committee members. 58-table PostgreSQL schema covering attendance, meet results, training schedules, squad analytics, and equipment.
-- **Canvas MCP Server** — Open source. TypeScript, Model Context Protocol SDK, Zod. MCP server exposing the full Canvas LMS REST API to AI assistants across 15 domains; merged and normalised 12 open-source Canvas MCP projects. https://github.com/semyonfox/canvas-mcp
-- **Irish Rail Data Pipeline** — Running 24/7. Python (asyncio/aiohttp), TimescaleDB, Rust (axum), Docker. Polls Irish Rail every 3 seconds, storing train positions and station data in TimescaleDB. Rust API serves a live map and delay-tracking dashboard.
-- **Home Lab & CI/CD Infrastructure** — Docker, Jenkins, Nginx, Cloudflare Tunnels, Btrfs, NFS, Pi-hole. Self-host 30+ services in 54 containers. Six Jenkins pipelines auto-deploy OghmaNotes, Uisce, Portfolio, etc. on GitHub push. Cloudflare Zero Trust tunnels, internal Nginx reverse proxying, and GFS backups to NAS.
-- **Portfolio Website** — https://semyon.ie. Astro, Preact, Tailwind CSS v4, Rust (axum), Docker, Jenkins. Portfolio with projects, write-ups, experiments, and an AI chatbot answering questions about me from the Rust backend.
+${textFor(cv.summary, 'markdown')}
 
-See full list at https://semyon.ie/projects.
+## ${textFor(cv.sections.skills, 'markdown')}
 
-## Work experience
+${cv.skills.map((skill) => `- ${skill.label}: ${skill.items.join(', ')}`).join('\n')}
 
-**University of Galway Computer Society (CompSoc)** — Treasurer, volunteer (Nov 2024-present)
-Led 450+ member student society across finance, communications, and event strategy. Organised CompSoc CTF 2026 (110+ participants), securing four corporate sponsors and university grant funding. Reduced participant costs by 50%; increased event profit. Fixed CI/CD pipeline and JSX syntax bugs on the compsoc.ie React/TypeScript frontend. Held three committee roles: Public Relations Officer (Nov 2024-Feb 2025), Auditor (Feb 2025-Mar 2026), Treasurer (Mar 2026-present).
+## ${textFor(cv.sections.education, 'markdown')}
 
-**Computer Repair Technician** — Cahill Computers, Athenry & Galway (part-time, 8 months), Lapteck (TY placement, 2023)
-Hardware upgrades, repairs, diagnostics. System administration, OS installation, drive cloning.
+**${cv.education.institution}** — ${cv.education.degree} · Expected ${formatDate(cv.education.expected)}
 
-## Interests
+${cv.education.year.replace('Year', 'year')} · ${cv.education.distinction} (${cv.education.distinctionPeriod.toLowerCase()})
 
-Swimming: competitive pool swimmer with regular training and meets.
-Video Production: colour grading, VFX, and editing in DaVinci Resolve for short films and personal projects.
-Woodworking: hand-built live-edge furniture pieces.
+Modules: ${formatModules(cv.education.modules, 'markdown')}
+
+## ${textFor(cv.sections.awards, 'markdown')}
+
+${cv.awards.map(renderAward).join('\n')}
+
+## ${textFor(cv.sections.projects, 'markdown')}
+
+${markdownProjects.map(renderProject).join('\n')}
+
+See full list at <${portfolioUrl(cv.projectsIndex.href)}>.
+
+## ${textFor(cv.sections.workExperience, 'markdown')}
+
+${cv.repairExperience.entries.map(renderRepairEntry).join('\n\n')}
+
+## ${textFor(cv.sections.leadership, 'markdown')}
+
+**${cv.leadership.organisation} (${cv.leadership.shortOrganisation})** — ${cv.leadership.currentRole}, ${cv.leadership.capacity} (${cv.leadership.involvementPeriod})
+
+${cv.leadership.description} Held three committee roles: ${roleHistory}.
+
+## ${textFor(cv.sections.interests, 'markdown')}
+
+${cv.interests.map((interest) => `- **${interest.label}:** ${textFor(interest.description, 'markdown')}`).join('\n')}
 `;
 
 export const GET: APIRoute = async () =>

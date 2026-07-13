@@ -17,6 +17,7 @@ export const GET: APIRoute = async ({ props }) => {
     `date: ${post.data.date}`,
     `author: ${JSON.stringify(post.data.author)}`,
     `description: ${JSON.stringify(post.data.description)}`,
+    `tags: ${JSON.stringify(post.data.tags)}`,
     `canonical: https://semyon.ie/blog/${post.id}`,
     '---',
     '',

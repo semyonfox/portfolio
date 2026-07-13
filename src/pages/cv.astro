@@ -1,31 +1,49 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import {
+  cv,
+  formatAwardDates,
+  formatDate,
+  formatModules,
+  formatProjectStatus,
+  formatStack,
+  projectSupports,
+  textFor,
+} from '../data/cv';
+
+const defaultDownload = cv.downloads[0];
+const alternateDownload = cv.downloads[1];
+const htmlProjects = cv.projects.filter((project) =>
+  projectSupports(project, 'html'),
+);
+const previousLeadershipRoles = cv.leadership.roleHistory
+  .slice(0, -1)
+  .map((role) => role.role)
+  .join(' and ');
 ---
 
-<Layout
-  title="CV | Semyon Fox"
-  description="Semyon Fox - CS student, full-stack developer, homelab enthusiast."
->
+<Layout title={cv.seo.title} description={cv.seo.description}>
   <section class="pt-20 pb-16 md:pt-28 max-w-3xl">
     <div
       class="flex flex-col gap-4 mb-1 sm:flex-row sm:items-center sm:justify-between"
     >
-      <h1 class="type-page-title">Semyon Fox</h1>
+      <h1 class="type-page-title">{cv.person.name}</h1>
       <div
         class="group relative flex shrink-0 items-stretch text-xs"
         data-cv-download
-        data-cv-format="pdf"
+        data-cv-format={defaultDownload.format}
+        data-cv-options={JSON.stringify(cv.downloads)}
       >
         <a
-          href="/cv.pdf"
-          download="SEMYON_FOX_CV.pdf"
+          href={defaultDownload.href}
+          download={defaultDownload.filename}
           class="inline-flex min-h-10 min-w-32 items-center justify-between gap-3 rounded-l-lg border border-border border-r-0 bg-surface/60 px-3.5 py-2 font-medium tracking-[0.01em] text-heading transition-colors group-hover:border-muted group-hover:bg-heading/[0.03]"
-          aria-label="Download CV as PDF"
+          aria-label={`Download CV as ${defaultDownload.badge}`}
           data-cv-download-link
         >
           <span>Download</span>
           <span class="type-micro font-semibold uppercase tracking-[0.08em]"
-            >PDF</span
+            >{defaultDownload.badge}</span
           >
         </a>
         <button
@@ -57,283 +75,192 @@ import Layout from '../layouts/Layout.astro';
           <button
             type="button"
             class="flex min-h-10 w-full items-center justify-between gap-3 px-3.5 py-2 text-left text-xs font-medium tracking-[0.01em] text-heading transition-colors hover:bg-heading/[0.04]"
-            data-cv-option="tex"
+            data-cv-option={alternateDownload.format}
           >
-            <span>TeX source</span>
+            <span>{alternateDownload.optionTitle}</span>
             <span class="type-micro font-semibold uppercase tracking-[0.08em]"
-              >TEX</span
+              >{alternateDownload.badge}</span
             >
           </button>
         </div>
       </div>
     </div>
-    <p class="text-muted text-sm mb-2">Galway, Ireland</p>
+    <p class="text-muted text-sm mb-2">{cv.person.location}</p>
     <div class="flex flex-wrap gap-3 text-xs text-muted mb-8">
-      <a
-        href="mailto:semyon.fox@gmail.com"
-        class="hover:text-heading transition-colors">semyon.fox@gmail.com</a
-      >
-      <span class="text-dim">&middot;</span>
-      <a href="https://semyon.ie" class="hover:text-heading transition-colors"
-        >semyon.ie</a
-      >
-      <span class="text-dim">&middot;</span>
-      <a
-        href="https://github.com/semyonfox"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="hover:text-heading transition-colors">github.com/semyonfox</a
-      >
-      <span class="text-dim">&middot;</span>
-      <a
-        href="https://www.linkedin.com/in/semyon-fox-968685249/"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="hover:text-heading transition-colors">LinkedIn</a
-      >
+      {
+        cv.person.contacts.map((contact, index) => (
+          <>
+            {index > 0 && <span class="text-dim">&middot;</span>}
+            <a
+              href={contact.href}
+              target={contact.external ? '_blank' : undefined}
+              rel={contact.external ? 'noopener noreferrer' : undefined}
+              class="hover:text-heading transition-colors"
+            >
+              {contact.label}
+            </a>
+          </>
+        ))
+      }
     </div>
 
-    <p class="type-body italic mb-12">
-      Builder, swimmer, filmmaker. Second-year Computer Science student at the
-      University of Galway with First Class Honours in year 1. Auditor turned
-      Treasurer of CompSoc, a 450+ member computing society. Builds React and
-      Next.js frontends, Rust APIs, and self-hosted infrastructure.
-    </p>
+    <p class="type-body italic mb-12">{textFor(cv.summary, 'html')}</p>
 
     <!-- technical skills -->
     <div class="mb-12">
-      <h2 class="type-section-title mb-4">Technical Skills</h2>
+      <h2 class="type-section-title mb-4">
+        {textFor(cv.sections.skills, 'html')}
+      </h2>
       <div class="space-y-2 text-sm">
-        <p>
-          <span class="text-heading font-semibold">Languages:</span>
-          <span class="text-muted"
-            >JavaScript, TypeScript, Java, C, SQL, Python, Rust</span
-          >
-        </p>
-        <p>
-          <span class="text-heading font-semibold">Web:</span>
-          <span class="text-muted"
-            >React, Next.js, Astro, Node.js/Express, REST APIs, HTML/CSS,
-            Tailwind CSS</span
-          >
-        </p>
-        <p>
-          <span class="text-heading font-semibold">Databases:</span>
-          <span class="text-muted">PostgreSQL, TimescaleDB, MySQL, Redis</span>
-        </p>
-        <p>
-          <span class="text-heading font-semibold">Infrastructure:</span>
-          <span class="text-muted"
-            >Docker, Jenkins CI/CD, Git/GitHub, Linux, Nginx, Cloudflare
-            Workers, Tunnels, Zero Trust, AWS, Btrfs, NFS</span
-          >
-        </p>
+        {
+          cv.skills.map((skill) => (
+            <p>
+              <span class="text-heading font-semibold">{skill.label}:</span>{' '}
+              <span class="text-muted">{skill.items.join(', ')}</span>
+            </p>
+          ))
+        }
       </div>
     </div>
 
     <!-- education -->
     <div class="mb-12">
-      <h2 class="type-section-title mb-4">Education</h2>
+      <h2 class="type-section-title mb-4">
+        {textFor(cv.sections.education, 'html')}
+      </h2>
       <div class="border-l border-border pl-6">
-        <h3 class="type-panel-title font-bold">University of Galway</h3>
+        <h3 class="type-panel-title font-bold">{cv.education.institution}</h3>
         <p class="text-muted text-sm">
-          Bachelor of Science (Honours) in Computer Science and Information
-          Technology &middot; Expected August 2028
+          {cv.education.degree} &middot; Expected {
+            formatDate(cv.education.expected)
+          }
         </p>
         <p class="text-muted text-sm mt-1">
-          2nd Year &middot; <span class="text-heading font-semibold"
-            >First Class Honours</span
-          > (Year 1)
+          {cv.education.year} &middot; <span class="text-heading font-semibold"
+            >{cv.education.distinction}</span
+          > ({cv.education.distinctionPeriod})
         </p>
         <p class="text-dim text-xs mt-2">
-          Software Engineering, Database Systems, OOP (Java), Data Structures &
-          Algorithms, Networks & Data Communication, Computer Systems &
-          Organisation, Digital Security & Cryptography, Modelling, Discrete
-          Mathematics, Linear Algebra, Statistics
+          {formatModules(cv.education.modules, 'html')}
         </p>
       </div>
     </div>
 
     <!-- honours -->
     <div class="mb-12">
-      <h2 class="type-section-title mb-4">Honours & Awards</h2>
+      <h2 class="type-section-title mb-4">
+        {textFor(cv.sections.awards, 'html')}
+      </h2>
       <div class="space-y-4">
-        <div class="bg-surface border border-heading/[0.06] rounded-bento p-4">
-          <div class="flex justify-between items-start">
-            <h3 class="type-small-title font-bold">
-              Best Intervarsity Award - CompSoc "Capture the Flag"
-            </h3>
-            <span class="text-dim text-xs shrink-0 ml-4"
-              >Mar 2025, Mar 2026</span
-            >
-          </div>
-          <p class="text-muted text-sm mt-1">
-            University of Galway Societies Awards 2025 and 2026; BICS National
-            Society Award 2025, nominated again in 2026.
-          </p>
-        </div>
-        <div class="bg-surface border border-heading/[0.06] rounded-bento p-4">
-          <div class="flex justify-between items-start">
-            <h3 class="type-small-title font-bold">
-              Brian O Maoilchiarain Award
-            </h3>
-            <span class="text-dim text-xs shrink-0 ml-4">Jun 2024</span>
-          </div>
-          <p class="text-muted text-sm mt-1">
-            Outstanding Student, Leaving Certificate year - Colaiste an
-            Eachréidh
-          </p>
-        </div>
-        <div class="bg-surface border border-heading/[0.06] rounded-bento p-4">
-          <div class="flex justify-between items-start">
-            <h3 class="type-small-title font-bold">STEM Award - GRETB</h3>
-            <span class="text-dim text-xs shrink-0 ml-4">Jun 2024</span>
-          </div>
-          <p class="text-muted text-sm mt-1">
-            Recognition for excellence in STEM subjects.
-          </p>
-        </div>
+        {
+          cv.awards.map((award) => (
+            <div class="bg-surface border border-heading/[0.06] rounded-bento p-4">
+              <div class="flex justify-between items-start">
+                <h3 class="type-small-title font-bold">
+                  {award.title}
+                  {award.context ? ` — ${award.context}` : ''}
+                </h3>
+                <span class="text-dim text-xs shrink-0 ml-4">
+                  {formatAwardDates(award.dates, 'html')}
+                </span>
+              </div>
+              <p class="text-muted text-sm mt-1">
+                {award.description}
+                {award.issuer ? ` — ${award.issuer}` : ''}
+              </p>
+            </div>
+          ))
+        }
       </div>
     </div>
 
     <!-- projects -->
     <div class="mb-12">
-      <h2 class="type-section-title mb-4">Key Projects</h2>
+      <h2 class="type-section-title mb-4">
+        {textFor(cv.sections.projects, 'html')}
+      </h2>
       <div class="space-y-4">
-        <div class="bg-surface border border-heading/[0.06] rounded-bento p-4">
-          <div class="flex justify-between items-start">
-            <h3 class="type-small-title font-bold">OghmaNotes</h3>
-            <span class="text-dim text-xs shrink-0 ml-4">MVP Deployed</span>
-          </div>
-          <p class="text-dim text-xs mt-1">
-            Next.js, TypeScript, PostgreSQL, pgvector, Redis, AWS, Docker
-          </p>
-          <p class="text-muted text-sm mt-2">
-            Markdown e-learning platform with RAG search, quizzing, FSRS spaced
-            repetition, Canvas LMS import, PDF extraction, and embedding
-            pipeline. Migrated from AWS to self-hosted on-prem to cut costs.
-          </p>
-        </div>
-        <div class="bg-surface border border-heading/[0.06] rounded-bento p-4">
-          <div class="flex justify-between items-start">
-            <h3 class="type-small-title font-bold">Uisce</h3>
-            <span class="text-dim text-xs shrink-0 ml-4"
-              >Targeting Aug 2026</span
-            >
-          </div>
-          <p class="text-dim text-xs mt-1">
-            React 19, Node.js/Express, PostgreSQL, Redis, Docker, Jest
-          </p>
-          <p class="text-muted text-sm mt-2">
-            Full-stack platform with role-based access for swimmers, coaches,
-            and committee members. 58-table PostgreSQL schema covering
-            attendance, meet results, training schedules, squad analytics, and
-            equipment.
-          </p>
-        </div>
-        <div class="bg-surface border border-heading/[0.06] rounded-bento p-4">
-          <div class="flex justify-between items-start">
-            <h3 class="type-small-title font-bold">Canvas MCP Server</h3>
-            <span class="text-dim text-xs shrink-0 ml-4">Open Source</span>
-          </div>
-          <p class="text-dim text-xs mt-1">
-            TypeScript, Model Context Protocol SDK, Zod
-          </p>
-          <p class="text-muted text-sm mt-2">
-            MCP server exposing the full Canvas LMS REST API to AI assistants
-            across 15 domains. Merged and normalised 12 open-source Canvas MCP
-            projects.
-          </p>
-        </div>
-        <div class="bg-surface border border-heading/[0.06] rounded-bento p-4">
-          <div class="flex justify-between items-start">
-            <h3 class="type-small-title font-bold">Irish Rail Data Pipeline</h3>
-            <span class="text-dim text-xs shrink-0 ml-4">Running 24/7</span>
-          </div>
-          <p class="text-dim text-xs mt-1">
-            Python, asyncio/aiohttp, TimescaleDB, Rust, axum, Docker
-          </p>
-          <p class="text-muted text-sm mt-2">
-            Polls Irish Rail every 3 seconds, storing train positions and
-            station data in TimescaleDB. Rust API serves a live map and
-            delay-tracking dashboard.
-          </p>
-        </div>
-        <div class="bg-surface border border-heading/[0.06] rounded-bento p-4">
-          <div class="flex justify-between items-start">
-            <h3 class="type-small-title font-bold">
-              Home Lab & CI/CD Infrastructure
-            </h3>
-            <span class="text-dim text-xs shrink-0 ml-4">Ongoing</span>
-          </div>
-          <p class="text-dim text-xs mt-1">
-            Docker, Jenkins, Nginx, Cloudflare Tunnels, Btrfs, NFS, Pi-hole
-          </p>
-          <p class="text-muted text-sm mt-2">
-            Self-hosts 30+ services in 54 containers. Six Jenkins pipelines
-            auto-deploy projects on GitHub push, with Cloudflare Zero Trust
-            tunnels, internal Nginx reverse proxying, and GFS backups to NAS.
-          </p>
-        </div>
+        {
+          htmlProjects.map((project) => (
+            <div class="bg-surface border border-heading/[0.06] rounded-bento p-4">
+              <div class="flex justify-between items-start">
+                <h3 class="type-small-title font-bold">{project.name}</h3>
+                {project.status && (
+                  <span class="text-dim text-xs shrink-0 ml-4">
+                    {formatProjectStatus(project.status, 'html')}
+                  </span>
+                )}
+              </div>
+              <p class="text-dim text-xs mt-1">
+                {formatStack(project.stack, 'html')}
+              </p>
+              <p class="text-muted text-sm mt-2">
+                {textFor(project.description, 'html')}
+              </p>
+            </div>
+          ))
+        }
       </div>
       <a
-        href="/projects"
+        href={cv.projectsIndex.href}
         class="text-fox text-sm mt-3 inline-block hover:underline"
-        >view all projects &rarr;</a
+        >{cv.projectsIndex.label} &rarr;</a
       >
     </div>
 
     <!-- work experience -->
     <div class="mb-12">
-      <h2 class="type-section-title mb-4">Work Experience</h2>
+      <h2 class="type-section-title mb-4">
+        {textFor(cv.sections.workExperience, 'html')}
+      </h2>
       <div class="border-l border-border pl-6 space-y-6">
-        <div>
-          <h3 class="type-panel-title font-bold">Laptop Repair Technician</h3>
-          <p class="text-muted text-sm">
-            Cahill Computers, Athenry & Galway &middot; part-time, 8 months
-          </p>
-          <p class="text-dim text-sm mt-2">
-            Hardware upgrades, repairs, diagnostics. System administration, OS
-            installation, drive cloning.
-          </p>
-        </div>
-        <div>
-          <h3 class="type-panel-title font-bold">Work Experience Placements</h3>
-          <p class="text-muted text-sm">Lapteck TY placement (2023)</p>
-          <p class="text-dim text-sm mt-2">
-            Hardware upgrades, screen and battery replacements, OS installation,
-            drive cloning, and diagnostics.
-          </p>
-        </div>
+        {
+          cv.repairExperience.entries.map((entry) => (
+            <div>
+              <h3 class="type-panel-title font-bold">{entry.title}</h3>
+              <p class="text-muted text-sm">
+                {'location' in entry
+                  ? `${entry.organisation}, ${entry.location} · ${entry.context}`
+                  : `${entry.organisation} ${entry.context} (${entry.year})`}
+              </p>
+              <p class="text-dim text-sm mt-2">{entry.description}</p>
+            </div>
+          ))
+        }
       </div>
     </div>
 
     <!-- leadership -->
     <div class="mb-12">
-      <h2 class="type-section-title mb-4">Leadership & Involvement</h2>
+      <h2 class="type-section-title mb-4">
+        {textFor(cv.sections.leadership, 'html')}
+      </h2>
       <div class="border-l border-border pl-6">
-        <h3 class="type-panel-title font-bold">CompSoc Treasurer</h3>
+        <h3 class="type-panel-title font-bold">
+          {cv.leadership.shortOrganisation}{' '}{cv.leadership.currentRole}
+        </h3>
         <p class="text-muted text-sm">
-          University of Galway Computer Society &middot; Nov 2024 - present
+          {cv.leadership.organisation} &middot; {
+            cv.leadership.involvementPeriod
+          }
         </p>
         <p class="text-dim text-sm mt-2">
-          Led 450+ member student society across finance, communications, and
-          event strategy. Organised CompSoc CTF 2026 with 110+ participants,
-          four corporate sponsors, and university grant funding. Reduced
-          participant costs by 50%, increased event profit, and fixed CI/CD and
-          JSX bugs on the compsoc.ie React/TypeScript frontend. Previously PR
-          Officer and Auditor.
+          {cv.leadership.description} Previously {previousLeadershipRoles}.
         </p>
       </div>
     </div>
 
     <!-- interests -->
     <div>
-      <h2 class="type-section-title mb-4">Interests</h2>
+      <h2 class="type-section-title mb-4">
+        {textFor(cv.sections.interests, 'html')}
+      </h2>
       <p class="type-body">
-        Competitive pool swimming with regular training and meets. Video
-        production, colour grading, VFX, and editing in DaVinci Resolve.
-        Woodworking and hand-built live-edge furniture.
+        {
+          cv.interests
+            .map((interest) => textFor(interest.description, 'html'))
+            .join(' ')
+        }
       </p>
     </div>
   </section>
@@ -344,28 +271,32 @@ import Layout from '../layouts/Layout.astro';
     const toggle = wrapper?.querySelector('[data-cv-menu-toggle]');
     const menu = wrapper?.querySelector('[data-cv-menu]');
 
-    const downloads = {
-      pdf: {
-        href: '/cv.pdf',
-        filename: 'SEMYON_FOX_CV.pdf',
-        badge: 'PDF',
-        optionTitle: 'PDF version',
-      },
-      tex: {
-        href: '/cv.tex',
-        filename: 'SEMYON_FOX_CV.tex',
-        badge: 'TEX',
-        optionTitle: 'TeX source',
-      },
+    type DownloadFormat = 'pdf' | 'tex';
+    type DownloadOption = {
+      format: DownloadFormat;
+      href: string;
+      filename: string;
+      badge: string;
+      optionTitle: string;
     };
+
+    const downloadOptions =
+      wrapper instanceof HTMLElement
+        ? (JSON.parse(wrapper.dataset.cvOptions ?? '[]') as DownloadOption[])
+        : [];
+    const downloads = new Map(
+      downloadOptions.map((download) => [download.format, download]),
+    );
 
     const renderDownloadLabel = (badge: string) =>
       `<span>Download</span><span class="type-micro font-semibold uppercase tracking-[0.08em]">${badge}</span>`;
 
-    const renderOptionLabel = (format: 'pdf' | 'tex') => {
-      const option = downloads[format];
+    const renderOptionLabel = (format: DownloadFormat) => {
+      const option = downloads.get(format);
 
-      return `<span>${option.optionTitle}</span><span class="type-micro font-semibold uppercase tracking-[0.08em]">${option.badge}</span>`;
+      return option
+        ? `<span>${option.optionTitle}</span><span class="type-micro font-semibold uppercase tracking-[0.08em]">${option.badge}</span>`
+        : '';
     };
 
     const setMenuOpen = (open: boolean) => {
@@ -380,7 +311,7 @@ import Layout from '../layouts/Layout.astro';
       toggle.setAttribute('aria-expanded', String(open));
     };
 
-    const setFormat = (format: 'pdf' | 'tex') => {
+    const setFormat = (format: DownloadFormat) => {
       if (
         !(wrapper instanceof HTMLElement) ||
         !(link instanceof HTMLAnchorElement)
@@ -390,8 +321,10 @@ import Layout from '../layouts/Layout.astro';
 
       const activeFormat = format === 'tex' ? 'tex' : 'pdf';
       const alternateFormat = activeFormat === 'pdf' ? 'tex' : 'pdf';
-      const download = downloads[activeFormat];
+      const download = downloads.get(activeFormat);
       const option = menu?.querySelector('[data-cv-option]');
+
+      if (!download) return;
 
       wrapper.dataset.cvFormat = activeFormat;
       link.href = download.href;

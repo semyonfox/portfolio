@@ -2,30 +2,32 @@
 title: 'From Broken Laptop to Full Homelab'
 date: '2025-08-10'
 author: 'Semyon Fox'
-description: "My Dell XPS 15's hinge crushed the screen. A year later it's running 30+ Docker containers."
+description: 'A broken Dell XPS became a command-line lesson, then a server, NAS, and home network running more than 30 containers.'
 tags: ['Homelab', 'Docker', 'Self-Hosting']
 ---
 
-One year ago, my Dell XPS 15's hinge crushed the screen. The 4K touchscreen and hinges were too expensive to replace, but the machine itself was still powerful. It just sat there, half-useless.
-
-While researching what to do with it, I came across a YouTube video: "Turn it into a server."
+In 2024, the hinge on my Dell XPS 15 crushed its screen. Replacing the 4K touchscreen and hinges cost too much, but the rest of the laptop was still powerful. It sat there, half-useless, until a YouTube video offered the obvious answer: turn it into a server.
 
 So I did.
 
-I had a spare 500GB SSD lying around. I installed Ubuntu Server on it and booted up. Terminal-only interface. No desktop. No GUI. Just a blinking cursor.
+## A server with no screen
 
-That was terrifying. But it pushed me to actually learn the command line.
+I installed Ubuntu Server on a spare 500 GB SSD and booted it. There was no desktop or friendly setup screen—just a terminal and a blinking cursor.
 
-Over the past year I've gone from blindly copy-pasting YAML to comfortably managing 30+ Docker containers. Media services, dashboards, file sharing, DNS with Pi-hole, VPN, NGINX reverse proxies, PostgreSQL with pgAdmin. The list keeps growing.
+That was terrifying, but it forced me to learn the command line. Docker taught me plenty through repetition, while Portainer later gave me a more approachable view of the containers. Over the following year, I went from blindly copying YAML to comfortably managing more than 30 containers: media services, dashboards, file sharing, Pi-hole DNS, VPN access, nginx reverse proxies, PostgreSQL, and pgAdmin.
 
-I experimented with different filesystems and ended up building a NAS. TerraMaster enclosure, 4x 4TB Seagate IronWolf drives, RAID 10 via OpenMediaVault with Btrfs. It holds family photos and media now, with subvolumes mapped to network folders so my family can access their stuff securely.
+## Adding storage and networking
 
-I wrote systemd timers for automounting and network checks. Started monitoring everything with Netdata and Glances.
+Storage became a priority after I lost 400 GB of gaming footage to a failed desktop hard drive. I bought a TerraMaster enclosure and four 4 TB Seagate IronWolf drives, then built a NAS with OpenMediaVault, Btrfs, and RAID 10. The array provides redundancy if a drive fails; it is not a backup, so important data still needs separate copies.
 
-Wi-Fi was patchy in parts of the house, so I ran an ethernet cable up to the attic and installed a Ubiquiti U6-LR access point. Had to fine-tune channel widths for proper coverage but it works great now.
+The NAS now holds family photos and media. Btrfs subvolumes map to network shares so my family can reach their files, while systemd timers handle tasks such as automounting and network checks. Netdata and Glances help me see what the machines are doing.
 
-Around the same time I replaced the aging ISP router with a GL.iNet Flint 2 running OpenWRT. Finally had proper VLAN tagging, PPPoE, and subnet management. After some back and forth with my ISP, Airwire, everything clicked into place.
+Networking grew alongside the storage. Patchy Wi-Fi led me to run Ethernet into the attic and install a Ubiquiti U6-LR access point. After tuning the channel widths, coverage improved across the house.
 
-It hasn't all been smooth. Power outages, a SMART disk going bad, internal IP reshuffles, no hardware acceleration because NVIDIA SMI doesn't play nice with my setup. But honestly, fixing those problems taught me more than anything else.
+I also replaced the ageing ISP router with a GL.iNet Flint 2 running OpenWrt. That gave me VLAN tagging, PPPoE, subnet management, and a 2.5GbE link to my PC. It took some back and forth with my ISP, Airwire, before everything clicked into place.
 
-What started as a broken laptop became a learning sandbox. Just enough risk to make every mistake valuable, but not costly.
+## The useful kind of failure
+
+The build has not been smooth. I have dealt with power cuts, a failing SMART disk, internal IP reshuffles, and a lack of hardware acceleration because `nvidia-smi` does not cooperate with this setup. Each problem has taught me more than the parts that worked first time.
+
+What began as a broken laptop became a learning sandbox: enough real responsibility to make mistakes valuable, without putting a business at risk. The build story starts here; [why I keep self-hosting](/blog/self-hosting) is really about what that control costs and why I still enjoy it.

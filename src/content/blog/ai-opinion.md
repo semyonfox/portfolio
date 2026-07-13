@@ -2,32 +2,40 @@
 title: 'AI Is Just a Fancy Autocorrect'
 date: '2026-04-10'
 author: 'Semyon Fox'
-description: "I'm a vibe coder. AI isn't going anywhere. The question is whether you learn to use it or get left behind."
+description: 'I use AI heavily, but speed is not a substitute for understanding, judgement, or learning.'
 tags: ['AI', 'Developer Tools', 'Education']
 ---
 
 I'm a vibe coder. There, I said it.
 
-I've spent the last few months testing different AI models, prompt styles, tool combos, strengths and weaknesses. Opus for polish and UI. GPT for blowing through features and bugs. Different complexity levels need different models. You don't use a sledgehammer for everything.
+I've spent months testing models, prompt styles, and combinations of tools. For my work, Opus is often useful for polish and UI, while GPT is good at pushing through features and bugs. Different jobs need different tools; you do not use a sledgehammer for everything.
 
-The reality of vibe coding is that it works. Opus 4.6 or GPT 5.4 rarely skip a beat. Most things get one-shotted. When they don't, it's usually a steering problem. AI edits the local SQLite instead of the prod database, or it doesn't know about another feature that wasn't integrated right. That's where you come in. You're the architect. AI is the builder.
+## The division of labour
 
-But AI is one piece of the puzzle.
+AI-assisted coding works well for me, but not because I can stop paying attention. When a task goes wrong, it is often a steering or context problem: the agent edits a local SQLite database instead of production, or misses a feature that was never properly integrated. I still need to understand the system, choose the direction, and check the result.
 
-I code games. I build apps, web to terminal tools, Rust backends, C++, GraphQL, databases. I'm learning AWS. All of this paired together is what makes a developer good. Understanding the full system, everything that's happening, not just "I have code and everything else is a black box." AI makes you faster, but you still need to know what you're building and why.
+I write games, apps, terminal tools, Rust backends, C++, GraphQL, and database code. I'm also learning AWS. That wider understanding matters. AI can make the work faster, but it cannot make a confused design coherent by sheer enthusiasm.
 
-The job market right now is terrifying though. I applied for loads of internships this summer. Student-focused, aimed at people exactly like me. Not a single response. Not a single interview. And I'm not being arrogant but I know a lot. More than a lot of my peers. Still nothing.
+The metaphor I keep coming back to is simple: I own the architecture and judgement; AI helps with the building.
 
-Companies are laying off developers thinking AI can replace them. And honestly? It can replace the bad vibe coders. The ones who paste a prompt and ship whatever comes back without understanding it. But architects and designers are still needed. People who can steer, correct, and understand the systems while AI does the heavy lifting.
+## What it does not replace
 
-I saw this coming from day one. AI is here for good. It's like the industrial revolution, or when we got language-specific IDEs with code suggestions. It's a tool that makes us work faster and more efficiently. You either get on that train or you fall behind.
+The graduate job market has been rough from where I am standing. I applied for plenty of student internships and did not get a response or interview. That is difficult to reconcile with the amount of work I have put into learning, but it is also a reminder that technical knowledge alone does not guarantee an opportunity.
 
-One of my friends was outright anti-AI for a long time. Refused to touch it. His employer is now pushing AI tools on the dev team. Literally money on the line. He realised he needs to start using it if he wants to keep his job. I'd already been deep into it by then. Learning how to interact, optimise, building skills around tools, MCP servers, all of it.
+At the same time, industry discussion often treats AI as a reason to need fewer developers. It may reduce the value of work that consists only of copying a prompt and shipping the output. It does not remove the need for people who can question, test, correct, and take responsibility for a system.
 
-Here's the thing that worries me about education though. I have a Canvas API key with an MCP server. AI can pull my assignments, read the related files, brush up on the material, do the work, and submit it. In less than five minutes. There is no learning in that.
+One friend avoided AI tools for a long time. When his employer started encouraging the development team to use them, he had to learn quickly. I had already spent that time understanding prompts, model strengths, skills, and MCP servers. Whatever happens to individual tools, learning how to use them critically now feels like part of learning software development.
 
-Every prompt can be like an addictive slot machine. Write a sentence, press a button, go get a coffee. Red and green diffs appear. Run it. Does it work? Yes? Dopamine hit. No? Back to the drawing board. It reduces actual understanding for the people who let it.
+## The education problem
 
-Most lecturers don't even know this is possible. Neither do most students. It's only from my own interest in AI and tooling that I came across it. I'd genuinely love to work with lecturers to help shape courses that prepare students for this. Not banning AI, but making assignments that actually require you to learn. Research-focused, requiring fundamental knowledge to progress. Something where AI is a tool for learning, not a shortcut past it. The current system isn't ready for what's already here.
+This is where I worry. With a Canvas API key and an MCP server, an agent can retrieve an assignment and its related files, produce an answer, and potentially submit it in minutes. If a student delegates that whole loop, no learning has taken place.
 
-But at the end of the day, we're still needed. Trust issues, privacy reasons, no full autonomy. AI is a fancy autocorrect. Ones and zeros matched into a predictable pattern, far from sentience. People like ThePrimeagen and Theo from T3 get this. They're not vibe coders. They just use the right tools. And that's the shift. It's not about whether you use AI. It's about whether you understand what it's doing.
+The interaction itself can become a slot machine: write a sentence, press a button, get a coffee, and return to a red-and-green diff. If it works, dopamine. If it does not, pull the lever again. That is productive only when you still stop to understand the change.
+
+I would genuinely like to work with lecturers on courses that prepare students for this reality. Banning AI outright will not teach good judgement. Assignments can instead require research, explanation, verification, and enough fundamental knowledge that a student must understand the work to progress. AI should support the learning, not provide a shortcut around it.
+
+## Fancy autocorrect, real responsibility
+
+Today's models are powerful pattern engines, not colleagues who can own the consequences of a bad decision. Privacy, trust, incomplete context, and the need for human approval all limit how much autonomy I am willing to give them.
+
+That is why I call AI a fancy autocorrect. The phrase is deliberately reductive, but the responsibility behind it is not: use the tool, inspect its work, and understand what you are shipping.

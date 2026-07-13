@@ -1,6 +1,6 @@
 ---
 title: 'Cellular Automata Caves'
-description: 'Procedural cave generation using cellular automata rules with animated smoothing passes on a 200x200 grid.'
+description: 'Generates 200 × 200 cave maps with cellular automata and animated smoothing passes.'
 tech: 'Java (Swing)'
 github: 'https://github.com/semyonfox/cellular-automata-caves'
 embed: '/games/cellular-automata-caves/index.html'

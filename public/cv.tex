@@ -94,7 +94,7 @@
 Languages & JavaScript, TypeScript, Java, C, SQL, Python, Rust\\[3pt]
 Web & React, Next.js, Astro, Node.js/Express, REST APIs, HTML/CSS, Tailwind CSS\\[3pt]
 Databases & PostgreSQL, TimescaleDB, MySQL, Redis\\[3pt]
-Infrastructure & Docker, Jenkins CI/CD, Git/GitHub, Linux, Nginx, Cloudflare (Workers, Tunnels, Zero Trust), AWS (Fargate, RDS, S3, SES/SQS, IAM), Btrfs, NFS
+Infrastructure & Docker, Jenkins CI/CD, Git/GitHub, Linux, nginx, Cloudflare (Workers, Tunnels, Zero Trust), AWS (Fargate, RDS, S3, SES/SQS, IAM), Btrfs, NFS
 \end{tabular}
 
 % -------------------------------
@@ -183,11 +183,11 @@ Infrastructure & Docker, Jenkins CI/CD, Git/GitHub, Linux, Nginx, Cloudflare (Wo
 
 \vspace{5pt}
 \cventry{Home Lab \& CI/CD Infrastructure}{Ongoing}
-        {Docker, Jenkins, Nginx, Cloudflare Tunnels, Btrfs, NFS, Pi-hole}{}
+        {Docker, Jenkins, nginx, Cloudflare Tunnels, Btrfs, NFS, Pi-hole}{}
 \begin{itemize}
   \item Self-host 30+ services (Jellyfin, Immich, Vaultwarden, Firefly III, n8n, etc.) in 54 containers, behind a router-level VPN
   \item 6 Jenkins pipelines auto-deploying OghmaNotes, Uisce, Portfolio, etc. on GitHub push
-  \item Cloudflare Zero Trust tunnels (no open ports for public access); Nginx reverse proxy across 21 vhosts internally
+  \item Cloudflare Zero Trust tunnels (no open ports for public access); nginx reverse proxy across 21 vhosts internally
   \item GFS backup strategy (7 daily, 4 weekly, 12 monthly, yearly-forever) to NAS (RAID) via NFS4 with Btrfs snapshots
 \end{itemize}
 

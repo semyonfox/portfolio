@@ -28,13 +28,13 @@ Builds and breaks things with curiosity. Currently running 54 containers on a re
 
 ## Tech
 
-JavaScript, TypeScript, React, Next.js, Node.js/Express, Java, Python, Rust, C, SQL, PostgreSQL, MySQL, TimescaleDB, Redis, Docker, Jenkins CI/CD, Linux, Nginx, Cloudflare Workers, Tunnels, Zero Trust, AWS, Tailwind, Astro.
+JavaScript, TypeScript, React, Next.js, Node.js/Express, Java, Python, Rust, C, SQL, PostgreSQL, MySQL, TimescaleDB, Redis, Docker, Jenkins CI/CD, Linux, nginx, Cloudflare Workers, Tunnels, Zero Trust, AWS, Tailwind, Astro.
 
 ## Featured project
 
 **${featured.data.title}** — ${featured.data.description}
 
-Tags: ${featured.data.tags.join(', ')}${featured.data.github ? `\nGitHub: ${featured.data.github}` : ''}${featured.data.live ? `\nLive: ${featured.data.live}` : ''}
+Stack: ${featured.data.tags.join(', ')}${featured.data.github && !featured.data.private ? `\nGitHub: ${featured.data.github}` : ''}${featured.data.github && featured.data.private ? '\nSource: private repository' : ''}${featured.data.live ? `\nLive: ${featured.data.live}` : ''}
 
 ## Recent
 

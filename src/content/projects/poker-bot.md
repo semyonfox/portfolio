@@ -1,8 +1,7 @@
 ---
 title: 'Poker Bot'
-description: 'Poker hand evaluator written in Rust. Parses cards and ranks hands from high card to royal flush.'
+description: 'A Rust CLI that parses card notation and ranks poker hands from high card through royal flush.'
 tags: ['Rust']
+category: 'personal'
 order: 10
 ---
-
-CLI poker hand evaluator that parses card notation and determines hand rankings.

@@ -10,7 +10,8 @@ export const GET: APIRoute = async () => {
 
   const renderOne = (p: (typeof all)[number]) => {
     const links = [
-      p.data.github ? `GitHub: ${p.data.github}` : null,
+      p.data.github && !p.data.private ? `GitHub: ${p.data.github}` : null,
+      p.data.github && p.data.private ? 'Source: private repository' : null,
       p.data.live ? `Live: ${p.data.live}` : null,
     ]
       .filter(Boolean)
@@ -20,7 +21,7 @@ export const GET: APIRoute = async () => {
       '',
       p.data.description,
       '',
-      `Tags: ${p.data.tags.join(', ')}`,
+      `Stack: ${p.data.tags.join(', ')}`,
       links ? links : null,
     ]
       .filter((s) => s !== null)
@@ -29,7 +30,7 @@ export const GET: APIRoute = async () => {
 
   const md = `# Projects
 
-Things I've built, broken, and learned from. ${all.length} projects total.
+Things I've built, broken, and learned from. ${all.length} entries.
 
 ## Personal (${personal.length})
 
