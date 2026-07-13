@@ -40,6 +40,7 @@ const gamePreviewClass: Record<string, string> = {
             class="game-card bg-surface border border-heading/[0.06] rounded-bento overflow-hidden hover:border-heading/10 transition-colors text-left group"
             data-game-id={game.id}
             data-game-title={game.data.title}
+            data-game-description={game.data.description}
             data-game-tech={game.data.tech}
             data-game-github={game.data.private ? '' : game.data.github || ''}
             data-game-private={game.data.private ? 'true' : 'false'}
@@ -129,6 +130,9 @@ const gamePreviewClass: Record<string, string> = {
           allow="fullscreen"
           tabindex="0"
           title="Game player"></iframe>
+      </div>
+      <div id="player-details" class="player-details">
+        <p id="player-description" class="type-body"></p>
       </div>
     </div>
   </section>
@@ -415,6 +419,20 @@ const gamePreviewClass: Record<string, string> = {
     aspect-ratio: var(--game-aspect, 16 / 9);
   }
 
+  .player-details {
+    width: 100%;
+    max-width: min(
+      100%,
+      calc((100vh - 7rem) * var(--game-aspect-value, 1.777)),
+      96rem
+    );
+    margin: 1rem auto 0;
+    padding: 1rem 1.25rem;
+    border: 1px solid #252525;
+    border-radius: 0.75rem;
+    background: #151515;
+  }
+
   .game-stage:fullscreen {
     width: 100vw;
     height: 100vh;
@@ -445,6 +463,7 @@ const gamePreviewClass: Record<string, string> = {
   const player = document.getElementById('game-player');
   const frame = document.getElementById('player-frame') as HTMLIFrameElement;
   const title = document.getElementById('player-title');
+  const description = document.getElementById('player-description');
   const tech = document.getElementById('player-tech');
   const githubLink = document.getElementById(
     'player-github',
@@ -461,6 +480,9 @@ const gamePreviewClass: Record<string, string> = {
       track('game_open', el.dataset.gameId);
 
       if (title) title.textContent = el.dataset.gameTitle || '';
+      if (description) {
+        description.textContent = el.dataset.gameDescription || '';
+      }
       if (tech) tech.textContent = el.dataset.gameTech || '';
 
       if (el.dataset.gamePrivate === 'true') {
