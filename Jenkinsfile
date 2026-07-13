@@ -1,3 +1,6 @@
+// Production Jenkins loads its pipeline definition from
+// server-stacks/jenkins/portfolio/Jenkinsfile. Keep this repository copy in
+// sync for local documentation and tooling.
 pipeline {
   agent any
 
