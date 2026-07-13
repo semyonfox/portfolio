@@ -53,13 +53,10 @@ pipeline {
         expression { !params.DEPLOY_ONLY }
       }
       steps {
-        sh '''
-          if node -e "const s=require('./package.json').scripts||{}; process.exit(s.lint ? 0 : 1)"; then
-            vp run check
-          else
-            echo "no lint script found, skipping"
-          fi
-        '''
+        // Vite+'s checker treats Astro route modules as plain TypeScript and
+        // misses Astro's generated content-collection types. Astro's checker
+        // is the authoritative type check for this project.
+        sh 'pnpm exec astro check'
       }
     }
 
