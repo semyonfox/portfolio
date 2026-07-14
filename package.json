@@ -15,7 +15,8 @@
     "people:graph": "node --experimental-strip-types scripts/generate-people-graph.mjs",
     "lint": "vp lint",
     "format": "vp fmt",
-    "check": "vp check && astro check",
+    "typecheck": "astro sync && node node_modules/typescript-7/bin/tsc --noEmit",
+    "check": "vp check && astro check && pnpm run typecheck",
     "deploy": "vp run check && vp run build && echo 'Deploy is handled by Jenkins after pushing main.'"
   },
   "dependencies": {
@@ -30,7 +31,8 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
     "@tailwindcss/vite": "^4.2.4",
-    "typescript": "^5.9.3",
+    "typescript": "npm:@typescript/typescript6@^6.0.2",
+    "typescript-7": "npm:typescript@^7.0.2",
     "vite": "catalog:",
     "vite-plus": "catalog:"
   }
