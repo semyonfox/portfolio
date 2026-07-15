@@ -12,6 +12,12 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+const posts = (await getCollection('blog')).sort(
+  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+);
+const currentPostIndex = posts.findIndex(({ id }) => id === post.id);
+const previousPost = posts[currentPostIndex - 1];
+const nextPost = posts[currentPostIndex + 1];
 ---
 
 <Layout
@@ -49,5 +55,40 @@ const { Content } = await render(post);
     <div id="post-content" class="type-prose">
       <Content />
     </div>
+    {
+      (previousPost || nextPost) && (
+        <nav
+          aria-label="Blog post navigation"
+          class="grid gap-3 border-t border-heading/[0.08] mt-12 pt-8 sm:grid-cols-2"
+        >
+          {previousPost ? (
+            <a
+              href={`/blog/${previousPost.id}`}
+              rel="prev"
+              class="group rounded-bento border border-heading/[0.08] p-4 transition-colors hover:border-fox/30"
+            >
+              <span class="mb-1 block text-xs text-dim">&larr; Previous post</span>
+              <span class="text-sm font-medium text-heading transition-colors group-hover:text-fox/90">
+                {previousPost.data.title}
+              </span>
+            </a>
+          ) : (
+            <span class="hidden sm:block" aria-hidden="true" />
+          )}
+          {nextPost && (
+            <a
+              href={`/blog/${nextPost.id}`}
+              rel="next"
+              class="group rounded-bento border border-heading/[0.08] p-4 text-right transition-colors hover:border-fox/30 sm:col-start-2"
+            >
+              <span class="mb-1 block text-xs text-dim">Next post &rarr;</span>
+              <span class="text-sm font-medium text-heading transition-colors group-hover:text-fox/90">
+                {nextPost.data.title}
+              </span>
+            </a>
+          )}
+        </nav>
+      )
+    }
   </article>
 </Layout>
