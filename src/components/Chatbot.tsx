@@ -37,7 +37,7 @@ const RATE_LIMIT_MSGS = [
 
 // shown on server errors (500, timeouts, network issues)
 const ERROR_MSGS = [
-  "my brain isn't connected yet - the rust backend is coming soon!",
+  "my brain isn't available right now - try again in a moment.",
   'the server tripped over a cable, try again in a sec',
 ];
 
