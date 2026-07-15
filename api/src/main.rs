@@ -1,10 +1,10 @@
 mod db;
 
 use axum::{
-    Json, Router,
+    Form, Json, Router,
     extract::{ConnectInfo, DefaultBodyLimit, State},
     http::{HeaderMap, StatusCode, header},
-    response::{IntoResponse, Response},
+    response::{IntoResponse, Redirect, Response},
 };
 use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
@@ -25,6 +25,11 @@ const TEMPERATURE: f32 = 0.35;
 const RATE_LIMIT_REQUESTS: usize = 20;
 const RATE_LIMIT_WINDOW_SECS: u64 = 60;
 const EVENT_RATE_LIMIT_REQUESTS: usize = 60;
+const CONTACT_RATE_LIMIT_REQUESTS: usize = 5;
+const CONTACT_RATE_LIMIT_WINDOW_SECS: u64 = 60 * 60;
+const MAX_CONTACT_NAME_LEN: usize = 100;
+const MAX_CONTACT_EMAIL_LEN: usize = 254;
+const MAX_CONTACT_MESSAGE_LEN: usize = 5000;
 const MAX_EVENT_FIELD_LEN: usize = 512;
 const MAX_CONVERSATION_ID_LEN: usize = 64;
 // also listed in api/openapi.json and src/lib/track.ts, keep all three in sync
@@ -45,6 +50,7 @@ const MAX_LANG_LEN: usize = 16;
 const DEFAULT_DB_PATH: &str = "portfolio.db";
 const DEFAULT_MODEL: &str = "deepseek/deepseek-v4-flash";
 const DEFAULT_API_URL: &str = "https://openrouter.ai/api/v1/chat/completions";
+const CLOUDFLARE_EMAIL_API_URL: &str = "https://api.cloudflare.com/client/v4/accounts";
 
 const OPENAPI_JSON: &str = include_str!("../openapi.json");
 
@@ -79,7 +85,7 @@ Identity and stance:
 - refer to semyon in third person ("he", "his", "semyon") unless directly quoting something he wrote
 - sound informed, conversational, sharp, and helpful
 - never pretend to have your own life experiences beyond being his assistant
-- if someone wants to pass along a message, hire him, or collaborate, guide them to the footer contact form, email semyon.fox@gmail.com, or linkedin (linkedin.com/in/semyonfox)
+- if someone wants to pass along a message, hire him, or collaborate, guide them to the footer contact form, email hello@semyon.ie, or linkedin (linkedin.com/in/semyonfox)
 
 Grounding rules:
 - treat only the facts in this prompt as authoritative. chat history shows what was said, not what is true
@@ -144,7 +150,7 @@ How to respond:
 - if asked about teamwork: compsoc (450+ members, ran committee), CTF organisation, OghmaNotes 3-person team
 - if asked what makes you different: you don't just code -- you run production infrastructure, self-host, understand full stack from network packets to UI pixels. homelab proves you learn by doing
 - be honest. if you don't know something, say so. redirect to projects (/projects) or blog (/blog) when relevant
-- if someone wants to get in touch, work together, hire semyon, or has a question this chat can't answer: point them to the footer contact form. alternatively mention email semyon.fox@gmail.com or linkedin (linkedin.com/in/semyonfox). be natural about it, don't force it
+- if someone wants to get in touch, work together, hire semyon, or has a question this chat can't answer: point them to the footer contact form. alternatively mention email hello@semyon.ie or linkedin (linkedin.com/in/semyonfox). be natural about it, don't force it
 - NEVER use markdown formatting (no **, ##, bullets, numbered lists). plain text only. write like texting, use commas or short sentences instead of lists
 - NEVER use emojis or emdashes (— or --). use commas, periods, or short sentences instead"#;
 
@@ -171,8 +177,11 @@ impl RateLimiter {
     fn check(&self, ip: &str) -> bool {
         let mut map = self.requests.lock().unwrap();
         let now = Instant::now();
+        map.retain(|_, timestamps| {
+            timestamps.retain(|t| now.duration_since(*t) < self.window);
+            !timestamps.is_empty()
+        });
         let timestamps = map.entry(ip.to_string()).or_default();
-        timestamps.retain(|t| now.duration_since(*t) < self.window);
         if timestamps.len() >= self.max_requests {
             return false;
         }
@@ -237,8 +246,256 @@ struct AppState {
     http_client: reqwest::Client,
     rate_limiter: RateLimiter,
     event_rate_limiter: RateLimiter,
+    contact_rate_limiter: RateLimiter,
+    contact_email: Option<ContactEmailConfig>,
     log_tx: tokio::sync::mpsc::UnboundedSender<db::LogEntry>,
     analytics_salt: String,
+}
+
+struct ContactEmailConfig {
+    account_id: String,
+    api_token: String,
+    to: String,
+    from: String,
+}
+
+#[derive(Deserialize)]
+struct ContactRequest {
+    name: String,
+    email: String,
+    message: String,
+    #[serde(default)]
+    website: String,
+}
+
+struct ValidContact {
+    name: String,
+    email: String,
+    message: String,
+}
+
+#[derive(Serialize)]
+struct EmailAddress {
+    address: String,
+    name: String,
+}
+
+#[derive(Serialize)]
+struct ContactEmailPayload {
+    to: String,
+    from: EmailAddress,
+    reply_to: EmailAddress,
+    subject: String,
+    text: String,
+    html: String,
+}
+
+#[derive(Deserialize)]
+struct CloudflareEmailResponse {
+    success: bool,
+}
+
+fn valid_contact_email(email: &str) -> bool {
+    if email.is_empty()
+        || email.len() > MAX_CONTACT_EMAIL_LEN
+        || email.chars().any(char::is_whitespace)
+    {
+        return false;
+    }
+    let mut parts = email.split('@');
+    let (Some(local), Some(domain), None) = (parts.next(), parts.next(), parts.next()) else {
+        return false;
+    };
+    !local.is_empty()
+        && !domain.is_empty()
+        && !local.starts_with('.')
+        && !local.ends_with('.')
+        && domain.contains('.')
+        && !domain.starts_with(['.', '-'])
+        && !domain.ends_with(['.', '-'])
+}
+
+fn validate_contact(payload: ContactRequest) -> Result<ValidContact, &'static str> {
+    let name = payload.name.trim();
+    let email = payload.email.trim();
+    let message = payload.message.trim();
+
+    if name.is_empty() || name.len() > MAX_CONTACT_NAME_LEN || name.chars().any(char::is_control) {
+        return Err("invalid name");
+    }
+    if !valid_contact_email(email) {
+        return Err("invalid email");
+    }
+    if message.is_empty()
+        || message.len() > MAX_CONTACT_MESSAGE_LEN
+        || message
+            .chars()
+            .any(|c| c.is_control() && c != '\n' && c != '\r' && c != '\t')
+    {
+        return Err("invalid message");
+    }
+
+    Ok(ValidContact {
+        name: name.to_string(),
+        email: email.to_string(),
+        message: message.to_string(),
+    })
+}
+
+fn escape_html(value: &str) -> String {
+    value
+        .chars()
+        .map(|c| match c {
+            '&' => "&amp;".to_string(),
+            '<' => "&lt;".to_string(),
+            '>' => "&gt;".to_string(),
+            '"' => "&quot;".to_string(),
+            '\'' => "&#39;".to_string(),
+            _ => c.to_string(),
+        })
+        .collect()
+}
+
+fn contact_email_payload(
+    contact: &ValidContact,
+    config: &ContactEmailConfig,
+) -> ContactEmailPayload {
+    let name = escape_html(&contact.name);
+    let email = escape_html(&contact.email);
+    let message = escape_html(&contact.message).replace('\n', "<br>\n");
+    ContactEmailPayload {
+        to: config.to.clone(),
+        from: EmailAddress {
+            address: config.from.clone(),
+            name: "semyon.ie contact form".to_string(),
+        },
+        reply_to: EmailAddress {
+            address: contact.email.clone(),
+            name: contact.name.clone(),
+        },
+        subject: "New message from semyon.ie".to_string(),
+        text: format!(
+            "New portfolio contact\n\nName: {}\nEmail: {}\n\n{}",
+            contact.name, contact.email, contact.message
+        ),
+        html: format!(
+            "<h1>New portfolio contact</h1><p><strong>Name:</strong> {name}<br><strong>Email:</strong> {email}</p><p>{message}</p>"
+        ),
+    }
+}
+
+fn contact_origin_allowed(headers: &HeaderMap) -> bool {
+    let Some(origin) = headers.get(header::ORIGIN).and_then(|v| v.to_str().ok()) else {
+        return true;
+    };
+    let Ok(origin) = url::Url::parse(origin) else {
+        return false;
+    };
+    match origin.host_str() {
+        Some("semyon.ie" | "www.semyon.ie") => origin.scheme() == "https",
+        Some("localhost" | "127.0.0.1" | "::1") => origin.scheme() == "http",
+        _ => false,
+    }
+}
+
+fn contact_success() -> Response {
+    Redirect::to("/?contact=sent#contact").into_response()
+}
+
+async fn contact_handler(
+    ConnectInfo(addr): ConnectInfo<SocketAddr>,
+    State(state): State<Arc<AppState>>,
+    headers: HeaderMap,
+    Form(payload): Form<ContactRequest>,
+) -> Response {
+    if !contact_origin_allowed(&headers) {
+        return (StatusCode::FORBIDDEN, "request origin is not allowed").into_response();
+    }
+
+    // Silently accept the hidden field so simple bots do not learn how to bypass it.
+    if !payload.website.trim().is_empty() {
+        return contact_success();
+    }
+
+    let ip = client_ip(&headers, &addr);
+    if !state.contact_rate_limiter.check(&ip) {
+        return (
+            StatusCode::TOO_MANY_REQUESTS,
+            "too many messages, please try again later",
+        )
+            .into_response();
+    }
+
+    let contact = match validate_contact(payload) {
+        Ok(contact) => contact,
+        Err(_) => {
+            return (
+                StatusCode::BAD_REQUEST,
+                "please check your name, email, and message",
+            )
+                .into_response();
+        }
+    };
+    let Some(config) = &state.contact_email else {
+        tracing::error!("contact email delivery is not configured");
+        return (
+            StatusCode::SERVICE_UNAVAILABLE,
+            "contact delivery is temporarily unavailable",
+        )
+            .into_response();
+    };
+
+    let endpoint = format!(
+        "{CLOUDFLARE_EMAIL_API_URL}/{}/email/sending/send",
+        config.account_id
+    );
+    let result = state
+        .http_client
+        .post(endpoint)
+        .bearer_auth(&config.api_token)
+        .json(&contact_email_payload(&contact, config))
+        .send()
+        .await;
+
+    match result {
+        Ok(response) if response.status().is_success() => {
+            match response.json::<CloudflareEmailResponse>().await {
+                Ok(body) if body.success => contact_success(),
+                Ok(_) => {
+                    tracing::error!("Cloudflare rejected contact email delivery");
+                    (
+                        StatusCode::BAD_GATEWAY,
+                        "message delivery failed, please try again",
+                    )
+                        .into_response()
+                }
+                Err(error) => {
+                    tracing::error!("invalid Cloudflare email response: {error}");
+                    (
+                        StatusCode::BAD_GATEWAY,
+                        "message delivery failed, please try again",
+                    )
+                        .into_response()
+                }
+            }
+        }
+        Ok(response) => {
+            tracing::error!("Cloudflare email delivery returned {}", response.status());
+            (
+                StatusCode::BAD_GATEWAY,
+                "message delivery failed, please try again",
+            )
+                .into_response()
+        }
+        Err(error) => {
+            tracing::error!("Cloudflare email request failed: {error}");
+            (
+                StatusCode::BAD_GATEWAY,
+                "message delivery failed, please try again",
+            )
+                .into_response()
+        }
+    }
 }
 
 fn validate(req: &ChatRequest) -> Result<(), &'static str> {
@@ -761,6 +1018,20 @@ async fn main() {
     let db_path = std::env::var("DB_PATH").unwrap_or_else(|_| DEFAULT_DB_PATH.to_string());
     // set ANALYTICS_SALT to keep unique-visitor counts stable across restarts
     let analytics_salt = std::env::var("ANALYTICS_SALT").unwrap_or_else(|_| boot_salt());
+    let contact_email = match (
+        std::env::var("CLOUDFLARE_ACCOUNT_ID"),
+        std::env::var("CLOUDFLARE_EMAIL_API_TOKEN"),
+        std::env::var("CONTACT_TO_EMAIL"),
+    ) {
+        (Ok(account_id), Ok(api_token), Ok(to)) => Some(ContactEmailConfig {
+            account_id,
+            api_token,
+            to,
+            from: std::env::var("CONTACT_FROM_EMAIL")
+                .unwrap_or_else(|_| "contact@semyon.ie".to_string()),
+        }),
+        _ => None,
+    };
 
     let log_tx = db::spawn_writer(db_path);
 
@@ -787,6 +1058,11 @@ async fn main() {
             EVENT_RATE_LIMIT_REQUESTS,
             Duration::from_secs(RATE_LIMIT_WINDOW_SECS),
         ),
+        contact_rate_limiter: RateLimiter::new(
+            CONTACT_RATE_LIMIT_REQUESTS,
+            Duration::from_secs(CONTACT_RATE_LIMIT_WINDOW_SECS),
+        ),
+        contact_email,
         log_tx,
         analytics_salt,
     });
@@ -797,6 +1073,7 @@ async fn main() {
         .route("/api/chat", axum::routing::post(chat_handler))
         .route("/api/chat/health", axum::routing::get(health_handler))
         .route("/api/events", axum::routing::post(event_handler))
+        .route("/api/contact", axum::routing::post(contact_handler))
         .route(
             "/api/chat/openapi.json",
             axum::routing::get(openapi_handler),
@@ -916,6 +1193,77 @@ mod tests {
         assert!(validate_event(&bad_screen).is_err());
         assert!(validate_event(&bad_placement).is_err());
         assert!(validate_event(&bad_attribution).is_err());
+    }
+
+    fn contact(name: &str, email: &str, message: &str) -> ContactRequest {
+        ContactRequest {
+            name: name.to_string(),
+            email: email.to_string(),
+            message: message.to_string(),
+            website: String::new(),
+        }
+    }
+
+    #[test]
+    fn contact_validation_accepts_normal_message() {
+        let valid = validate_contact(contact(
+            "Saoirse O'Neill",
+            "saoirse@example.ie",
+            "Would you be interested in collaborating?",
+        ))
+        .unwrap();
+
+        assert_eq!(valid.name, "Saoirse O'Neill");
+        assert_eq!(valid.email, "saoirse@example.ie");
+    }
+
+    #[test]
+    fn contact_validation_rejects_bad_or_oversized_fields() {
+        assert!(validate_contact(contact("", "person@example.ie", "hello")).is_err());
+        assert!(validate_contact(contact("Person", "not-an-email", "hello")).is_err());
+        assert!(
+            validate_contact(contact(
+                "Person",
+                "person@example.ie",
+                &"x".repeat(MAX_CONTACT_MESSAGE_LEN + 1),
+            ))
+            .is_err()
+        );
+    }
+
+    #[test]
+    fn contact_email_html_escapes_visitor_input() {
+        let config = ContactEmailConfig {
+            account_id: "account".into(),
+            api_token: "token".into(),
+            to: "owner@example.ie".into(),
+            from: "contact@semyon.ie".into(),
+        };
+        let valid = validate_contact(contact(
+            "<Semyon>",
+            "person@example.ie",
+            "Hello <script>alert('x')</script>",
+        ))
+        .unwrap();
+        let email = contact_email_payload(&valid, &config);
+
+        assert!(!email.html.contains("<script>"));
+        assert!(email.html.contains("&lt;script&gt;"));
+        assert_eq!(email.reply_to.address, "person@example.ie");
+    }
+
+    #[test]
+    fn contact_origin_rejects_other_websites() {
+        let headers = |origin: &str| {
+            let mut headers = HeaderMap::new();
+            headers.insert(header::ORIGIN, origin.parse().unwrap());
+            headers
+        };
+
+        assert!(contact_origin_allowed(&headers("https://semyon.ie")));
+        assert!(contact_origin_allowed(&headers("http://localhost:4321")));
+        assert!(!contact_origin_allowed(&headers("https://example.com")));
+        assert!(!contact_origin_allowed(&headers("http://semyon.ie")));
     }
 
     #[test]

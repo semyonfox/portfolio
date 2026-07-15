@@ -35,6 +35,14 @@ Replace only the placeholders required for the process you are running. Keep
 `ANALYTICS_SALT` stable and secret in production; development may use the API's
 per-process fallback.
 
+The contact form uses Cloudflare Email Service through the REST API. Set
+`CLOUDFLARE_ACCOUNT_ID`, a narrowly scoped `CLOUDFLARE_EMAIL_API_TOKEN` with
+Email Sending permission, and `CONTACT_TO_EMAIL` to the exact verified
+destination address in the Cloudflare account. `CONTACT_FROM_EMAIL` defaults to
+`contact@semyon.ie`; its domain must be onboarded for Email Sending. Keeping the
+recipient as a verified destination makes these notifications free on the
+Workers Free plan.
+
 ## Inspect a setting
 
 Choose the checkout or live base directory, then query a single variable:

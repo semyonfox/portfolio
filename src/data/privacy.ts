@@ -4,7 +4,7 @@ export const privacyMeta = {
   title: 'Privacy',
   pageDescription:
     'What semyon.ie collects and why. No cookies, no banners, no raw IPs.',
-  updated: '11 July 2026',
+  updated: '15 July 2026',
 };
 
 export interface PrivacySection {
@@ -45,14 +45,14 @@ export const privacySections: PrivacySection[] = [
     heading: 'Third parties',
     items: [
       'OpenRouter: chat messages are forwarded to OpenRouter and the underlying model provider to generate replies.',
-      'Formspree: the contact form is processed by Formspree, which receives the name, email, and message you submit.',
+      'Cloudflare Email Service: contact form messages are sent to Semyon’s verified inbox through Cloudflare, which receives the name, email, and message you submit.',
       'Cloudflare: site traffic passes through Cloudflare, which performs the country lookup at the edge.',
     ],
   },
   {
     heading: 'Retention',
     paragraphs: [
-      'Chat logs are kept for up to 12 months. Usage events are kept for up to 24 months. After that they’re deleted.',
+      'Chat logs are kept for up to 12 months. Usage events are kept for up to 24 months. After that they’re deleted. Contact message contents are not stored in this site’s database; the delivered email remains in Semyon’s inbox until deleted.',
     ],
   },
   {
