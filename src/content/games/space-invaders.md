@@ -6,6 +6,6 @@ github: 'https://github.com/semyonfox/space-invaders'
 embed: '/games/space-invaders/index.html'
 displayWidth: 960
 displayHeight: 540
-thumbnail: '/game-thumbnails/space-invaders.webp'
+thumbnail: '/game-thumbnails/space-invaders.webp?v=20260715'
 order: 1
 ---

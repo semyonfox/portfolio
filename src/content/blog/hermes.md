@@ -27,7 +27,7 @@ This is a tour of my workflow, not a universal install guide. I assume you alrea
 - **Routine checks:** small jobs can run quietly in the background.
 - **Important decisions stay with me:** automation stays narrow, visible, and reviewable.
 
-![Architecture diagram showing Discord, WhatsApp, and terminal requests passing through the Hermes gateway, a selected profile, and a workflow before reaching the server workspace. Memory and skills retain reusable context.](/blog/hermes-architecture.svg)
+![Architecture diagram showing Discord, WhatsApp, and terminal requests passing through the Hermes gateway, a selected profile, and a workflow before reaching the server workspace. Memory and skills retain reusable context.](/blog/hermes-architecture.svg?v=20260715)
 
 ## Start with one safe workflow
 

@@ -4,6 +4,6 @@ description: 'Browser-console script that automates interactions on wikigacha.co
 noEmbed: 'Browser-console script; not playable on this site. See the source on GitHub.'
 tech: 'JavaScript'
 github: 'https://github.com/semyonfox/gachaBot'
-thumbnail: '/game-thumbnails/gacha-bot.webp'
+thumbnail: '/game-thumbnails/gacha-bot.webp?v=20260715'
 order: 6
 ---

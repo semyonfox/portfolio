@@ -7,6 +7,6 @@ private: true
 embed: '/games/game-of-life/index.html'
 displayWidth: 900
 displayHeight: 900
-thumbnail: '/game-thumbnails/game-of-life.webp'
+thumbnail: '/game-thumbnails/game-of-life.webp?v=20260715'
 order: 3
 ---

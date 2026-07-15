@@ -6,6 +6,6 @@ github: 'https://github.com/semyonfox/astar-maze-chase'
 embed: '/games/astar-maze-chase/index.html'
 displayWidth: 1280
 displayHeight: 800
-thumbnail: '/game-thumbnails/maze-chase.webp'
+thumbnail: '/game-thumbnails/maze-chase.webp?v=20260715'
 order: 2
 ---

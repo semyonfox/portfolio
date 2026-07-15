@@ -6,6 +6,6 @@ github: 'https://github.com/semyonfox/cellular-automata-caves'
 embed: '/games/cellular-automata-caves/index.html'
 displayWidth: 900
 displayHeight: 900
-thumbnail: '/game-thumbnails/cellular-caves.webp'
+thumbnail: '/game-thumbnails/cellular-caves.webp?v=20260715'
 order: 5
 ---
