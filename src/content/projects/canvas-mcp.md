@@ -6,3 +6,5 @@ category: 'personal'
 github: 'https://github.com/semyonfox/canvas-mcp'
 order: 9
 ---
+
+I built this as a single TypeScript MCP server that brings together twelve open-source Canvas LMS integrations into one maintainable interface for the Canvas REST API.
