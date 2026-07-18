@@ -1,6 +1,12 @@
 .astro
 .git
 .env
+.env.*
 api/target
 dist
 node_modules
+.github
+coverage
+docs
+jenkins
+*.log
