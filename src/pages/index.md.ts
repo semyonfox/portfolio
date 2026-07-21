@@ -26,6 +26,8 @@ Developer, swimmer, builder. Second-year Computer Science & IT student at the Un
 
 Builds and breaks things with curiosity. Currently running 54 containers on a repurposed Dell XPS 15 homelab and chasing sub-1min 100m freestyle.
 
+**Seeking a Jan–Aug 2027 software engineering / platform / SRE placement.**
+
 ## Tech
 
 JavaScript, TypeScript, React, Next.js, Node.js/Express, Java, Python, Rust, C, SQL, PostgreSQL, MySQL, TimescaleDB, Redis, Docker, Jenkins CI/CD, Linux, nginx, Cloudflare Workers, Tunnels, Zero Trust, AWS, Tailwind, Astro.
