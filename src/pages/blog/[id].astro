@@ -92,3 +92,184 @@ const nextPost = posts[currentPostIndex + 1];
     }
   </article>
 </Layout>
+
+<script>
+  const clamp = (value: number) => Math.min(Math.max(value, 75), 300);
+
+  const icons = {
+    minus:
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14" /></svg>',
+    plus:
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" /></svg>',
+    reset:
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4v6h6M5.5 15a7 7 0 1 0 .8-7.8L4 10" /></svg>',
+    expand:
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5" /></svg>',
+    close:
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" /></svg>',
+  } as const;
+
+  const makeButton = (
+    icon: keyof typeof icons,
+    title: string,
+    action: () => void,
+  ) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.innerHTML = icons[icon];
+    button.title = title;
+    button.setAttribute('aria-label', title);
+    button.addEventListener('click', action);
+    return button;
+  };
+
+  const enablePanning = (
+    viewport: HTMLElement,
+    image: HTMLImageElement,
+  ) => {
+    image.draggable = false;
+    image.addEventListener('dragstart', (event) => event.preventDefault());
+
+    let dragging = false;
+    let startX = 0;
+    let startY = 0;
+    let startLeft = 0;
+    let startTop = 0;
+
+    viewport.addEventListener('pointerdown', (event) => {
+      if (event.pointerType !== 'mouse' || event.button !== 0) return;
+      event.preventDefault();
+      dragging = true;
+      startX = event.clientX;
+      startY = event.clientY;
+      startLeft = viewport.scrollLeft;
+      startTop = viewport.scrollTop;
+      viewport.classList.add('is-dragging');
+      viewport.setPointerCapture(event.pointerId);
+    });
+
+    viewport.addEventListener('pointermove', (event) => {
+      if (!dragging) return;
+      viewport.scrollLeft = startLeft - (event.clientX - startX);
+      viewport.scrollTop = startTop - (event.clientY - startY);
+    });
+
+    const stopDragging = (event: PointerEvent) => {
+      if (!dragging) return;
+      dragging = false;
+      viewport.classList.remove('is-dragging');
+      if (viewport.hasPointerCapture(event.pointerId)) {
+        viewport.releasePointerCapture(event.pointerId);
+      }
+    };
+
+    viewport.addEventListener('pointerup', stopDragging);
+    viewport.addEventListener('pointercancel', stopDragging);
+  };
+
+  const modal = document.createElement('dialog');
+  modal.className = 'diagram-modal';
+
+  const modalHeader = document.createElement('div');
+  modalHeader.className = 'diagram-modal__header';
+
+  const modalTitle = document.createElement('span');
+  modalTitle.textContent = 'Diagram';
+
+  const modalViewport = document.createElement('div');
+  modalViewport.className = 'diagram-modal__viewport';
+
+  const modalImage = document.createElement('img');
+  modalImage.className = 'diagram-modal__image';
+
+  let modalZoom = 100;
+  const setModalZoom = (nextZoom: number) => {
+    modalZoom = clamp(nextZoom);
+    modalImage.style.width = `${modalZoom}%`;
+  };
+
+  const modalControls = document.createElement('div');
+  modalControls.className = 'diagram-controls diagram-modal__controls';
+  const closeModal = makeButton('close', 'Close diagram', () => modal.close());
+  modalControls.append(
+    makeButton('minus', 'Zoom out', () => setModalZoom(modalZoom - 25)),
+    makeButton('plus', 'Zoom in', () => setModalZoom(modalZoom + 25)),
+    makeButton('reset', 'Reset zoom and position', () => {
+      setModalZoom(100);
+      modalViewport.scrollTo(0, 0);
+    }),
+    closeModal,
+  );
+
+  modalHeader.append(modalTitle, modalControls);
+  modalViewport.append(modalImage);
+  modal.append(modalHeader, modalViewport);
+  document.body.append(modal);
+  enablePanning(modalViewport, modalImage);
+
+  modal.addEventListener('click', (event) => {
+    if (event.target === modal) modal.close();
+  });
+
+  document
+    .querySelectorAll<HTMLImageElement>('#post-content img[src*=".svg"]')
+    .forEach((diagram) => {
+      if (diagram.closest('.diagram-viewer')) return;
+
+      const viewer = document.createElement('figure');
+      viewer.className = 'diagram-viewer';
+
+      const viewport = document.createElement('div');
+      viewport.className = 'diagram-viewer__viewport';
+      viewport.tabIndex = 0;
+      viewport.setAttribute('aria-label', diagram.alt || 'Interactive diagram');
+
+      const fitViewportToDiagram = () => {
+        if (diagram.naturalWidth && diagram.naturalHeight) {
+          viewport.style.aspectRatio = `${diagram.naturalWidth} / ${diagram.naturalHeight}`;
+        }
+      };
+
+      if (diagram.complete) fitViewportToDiagram();
+      else diagram.addEventListener('load', fitViewportToDiagram, { once: true });
+
+      let zoom = 100;
+      const setZoom = (nextZoom: number) => {
+        zoom = clamp(nextZoom);
+        diagram.style.width = `${zoom}%`;
+      };
+
+      const controls = document.createElement('div');
+      controls.className = 'diagram-controls diagram-viewer__controls';
+      controls.append(
+        makeButton('minus', 'Zoom out', () => setZoom(zoom - 25)),
+        makeButton('plus', 'Zoom in', () => setZoom(zoom + 25)),
+        makeButton('reset', 'Reset zoom and position', () => {
+          setZoom(100);
+          viewport.scrollTo(0, 0);
+        }),
+        makeButton('expand', 'View large', () => {
+          modalImage.src = diagram.currentSrc || diagram.src;
+          modalImage.alt = diagram.alt;
+          modalTitle.textContent = diagram.alt || 'Diagram';
+          setModalZoom(100);
+          modalViewport.scrollTo(0, 0);
+          modal.showModal();
+          closeModal.focus();
+        }),
+      );
+
+      const imageParagraph = diagram.parentElement;
+      const insertionPoint =
+        imageParagraph?.tagName === 'P' && imageParagraph.childElementCount === 1
+          ? imageParagraph
+          : diagram;
+
+      insertionPoint.replaceWith(viewer);
+      viewport.append(diagram);
+      viewer.append(viewport, controls);
+      enablePanning(viewport, diagram);
+      setZoom(100);
+      fitViewportToDiagram();
+    });
+</script>

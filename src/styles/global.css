@@ -166,9 +166,109 @@
 
   .type-prose img[src$='.svg'] {
     display: block;
-    width: 85%;
+    width: 100%;
     height: auto;
     margin-inline: auto;
+  }
+
+  .diagram-viewer {
+    @apply relative overflow-hidden rounded-xl border border-border bg-surface;
+  }
+
+  .diagram-viewer__viewport {
+    overflow: auto;
+    cursor: grab;
+    overscroll-behavior: contain;
+    scrollbar-width: none;
+    touch-action: pan-x pan-y;
+  }
+
+  .diagram-viewer__viewport::-webkit-scrollbar,
+  .diagram-modal__viewport::-webkit-scrollbar {
+    display: none;
+  }
+
+  .diagram-viewer__viewport.is-dragging,
+  .diagram-modal__viewport.is-dragging {
+    cursor: grabbing;
+    user-select: none;
+  }
+
+  .diagram-viewer__viewport > img {
+    @apply m-0 w-full select-none;
+    max-width: none;
+  }
+
+  .diagram-controls {
+    @apply flex gap-1.5;
+  }
+
+  .diagram-controls > button {
+    @apply grid h-9 w-9 cursor-pointer place-items-center rounded-lg border border-border bg-bg/95 p-0 text-muted shadow-lg transition-colors hover:border-fox/40 hover:bg-border hover:text-heading;
+  }
+
+  .diagram-controls svg {
+    width: 1.125rem;
+    height: 1.125rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .diagram-viewer__controls {
+    @apply absolute top-2 right-2 opacity-0 transition-opacity;
+  }
+
+  .diagram-viewer:hover .diagram-viewer__controls,
+  .diagram-viewer:focus-within .diagram-viewer__controls {
+    @apply opacity-100;
+  }
+
+  .diagram-modal {
+    width: min(96vw, 100rem);
+    height: 92vh;
+    max-width: none;
+    max-height: none;
+    padding: 0;
+    @apply overflow-hidden rounded-xl border border-border bg-bg text-heading shadow-2xl;
+  }
+
+  .diagram-modal::backdrop {
+    background: rgb(0 0 0 / 80%);
+  }
+
+  .diagram-modal__header {
+    @apply flex h-12 items-center justify-between gap-4 border-b border-border px-4 text-xs text-muted;
+  }
+
+  .diagram-modal__header > span {
+    @apply truncate;
+  }
+
+  .diagram-modal__viewport {
+    height: calc(92vh - 3rem);
+    overflow: auto;
+    cursor: grab;
+    overscroll-behavior: contain;
+    scrollbar-width: none;
+    @apply p-4;
+  }
+
+  .diagram-modal__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: none;
+    margin: 0;
+    user-select: none;
+  }
+
+  @media (hover: none) {
+    .diagram-viewer__controls {
+      @apply opacity-100;
+    }
   }
 
   .project-details {

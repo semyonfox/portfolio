@@ -1,0 +1,33 @@
+%%{init: {"theme":"base","themeVariables":{"background":"transparent","primaryColor":"#151515","primaryTextColor":"#f0f0f0","primaryBorderColor":"#e8702a","lineColor":"#686868","textColor":"#d8d8d8","edgeLabelBackground":"#0b0b0b","fontSize":"20px","fontFamily":"Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"},"themeCSS":".flowchart-link{stroke:#686868!important}.marker path{fill:#686868!important;stroke:#686868!important}","flowchart":{"curve":"basis","padding":14,"nodeSpacing":28,"rankSpacing":34}}}%%
+flowchart TD
+    accTitle: Homelab recovery decision tree
+    accDescr: An accidental deletion is recovered from a Btrfs snapshot, database corruption from a verified logical dump, server loss from Git and the weekly NAS mirror, a disk failure from RAID10, and total NAS or site loss from the encrypted Restic repository in B2. Every path ends with verification.
+
+    FAIL{"What failed?"}
+    FILE["One file or bad change"]
+    DB["Database state"]
+    SERVER["Server SSD or operating system"]
+    DISK["One NAS disk"]
+    NAS["Entire NAS or home site"]
+
+    SNAP["Browse read-only\nBtrfs snapshot"]
+    DUMP["Restore verified\nlogical DB dump"]
+    REBUILD["Rebuild from Git +\nweekly NAS mirror"]
+    RAID["Keep serving from RAID10\nreplace failed drive"]
+    B2["Restore encrypted\nRestic snapshot from B2"]
+    VERIFY["Verify files, ownership,\nservice health, and logs"]
+
+    FAIL --> FILE --> SNAP --> VERIFY
+    FAIL --> DB --> DUMP --> VERIFY
+    FAIL --> SERVER --> REBUILD --> VERIFY
+    FAIL --> DISK --> RAID --> VERIFY
+    FAIL --> NAS --> B2 --> VERIFY
+
+    classDef decision fill:#25180f,stroke:#e8702a,color:#f0f0f0,stroke-width:2px;
+    classDef failure fill:#2a1514,stroke:#d9685d,color:#f0f0f0,stroke-width:2px;
+    classDef recovery fill:#101c2a,stroke:#4c8ed9,color:#f0f0f0,stroke-width:2px;
+    classDef verify fill:#10251a,stroke:#4fa66b,color:#f0f0f0,stroke-width:2px;
+    class FAIL decision;
+    class FILE,DB,SERVER,DISK,NAS failure;
+    class SNAP,DUMP,REBUILD,RAID,B2 recovery;
+    class VERIFY verify;
