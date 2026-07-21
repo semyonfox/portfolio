@@ -1,0 +1,45 @@
+%%{init: {"theme":"base","themeVariables":{"background":"transparent","primaryColor":"#151515","primaryTextColor":"#f0f0f0","primaryBorderColor":"#e8702a","lineColor":"#686868","textColor":"#d8d8d8","clusterBkg":"#101010","clusterBorder":"#303030","fontSize":"20px","fontFamily":"Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"},"flowchart":{"curve":"basis","padding":14,"nodeSpacing":28,"rankSpacing":34}}}%%
+flowchart TB
+    accTitle: Homelab 3-2-1 recovery architecture
+    accDescr: Live data on the server and RAID10 NAS feeds verified local database dumps, a weekly server mirror, and Btrfs snapshots. Selected Immich originals and a verified database dump are encrypted by Restic and stored off-site in Backblaze B2.
+
+    subgraph PRIMARY[" "]
+        direction TB
+        PRIMARY_LABEL["PRIMARY SYSTEMS · HOME"]:::layer
+        SERVER["Server SSD\ncontainers · code · runtime state"]:::primary
+        NAS["Btrfs RAID10 NAS\n4 × 4 TB · NFS application data"]:::primary
+        PRIMARY_LABEL ~~~ SERVER
+        SERVER --> NAS
+    end
+
+    subgraph LOCAL[" "]
+        direction TB
+        LOCAL_LABEL["LOCAL RECOVERY · SAME SITE"]:::layer
+        DUMPS["NAS-local verified DB dumps\n+ portable volume archives"]:::local
+        MIRROR["NAS-local weekly server mirror\n+ manifest + inventory"]:::local
+        SNAPS["Read-only Btrfs snapshots\n7 daily · 4 weekly · monthly"]:::local
+        LOCAL_LABEL ~~~ DUMPS
+    end
+
+    subgraph OFFSITE[" "]
+        direction TB
+        OFFSITE_LABEL["OFF-SITE · SEPARATE FAILURE DOMAIN"]:::layer
+        RESTIC["Restic\nselected originals + verified dump\nclient-side encryption"]:::offsite
+        B2["Backblaze B2\nEU object storage"]:::offsite
+        OFFSITE_LABEL ~~~ RESTIC
+        RESTIC --> B2
+    end
+
+    SERVER --> DUMPS
+    SERVER --> MIRROR
+    NAS --> SNAPS
+    NAS --> RESTIC
+    DUMPS --> RESTIC
+
+    classDef layer fill:#202020,stroke:#3a3a3a,color:#f0f0f0,stroke-width:2px;
+    classDef primary fill:#101c2a,stroke:#4c8ed9,color:#f0f0f0,stroke-width:2px;
+    classDef local fill:#10251a,stroke:#4fa66b,color:#f0f0f0,stroke-width:2px;
+    classDef offsite fill:#25180f,stroke:#e8702a,color:#f0f0f0,stroke-width:2px;
+    style PRIMARY fill:#101010,stroke:#303030,stroke-width:2px;
+    style LOCAL fill:#101010,stroke:#303030,stroke-width:2px;
+    style OFFSITE fill:#101010,stroke:#303030,stroke-width:2px;

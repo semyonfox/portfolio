@@ -31,7 +31,10 @@ const academic = allProjects.filter((p) => p.data.category === 'academic');
       <div class="grid gap-4">
         {
           personal.map((project) => (
-            <article class="bg-surface border border-heading/[0.06] rounded-bento p-6 hover:border-heading/10 transition-colors">
+            <article
+              id={`project-${project.id}`}
+              class="bg-surface border border-heading/[0.06] rounded-bento p-6 scroll-mt-24 hover:border-heading/10 transition-colors"
+            >
               <div class="flex items-start justify-between gap-4 mb-3">
                 <div>
                   {project.data.featured && (
@@ -120,7 +123,10 @@ const academic = allProjects.filter((p) => p.data.category === 'academic');
       <div class="grid gap-4">
         {
           academic.map((project) => (
-            <article class="bg-surface border border-heading/[0.06] rounded-bento p-6 hover:border-heading/10 transition-colors">
+            <article
+              id={`project-${project.id}`}
+              class="bg-surface border border-heading/[0.06] rounded-bento p-6 scroll-mt-24 hover:border-heading/10 transition-colors"
+            >
               <div class="flex items-start justify-between gap-4 mb-3">
                 <h3 class="type-card-title">{project.data.title}</h3>
                 <div class="flex gap-2 shrink-0">
