@@ -1,0 +1,34 @@
+# Semyon Fox
+
+> Personal portfolio of Semyon Fox — developer, swimmer, and self-hosting enthusiast. It documents projects, technical writing, games, and a CV.
+
+The site permits crawling. Its full crawl policy and sitemap are at https://semyon.ie/robots.txt and https://semyon.ie/sitemap-index.xml.
+
+## Core pages
+
+- [Home](https://semyon.ie/): introduction and featured work
+- [Projects](https://semyon.ie/projects): software, homelab, and university projects
+- [Blog](https://semyon.ie/blog): technical writing
+- [CV](https://semyon.ie/cv): experience, education, and skills
+- [Games](https://semyon.ie/games): playable projects
+- [Chat API documentation](https://semyon.ie/docs/chat-api): public API reference
+- [Privacy](https://semyon.ie/privacy): privacy information
+
+## Selected technical work
+
+- [Oghma Notes](https://semyon.ie/projects): locally focused Markdown note-taking application
+- [Swim monitor](https://semyon.ie/projects): swim-session tracking and related tooling
+- [Home server](https://semyon.ie/projects): self-hosting and homelab work
+- [Cloudflare AI watchdog](https://semyon.ie/projects): Cloudflare and AI-crawler monitoring work
+
+## Selected writing
+
+- [Self-hosting](https://semyon.ie/blog/self-hosting)
+- [Homelab](https://semyon.ie/blog/homelab)
+- [Homelab data recovery](https://semyon.ie/blog/homelab-data-recovery)
+- [Hermes](https://semyon.ie/blog/hermes)
+- [CTF 2026](https://semyon.ie/blog/ctf-2026)
+
+## Machine-readable content
+
+Most human-facing pages support Markdown content negotiation: request the page with `Accept: text/markdown` to receive its Markdown representation where available. The sitemap is the authoritative complete URL inventory.
