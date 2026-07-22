@@ -11,7 +11,7 @@ or shared data source.
 | [`../README.md`](../README.md)                             | Contributors     | Current repository scripts and configuration        |
 | [`operations/secrets.md`](operations/secrets.md)           | Repository owner | Local stack configuration and the Bitwarden runbook |
 | [`privacy-first-analytics.md`](privacy-first-analytics.md) | Maintainers      | Event vocabulary, queries, and metric caveats       |
-| Chat API docs                                              | API consumers    | `api/openapi.json` and `src/data/chatApiDocs.ts`    |
+| [Chat API docs](/docs/chat-api/)                           | API consumers    | `api/openapi.json` and `src/data/chatApiDocs.ts`    |
 | Content schemas                                            | Content editors  | `src/content.config.ts`                             |
 
 Living documentation should describe the current repository. Update it in the
