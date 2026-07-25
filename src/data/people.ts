@@ -151,7 +151,7 @@ const rawPeople: RawPerson[] = [
     links: {
       primary: 'https://pimpmytype.com/',
       website: 'https://pimpmytype.com/',
-      youtube: 'https://www.youtube.com/@pimpmytpe',
+      youtube: 'https://www.youtube.com/@pimpmytype',
     },
     summary:
       'Oliver Schöndorfer teaching practical web and UI typography for better UX',
