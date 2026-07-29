@@ -10,7 +10,7 @@ I did not set up Hermes because I needed another chatbot. I wanted an agent laye
 
 [Hermes Agent](https://github.com/NousResearch/hermes-agent) is an open-source, model-agnostic agent framework. It is not the model doing the reasoning. It is the layer that connects a model to tools, messages, memory, skills, and scheduled work.
 
-It has become how I do most of my AI work. I use it for development, research, system administration, planning, reminders, and the little checks that keep everything moving. [T3 Code](https://t3.codes/) still owns most of my longer coding sessions, but Hermes is where work usually starts.
+It has become how I do most of my AI work. I use it for development, research, system administration, planning, and reminders. It also handles the little checks that keep everything moving. [T3 Code](https://t3.codes/) still owns most of my longer coding sessions, but Hermes is where work usually starts.
 
 Most of my code, services, notes, scripts, and experiments live on a laptop server. It grew out of my [homelab](/blog/homelab). Before Hermes, that meant a mess of CLIs, manual prompt-and-wait loops, and too many windows across two or three monitors.
 
@@ -52,7 +52,7 @@ Then show me the evidence that it worked.
 
 ### Where most work starts
 
-Hermes is not an occasional shortcut for me. It is my default place to start AI work. I use it for a small portfolio tweak, a bugfix, research, a service problem, a plan, or a question about what is happening across my setup.
+Hermes is not an occasional shortcut for me. It is my default place to start AI work. I use it for a small portfolio tweak, a bugfix, research, a service problem, or a plan. I also use it to ask what is happening across my setup.
 
 It also handles the work around development. It can follow up on something, check relevant email, or give me a device status. I do not have to SSH in and remember the right Linux command.
 
@@ -100,7 +100,7 @@ The important idea is simple: keep stable context where it belongs. Turn proven 
 
 ## Where T3 Code, Codex, and Claude Code fit
 
-[T3 Code](https://t3.codes/) now runs [OpenAI Codex](https://openai.com/codex/) and [Claude Code](https://www.anthropic.com/product/claude-code) for roughly 95% of my longer development work. It is where I manage coding-agent sessions, threads, diffs, and Git state.
+[T3 Code](https://t3.codes/) now runs [OpenAI Codex](https://openai.com/codex/) and [Claude Code](https://www.anthropic.com/product/claude-code) for roughly 95% of my longer development work. I use it to manage coding-agent sessions, threads, diffs, and Git state.
 
 That does not make Hermes a side tool. Hermes handles the wider majority of my AI work, and it is where I reach first. T3 Code is the focused environment for heavier coding sessions. If a Hermes task turns into a deeper repository job, it has somewhere sensible to go.
 
