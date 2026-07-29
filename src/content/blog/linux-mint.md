@@ -6,13 +6,13 @@ description: 'Windows 10 was approaching end of support, so I backed up my lapto
 tags: ['Linux', 'Linux Mint', 'Personal Setup']
 ---
 
-Windows 10 had started warning me about the end of support. I had already experimented with Ubuntu Server for home projects and briefly installed Kali, but I had never used Linux as my everyday desktop. So I backed everything up and wiped the laptop.
+Windows 10 had started warning me about the end of support. I had already tried Ubuntu Server for home projects and briefly installed Kali. However, I had never used Linux as my everyday desktop. So I backed everything up and wiped the laptop.
 
 ## A comfortable first desktop
 
 I chose Linux Mint Cinnamon because it looked good, felt stable, and used a familiar desktop layout. After switching to a dark-blue theme and installing VS Code, it mostly just worked. I could open a terminal without feeling as if I were about to break something, although I rarely needed to.
 
-Wi-Fi was the first exception. My HP EliteBook did not want to connect to eduroam until I found the right hidden network settings, helped by a Reddit thread and plenty of patience. The USB-C dock at university also made external displays flicker occasionally. No system is perfect; I learnt to shrug and save the logs for later.
+Wi-Fi was the first exception. My HP EliteBook did not connect to eduroam until I found the right hidden network settings. A Reddit thread and plenty of patience helped. The USB-C dock at university also made external displays flicker occasionally. No system is perfect. I learnt to shrug and save the logs for later.
 
 In my use, battery life improved by about 20% during long library sessions, and even Minecraft ran slightly better. I still used Windows on my desktop for heavier work, but Mint handled coding, Obsidian, and lectures without trouble.
 

@@ -6,7 +6,7 @@ description: 'I ran out of Google storage, so I moved 20 GB of family photos to 
 tags: ['Immich', 'Self-Hosting', 'Data Migration']
 ---
 
-I ran out of storage on Google Photos. Paying for more would have been the easy answer, but I was uncomfortable leaving all my family's photos and memories with one provider. I already had a [homelab](/blog/homelab), so I decided to use it.
+I ran out of storage on Google Photos. Paying for more would have been easy. However, I was uncomfortable leaving all my family's photos and memories with one provider. I already had a [homelab](/blog/homelab), so I decided to use it.
 
 ## Moving the library
 
@@ -18,8 +18,8 @@ I also worked on an nginx reverse proxy so the service could be reached through 
 
 ## Snapshots, backups, and the result
 
-The migration was about 20 GB—not huge by cloud-storage standards, but still a meaningful collection of family history. It now lives on hardware I manage. Btrfs snapshots make accidental changes easier to roll back, while regular backups provide the separate copies a snapshot cannot.
+The migration was about 20 GB. That is not huge by cloud-storage standards, but it is a meaningful collection of family history. It now lives on hardware I manage. Btrfs snapshots make accidental changes easier to reverse. Regular backups provide the separate copies that a snapshot cannot.
 
-What surprised me most was how close the everyday experience felt to Google Photos. Immich was fast, search worked well, and my family could keep using an app instead of learning a completely new workflow.
+What surprised me most was how close the everyday experience felt to Google Photos. Immich was fast, and its search worked well. My family could keep using an app instead of learning a completely new workflow.
 
-The move taught me more than expected about Docker volumes, Btrfs snapshots, backups, metadata, and the care required when moving 20 GB of somebody's life between systems. Worth every minute.
+The move taught me more than expected about Docker volumes, Btrfs snapshots, backups, and metadata. It also taught me the care required to move 20 GB of somebody's life between systems. Worth every minute.
