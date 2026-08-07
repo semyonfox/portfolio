@@ -48,6 +48,7 @@ Stack: ${featured.data.tags.join(', ')}${featured.data.github && !featured.data.
 - [/projects](https://semyon.ie/projects) — ${projects.length} projects
 - [/blog](https://semyon.ie/blog) — ${posts.length} posts
 - [/games](https://semyon.ie/games) — ${games.length} games
+- [/gallery](https://semyon.ie/gallery) — gallery placeholder; no images published yet
 - [/cv](https://semyon.ie/cv) — full CV (PDF at /cv.pdf)
 - [/docs/chat-api](https://semyon.ie/docs/chat-api) — POST /api/chat (site assistant endpoint)
 
