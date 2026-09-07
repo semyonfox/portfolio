@@ -252,8 +252,8 @@ export const cv = {
       'Bachelor of Science (Honours) in Computer Science and Information Technology',
     expected: { month: 'August', year: 2028 },
     year: 'Entering third year',
-    distinction: 'Second Class Honours, Grade 1 (2:1)',
-    distinctionPeriod: 'Current classification',
+    distinction: '2:1',
+    distinctionPeriod: 'Current overall average',
     modules: [
       { name: 'Software Engineering' },
       { name: 'Database Systems', markdownDetail: 'SQL' },

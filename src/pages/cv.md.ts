@@ -85,7 +85,7 @@ ${cv.skills.map((skill) => `- ${skill.label}: ${skill.items.join(', ')}`).join('
 
 **${cv.education.institution}** — ${cv.education.degree} · Expected ${formatDate(cv.education.expected)}
 
-${cv.education.year.replace('Year', 'year')} · ${cv.education.distinction} (${cv.education.distinctionPeriod.toLowerCase()})
+${cv.education.year.replace('Year', 'year')} · ${cv.education.distinctionPeriod}: ${cv.education.distinction}
 
 Modules: ${formatModules(cv.education.modules, 'markdown')}
 

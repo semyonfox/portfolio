@@ -136,9 +136,9 @@ const previousLeadershipRoles = cv.leadership.roleHistory
           }
         </p>
         <p class="text-muted text-sm mt-1">
-          {cv.education.year} &middot; <span class="text-heading font-semibold"
+          {cv.education.year} &middot; {cv.education.distinctionPeriod}: <span class="text-heading font-semibold"
             >{cv.education.distinction}</span
-          > ({cv.education.distinctionPeriod})
+          >
         </p>
         <p class="text-dim text-xs mt-2">
           {formatModules(cv.education.modules, 'html')}
