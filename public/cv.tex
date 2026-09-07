@@ -8,9 +8,11 @@
 \usepackage{enumitem}
 \usepackage{titlesec}
 \usepackage{parskip}
+\setlength{\parskip}{2pt}
 \usepackage{array}
 \usepackage{lmodern}
 \renewcommand{\familydefault}{\sfdefault}
+\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{fontawesome}
 
@@ -81,7 +83,7 @@
 \vspace{-0.3em}
 \begin{center}
 {\color{primary}\bfseries\large Builder, swimmer, filmmaker.}\\[3pt]
-\color{secondary}\emph{2nd-year CS at Galway (First Class Honours). Auditor turned Treasurer of CompSoc, a 450+ member computing society. Builds: React/Next.js frontends, Rust APIs, self-hosted infra.}
+\color{secondary}\emph{Computer Science and IT student at Galway. Auditor turned Treasurer of CompSoc, a 450+ member computing society. Builds: React/Next.js frontends, Rust APIs, self-hosted infra.}
 \end{center}
 \vspace{0.2em}
 
@@ -94,7 +96,7 @@
 Languages & JavaScript, TypeScript, Java, C, SQL, Python, Rust\\[3pt]
 Web & React, Next.js, Astro, Node.js/Express, REST APIs, HTML/CSS, Tailwind CSS\\[3pt]
 Databases & PostgreSQL, TimescaleDB, MySQL, Redis\\[3pt]
-Infrastructure & Docker, Jenkins CI/CD, Git/GitHub, Linux, nginx, Cloudflare (Workers, Tunnels, Zero Trust), AWS (Fargate, RDS, S3, SES/SQS, IAM), Btrfs, NFS
+Infrastructure & Docker, Jenkins CI/CD, Git/GitHub, Linux, Nginx, Cloudflare (Workers, Tunnels, Zero Trust), AWS (Fargate, RDS, S3, SES/SQS, IAM), Btrfs, NFS
 \end{tabular}
 
 % -------------------------------
@@ -106,7 +108,7 @@ Infrastructure & Docker, Jenkins CI/CD, Git/GitHub, Linux, nginx, Cloudflare (Wo
         {\textbf{Expected:} August 2028}
 \vspace{5pt}
 
-\noindent\textbf{Year 2}, with Year 1 First Class Honours.\\[4pt]
+\noindent\textbf{Entering third year} \quad | \quad Current classification: 2:1.\\[4pt]
 \textbf{Modules:} Software Engineering, Database Systems (SQL), OOP (Java), Data Structures \& Algorithms, Networks \& Data Communication, Computer Systems \& Organisation, Digital Security \& Cryptography, Modelling (Python/NumPy/Matplotlib), Discrete Mathematics, Linear Algebra, Statistics
 
 % -------------------------------
@@ -133,7 +135,7 @@ Infrastructure & Docker, Jenkins CI/CD, Git/GitHub, Linux, nginx, Cloudflare (Wo
   \item Organised CompSoc CTF 2026 (110+ participants), securing four corporate sponsors (Evernorth, Siren, Centripetal Networks, LibertyIT) and university grant funding
   \item Reduced participant costs by 50\%; increased event profit
   \item Fixed CI/CD pipeline and JSX syntax bugs on the \href{https://compsoc.ie}{compsoc.ie} React/TypeScript frontend
-  \item Held three committee roles: Public Relations Of\char"200C ficer (Nov 2024--Feb 2025), Auditor (Feb 2025--Mar 2026), Treasurer (Mar 2026--Present)
+  \item Held three committee roles: Public Relations Of\kern0pt ficer (Nov 2024--Feb 2025), Auditor (Feb 2025--Mar 2026), Treasurer (Mar 2026--Present)
 \end{itemize}
 
 \vspace{5pt}
@@ -149,28 +151,28 @@ Infrastructure & Docker, Jenkins CI/CD, Git/GitHub, Linux, nginx, Cloudflare (Wo
 \section*{Projects}
 
 \cventry{OghmaNotes}{MVP Deployed}
-        {Next.js, TypeScript, PostgreSQL (pgvector), Redis, AWS, Docker}{}
+        {Next.js, TypeScript, PostgreSQL, Qdrant, Redis, AWS, Docker}{}
 \begin{itemize}
   \item Markdown e-learning platform (3-person team) with RAG search, quizzing, and FSRS spaced repetition for university students
   \item Canvas LMS integration with PDF extraction and embedding pipeline for automatic course material import
-  \item Migrated from AWS (S3, RDS, ElastiCache, Fargate) to self-hosted on-prem (pgvector, RustFS) to cut costs
+  \item Migrated from AWS (S3, RDS, ElastiCache, Fargate) to self-hosted on-prem infrastructure to cut costs
   \item Live at \href{https://oghmanotes.ie}{oghmanotes.ie}
 \end{itemize}
 
 \vspace{5pt}
-\cventry{Uisce}{In Development, targeting Aug 2026}
-        {React 19, Node.js/Express, PostgreSQL, Redis, Docker, Jest}{}
+\cventry{Uisce}{In Development}
+        {React 19, Node.js/Express, PostgreSQL, Redis, Docker, Vitest}{}
 \begin{itemize}
   \item Full-stack platform with role-based access for swimmers, coaches, and committee members
-  \item 58-table PostgreSQL schema (5 logical schemas) covering attendance, meet results, training schedules, squad analytics, equipment
+  \item Club-scoped onboarding, squads, sessions, attendance, results, and analytics, backed by PostgreSQL and a JSON:API backend
 \end{itemize}
 
 \vspace{5pt}
 \cventry{Canvas MCP Server}{Open Source}
         {TypeScript, Model Context Protocol SDK, Zod}{}
 \begin{itemize}
-  \item MCP server exposing the full Canvas LMS REST API to AI assistants across 15 domains (courses, assignments, grades, etc.)
-  \item Merged and normalised 12 open-source Canvas MCP projects; on \href{https://github.com/semyonfox/canvas-mcp}{github.com/semyonfox/canvas-mcp}
+  \item MCP server exposing selected Canvas LMS REST APIs to AI assistants, including courses, assignments, and grades
+  \item Extended tool designs from 12 community projects; \href{https://github.com/semyonfox/canvas-mcp}{github.com/semyonfox/canvas-mcp}
 \end{itemize}
 
 \vspace{5pt}
@@ -183,11 +185,11 @@ Infrastructure & Docker, Jenkins CI/CD, Git/GitHub, Linux, nginx, Cloudflare (Wo
 
 \vspace{5pt}
 \cventry{Home Lab \& CI/CD Infrastructure}{Ongoing}
-        {Docker, Jenkins, nginx, Cloudflare Tunnels, Btrfs, NFS, Pi-hole}{}
+        {Docker, Jenkins, Nginx, Cloudflare Tunnels, Btrfs, NFS, Pi-hole}{}
 \begin{itemize}
   \item Self-host 30+ services (Jellyfin, Immich, Vaultwarden, Firefly III, n8n, etc.) in 54 containers, behind a router-level VPN
   \item 6 Jenkins pipelines auto-deploying OghmaNotes, Uisce, Portfolio, etc. on GitHub push
-  \item Cloudflare Zero Trust tunnels (no open ports for public access); nginx reverse proxy across 21 vhosts internally
+  \item Cloudflare Zero Trust tunnels (no open ports for public access); Nginx reverse proxy across 21 vhosts internally
   \item GFS backup strategy (7 daily, 4 weekly, 12 monthly, yearly-forever) to NAS (RAID) via NFS4 with Btrfs snapshots
 \end{itemize}
 
