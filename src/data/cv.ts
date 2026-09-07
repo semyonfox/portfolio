@@ -180,9 +180,9 @@ export const cv = {
     },
   ] satisfies readonly CVDownload[],
   summary: {
-    html: 'Builder, swimmer, filmmaker. Second-year Computer Science student at the University of Galway with First Class Honours in year 1. Auditor turned Treasurer of CompSoc, a 450+ member computing society. Builds React and Next.js frontends, Rust APIs, and self-hosted infrastructure.',
+    html: 'Builder, swimmer, filmmaker. Computer Science student at the University of Galway. Auditor turned Treasurer of CompSoc, a 450+ member computing society. Builds React and Next.js frontends, Rust APIs, and self-hosted infrastructure.',
     markdown:
-      'Builder, swimmer, filmmaker.\n2nd-year CS at Galway (First Class Honours). Auditor turned Treasurer of CompSoc, a 450+ member computing society. Builds React/Next.js frontends, Rust APIs, and self-hosted infra.',
+      'Builder, swimmer, filmmaker.\nComputer Science and IT student at Galway. Auditor turned Treasurer of CompSoc, a 450+ member computing society. Builds React/Next.js frontends, Rust APIs, and self-hosted infra.',
   },
   sections: {
     skills: {
@@ -251,9 +251,9 @@ export const cv = {
     degree:
       'Bachelor of Science (Honours) in Computer Science and Information Technology',
     expected: { month: 'August', year: 2028 },
-    year: '2nd Year',
-    distinction: 'First Class Honours',
-    distinctionPeriod: 'Year 1',
+    year: 'Entering third year',
+    distinction: '2:1',
+    distinctionPeriod: 'Current overall average',
     modules: [
       { name: 'Software Engineering' },
       { name: 'Database Systems', markdownDetail: 'SQL' },
@@ -303,7 +303,8 @@ export const cv = {
       stack: [
         { name: 'Next.js' },
         { name: 'TypeScript' },
-        { name: 'PostgreSQL', detail: 'pgvector' },
+        { name: 'PostgreSQL' },
+        { name: 'Qdrant' },
         { name: 'Redis' },
         { name: 'AWS' },
         { name: 'Docker' },
@@ -321,17 +322,17 @@ export const cv = {
     {
       name: 'Uisce',
       formats: ['html', 'markdown'],
-      status: { text: 'In development, targeting August 2026' },
+      status: { text: 'In development' },
       stack: [
         { name: 'React 19' },
         { name: 'Node.js/Express' },
         { name: 'PostgreSQL' },
         { name: 'Redis' },
         { name: 'Docker' },
-        { name: 'Jest' },
+        { name: 'Vitest' },
       ],
       description:
-        'Full-stack platform with role-based access for swimmers, coaches, and committee members. 58-table PostgreSQL schema covering attendance, meet results, training schedules, squad analytics, and equipment.',
+        'Full-stack platform with role-based access for swimmers, coaches, and committee members. Club-scoped onboarding, squads, sessions, attendance, results, and analytics, backed by PostgreSQL and a JSON:API backend.',
     },
     {
       name: 'Canvas MCP Server',
@@ -343,7 +344,7 @@ export const cv = {
         { name: 'Zod' },
       ],
       description:
-        'MCP server exposing the full Canvas LMS REST API to AI assistants across 15 domains. Merged and normalised 12 open-source Canvas MCP projects.',
+        'MCP server exposing selected Canvas LMS REST APIs to AI assistants. Consolidated and extended tool designs from 12 open-source Canvas MCP projects.',
       links: [
         {
           url: 'https://github.com/semyonfox/canvas-mcp',
