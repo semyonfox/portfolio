@@ -16,21 +16,21 @@
     "lint": "vp lint",
     "format": "vp fmt",
     "typecheck": "astro sync && node node_modules/typescript-7/bin/tsc --noEmit",
-    "check": "vp check && astro check && pnpm run typecheck",
+    "check": "astro sync && vp check && astro check && pnpm run typecheck",
     "deploy": "vp run check && vp run build && echo 'Deploy is handled by Jenkins after pushing main.'"
   },
   "dependencies": {
-    "@astrojs/preact": "^6.0.1",
-    "@astrojs/sitemap": "^3.7.3",
-    "@fontsource/inter": "^5.2.8",
-    "astro": "^7.1.0",
-    "preact": "^10.29.1",
-    "sharp": "^0.35.0",
-    "tailwindcss": "^4.2.4"
+    "@astrojs/preact": "^6.0.5",
+    "@astrojs/sitemap": "^3.7.4",
+    "@fontsource/inter": "^5.3.0",
+    "astro": "^7.3.2",
+    "preact": "^10.29.8",
+    "sharp": "^0.35.4",
+    "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.9",
-    "@tailwindcss/vite": "^4.2.4",
+    "@astrojs/check": "^0.9.10",
+    "@tailwindcss/vite": "^4.3.3",
     "typescript": "npm:@typescript/typescript6@^6.0.2",
     "typescript-7": "npm:typescript@^7.0.2",
     "vite": "catalog:",

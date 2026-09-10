@@ -14,14 +14,14 @@ Source for [semyon.ie](https://semyon.ie): selected software projects, technical
 
 ## Repository map
 
-| Path | Purpose |
-| --- | --- |
-| `src/content/` | projects, blog posts and game content |
-| `src/` | Astro/Preact site and API code |
-| `public/` | static assets, CV source and generated PDF |
-| `docker-compose.yml` | container topology |
-| `Jenkinsfile` | build and deployment pipeline |
-| `docs/` | operational and content-maintenance documentation |
+| Path                 | Purpose                                           |
+| -------------------- | ------------------------------------------------- |
+| `src/content/`       | projects, blog posts and game content             |
+| `src/`               | Astro/Preact site and API code                    |
+| `public/`            | static assets, CV source and generated PDF        |
+| `docker-compose.yml` | container topology                                |
+| `Jenkinsfile`        | build and deployment pipeline                     |
+| `docs/`              | operational and content-maintenance documentation |
 
 ## Local development
 

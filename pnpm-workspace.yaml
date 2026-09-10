@@ -6,8 +6,8 @@ overrides:
   devalue: ^5.8.1
   esbuild: ^0.28.1
 catalog:
-  vite: npm:@voidzero-dev/vite-plus-core@0.2.4
-  vite-plus: 0.2.4
+  vite: npm:@voidzero-dev/vite-plus-core@0.3.1
+  vite-plus: 0.3.1
 peerDependencyRules:
   allowAny:
     - vite
