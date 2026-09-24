@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Make files gloriously, unnecessarily larger—right in your browser."
+    />
+    <title>INFLATR — Anti File Compressor</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="noise" aria-hidden="true"></div>
+    <header>
+      <a class="brand" href="#" aria-label="Inflatr home">
+        <span class="brand-mark">I↑</span>
+        <span>INFLATR</span>
+      </a>
+      <span class="privacy"><i></i> 100% LOCAL</span>
+    </header>
+
+    <main>
+      <section class="hero">
+        <p class="eyebrow">ANTI-COMPRESSION TECHNOLOGY</p>
+        <h1>YOUR FILES<br />DESERVE <em>MORE.</em></h1>
+        <p class="lede">
+          Why settle for efficient? Inflate any file to a gloriously unnecessary
+          size. Private, pointless, perfect.
+        </p>
+      </section>
+
+      <section class="machine" aria-label="File inflator">
+        <div class="mode-tabs" role="tablist">
+          <button
+            class="tab active"
+            id="inflate-tab"
+            role="tab"
+            aria-selected="true"
+          >
+            INFLATE
+          </button>
+          <button class="tab" id="restore-tab" role="tab" aria-selected="false">
+            RESTORE
+          </button>
+        </div>
+
+        <div class="panel" id="inflate-panel">
+          <label class="dropzone" id="dropzone">
+            <input id="file-input" type="file" />
+            <span class="upload-icon">↗</span>
+            <strong>DROP A FILE HERE</strong>
+            <span>or click to browse the tiny original</span>
+          </label>
+
+          <div class="file-card hidden" id="file-card">
+            <div class="file-icon">FILE</div>
+            <div class="file-meta">
+              <strong id="file-name"></strong>
+              <span id="file-size"></span>
+            </div>
+            <button id="remove-file" aria-label="Remove selected file">
+              ×
+            </button>
+          </div>
+
+          <div class="controls hidden" id="controls">
+            <div class="control-heading">
+              <label for="multiplier">DESIRED BLOAT</label>
+              <output id="multiplier-output">10×</output>
+            </div>
+            <input id="multiplier" type="range" min="2" max="100" value="10" />
+            <div class="range-labels">
+              <span>REASONABLE</span><span>ABSURD</span>
+            </div>
+            <div class="size-readout">
+              <span><small>BEFORE</small><b id="before-size">—</b></span>
+              <span class="arrow">→</span>
+              <span><small>AFTER</small><b id="after-size">—</b></span>
+            </div>
+            <button class="action" id="inflate-button">
+              <span>MAKE IT BIGGER</span><span>↗</span>
+            </button>
+            <p class="fine-print">
+              Adds harmless padding plus a tiny restoration receipt. Your
+              original content stays untouched.
+            </p>
+          </div>
+        </div>
+
+        <div class="panel hidden" id="restore-panel">
+          <label class="dropzone compact" id="restore-dropzone">
+            <input id="restore-input" type="file" />
+            <span class="upload-icon">↙</span>
+            <strong>DROP AN INFLATED FILE</strong>
+            <span>we'll remove the glorious excess</span>
+          </label>
+          <div class="restore-result hidden" id="restore-result">
+            <p id="restore-message"></p>
+            <button class="action" id="restore-button">
+              <span>RESTORE ORIGINAL</span><span>↙</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="manifesto">
+        <p>
+          “In a world obsessed with optimization,<br />we choose
+          <em>volume.</em>”
+        </p>
+        <div class="stats">
+          <span><b>0</b><small>BYTES UPLOADED</small></span>
+          <span><b>∞</b><small>POTENTIAL BLOAT</small></span>
+          <span><b>100%</b><small>UNNECESSARY</small></span>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>© 2026 INFLATR INDUSTRIES</span><span>MADE WITH EXCESS</span>
+    </footer>
+    <div class="toast hidden" id="toast" role="status"></div>
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -56,6 +56,9 @@ const renderProject = (project: CVProject) => {
 const markdownProjects = cv.projects.filter((project) =>
   projectSupports(project, 'markdown'),
 );
+const markdownOpenSource = cv.openSource.filter((project) =>
+  projectSupports(project, 'markdown'),
+);
 const markdownContact = (href: string) => href.replace(/^mailto:/, '');
 const renderRepairEntry = (entry: CVRepairEntry) => {
   const workplace = [entry.organisation, entry.location]
@@ -98,6 +101,10 @@ ${cv.awards.map(renderAward).join('\n')}
 ${markdownProjects.map(renderProject).join('\n')}
 
 See full list at <${portfolioUrl(cv.projectsIndex.href)}>.
+
+## Open source and tools
+
+${markdownOpenSource.map(renderProject).join('\n')}
 
 ## ${textFor(cv.sections.workExperience, 'markdown')}
 

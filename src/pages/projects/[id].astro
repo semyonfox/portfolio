@@ -1,0 +1,87 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { id: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+const hasDetails = (project.body ?? '').trim().length > 0;
+---
+
+<Layout
+  title={`${project.data.title} | Semyon Fox`}
+  description={project.data.description}
+>
+  <article class="max-w-[75ch] pt-20 pb-16 md:pt-28">
+    <a
+      href={`/projects#project-${project.id}`}
+      class="text-dim text-xs hover:text-muted transition-colors mb-7 inline-block"
+      >&larr; back to projects</a
+    >
+    <p class="type-kicker mb-3">
+      {project.data.category === 'academic'
+        ? 'academic project'
+        : 'personal project'}
+    </p>
+    <h1 class="type-page-title mb-5">{project.data.title}</h1>
+    <p class="type-body-lg mb-6">{project.data.description}</p>
+
+    <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm mb-6">
+      {project.data.demo && (
+        <a href={project.data.demo} class="text-fox hover:underline">
+          play demo &rarr;
+        </a>
+      )}
+      {project.data.live && (
+        <a
+          href={project.data.live}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-fox hover:underline">live site &nearr;</a
+        >
+      )}
+      {project.data.github &&
+        (project.data.private ? (
+          <span class="text-dim">private source</span>
+        ) : (
+          <a
+            href={project.data.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-fox hover:underline">source &nearr;</a
+          >
+        ))}
+    </div>
+
+    <div class="flex flex-wrap gap-1.5 mb-9">
+      {project.data.tags.map((tag) => (
+        <span class="bg-border px-2 py-0.5 rounded text-[11px] text-muted">
+          {tag}
+        </span>
+      ))}
+    </div>
+
+    {project.data.image && (
+      <img
+        src={project.data.image}
+        alt={`${project.data.title} project screenshot`}
+        width="1280"
+        height="800"
+        class="w-full h-auto rounded-bento border border-border mb-9"
+      />
+    )}
+
+    {hasDetails && (
+      <div class="type-prose">
+        <Content />
+      </div>
+    )}
+  </article>
+</Layout>

@@ -13,7 +13,7 @@ tags:
     'OpenWrt',
   ]
 category: 'personal'
-featured: true
+featured: false
 order: 1
 ---
 

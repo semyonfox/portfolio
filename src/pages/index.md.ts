@@ -24,7 +24,7 @@ export const GET: APIRoute = async () => {
 
 Developer, swimmer, builder. Computer Science & IT student at the University of Galway. Treasurer of CompSoc (450+ members); previously Auditor and PR Officer. Organised CTF 2026 with 110+ participants and four corporate sponsors.
 
-Builds and breaks things with curiosity. Currently running 54 containers on a repurposed Dell XPS 15 homelab and chasing sub-1min 100m freestyle.
+Builds tools for studying and swimming, plus chess experiments and games. Runs much of the work on his own Linux infrastructure and trains for a sub-minute 100m freestyle.
 
 **Seeking a Jan–Aug 2027 software engineering / platform / SRE placement.**
 
@@ -38,6 +38,13 @@ JavaScript, TypeScript, React, Next.js, Node.js/Express, Java, Python, Rust, C, 
 
 Stack: ${featured.data.tags.join(', ')}${featured.data.github && !featured.data.private ? `\nGitHub: ${featured.data.github}` : ''}${featured.data.github && featured.data.private ? '\nSource: private repository' : ''}${featured.data.live ? `\nLive: ${featured.data.live}` : ''}
 
+## What I've been up to
+
+- [Between Moves](/projects/between-moves): import completed chess games, review Stockfish analysis and practise mistakes.
+- [Fly Chess](/projects/fly-chess): a chess-learning experiment using public fruit-fly connectome wiring.
+- [After Midnight](/projects/after-midnight): a playable Unity house game with four tidy-up stages.
+- [Network Rush](/games#network-rush): a browser-playable routing game.
+
 ## Recent
 
 - Latest blog: [${posts[0].data.title}](/blog/${posts[0].id}) — ${fmtDate(posts[0].data.date)}
@@ -48,7 +55,6 @@ Stack: ${featured.data.tags.join(', ')}${featured.data.github && !featured.data.
 - [/projects](https://semyon.ie/projects) — ${projects.length} projects
 - [/blog](https://semyon.ie/blog) — ${posts.length} posts
 - [/games](https://semyon.ie/games) — ${games.length} games
-- [/gallery](https://semyon.ie/gallery) — gallery placeholder; no images published yet
 - [/cv](https://semyon.ie/cv) — full CV (PDF at /cv.pdf)
 - [/docs/chat-api](https://semyon.ie/docs/chat-api) — POST /api/chat (site assistant endpoint)
 

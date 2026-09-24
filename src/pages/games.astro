@@ -473,66 +473,104 @@ const gamePreviewClass: Record<string, string> = {
   const fullscreenBtn = document.getElementById('player-fullscreen');
   const stage = document.getElementById('player-stage');
 
-  document.querySelectorAll('.game-card').forEach((card) => {
-    card.addEventListener('click', () => {
-      const el = card as HTMLElement;
-      const embedUrl = el.dataset.gameEmbed;
-      track('game_open', el.dataset.gameId);
+  const cards = [...document.querySelectorAll<HTMLElement>('.game-card')];
+  let activeGameId: string | undefined;
 
-      if (title) title.textContent = el.dataset.gameTitle || '';
-      if (description) {
-        description.textContent = el.dataset.gameDescription || '';
-      }
-      if (tech) tech.textContent = el.dataset.gameTech || '';
+  const openGame = (el: HTMLElement) => {
+    if (activeGameId === el.dataset.gameId) return;
+    activeGameId = el.dataset.gameId;
+    const embedUrl = el.dataset.gameEmbed;
+    track('game_open', activeGameId);
 
-      if (el.dataset.gamePrivate === 'true') {
-        githubLink?.classList.add('hidden');
-        privateRepo?.classList.remove('hidden');
-      } else if (el.dataset.gameGithub && githubLink) {
-        githubLink.href = el.dataset.gameGithub;
-        githubLink.classList.remove('hidden');
-        privateRepo?.classList.add('hidden');
-      } else if (githubLink) {
-        githubLink.classList.add('hidden');
-        privateRepo?.classList.add('hidden');
-      }
+    if (title) title.textContent = el.dataset.gameTitle || '';
+    if (description) {
+      description.textContent = el.dataset.gameDescription || '';
+    }
+    if (tech) tech.textContent = el.dataset.gameTech || '';
 
-      if (embedUrl && frame) {
-        frame.src = embedUrl;
-        window.setTimeout(() => frame.focus(), 0);
-        const displayWidth = Number(el.dataset.gameDisplayWidth);
-        const displayHeight = Number(el.dataset.gameDisplayHeight);
-        if (displayWidth > 0 && displayHeight > 0) {
-          const aspect = displayWidth / displayHeight;
-          stage?.style.setProperty(
-            '--game-aspect',
-            `${displayWidth} / ${displayHeight}`,
-          );
-          stage?.style.setProperty('--game-aspect-value', String(aspect));
-        } else {
-          stage?.style.removeProperty('--game-aspect');
-          stage?.style.removeProperty('--game-aspect-value');
-        }
-      } else if (frame) {
-        const msg = el.dataset.gameNoembed || 'Game embed coming soon';
+    if (el.dataset.gamePrivate === 'true') {
+      githubLink?.classList.add('hidden');
+      privateRepo?.classList.remove('hidden');
+    } else if (el.dataset.gameGithub && githubLink) {
+      githubLink.href = el.dataset.gameGithub;
+      githubLink.classList.remove('hidden');
+      privateRepo?.classList.add('hidden');
+    } else if (githubLink) {
+      githubLink.classList.add('hidden');
+      privateRepo?.classList.add('hidden');
+    }
+
+    if (embedUrl && frame) {
+      frame.removeAttribute('srcdoc');
+      frame.src = embedUrl;
+      window.setTimeout(() => frame.focus(), 0);
+      const displayWidth = Number(el.dataset.gameDisplayWidth);
+      const displayHeight = Number(el.dataset.gameDisplayHeight);
+      if (displayWidth > 0 && displayHeight > 0) {
+        const aspect = displayWidth / displayHeight;
+        stage?.style.setProperty(
+          '--game-aspect',
+          `${displayWidth} / ${displayHeight}`,
+        );
+        stage?.style.setProperty('--game-aspect-value', String(aspect));
+      } else {
         stage?.style.removeProperty('--game-aspect');
         stage?.style.removeProperty('--game-aspect-value');
-        frame.srcdoc = `<div style="display:flex;align-items:center;justify-content:center;height:100%;background:#0a0a0a;color:#666;font-family:system-ui;font-size:14px;"><p>${msg}</p></div>`;
       }
+    } else if (frame) {
+      const msg = el.dataset.gameNoembed || 'Game embed coming soon';
+      stage?.style.removeProperty('--game-aspect');
+      stage?.style.removeProperty('--game-aspect-value');
+      frame.removeAttribute('src');
+      frame.srcdoc = `<div style="display:flex;align-items:center;justify-content:center;height:100%;background:#0a0a0a;color:#666;font-family:system-ui;font-size:14px;"><p>${msg}</p></div>`;
+    }
 
-      catalog?.classList.add('hidden');
-      intro?.classList.add('hidden');
-      player?.classList.remove('hidden');
-      player?.scrollIntoView({ block: 'start' });
+    catalog?.classList.add('hidden');
+    intro?.classList.add('hidden');
+    player?.classList.remove('hidden');
+    player?.scrollIntoView({ block: 'start' });
+  };
+
+  const closeGame = () => {
+    if (!activeGameId) return;
+    activeGameId = undefined;
+    player?.classList.add('hidden');
+    intro?.classList.remove('hidden');
+    catalog?.classList.remove('hidden');
+    if (frame) {
+      frame.removeAttribute('src');
+      frame.removeAttribute('srcdoc');
+    }
+  };
+
+  const syncGameFromUrl = () => {
+    const id = window.location.hash.slice(1);
+    const card = cards.find((candidate) => candidate.dataset.gameId === id);
+    if (card) openGame(card);
+    else closeGame();
+  };
+
+  cards.forEach((card) => {
+    card.addEventListener('click', () => {
+      const id = card.dataset.gameId;
+      if (!id) return;
+      window.location.hash = id;
+      syncGameFromUrl();
     });
   });
 
   backBtn?.addEventListener('click', () => {
-    player?.classList.add('hidden');
-    intro?.classList.remove('hidden');
-    catalog?.classList.remove('hidden');
-    if (frame) frame.src = '';
+    window.history.replaceState(
+      window.history.state,
+      '',
+      window.location.pathname + window.location.search,
+    );
+    closeGame();
   });
+
+  window.addEventListener('popstate', syncGameFromUrl);
+  window.addEventListener('hashchange', syncGameFromUrl);
+  syncGameFromUrl();
 
   fullscreenBtn?.addEventListener('click', () => {
     stage?.requestFullscreen?.();

@@ -19,10 +19,10 @@ export interface CVContact {
 }
 
 export interface CVDownload {
-  format: 'pdf' | 'tex';
+  format: 'pdf' | 'zip';
   href: `/${string}`;
   filename: string;
-  badge: 'PDF' | 'TEX';
+  badge: 'PDF' | 'ZIP';
   optionTitle: string;
 }
 
@@ -134,7 +134,7 @@ export const cv = {
   seo: {
     title: 'CV | Semyon Fox',
     description:
-      'Semyon Fox - CS student, full-stack developer, homelab enthusiast.',
+      'Semyon Fox, third-year Computer Science and IT student at the University of Galway. Projects, experience and a two-page CV.',
   },
   person: {
     name: 'Semyon Fox',
@@ -142,8 +142,8 @@ export const cv = {
     siteOrigin: portfolioOrigin,
     contacts: [
       {
-        label: 'hello@semyon.ie',
-        href: 'mailto:hello@semyon.ie',
+        label: 'semyon.fox@gmail.com',
+        href: 'mailto:semyon.fox@gmail.com',
         external: false,
       },
       {
@@ -158,7 +158,7 @@ export const cv = {
       },
       {
         label: 'LinkedIn',
-        href: 'https://www.linkedin.com/in/semyon-fox-968685249/',
+        href: 'https://www.linkedin.com/in/semyonfox/',
         external: true,
       },
     ] satisfies readonly CVContact[],
@@ -172,17 +172,17 @@ export const cv = {
       optionTitle: 'PDF version',
     },
     {
-      format: 'tex',
-      href: '/cv.tex',
-      filename: 'SEMYON_FOX_CV.tex',
-      badge: 'TEX',
-      optionTitle: 'TeX source',
+      format: 'zip',
+      href: '/cv-source.zip',
+      filename: 'SEMYON_FOX_CV_SOURCE.zip',
+      badge: 'ZIP',
+      optionTitle: 'LaTeX source',
     },
   ] satisfies readonly CVDownload[],
   summary: {
-    html: 'Builder, swimmer, filmmaker. Computer Science student at the University of Galway. Auditor turned Treasurer of CompSoc, a 450+ member computing society. Builds React and Next.js frontends, Rust APIs, and self-hosted infrastructure.',
+    html: 'Programmer, swimmer, filmmaker. Third-year Computer Science and IT student at the University of Galway. I build software for study and swimming, write tools to simplify everyday tasks, and run my own Linux infrastructure. I use AI throughout development and take responsibility for reviewing, testing and maintaining what I build.',
     markdown:
-      'Builder, swimmer, filmmaker.\nComputer Science and IT student at Galway. Auditor turned Treasurer of CompSoc, a 450+ member computing society. Builds React/Next.js frontends, Rust APIs, and self-hosted infra.',
+      'Programmer, swimmer, filmmaker. Third-year Computer Science and IT student at the University of Galway. I build software for study and swimming, write tools to simplify everyday tasks, and run my own Linux infrastructure. I use AI throughout development and take responsibility for reviewing, testing and maintaining what I build.',
   },
   sections: {
     skills: {
@@ -211,38 +211,40 @@ export const cv = {
   skills: [
     {
       label: 'Languages',
-      items: ['JavaScript', 'TypeScript', 'Java', 'C', 'SQL', 'Python', 'Rust'],
-    },
-    {
-      label: 'Web',
       items: [
-        'React',
-        'Next.js',
-        'Astro',
-        'Node.js/Express',
-        'REST APIs',
-        'HTML/CSS',
-        'Tailwind CSS',
+        'TypeScript',
+        'Python',
+        'Go',
+        'Rust',
+        'SQL',
+        'Bash',
+        'Java and C coursework',
       ],
     },
     {
-      label: 'Databases',
-      items: ['PostgreSQL', 'TimescaleDB', 'MySQL', 'Redis'],
+      label: 'Applications and data',
+      items: [
+        'React',
+        'Next.js',
+        'Node.js',
+        'PostgreSQL',
+        'Redis',
+        'Qdrant',
+        'REST',
+        'MCP',
+      ],
     },
     {
-      label: 'Infrastructure',
+      label: 'Delivery',
       items: [
-        'Docker',
-        'Jenkins CI/CD',
-        'Git/GitHub',
+        'Git',
         'Linux',
-        'nginx',
-        'Cloudflare Workers',
-        'Tunnels',
-        'Zero Trust',
-        'AWS',
-        'Btrfs',
-        'NFS',
+        'Docker',
+        'Jenkins',
+        'BuildKit',
+        'Nginx',
+        'Cloudflare',
+        'AWS project experience',
       ],
     },
   ] satisfies readonly CVSkillGroup[],
@@ -251,111 +253,93 @@ export const cv = {
     degree:
       'Bachelor of Science (Honours) in Computer Science and Information Technology',
     expected: { month: 'August', year: 2028 },
-    year: 'Entering third year',
+    year: 'Third year',
     distinction: '2:1',
     distinctionPeriod: 'Current overall average',
     modules: [
       { name: 'Software Engineering' },
-      { name: 'Database Systems', markdownDetail: 'SQL' },
-      { name: 'OOP', detail: 'Java' },
       { name: 'Data Structures & Algorithms' },
-      { name: 'Networks & Data Communication' },
-      { name: 'Computer Systems & Organisation' },
-      { name: 'Digital Security & Cryptography' },
-      {
-        name: 'Modelling',
-        markdownDetail: 'Python/NumPy/Matplotlib',
-      },
-      { name: 'Discrete Mathematics' },
-      { name: 'Linear Algebra' },
-      { name: 'Statistics' },
+      { name: 'Database Systems' },
+      { name: 'Networks and Data Communications' },
+      { name: 'Human-Computer Interaction' },
     ] satisfies readonly CVModule[],
   },
   awards: [
     {
-      title: 'Best Intervarsity Award',
-      context: 'CompSoc "Capture the Flag"',
+      title: 'CompSoc: Best Intervarsity',
       dates: [
         { month: 'March', year: 2025 },
         { month: 'March', year: 2026 },
       ],
       description:
-        'University of Galway Societies Awards 2025 and 2026; BICS National Society Award 2025, nominated again in 2026.',
+        'University of Galway award in 2025 and 2026; BICS National Society Award winner in 2025 and nominee in 2026.',
     },
     {
-      title: 'Brian O Maoilchiarain Award',
+      title: 'Brian Ó Maoilchiaráin Award',
       dates: [{ month: 'June', year: 2024 }],
-      description: 'Outstanding Student, Leaving Certificate year',
-      issuer: 'Colaiste an Eachréidh',
+      description: 'Outstanding Leaving Certificate student',
+      issuer: 'Coláiste an Eachréidh',
     },
     {
-      title: 'STEM Award',
-      context: 'GRETB',
+      title: 'GRETB STEM Award',
       dates: [{ month: 'June', year: 2024 }],
-      description: 'Recognition for excellence in STEM subjects.',
+      description: 'STEM award.',
     },
   ] satisfies readonly CVAward[],
   projects: [
     {
       name: 'OghmaNotes',
       formats: ['html', 'markdown'],
-      status: { text: 'MVP deployed', htmlTitleCase: true },
+      status: { text: 'Deployed' },
       stack: [
         { name: 'Next.js' },
         { name: 'TypeScript' },
         { name: 'PostgreSQL' },
         { name: 'Qdrant' },
-        { name: 'Redis' },
-        { name: 'AWS' },
+        { name: 'Redis/BullMQ' },
         { name: 'Docker' },
       ],
       description:
-        'Markdown e-learning platform with RAG search, quizzing, FSRS spaced repetition, Canvas LMS import, PDF extraction, and embedding pipeline. Migrated from AWS to self-hosted on-prem to cut costs.',
-      links: [
-        {
-          url: 'https://oghmanotes.ie',
-          label: 'Live at',
-          placement: 'tail',
-        },
-      ],
+        'Built in a three-person team. OghmaNotes brings Canvas course material, notes, cited AI chat, quizzes and spaced repetition into one study workspace. Its import workers extract PDFs, create embeddings and report progress; Qdrant handles retrieval while PostgreSQL stores content and ownership. The team moved it from AWS to self-hosted Docker.',
+      links: [{ url: 'https://oghmanotes.ie', label: 'Live at' }],
     },
     {
       name: 'Uisce',
       formats: ['html', 'markdown'],
-      status: { text: 'In development' },
+      status: { text: 'Deployed' },
       stack: [
-        { name: 'React 19' },
-        { name: 'Node.js/Express' },
+        { name: 'React' },
+        { name: 'Express' },
         { name: 'PostgreSQL' },
         { name: 'Redis' },
+        { name: 'JSON:API' },
         { name: 'Docker' },
         { name: 'Vitest' },
       ],
       description:
-        'Full-stack platform with role-based access for swimmers, coaches, and committee members. Club-scoped onboarding, squads, sessions, attendance, results, and analytics, backed by PostgreSQL and a JSON:API backend.',
+        'Built a swimming-club platform for squads, training sessions, attendance, results and performance tracking. Designed its React interface, JSON:API backend and multi-schema PostgreSQL model; tested client and API workflows with Vitest.',
+      links: [{ url: 'https://swim.semyon.ie', label: 'Live at' }],
     },
     {
-      name: 'Canvas MCP Server',
+      name: 'Home lab and CI/CD infrastructure',
       formats: ['html', 'markdown'],
-      status: { text: 'Open source', htmlTitleCase: true },
+      status: { text: 'Self-hosted' },
       stack: [
-        { name: 'TypeScript' },
-        { name: 'Model Context Protocol SDK' },
-        { name: 'Zod' },
+        { name: 'Linux' },
+        { name: 'Docker' },
+        { name: 'Jenkins' },
+        { name: 'Nginx' },
+        { name: 'Cloudflare' },
+        { name: 'Btrfs' },
+        { name: 'NFS' },
       ],
       description:
-        'MCP server exposing selected Canvas LMS REST APIs to AI assistants. Consolidated and extended tool designs from 12 open-source Canvas MCP projects.',
-      links: [
-        {
-          url: 'https://github.com/semyonfox/canvas-mcp',
-          placement: 'tail',
-        },
-      ],
+        'Run 30+ services in 54 containers with Jenkins pipelines, Cloudflare tunnels and Nginx reverse proxies across 21 internal virtual hosts. Back up services to a RAID NAS over NFS using Btrfs snapshots.',
     },
     {
-      name: 'Irish Rail Data Pipeline',
+      name: 'Irish Rail data pipeline',
       formats: ['html', 'markdown'],
-      status: { text: 'Running 24/7' },
+      status: { text: 'Deployed' },
       stack: [
         { name: 'Python', detail: 'asyncio/aiohttp' },
         { name: 'TimescaleDB' },
@@ -363,45 +347,47 @@ export const cv = {
         { name: 'Docker' },
       ],
       description:
-        'Polls Irish Rail every 3 seconds, storing train positions and station data in TimescaleDB. Rust API serves a live map and delay-tracking dashboard.',
+        'Built a Python collector that polls the Irish Rail API every three seconds and stores train positions and station data in TimescaleDB. A Rust API feeds a live map and delay dashboard.',
+      links: [{ url: 'https://traein.semyon.ie', label: 'Live at' }],
     },
+  ] satisfies readonly CVProject[],
+  openSource: [
     {
-      name: 'Home Lab & CI/CD Infrastructure',
+      name: 'Noctalia Bluetooth fix',
       formats: ['html', 'markdown'],
-      status: { text: 'Ongoing' },
-      stack: [
-        { name: 'Docker' },
-        { name: 'Jenkins' },
-        { name: 'nginx' },
-        { name: 'Cloudflare Tunnels' },
-        { name: 'Btrfs' },
-        { name: 'NFS' },
-        { name: 'Pi-hole' },
-      ],
-      description: {
-        html: 'Self-hosts 30+ services in 54 containers. Six Jenkins pipelines auto-deploy projects on GitHub push, with Cloudflare Zero Trust tunnels, internal nginx reverse proxying, and GFS backups to NAS.',
-        markdown:
-          'Self-host 30+ services in 54 containers. Six Jenkins pipelines auto-deploy OghmaNotes, Uisce, Portfolio, etc. on GitHub push. Cloudflare Zero Trust tunnels, internal nginx reverse proxying, and GFS backups to NAS.',
-      },
-    },
-    {
-      name: 'Portfolio Website',
-      formats: ['markdown'],
-      stack: [
-        { name: 'Astro' },
-        { name: 'Preact' },
-        { name: 'Tailwind CSS v4' },
-        { name: 'Rust', detail: 'axum' },
-        { name: 'Docker' },
-        { name: 'Jenkins' },
-      ],
+      status: { text: 'Merged contribution' },
+      stack: [{ name: 'C++' }],
       description:
-        'Portfolio with projects, write-ups, experiments, and an AI chatbot answering questions about me from the Rust backend.',
+        'Contributed a fix that stops Bluetooth discovery after ten seconds and cancels pending scans when the panel closes.',
       links: [
         {
-          url: 'https://semyon.ie',
-          placement: 'lead',
+          url: 'https://github.com/noctalia-dev/noctalia/pull/4145',
+          label: 'Pull request #4145',
         },
+      ],
+    },
+    {
+      name: 'Seol',
+      formats: ['html', 'markdown'],
+      status: { text: 'Open source' },
+      stack: [{ name: 'Go' }, { name: 'SQLite' }, { name: 'Docker' }],
+      description:
+        'Built a service and CLI that publish HTML reports and static sites through temporary links, with expiry, archive size and path checks, and atomic updates at the same URL.',
+      links: [{ url: 'https://github.com/semyonfox/seol', label: 'GitHub' }],
+    },
+    {
+      name: 'Canvas MCP',
+      formats: ['html', 'markdown'],
+      status: { text: 'Open source' },
+      stack: [
+        { name: 'TypeScript' },
+        { name: 'Model Context Protocol SDK' },
+        { name: 'Zod' },
+      ],
+      description:
+        'Consolidated and extended community tool designs into a typed MCP server for selected Canvas LMS APIs, with input validation, pagination, timeouts and bounded retries for read operations.',
+      links: [
+        { url: 'https://github.com/semyonfox/canvas-mcp', label: 'GitHub' },
       ],
     },
   ] satisfies readonly CVProject[],
@@ -412,20 +398,35 @@ export const cv = {
   repairExperience: {
     entries: [
       {
-        title: 'Laptop Repair Technician',
-        organisation: 'Cahill Computers',
-        location: 'Athenry & Galway',
-        context: 'part-time, 8 months',
+        title: 'School IT support',
+        organisation: 'Coláiste an Eachréidh',
+        context: '2023–2026; one voluntary year, then two paid',
         description:
-          'Hardware upgrades, repairs, diagnostics. System administration, OS installation, drive cloning.',
+          'Configured laptops, set up ebooks and carried out repairs for students. Built API integrations and automation tools for ebook setup at the school.',
       },
       {
-        title: 'Work Experience Placements',
-        organisation: 'Lapteck',
-        context: 'TY placement',
-        year: 2023,
+        title: 'Laptop repair technician',
+        organisation: 'Cahill Computers',
+        location: 'Athenry',
+        context: '2022; part-time',
         description:
-          'Hardware upgrades, screen and battery replacements, OS installation, drive cloning, and diagnostics.',
+          'Diagnosed faults, replaced screens and batteries, upgraded RAM and storage, cloned drives and installed Windows.',
+      },
+      {
+        title: 'Laptop repair placement',
+        organisation: 'Lapteck',
+        location: 'Galway',
+        context: '2022; Transition Year',
+        description:
+          'Completed a work-experience placement learning laptop diagnostics and repair.',
+      },
+      {
+        title: 'Kitchen porter',
+        organisation: 'Old Barracks',
+        location: 'Athenry',
+        context: 'seasonal and part-time',
+        description:
+          'Supported the kitchen team during busy summer services, with additional occasional part-time work.',
       },
     ] satisfies readonly CVRepairEntry[],
   },
@@ -436,7 +437,7 @@ export const cv = {
     capacity: 'volunteer',
     involvementPeriod: 'Nov 2024–present',
     description:
-      'Led 450+ member student society across finance, communications, and event strategy. Organised CompSoc CTF 2026 with 110+ participants, securing four corporate sponsors and university grant funding. Reduced participant costs by 50%; increased event profit. Fixed CI/CD pipeline and JSX syntax bugs on the compsoc.ie React/TypeScript frontend.',
+      'Organised CompSoc CTF 2026 as part of the committee, with 110 participants, four corporate sponsors and 50% lower participant costs. Contributed to the society website through CI build checks, deployment and routing fixes, and committee updates.',
     roleHistory: [
       {
         role: 'Public Relations Officer',
@@ -457,7 +458,7 @@ export const cv = {
     {
       label: 'Video Production',
       description: {
-        html: 'Video production, colour grading, VFX, and editing in DaVinci Resolve.',
+        html: 'Video production, colour grading and VFX in DaVinci Resolve.',
         markdown:
           'colour grading, VFX, and editing in DaVinci Resolve for short films and personal projects.',
       },
@@ -466,7 +467,7 @@ export const cv = {
       label: 'Woodworking',
       description: {
         html: 'Woodworking and hand-built live-edge furniture.',
-        markdown: 'hand-built live-edge furniture pieces.',
+        markdown: 'woodworking and hand-built live-edge furniture.',
       },
     },
   ] satisfies readonly CVInterest[],
