@@ -4,6 +4,12 @@ description: 'A Go service and CLI for sharing HTML reports and static sites thr
 tags: ['Go', 'SQLite', 'Docker', 'Security']
 category: 'personal'
 github: 'https://github.com/semyonfox/seol'
+live: 'https://seol.semyon.ie/'
+downloads:
+  - label: 'Linux x64 CLI'
+    url: 'https://github.com/semyonfox/seol/releases/latest/download/seol_linux_x64'
+  - label: 'Windows x64 CLI'
+    url: 'https://github.com/semyonfox/seol/releases/latest/download/seol_windows_x64.exe'
 order: 12
 ---
 

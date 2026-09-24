@@ -5,6 +5,7 @@ tech: 'Java (Swing)'
 github: 'https://github.com/semyonfox/game_of_life_java'
 private: true
 embed: '/games/game-of-life/index.html'
+download: '/games/java/game-of-life.jar'
 displayWidth: 900
 displayHeight: 900
 thumbnail: '/game-thumbnails/game-of-life.webp?v=20260715'

@@ -58,7 +58,7 @@ pipeline {
       steps {
         sh '''
           set -eu
-          docker buildx inspect jenkins-cache --bootstrap | grep -F 'Driver: docker-container'
+          docker buildx inspect jenkins-cache --bootstrap | grep -Eq '^Driver:[[:space:]]+docker-container$'
         '''
       }
     }
@@ -124,9 +124,9 @@ pipeline {
           SHORT_COMMIT=$(git rev-parse --short=7 HEAD)
           FRONTEND_IMAGE="${FRONTEND_IMAGE_REPO}:${SHORT_COMMIT}"
           API_IMAGE="${API_IMAGE_REPO}:${SHORT_COMMIT}"
-          NETWORK="portfolio-candidate-${BUILD_NUMBER}"
-          API_CANDIDATE="portfolio-chat-api-candidate-${BUILD_NUMBER}"
-          FRONTEND_CANDIDATE="portfolio-candidate-${BUILD_NUMBER}"
+          NETWORK=portfolio-candidate
+          API_CANDIDATE=portfolio-chat-api-candidate
+          FRONTEND_CANDIDATE=portfolio-candidate
 
           cleanup_candidate() {
             docker rm -f "$FRONTEND_CANDIDATE" "$API_CANDIDATE" >/dev/null 2>&1 || true
@@ -135,7 +135,8 @@ pipeline {
           trap cleanup_candidate EXIT
 
           cleanup_candidate
-          docker network create "$NETWORK" >/dev/null
+          # the default docker pools are exhausted; this /29 is reserved for the serialized portfolio smoke job
+          docker network create --subnet 172.16.250.0/29 "$NETWORK" >/dev/null
           docker run -d --name "$API_CANDIDATE" \
             --network "$NETWORK" \
             --network-alias chat-api \

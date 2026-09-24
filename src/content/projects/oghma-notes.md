@@ -17,10 +17,15 @@ spotlight: true
 featured: true
 live: 'https://oghmanotes.ie'
 github: 'https://github.com/semyonfox/oghma'
+downloads:
+  - label: 'Android alpha 0.1.4 APK'
+    url: 'https://github.com/semyonfox/oghma/releases/download/android-alpha-v0.1.4/oghmanotes-alpha.apk'
 order: 5
 ---
 
 Three of us built OghmaNotes over seven months for our CT216 Software Engineering capstone.
+
+The Android alpha can save selected notes for offline reading. Offline editing and PDF downloads are not in that build.
 
 ## Core Features
 

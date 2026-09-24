@@ -24,6 +24,9 @@ const projects = defineCollection({
     private: z.boolean().default(false),
     live: z.string().optional(),
     demo: z.string().optional(),
+    downloads: z
+      .array(z.object({ label: z.string(), url: z.string() }))
+      .default([]),
     image: z.string().optional(),
     spotlight: z.boolean().default(false),
     featured: z.boolean().default(false),
@@ -41,6 +44,7 @@ const games = defineCollection({
     private: z.boolean().default(false),
     embed: z.string().optional(),
     noEmbed: z.string().optional(),
+    download: z.string().optional(),
     displayWidth: z.number().optional(),
     displayHeight: z.number().optional(),
     thumbnail: z.string().optional(),

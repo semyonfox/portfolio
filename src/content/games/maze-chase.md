@@ -4,6 +4,7 @@ description: 'Mouse-controlled maze game where a pathfinding enemy pursues the p
 tech: 'Java (Swing)'
 github: 'https://github.com/semyonfox/astar-maze-chase'
 embed: '/games/astar-maze-chase/index.html'
+download: '/games/downloads/astar-maze-chase-desktop.zip'
 displayWidth: 1280
 displayHeight: 800
 thumbnail: '/game-thumbnails/maze-chase.webp?v=20260715'
