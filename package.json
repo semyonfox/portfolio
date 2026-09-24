@@ -23,7 +23,7 @@
     "@astrojs/preact": "^6.0.1",
     "@astrojs/sitemap": "^3.7.3",
     "@fontsource/inter": "^5.2.8",
-    "astro": "^7.1.0",
+    "astro": "^7.2.8",
     "preact": "^10.29.1",
     "sharp": "^0.35.0",
     "tailwindcss": "^4.2.4"
