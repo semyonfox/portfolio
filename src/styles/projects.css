@@ -2,6 +2,69 @@
   margin-bottom: 56px;
 }
 
+.project-finder {
+  max-width: 640px;
+  margin-top: 30px;
+}
+
+.project-finder label {
+  display: block;
+  margin-bottom: 9px;
+  color: #e1e1e1;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.project-finder input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #393939;
+  border-radius: 8px;
+  outline: none;
+  background: #181818;
+  color: #f2f2f2;
+  font-size: 14px;
+}
+
+.project-finder input:focus-visible {
+  border-color: #e8702a;
+  box-shadow: 0 0 0 2px #e8702a33;
+}
+
+.project-filter-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.project-filter-list button {
+  padding: 6px 11px;
+  border: 1px solid #333;
+  border-radius: 999px;
+  color: #aaa;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.project-filter-list button:hover,
+.project-filter-list button[aria-pressed='true'] {
+  border-color: #e8702a;
+  color: #e8702a;
+}
+
+.project-filter-list button:focus-visible {
+  outline: 2px solid #e8702a;
+  outline-offset: 2px;
+}
+
+.project-results {
+  min-height: 1.4em;
+  margin-top: 10px;
+  color: #949494;
+  font-size: 12px;
+}
+
 .projects-section-heading {
   margin-bottom: 23px;
 }

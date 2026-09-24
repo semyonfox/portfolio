@@ -4,6 +4,7 @@ description: 'Space Invaders game with wave progression, boss fights every five 
 tech: 'Java (Swing)'
 github: 'https://github.com/semyonfox/space-invaders'
 embed: '/games/space-invaders/index.html'
+download: '/games/downloads/space-invaders-desktop.zip'
 displayWidth: 960
 displayHeight: 540
 thumbnail: '/game-thumbnails/space-invaders.webp?v=20260715'

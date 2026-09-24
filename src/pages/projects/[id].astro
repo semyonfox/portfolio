@@ -60,6 +60,22 @@ const hasDetails = (project.body ?? '').trim().length > 0;
         ))}
     </div>
 
+    {project.data.downloads.length > 0 && (
+      <section aria-labelledby="project-downloads" class="mb-9">
+        <h2 id="project-downloads" class="type-small-title mb-3">Downloads</h2>
+        <div class="flex flex-wrap gap-2">
+          {project.data.downloads.map((file) => (
+            <a
+              href={file.url}
+              class="border border-border rounded-lg px-3 py-2 text-sm text-fox hover:border-fox transition-colors"
+            >
+              {file.label} &darr;
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+
     <div class="flex flex-wrap gap-1.5 mb-9">
       {project.data.tags.map((tag) => (
         <span class="bg-border px-2 py-0.5 rounded text-[11px] text-muted">

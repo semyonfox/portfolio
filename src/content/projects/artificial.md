@@ -4,5 +4,7 @@ description: "A game-jam clicker tracing humanity's artificial creations through
 tags: ['JavaScript', 'CSS', 'Game Design', 'Creative Coding']
 category: 'personal'
 github: 'https://github.com/semyonfox/artificial'
+live: 'https://artificial.semyon.ie/'
+demo: '/games#artificial'
 order: 3
 ---

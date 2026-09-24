@@ -46,6 +46,7 @@ const gamePreviewClass: Record<string, string> = {
             data-game-private={game.data.private ? 'true' : 'false'}
             data-game-embed={game.data.embed || ''}
             data-game-noembed={game.data.noEmbed || ''}
+            data-game-download={game.data.download || ''}
             data-game-display-width={game.data.displayWidth || ''}
             data-game-display-height={game.data.displayHeight || ''}
           >
@@ -102,6 +103,14 @@ const gamePreviewClass: Record<string, string> = {
             class="hidden border border-border text-muted text-xs px-3 py-1.5 rounded-lg hover:text-heading hover:border-muted transition-colors"
           >
             github
+          </a>
+          <a
+            id="player-download"
+            href="#"
+            download
+            class="hidden border border-border text-muted text-xs px-3 py-1.5 rounded-lg hover:text-heading hover:border-muted transition-colors"
+          >
+            <span id="player-download-label">download</span>
           </a>
           <span
             id="player-private"
@@ -469,6 +478,10 @@ const gamePreviewClass: Record<string, string> = {
     'player-github',
   ) as HTMLAnchorElement;
   const privateRepo = document.getElementById('player-private');
+  const downloadLink = document.getElementById(
+    'player-download',
+  ) as HTMLAnchorElement;
+  const downloadLabel = document.getElementById('player-download-label');
   const backBtn = document.getElementById('player-back');
   const fullscreenBtn = document.getElementById('player-fullscreen');
   const stage = document.getElementById('player-stage');
@@ -498,6 +511,18 @@ const gamePreviewClass: Record<string, string> = {
     } else if (githubLink) {
       githubLink.classList.add('hidden');
       privateRepo?.classList.add('hidden');
+    }
+
+    if (el.dataset.gameDownload) {
+      downloadLink.href = el.dataset.gameDownload;
+      if (downloadLabel) {
+        downloadLabel.textContent = el.dataset.gameDownload.endsWith('.zip')
+          ? 'download desktop ZIP'
+          : 'download JAR';
+      }
+      downloadLink.classList.remove('hidden');
+    } else {
+      downloadLink.classList.add('hidden');
     }
 
     if (embedUrl && frame) {

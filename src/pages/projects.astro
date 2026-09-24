@@ -55,9 +55,20 @@ const gameLabel = (id: string) =>
         Some are deployed. Others are prototypes or experiments, and their
         current limits are part of the write-up.
       </p>
+      <div class="project-finder" role="search" aria-label="Find projects">
+        <label for="project-search">Find something to explore</label>
+        <input id="project-search" type="search" placeholder="Search projects, games or tools" autocomplete="off" />
+        <div class="project-filter-list" role="group" aria-label="Filter projects">
+          <button type="button" data-project-filter="all" aria-pressed="true">All</button>
+          <button type="button" data-project-filter="live" aria-pressed="false">Live sites</button>
+          <button type="button" data-project-filter="play" aria-pressed="false">Try in browser</button>
+          <button type="button" data-project-filter="download" aria-pressed="false">Downloads</button>
+        </div>
+        <p id="project-results" class="project-results" aria-live="polite"></p>
+      </div>
     </div>
 
-    <section aria-labelledby="selected-work-title">
+    <section aria-labelledby="selected-work-title" data-project-section>
       <div class="projects-section-heading">
         <h2 id="selected-work-title" class="type-section-title">Selected work</h2>
         <p>Products, games and experiments worth a closer look.</p>
@@ -67,6 +78,11 @@ const gameLabel = (id: string) =>
           selectedProjects.map((project, index) => (
             <article
               id={`project-${project.id}`}
+              data-project-item
+              data-search={`${project.data.title} ${project.data.description} ${project.data.tags.join(' ')}`.toLowerCase()}
+              data-live={project.data.live ? 'true' : 'false'}
+              data-play={project.data.demo ? 'true' : 'false'}
+              data-download={project.data.downloads.length ? 'true' : 'false'}
               class:list={[
                 'project-bento-card',
                 `project-bento-${index + 1}`,
@@ -110,6 +126,9 @@ const gameLabel = (id: string) =>
                       rel="noopener noreferrer">live site &nearr;</a
                     >
                   )}
+                  {project.data.downloads.length > 0 && (
+                    <a href={`/projects/${project.id}#project-downloads`}>downloads &darr;</a>
+                  )}
                   {project.data.github &&
                     (project.data.private ? (
                       <span>private source</span>
@@ -128,7 +147,7 @@ const gameLabel = (id: string) =>
       </div>
     </section>
 
-    <section class="projects-interactive-work" aria-labelledby="games-title">
+    <section class="projects-interactive-work" aria-labelledby="games-title" data-project-section>
       <div class="projects-section-heading">
         <h2 id="games-title" class="type-section-title">
           Games &amp; interactive tools
@@ -140,6 +159,11 @@ const gameLabel = (id: string) =>
           interactiveGames.map((game, index) => (
             <article
               id={`game-${game.id}`}
+              data-project-item
+              data-search={`${game.data.title} ${game.data.description} ${game.data.tech}`.toLowerCase()}
+              data-live={game.data.embed?.startsWith('http') ? 'true' : 'false'}
+              data-play={game.data.embed ? 'true' : 'false'}
+              data-download={game.data.download ? 'true' : 'false'}
               class:list={[
                 'project-game-tile',
                 `project-game-${index + 1}`,
@@ -167,6 +191,11 @@ const gameLabel = (id: string) =>
                       open {game.id === 'inflatr' ? 'tool' : 'game'} &rarr;
                     </a>
                   )}
+                  {game.data.download && (
+                    <a href={game.data.download} download>
+                      download {game.data.download.endsWith('.zip') ? 'desktop ZIP' : 'JAR'} &darr;
+                    </a>
+                  )}
                   {game.data.github &&
                     !game.data.private && (
                       <a
@@ -182,7 +211,7 @@ const gameLabel = (id: string) =>
       </div>
     </section>
 
-    <section class="projects-more-work" aria-labelledby="more-projects-title">
+    <section class="projects-more-work" aria-labelledby="more-projects-title" data-project-section>
       <div class="projects-section-heading">
         <h2 id="more-projects-title" class="type-section-title">
           More projects
@@ -194,7 +223,7 @@ const gameLabel = (id: string) =>
           { title: 'Personal projects', projects: personalProjects },
           { title: 'Coursework and team projects', projects: academicProjects },
         ].map((group) => (
-          <section class="project-plain-section" aria-label={group.title}>
+          <section class="project-plain-section" aria-label={group.title} data-project-group>
             <div class="project-plain-heading">
               <h3>{group.title}</h3>
               <span>{group.projects.length} projects</span>
@@ -204,6 +233,11 @@ const gameLabel = (id: string) =>
                 <article
                   id={`project-${project.id}`}
                   class="project-plain-row"
+                  data-project-item
+                  data-search={`${project.data.title} ${project.data.description} ${project.data.tags.join(' ')}`.toLowerCase()}
+                  data-live={project.data.live ? 'true' : 'false'}
+                  data-play={project.data.demo ? 'true' : 'false'}
+                  data-download={project.data.downloads.length ? 'true' : 'false'}
                 >
                   <div>
                     <h4>
@@ -226,6 +260,9 @@ const gameLabel = (id: string) =>
                           rel="noopener noreferrer">live site &nearr;</a
                         >
                       )}
+                      {project.data.downloads.length > 0 && (
+                        <a href={`/projects/${project.id}#project-downloads`}>downloads &darr;</a>
+                      )}
                       {project.data.github &&
                         (project.data.private ? (
                           <span>private source</span>
@@ -247,3 +284,43 @@ const gameLabel = (id: string) =>
     </section>
   </section>
 </Layout>
+
+<script>
+  const search = document.querySelector<HTMLInputElement>('#project-search');
+  const filters = [...document.querySelectorAll<HTMLButtonElement>('[data-project-filter]')];
+  const items = [...document.querySelectorAll<HTMLElement>('[data-project-item]')];
+  const groups = [...document.querySelectorAll<HTMLElement>('[data-project-group]')];
+  const sections = [...document.querySelectorAll<HTMLElement>('[data-project-section]')];
+  const results = document.querySelector<HTMLElement>('#project-results');
+  let activeFilter = 'all';
+
+  const updateProjects = () => {
+    const query = search?.value.trim().toLowerCase() ?? '';
+    let count = 0;
+    for (const item of items) {
+      const matchesText = item.dataset.search?.includes(query) ?? false;
+      const matchesFilter = activeFilter === 'all' || item.dataset[activeFilter] === 'true';
+      item.hidden = !(matchesText && matchesFilter);
+      if (!item.hidden) count++;
+    }
+    for (const group of groups) {
+      group.hidden = !group.querySelector('[data-project-item]:not([hidden])');
+    }
+    for (const section of sections) {
+      section.hidden = !section.querySelector('[data-project-item]:not([hidden])');
+    }
+    if (results) results.textContent = `${count} ${count === 1 ? 'result' : 'results'}`;
+  };
+
+  search?.addEventListener('input', updateProjects);
+  for (const filter of filters) {
+    filter.addEventListener('click', () => {
+      activeFilter = filter.dataset.projectFilter ?? 'all';
+      for (const button of filters) {
+        button.setAttribute('aria-pressed', String(button === filter));
+      }
+      updateProjects();
+    });
+  }
+  updateProjects();
+</script>
