@@ -16,6 +16,9 @@ const alternateDownload = cv.downloads[1];
 const htmlProjects = cv.projects.filter((project) =>
   projectSupports(project, 'html'),
 );
+const htmlOpenSource = cv.openSource.filter((project) =>
+  projectSupports(project, 'html'),
+);
 const previousLeadershipRoles = cv.leadership.roleHistory
   .slice(0, -1)
   .map((role) => role.role)
@@ -104,7 +107,7 @@ const previousLeadershipRoles = cv.leadership.roleHistory
       }
     </div>
 
-    <p class="type-body italic mb-12">{textFor(cv.summary, 'html')}</p>
+    <p class="type-body mb-12">{textFor(cv.summary, 'html')}</p>
 
     <!-- technical skills -->
     <div class="mb-12">
@@ -158,7 +161,7 @@ const previousLeadershipRoles = cv.leadership.roleHistory
               <div class="flex justify-between items-start">
                 <h3 class="type-small-title font-bold">
                   {award.title}
-                  {award.context ? ` — ${award.context}` : ''}
+                  {'context' in award && award.context ? ` — ${award.context}` : ''}
                 </h3>
                 <span class="text-dim text-xs shrink-0 ml-4">
                   {formatAwardDates(award.dates, 'html')}
@@ -208,6 +211,33 @@ const previousLeadershipRoles = cv.leadership.roleHistory
       >
     </div>
 
+    <div class="mb-12">
+      <h2 class="type-section-title mb-4">Open source and tools</h2>
+      <div class="space-y-4">
+        {
+          htmlOpenSource.map((project) => (
+            <div class="bg-surface border border-heading/[0.06] rounded-bento p-4">
+              <div class="flex flex-wrap items-baseline justify-between gap-2">
+                <h3 class="type-small-title font-bold">{project.name}</h3>
+                {project.status && (
+                  <span class="text-dim text-xs">
+                    {formatProjectStatus(project.status, 'html')}
+                  </span>
+                )}
+              </div>
+              <p class="text-dim text-xs mt-1">{formatStack(project.stack, 'html')}</p>
+              <p class="text-muted text-sm mt-2">{textFor(project.description, 'html')}</p>
+              {project.links?.map((link) => (
+                <a href={link.url} target="_blank" rel="noopener noreferrer" class="text-fox text-sm mt-2 inline-block hover:underline">
+                  {link.label ?? 'Source'} &rarr;
+                </a>
+              ))}
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
     <!-- work experience -->
     <div class="mb-12">
       <h2 class="type-section-title mb-4">
@@ -219,9 +249,7 @@ const previousLeadershipRoles = cv.leadership.roleHistory
             <div>
               <h3 class="type-panel-title font-bold">{entry.title}</h3>
               <p class="text-muted text-sm">
-                {'location' in entry
-                  ? `${entry.organisation}, ${entry.location} · ${entry.context}`
-                  : `${entry.organisation} ${entry.context} (${entry.year})`}
+                {entry.organisation}{entry.location ? `, ${entry.location}` : ''} &middot; {entry.context}
               </p>
               <p class="text-dim text-sm mt-2">{entry.description}</p>
             </div>
@@ -271,7 +299,7 @@ const previousLeadershipRoles = cv.leadership.roleHistory
     const toggle = wrapper?.querySelector('[data-cv-menu-toggle]');
     const menu = wrapper?.querySelector('[data-cv-menu]');
 
-    type DownloadFormat = 'pdf' | 'tex';
+    type DownloadFormat = 'pdf' | 'zip';
     type DownloadOption = {
       format: DownloadFormat;
       href: string;
@@ -319,8 +347,8 @@ const previousLeadershipRoles = cv.leadership.roleHistory
         return;
       }
 
-      const activeFormat = format === 'tex' ? 'tex' : 'pdf';
-      const alternateFormat = activeFormat === 'pdf' ? 'tex' : 'pdf';
+      const activeFormat = format === 'zip' ? 'zip' : 'pdf';
+      const alternateFormat = activeFormat === 'pdf' ? 'zip' : 'pdf';
       const download = downloads.get(activeFormat);
       const option = menu?.querySelector('[data-cv-option]');
 
@@ -354,7 +382,7 @@ const previousLeadershipRoles = cv.leadership.roleHistory
             : null;
 
         if (option instanceof HTMLButtonElement) {
-          setFormat(option.dataset.cvOption === 'pdf' ? 'pdf' : 'tex');
+          setFormat(option.dataset.cvOption === 'zip' ? 'zip' : 'pdf');
           setMenuOpen(false);
         }
       });

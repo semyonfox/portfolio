@@ -1,0 +1,528 @@
+.projects-intro {
+  margin-bottom: 56px;
+}
+
+.projects-section-heading {
+  margin-bottom: 23px;
+}
+
+.projects-section-heading h2 {
+  margin-bottom: 6px;
+}
+
+.projects-section-heading p {
+  color: #949494;
+  font-size: 14px;
+}
+
+.project-bento-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-auto-rows: 194px;
+  gap: 14px;
+}
+
+.project-bento-card,
+.project-game-tile {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid #292929;
+  border-radius: 10px;
+  background: #151515;
+  transition:
+    border-color 180ms ease,
+    transform 180ms ease;
+  scroll-margin-top: 6rem;
+}
+
+.project-bento-card:hover,
+.project-game-tile:hover {
+  border-color: #70402a;
+  transform: translateY(-2px);
+}
+
+.project-bento-card > img,
+.project-game-tile > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  opacity: 0.34;
+}
+
+.project-bento-card.has-image::before,
+.project-game-tile.has-image::before {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: linear-gradient(0deg, #101010 3%, #101010e8 44%, #10101035 100%);
+  content: '';
+}
+
+.project-bento-content,
+.project-game-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100%;
+  padding: 21px 23px;
+}
+
+.project-kicker {
+  margin-bottom: 10px;
+  color: #e8702a;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.065em;
+  text-transform: uppercase;
+}
+
+.project-bento-card h3 {
+  margin-bottom: 7px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.18;
+}
+
+.project-bento-card h3 a,
+.project-plain-row h4 a {
+  text-decoration: none;
+}
+
+.project-bento-card h3 a:hover,
+.project-plain-row h4 a:hover {
+  color: #e8702a;
+}
+
+.project-bento-description {
+  display: -webkit-box;
+  overflow: hidden;
+  margin-bottom: 11px;
+  color: #b0b0b0;
+  font-size: 13px;
+  line-height: 1.48;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.project-tags span {
+  padding: 3px 7px;
+  border-radius: 4px;
+  background: #282828;
+  color: #a8a8a8;
+  font-size: 11px;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+.project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 13px;
+  margin-top: auto;
+  padding-top: 8px;
+  color: #6a6a6a;
+  font-size: 12px;
+}
+
+.project-actions a {
+  color: #e8702a;
+  text-decoration: none;
+}
+
+.project-actions a:hover {
+  text-decoration: underline;
+}
+
+.project-bento-1 {
+  grid-column: span 4;
+  grid-row: span 2;
+  background: radial-gradient(
+    circle at 88% 12%,
+    #512614 0,
+    #1c1714 25%,
+    #151515 62%
+  );
+}
+
+.project-bento-1 .project-bento-content {
+  padding: 30px 32px;
+}
+
+.project-bento-1 .project-kicker {
+  margin-bottom: 18px;
+}
+
+.project-bento-1 h3 {
+  max-width: 540px;
+  margin-bottom: 16px;
+  font-size: clamp(29px, 4vw, 42px);
+  line-height: 1.08;
+}
+
+.project-bento-1 .project-bento-description {
+  max-width: 550px;
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-line-clamp: 4;
+}
+
+.project-bento-1 .project-tags {
+  margin-top: 14px;
+}
+
+.project-bento-1 .project-actions {
+  font-size: 13px;
+}
+
+.project-bento-2,
+.project-bento-3,
+.project-bento-6,
+.project-bento-7,
+.project-bento-8 {
+  grid-column: span 2;
+}
+
+.project-bento-4,
+.project-bento-5,
+.project-bento-9,
+.project-bento-10 {
+  grid-column: span 3;
+}
+
+.project-bento-2 .project-tags,
+.project-bento-3 .project-tags,
+.project-bento-6 .project-tags,
+.project-bento-7 .project-tags,
+.project-bento-8 .project-tags {
+  display: none;
+}
+
+.project-bento-2 .project-bento-content,
+.project-bento-3 .project-bento-content,
+.project-bento-6 .project-bento-content,
+.project-bento-7 .project-bento-content,
+.project-bento-8 .project-bento-content {
+  padding: 17px 19px;
+}
+
+.project-bento-2 h3,
+.project-bento-3 h3,
+.project-bento-6 h3,
+.project-bento-7 h3,
+.project-bento-8 h3 {
+  font-size: 18px;
+}
+
+.projects-interactive-work,
+.projects-more-work {
+  margin-top: 78px;
+}
+
+.project-game-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: 190px;
+  gap: 14px;
+}
+
+.project-game-tile.has-image::before {
+  background: linear-gradient(0deg, #101010 1%, #101010e8 50%, #10101030 100%);
+}
+
+.project-game-content {
+  padding: 18px 20px;
+}
+
+.project-game-tile h3 {
+  margin-bottom: 6px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.project-game-description {
+  display: -webkit-box;
+  overflow: hidden;
+  margin-bottom: 6px;
+  color: #b6b6b6;
+  font-size: 12px;
+  line-height: 1.45;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.project-game-tech {
+  color: #6a6a6a;
+  font-size: 11px;
+}
+
+.project-game-1 {
+  grid-column: span 2;
+  grid-row: span 2;
+  background: radial-gradient(circle at 75% 20%, #2d3545, #151515 66%);
+}
+
+.project-game-1 > img {
+  opacity: 0.55;
+}
+
+.project-game-1 .project-game-content {
+  justify-content: flex-end;
+  padding: 28px 30px;
+}
+
+.project-game-1 h3 {
+  font-size: 30px;
+}
+
+.project-game-1 .project-game-description {
+  max-width: 38ch;
+  font-size: 15px;
+  -webkit-line-clamp: 4;
+}
+
+.project-game-1 .project-actions {
+  margin-top: 14px;
+}
+
+.project-game-8 {
+  grid-column: span 2;
+  background: radial-gradient(circle at 85% 16%, #4b2918, #151515 66%);
+}
+
+.project-game-8 h3 {
+  font-size: 22px;
+}
+
+.project-plain-section {
+  margin-top: 35px;
+}
+
+.project-plain-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #484848;
+}
+
+.project-plain-heading h3 {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+}
+
+.project-plain-heading > span {
+  color: #6a6a6a;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.project-plain-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 28px;
+  padding: 17px 0;
+  border-bottom: 1px solid #252525;
+  scroll-margin-top: 6rem;
+}
+
+.project-plain-row h4 {
+  margin-bottom: 3px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.project-plain-row p {
+  color: #949494;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.project-plain-side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 4px;
+  color: #6a6a6a;
+  font-size: 12px;
+  text-align: right;
+}
+
+.project-plain-side .project-actions {
+  justify-content: flex-end;
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 900px) {
+  .project-bento-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: minmax(220px, auto);
+  }
+
+  .project-bento-card {
+    grid-column: span 1 !important;
+    grid-row: span 1 !important;
+  }
+
+  .project-bento-1 {
+    grid-column: span 2 !important;
+    min-height: 330px;
+  }
+
+  .project-bento-2 .project-tags,
+  .project-bento-3 .project-tags,
+  .project-bento-6 .project-tags,
+  .project-bento-7 .project-tags,
+  .project-bento-8 .project-tags {
+    display: flex;
+  }
+
+  .project-game-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: minmax(220px, auto);
+  }
+
+  .project-game-tile {
+    grid-column: auto !important;
+    grid-row: auto !important;
+  }
+
+  .project-game-1 {
+    grid-column: span 2 !important;
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 650px) {
+  .project-bento-grid,
+  .project-game-grid {
+    grid-template-columns: minmax(0, 1fr);
+    grid-auto-rows: auto;
+    gap: 12px;
+  }
+
+  .project-bento-card,
+  .project-bento-1 {
+    grid-column: auto !important;
+    grid-row: auto !important;
+    min-height: 216px;
+  }
+
+  .project-bento-1 {
+    min-height: 310px;
+  }
+
+  .project-bento-card .project-bento-content {
+    min-height: inherit;
+    padding: 22px;
+  }
+
+  .project-bento-1 h3 {
+    font-size: 32px;
+  }
+
+  .project-bento-1 .project-bento-description {
+    font-size: 14px;
+  }
+
+  .project-bento-card .project-tags {
+    display: flex;
+  }
+
+  .project-game-tile,
+  .project-game-1 {
+    display: grid;
+    grid-template-columns: 92px minmax(0, 1fr);
+    grid-column: auto !important;
+    min-height: 0;
+  }
+
+  .project-game-tile > img {
+    position: relative;
+    grid-column: 1;
+    grid-row: 1;
+    width: 92px;
+    min-height: 120px;
+    height: 100%;
+    opacity: 1;
+  }
+
+  .project-game-tile.has-image::before {
+    display: none;
+  }
+
+  .project-game-tile .project-game-content {
+    grid-column: 2;
+    grid-row: 1;
+    min-height: 120px;
+    padding: 12px 14px;
+  }
+
+  .project-game-tile:not(.has-image) .project-game-content {
+    grid-column: 1 / -1;
+  }
+
+  .project-game-tile .project-kicker {
+    margin-bottom: 4px;
+  }
+
+  .project-game-tile h3,
+  .project-game-1 h3 {
+    margin-bottom: 4px;
+    font-size: 16px;
+  }
+
+  .project-game-description {
+    margin-bottom: 4px;
+    font-size: 11px;
+    -webkit-line-clamp: 2;
+  }
+
+  .project-game-tech {
+    display: none;
+  }
+
+  .project-game-tile .project-actions {
+    margin-top: auto;
+    padding-top: 5px;
+  }
+
+  .project-plain-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .project-plain-side {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .project-plain-side .project-actions {
+    justify-content: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-bento-card,
+  .project-game-tile {
+    transition: none;
+  }
+}

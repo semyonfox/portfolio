@@ -15,9 +15,11 @@ const games = (await getCollection('games')).sort(
 );
 
 const featured = projects.find((p) => p.data.featured) || projects[0];
+const betweenMoves = projects.find((project) => project.id === 'between-moves');
+const flyChess = projects.find((project) => project.id === 'fly-chess');
+const afterMidnight = projects.find((project) => project.id === 'after-midnight');
 const latestPost = posts[0];
 const latestGame = games[0];
-const secondPost = posts[1];
 ---
 
 <Layout title="Semyon Fox | Developer, Swimmer, Builder">
@@ -31,17 +33,10 @@ const secondPost = posts[1];
     </h1>
     <div class="hero-copy max-w-md">
       <p class="type-body mb-8">
-        <span class="block"
-          >I build things with <span class="hero-mark">code</span> and break things
-          with <span class="hero-mark">curiosity</span>.</span
-        >
-        <span class="block"
-          >Currently running <span class="hero-mark">54 containers</span> on a repurposed
-          laptop</span
-        >
-        <span class="block"
-          >and racing toward <span class="hero-mark">sub-1min 100m</span>.</span
-        >
+        I build tools for studying and swimming. Lately I have been making{' '}
+        <span class="hero-mark">chess experiments</span> and{' '}
+        <span class="hero-mark">games</span> too. I run much of it on my own Linux
+        infrastructure and still train for a sub-minute 100m freestyle.
       </p>
       <p class="type-micro mb-5 flex items-center gap-2 text-muted">
         <span
@@ -79,7 +74,7 @@ const secondPost = posts[1];
       {
         featured && (
           <a
-            href="/projects"
+            href={`/projects/${featured.id}`}
             class="md:col-span-3 md:row-span-2 bg-surface border border-heading/[0.06] rounded-bento p-6 flex flex-col justify-between hover:border-heading/10 transition-colors group"
           >
             <div>
@@ -106,7 +101,7 @@ const secondPost = posts[1];
       {
         latestGame && (
           <a
-            href="/games"
+            href={`/games#${latestGame.id}`}
             class="md:col-span-2 bg-surface border border-heading/[0.06] rounded-bento overflow-hidden hover:border-heading/10 transition-colors group"
           >
             {latestGame.data.thumbnail ? (
@@ -156,67 +151,54 @@ const secondPost = posts[1];
         )
       }
 
-      <!-- row 2 -->
+      <!-- newer work -->
       {
-        projects[1] && (
+        betweenMoves && (
           <a
-            href="/projects"
+            href={`/projects/${betweenMoves.id}`}
             class="md:col-span-2 bg-surface border border-heading/[0.06] rounded-bento p-4 hover:border-heading/10 transition-colors group"
           >
             <p class="type-micro uppercase mb-1.5">project</p>
             <h3 class="type-small-title group-hover:text-fox/90 transition-colors">
-              {projects[1].data.title}
+              {betweenMoves.data.title}
             </h3>
             <p class="text-muted text-xs mt-1 line-clamp-2">
-              {projects[1].data.description}
+              {betweenMoves.data.description}
             </p>
           </a>
         )
       }
 
       {
-        secondPost && (
+        flyChess && (
           <a
-            href={`/blog/${secondPost.id}`}
+            href={`/projects/${flyChess.id}`}
             class="md:col-span-2 bg-surface border border-heading/[0.06] rounded-bento p-4 hover:border-heading/10 transition-colors group"
           >
-            <p class="type-micro uppercase mb-1.5">blog</p>
+            <p class="type-micro uppercase mb-1.5">experiment</p>
             <h3 class="type-small-title group-hover:text-fox/90 transition-colors">
-              {secondPost.data.title}
+              {flyChess.data.title}
             </h3>
-            <p class="text-dim text-xs mt-1">
-              {new Date(secondPost.data.date).toLocaleDateString('en-IE', {
-                month: 'short',
-                year: 'numeric',
-              })}
+            <p class="text-muted text-xs mt-1 line-clamp-2">
+              {flyChess.data.description}
             </p>
           </a>
         )
       }
 
-      <a
-        href="/games"
-        class="md:col-span-1 bg-surface border border-heading/[0.06] rounded-bento p-4 flex flex-col items-center justify-center text-center hover:border-heading/10 transition-colors group"
-      >
-        <span class="text-lg font-black text-dim/40 mb-1">~/games</span>
-        <p
-          class="text-muted text-xs group-hover:text-heading transition-colors"
-        >
-          play
-        </p>
-      </a>
-
-      <a
-        href="/gallery"
-        class="md:col-span-1 bg-surface border border-heading/[0.06] rounded-bento p-4 flex flex-col items-center justify-center text-center hover:border-heading/10 transition-colors group"
-      >
-        <span class="text-lg font-black text-dim/40 mb-1">~/photos</span>
-        <p
-          class="text-muted text-xs group-hover:text-heading transition-colors"
-        >
-          field notes
-        </p>
-      </a>
+      {
+        afterMidnight && (
+          <a
+            href={`/projects/${afterMidnight.id}`}
+            class="md:col-span-1 bg-surface border border-heading/[0.06] rounded-bento p-4 flex flex-col items-center justify-center text-center hover:border-heading/10 transition-colors group"
+          >
+            <span class="type-micro uppercase mb-1.5">Unity game</span>
+            <span class="type-small-title group-hover:text-fox/90 transition-colors">
+              {afterMidnight.data.title}
+            </span>
+          </a>
+        )
+      }
     </div>
   </section>
 
@@ -337,6 +319,12 @@ const secondPost = posts[1];
           have worked on events, CTF logistics, sponsorships, finance,
           communications, and the bits of software that have to survive real
           users.
+        </p>
+        <p>
+          My newer experiments are less alike: a chess review app, a chess
+          network wired from public fruit-fly connectome data, a Unity house game
+          and a Blender film. I like finding where a model, an algorithm or a render
+          actually breaks, then working out why.
         </p>
         <p>
           Away from code, I edit video, make things in the workshop, and watch a

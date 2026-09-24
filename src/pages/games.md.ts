@@ -15,7 +15,7 @@ ${games
     const links = [
       g.data.github && !g.data.private ? `GitHub: ${g.data.github}` : null,
       g.data.github && g.data.private ? 'Source: private repository' : null,
-      g.data.embed ? `Play: ${g.data.embed}` : null,
+      g.data.embed ? `Play: /games#${g.id}` : null,
       g.data.noEmbed ? `Availability: ${g.data.noEmbed}` : null,
     ]
       .filter(Boolean)

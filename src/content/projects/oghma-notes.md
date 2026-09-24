@@ -13,6 +13,8 @@ tags:
     'Docker',
   ]
 category: 'academic'
+spotlight: true
+featured: true
 live: 'https://oghmanotes.ie'
 github: 'https://github.com/semyonfox/oghma'
 order: 5
