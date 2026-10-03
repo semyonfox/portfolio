@@ -8,7 +8,7 @@ export default {
         surface: '#151515',
         border: '#252525',
         muted: '#949494',
-        dim: '#6a6a6a',
+        dim: '#939393',
         fox: '#e8702a',
         heading: '#f0f0f0',
       },

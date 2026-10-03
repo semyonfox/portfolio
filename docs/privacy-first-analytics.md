@@ -1,72 +1,15 @@
-# Privacy-first analytics operations
+# Anonymous counts and errors
 
-The portfolio's analytics are intentionally first-party and cookieless. Do not add a browser identifier, cookies, local/session storage, third-party analytics, session replay, or cross-day identity. `DNT: 1` and `Sec-GPC: 1` must remain a client- and server-side opt-out.
+Collection is off by default. To prepare an owner deployment, set both `PUBLIC_TELEMETRY_ENABLED=true` and `PUBLIC_TELEMETRY_ENDPOINT` to the approved HTTPS collector endpoint ending in `/v1/events`, or an approved same-origin proxy path. No endpoint is preselected. These are build-time settings. Do not enable collection until the collector and proxy satisfy this contract.
 
-## Shared event vocabulary
+Each request has exactly six fields: `version: 1`, `app: portfolio`, `kind: count | error`, an allowlisted `name`, `surface: web`, and a static `route` category. The client records screen views, completed/failed actions, and fixed recoverable request-error categories. It sends no URLs, slugs, query strings, referrers, device context, identifiers, private text or error messages/stacks. It creates no cookies, browser storage, visitor IDs or retry queue.
 
-Native apps can use the same small `object_action` vocabulary when the event answers an operational question:
+Do Not Track, Global Privacy Control and the footer's session opt-out suppress requests. The opt-out lasts through site navigation until reload. Privacy signals are checked before each event; inaccessible signals fail closed. Limits are 20 events per minute, 200 per module lifetime, one request in flight, and a 60-second repeat window per error/category. Requests time out after two seconds, omit credentials/referrers, reject redirects, and never retry. Failure must not affect contact, chat or navigation.
 
-| Event            | Meaning                             | Optional target                                                                              |
-| ---------------- | ----------------------------------- | -------------------------------------------------------------------------------------------- |
-| `pageview`       | A route was viewed                  | none                                                                                         |
-| `chat_open`      | The assistant UI was opened         | none                                                                                         |
-| `game_open`      | A game was launched                 | allowlisted game id                                                                          |
-| `outbound_click` | A visitor followed an external link | origin + path, without query/fragment; `email` for mail links                                |
-| `navigation`     | An internal link was followed       | source path in `path`, destination path in `target`, and header/footer/content/CTA placement |
-| `form_submit`    | A contact submission was attempted  | none                                                                                         |
-| `not_found`      | A missing route was requested       | none                                                                                         |
+The shared self-hosted collector contract stores UTC daily aggregate counters only, counts for 30 days and errors for 14 days, purging hourly. No raw events or request metadata may be stored. The dedicated proxy must disable access logs, strip Cookie, Authorization, Referer, User-Agent and address-forwarding headers, and enforce HTTPS and body/time limits. These are deployment requirements, not claims about a live collector. No collector has been enabled by this change.
 
-Do not add free-form payloads, content, persistent user/session IDs, scroll tracking, heartbeats, or precise device data. New apps should implement event capture natively against their own first-party endpoint and expose only aggregates centrally. Raw rows stay with the app that collected them.
+The API no longer opens, writes, migrates or prunes the legacy analytics database. `/api/events` is a compatibility no-op. Chat no longer accepts a typed conversation identifier or writes prompts/replies to analytics; old identity fields are ignored. Necessary in-memory IP rate limiting and contact-origin checks remain. Upstream error logging uses fixed descriptions and numeric status codes, never response bodies or URL-bearing error objects. The unused legacy `api/src/db.rs` remains as historical source; it is not compiled into the API.
 
-Acquisition is deliberately coarse: landing path, an `attribution` value of `direct` or `external`, external referrer origin, and a normalized `utm_source` or `ref` containing only lowercase letters, digits, `_`, or `-`. Internal navigation is recorded as independent aggregate source-path → destination-path clicks with a fixed link placement. It does not use a cookie, browser storage, session identifier, or any client-side history.
+Existing historical records and production proxy/provider retention require a separate operator review. This source change neither reads nor deletes existing data and is not a production deployment. Deploy the matching frontend/API together before relying on the revised notice. Chat providers still receive submitted messages to answer, and submitted contact details still go to the configured inbox.
 
-## Local aggregate queries
-
-The SQLite database is the source of truth. Use a read-only connection or a read-only Metabase/Grafana SQLite data source on the private network; never expose the database or raw event/chat rows publicly.
-
-```sql
--- daily traffic and approximate daily uniques (do not treat their sum as people)
-SELECT date(ts, 'unixepoch') AS day,
-       count(*) AS pageviews,
-       count(DISTINCT visitor) AS daily_uniques
-FROM events
-WHERE kind = 'pageview' AND ts >= unixepoch('now', '-30 days')
-GROUP BY day ORDER BY day;
-
--- top landing/content paths
-SELECT path, count(*) AS views
-FROM events
-WHERE kind = 'pageview' AND ts >= unixepoch('now', '-30 days')
-GROUP BY path ORDER BY views DESC LIMIT 20;
-
--- coarse acquisition; referrer contains origin only
-SELECT coalesce(source, referrer, attribution, 'direct') AS source, count(*) AS views
-FROM events
-WHERE kind = 'pageview' AND ts >= unixepoch('now', '-30 days')
-GROUP BY 1 ORDER BY views DESC LIMIT 20;
-
--- aggregate internal navigation and link-placement performance
-SELECT path AS from_path, target AS to_path, placement, count(*) AS transitions
-FROM events
-WHERE kind = 'navigation' AND ts >= unixepoch('now', '-30 days')
-GROUP BY from_path, to_path, placement
-ORDER BY transitions DESC LIMIT 20;
-
--- useful engagement without inspecting chat content
-SELECT kind, count(*) AS events
-FROM events
-WHERE kind <> 'pageview' AND ts >= unixepoch('now', '-30 days')
-GROUP BY kind ORDER BY events DESC;
-
--- assistant reliability, derived from existing logs (never chart question/reply)
-SELECT status, count(*) AS requests, round(avg(latency_ms)) AS avg_latency_ms
-FROM chat_logs
-WHERE ts >= unixepoch('now', '-30 days')
-GROUP BY status ORDER BY requests DESC;
-```
-
-A central dashboard should contain only these fixed aggregates, use private access control, suppress tiny demographic buckets if added, and never return visitor hashes, conversation IDs, questions, replies, or raw rows. Prefer this read-only setup over adding a public/admin API until multiple consumers justify the extra authentication and maintenance surface.
-
-## Retention and interpretation
-
-Chat rows are pruned after 365 days and event rows after 730 days. Verify infrastructure backup expiry separately because SQL deletion does not remove older snapshots. Visitor hashes rotate at UTC day boundaries, so `count(distinct visitor)` is an approximate daily unique metric only; there is intentionally no cross-day retention or cohort identity.
+Run `node --experimental-strip-types --test tests/telemetry.test.mjs`, `cargo test --locked --offline --manifest-path api/Cargo.toml`, and the usual frontend checks before delivery.

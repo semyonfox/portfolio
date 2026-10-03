@@ -17,7 +17,8 @@
     "format": "vp fmt",
     "typecheck": "astro sync && node node_modules/typescript-7/bin/tsc --noEmit",
     "check": "vp check && astro check && pnpm run typecheck",
-    "deploy": "vp run check && vp run build && echo 'Deploy is handled by Jenkins after pushing main.'"
+    "deploy": "vp run check && vp run build && echo 'Deploy is handled by Jenkins after pushing main.'",
+    "test": "node --experimental-strip-types --test tests/*.test.mjs"
   },
   "dependencies": {
     "@astrojs/preact": "^6.0.1",

@@ -5,5 +5,9 @@
     "jsxImportSource": "preact"
   },
   "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist"]
+  "exclude": [
+    "dist",
+    "public/games/after-midnight/Build",
+    "public/games/network-rush/Build"
+  ]
 }

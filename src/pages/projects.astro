@@ -158,7 +158,7 @@ const gameLabel = (id: string) =>
         {
           interactiveGames.map((game, index) => (
             <article
-              id={`game-${game.id}`}
+              id={projectById.has(game.id) ? `project-${game.id}` : `game-${game.id}`}
               data-project-item
               data-search={`${game.data.title} ${game.data.description} ${game.data.tech}`.toLowerCase()}
               data-live={game.data.embed?.startsWith('http') ? 'true' : 'false'}
@@ -186,6 +186,9 @@ const gameLabel = (id: string) =>
                 <p class="project-game-description">{game.data.description}</p>
                 <span class="project-game-tech">{game.data.tech}</span>
                 <div class="project-actions">
+                  {projectById.has(game.id) && (
+                    <a href={`/projects/${game.id}`}>details &rarr;</a>
+                  )}
                   {game.data.embed && (
                     <a href={`/games#${game.id}`}>
                       open {game.id === 'inflatr' ? 'tool' : 'game'} &rarr;

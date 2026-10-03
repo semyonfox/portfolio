@@ -23,6 +23,11 @@ const showChatbot =
   !currentPath.startsWith('/cv') &&
   !currentPath.startsWith('/docs/');
 
+const telemetryRoute = currentPath === '/' ? 'home'
+  : currentPath.startsWith('/games') ? 'game'
+  : currentPath.startsWith('/projects') || currentPath.startsWith('/blog') ? 'library'
+  : currentPath.startsWith('/privacy') || currentPath.startsWith('/docs') ? 'help' : 'app';
+
 const navLinks = [
   { href: '/', label: 'home' },
   { href: '/projects', label: 'projects' },
@@ -31,6 +36,7 @@ const navLinks = [
   { href: '/gallery', label: 'gallery' },
   { href: '/blog', label: 'blog' },
   { href: '/cv', label: 'cv' },
+  { href: '#contact', label: 'contact' },
 ];
 ---
 
@@ -78,9 +84,9 @@ const navLinks = [
     <ClientRouter />
     <title>{title}</title>
   </head>
-  <body>
+  <body data-telemetry-route={telemetryRoute}>
     <a
-      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-fox focus:text-white focus:px-4 focus:py-2 focus:rounded"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-fox focus:text-bg focus:px-4 focus:py-2 focus:rounded"
       href="#main"
     >
       Skip to main content
@@ -131,7 +137,7 @@ const navLinks = [
         <!-- mobile menu button -->
         <button
           id="mobile-menu-btn"
-          class="md:hidden text-muted hover:text-heading transition-colors"
+          class="md:hidden grid h-11 w-11 place-items-center text-muted hover:text-heading transition-colors"
           aria-label="Toggle menu"
           aria-expanded="false"
           aria-controls="mobile-menu"
@@ -153,7 +159,7 @@ const navLinks = [
       <!-- mobile nav -->
       <nav
         id="mobile-menu"
-        class="hidden md:hidden border-t border-border"
+        class="hidden md:hidden max-h-[calc(100dvh-5rem)] overflow-y-auto border-t border-border"
         aria-label="Mobile navigation"
       >
         <ul class="flex flex-col px-6 py-4 gap-3 text-sm">
@@ -163,12 +169,18 @@ const navLinks = [
                 <a
                   href={link.href}
                   class:list={[
-                    'block py-1 transition-colors',
+                    'flex min-h-11 items-center transition-colors',
                     currentPath === link.href ||
                     (link.href !== '/' && currentPath.startsWith(link.href))
                       ? 'text-fox'
                       : 'text-muted hover:text-heading',
                   ]}
+                  aria-current={
+                    currentPath === link.href ||
+                    (link.href !== '/' && currentPath.startsWith(link.href))
+                      ? 'page'
+                      : undefined
+                  }
                 >
                   {link.label}
                 </a>
@@ -179,7 +191,7 @@ const navLinks = [
       </nav>
     </header>
 
-    <main id="main" class="max-w-6xl mx-auto px-6">
+    <main id="main" tabindex="-1" class="max-w-6xl mx-auto px-6">
       <slot />
     </main>
 
@@ -190,7 +202,7 @@ const navLinks = [
     >
       <div class="max-w-6xl mx-auto px-6 py-16">
         <div class="grid md:grid-cols-2 gap-12">
-          <div id="contact">
+          <div id="contact" class="scroll-mt-24">
             <h2 class="type-section-title mb-4">Get in touch</h2>
             <p class="type-body mb-6">
               Have a question or want to collaborate? Send me a message.
@@ -209,7 +221,7 @@ const navLinks = [
                 autocomplete="name"
                 required
                 placeholder="Your name"
-                class="w-full bg-surface border border-border rounded-lg px-4 py-3 text-sm text-heading placeholder:text-dim focus:outline-none focus:border-fox/50 focus:ring-1 focus:ring-fox/25 transition-colors"
+                class="w-full bg-surface border border-border rounded-lg px-4 py-3 text-base sm:text-sm text-heading placeholder:text-dim focus:outline-none focus:border-fox/50 focus:ring-1 focus:ring-fox/25 transition-colors"
               />
               <label class="sr-only" for="contact-email">Your email</label>
               <input
@@ -219,7 +231,7 @@ const navLinks = [
                 autocomplete="email"
                 required
                 placeholder="Your email"
-                class="w-full bg-surface border border-border rounded-lg px-4 py-3 text-sm text-heading placeholder:text-dim focus:outline-none focus:border-fox/50 focus:ring-1 focus:ring-fox/25 transition-colors"
+                class="w-full bg-surface border border-border rounded-lg px-4 py-3 text-base sm:text-sm text-heading placeholder:text-dim focus:outline-none focus:border-fox/50 focus:ring-1 focus:ring-fox/25 transition-colors"
               />
               <label class="sr-only" for="contact-message">Your message</label>
               <textarea
@@ -228,7 +240,7 @@ const navLinks = [
                 required
                 placeholder="Your message"
                 rows="4"
-                class="w-full bg-surface border border-border rounded-lg px-4 py-3 text-sm text-heading placeholder:text-dim focus:outline-none focus:border-fox/50 focus:ring-1 focus:ring-fox/25 transition-colors resize-none"
+                class="w-full bg-surface border border-border rounded-lg px-4 py-3 text-base sm:text-sm text-heading placeholder:text-dim focus:outline-none focus:border-fox/50 focus:ring-1 focus:ring-fox/25 transition-colors resize-none"
               ></textarea>
               <div class="sr-only" aria-hidden="true">
                 <label for="contact-website">Website</label>
@@ -242,7 +254,7 @@ const navLinks = [
               </div>
               <button
                 type="submit"
-                class="bg-fox text-white font-semibold text-sm px-6 py-3 rounded-lg hover:brightness-110 transition-all"
+                class="bg-fox text-bg font-semibold text-sm px-6 py-3 rounded-lg hover:brightness-110 transition-all"
               >
                 Send message
               </button>
@@ -258,7 +270,7 @@ const navLinks = [
             <p class="type-body mb-4">Connect with me</p>
             <div class="flex gap-4">
               <a
-                href="https://www.linkedin.com/in/semyonfox/"
+                href="https://www.linkedin.com/in/semyon-fox-968685249/"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="text-muted hover:text-heading transition-colors"
@@ -302,6 +314,11 @@ const navLinks = [
                 >
               </a>
             </div>
+            <label class="mt-6 flex min-h-11 items-center gap-3 text-muted text-sm">
+              <input id="telemetry-disabled" type="checkbox" class="h-5 w-5 shrink-0 accent-fox" />
+              Disable anonymous counts for this page session
+            </label>
+            <p class="text-dim text-xs">Counts are off unless configured. This choice lasts until reload.</p>
             <p class="text-dim text-xs mt-8">
               &copy; 2026 Semyon Fox &middot;
               <a href="/privacy" class="hover:text-heading transition-colors">
@@ -316,15 +333,12 @@ const navLinks = [
     {showChatbot && <Chatbot client:load />}
 
     <script>
-      import {
-        linkPlacement,
-        safeInternalTarget,
-        safeOutboundTarget,
-        track,
-      } from '../lib/track';
+      import { track, trackError, setTelemetryDisabled, telemetryDisabled } from '../lib/track';
       // fires on initial load and after every view-transition navigation
       document.addEventListener('astro:page-load', () => {
-        track('pageview');
+        track('screen_view');
+        const checkbox = document.querySelector<HTMLInputElement>('#telemetry-disabled');
+        if (checkbox) checkbox.checked = telemetryDisabled();
         if (new URLSearchParams(location.search).get('contact') === 'sent') {
           const status = document.querySelector<HTMLElement>('#contact-status');
           if (status) {
@@ -333,24 +347,9 @@ const navLinks = [
         }
       });
 
-      // Delegated so it survives view transitions. It records independent
-      // aggregate link actions only; it creates no browser/session state.
-      document.addEventListener('click', (e) => {
-        const link = (e.target as Element | null)?.closest?.('a[href]');
-        if (!(link instanceof HTMLAnchorElement)) return;
-        const external =
-          (link.protocol === 'http:' || link.protocol === 'https:') &&
-          link.origin !== location.origin;
-        const placement = linkPlacement(link);
-        if (external || link.protocol === 'mailto:') {
-          const target = safeOutboundTarget(link.href);
-          if (target) track('outbound_click', target, placement);
-          return;
-        }
-
-        const target = safeInternalTarget(link.href);
-        if (target && target !== location.pathname) {
-          track('navigation', target, placement);
+      document.addEventListener('change', (event) => {
+        if (event.target instanceof HTMLInputElement && event.target.id === 'telemetry-disabled') {
+          setTelemetryDisabled(event.target.checked);
         }
       });
 
@@ -358,7 +357,7 @@ const navLinks = [
         const form = e.target as HTMLFormElement | null;
         if (form?.id !== 'contact-form') return;
         e.preventDefault();
-        track('form_submit');
+        if (form.getAttribute('aria-busy') === 'true') return;
 
         const button = form.querySelector<HTMLButtonElement>(
           'button[type="submit"]',
@@ -376,31 +375,39 @@ const navLinks = [
         }
         if (status) status.textContent = 'Sending your message…';
 
+        const controller = new AbortController();
+        const timeout = window.setTimeout(() => controller.abort(), 15000);
         try {
           const response = await fetch(form.action, {
             method: 'POST',
             body,
             headers: { Accept: 'text/plain' },
+            signal: controller.signal,
           });
           if (!response.ok) {
             if (response.status === 400) throw new Error('check');
             if (response.status === 429) throw new Error('limit');
             throw new Error('delivery');
           }
+          track('action_completed');
           form.reset();
           if (status) {
             status.textContent = 'Message sent. I’ll get back to you soon.';
           }
         } catch (error) {
+          trackError('request_failed');
           if (status) {
             status.textContent =
-              error instanceof Error && error.message === 'check'
-                ? 'Please check your name, email, and message.'
-                : error instanceof Error && error.message === 'limit'
-                  ? 'Too many messages. Please try again later.'
-                  : 'Message could not be sent. Email hello@semyon.ie instead.';
+              controller.signal.aborted
+                ? 'Sending took too long. Please try again or email hello@semyon.ie.'
+                : error instanceof Error && error.message === 'check'
+                  ? 'Please check your name, email, and message.'
+                  : error instanceof Error && error.message === 'limit'
+                    ? 'Too many messages. Please try again later.'
+                    : 'Message could not be sent. Email hello@semyon.ie instead.';
           }
         } finally {
+          window.clearTimeout(timeout);
           form.removeAttribute('aria-busy');
           if (button) {
             button.disabled = false;
@@ -411,24 +418,31 @@ const navLinks = [
     </script>
 
     <script>
-      const btn = document.getElementById('mobile-menu-btn');
-      const menu = document.getElementById('mobile-menu');
-      if (btn && menu) {
-        const closeMenu = () => {
-          btn.setAttribute('aria-expanded', 'false');
-          menu.classList.add('hidden');
-        };
-        btn.addEventListener('click', () => {
+      // query the current menu after every client-side page swap
+      document.addEventListener('click', (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        if (!btn || !menu) return;
+        if (target.closest('#mobile-menu-btn')) {
           const expanded = btn.getAttribute('aria-expanded') === 'true';
           btn.setAttribute('aria-expanded', String(!expanded));
           menu.classList.toggle('hidden');
-        });
-        document.addEventListener('keydown', (event) => {
-          if (event.key !== 'Escape' || btn.getAttribute('aria-expanded') !== 'true') return;
-          closeMenu();
-          btn.focus();
-        });
-      }
+        } else if (target.closest('#mobile-menu a')) {
+          btn.setAttribute('aria-expanded', 'false');
+          menu.classList.add('hidden');
+        }
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key !== 'Escape') return;
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        if (!btn || !menu || btn.getAttribute('aria-expanded') !== 'true') return;
+        btn.setAttribute('aria-expanded', 'false');
+        menu.classList.add('hidden');
+        btn.focus();
+      });
     </script>
   </body>
 </html>

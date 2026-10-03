@@ -2,10 +2,13 @@ import { defineConfig } from 'vite-plus';
 
 export default defineConfig({
   lint: {
-    ignorePatterns: ['public/games/network-rush/**'],
     jsPlugins: [{ name: 'vite-plus', specifier: 'vite-plus/oxlint-plugin' }],
     rules: { 'vite-plus/prefer-vite-plus-imports': 'error' },
     options: { typeAware: true, typeCheck: true },
+    ignorePatterns: [
+      'public/games/after-midnight/Build/**',
+      'public/games/network-rush/**',
+    ],
   },
   fmt: {
     semi: true,
@@ -14,6 +17,9 @@ export default defineConfig({
     trailingComma: 'all',
     printWidth: 80,
     sortPackageJson: false,
-    ignorePatterns: ['public/games/network-rush/**'],
+    ignorePatterns: [
+      'public/games/network-rush/**',
+      'public/games/after-midnight/**',
+    ],
   },
 });
