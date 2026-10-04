@@ -40,6 +40,7 @@ bootGame()
   .then(() => setStatus('game closed'))
   .catch((error) => {
     console.error(error);
-    setStatus(`could not start game: ${error.message}`);
+    const message = error instanceof Error ? error.message : String(error);
+    setStatus(`could not start game: ${message}`);
     document.body.classList.add('has-error');
   });

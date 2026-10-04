@@ -224,6 +224,18 @@
   padding: 30px 32px;
 }
 
+.project-bento-1 > img {
+  left: auto;
+  width: 55%;
+  opacity: 0.45;
+}
+
+.project-bento-1.has-image::before {
+  background:
+    linear-gradient(90deg, #101010 20%, #101010f5 57%, #10101080 100%),
+    linear-gradient(0deg, #101010 2%, transparent 60%);
+}
+
 .project-bento-1 .project-kicker {
   margin-bottom: 18px;
 }

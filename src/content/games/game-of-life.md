@@ -8,6 +8,6 @@ embed: '/games/game-of-life/index.html'
 download: '/games/java/game-of-life.jar'
 displayWidth: 900
 displayHeight: 900
-thumbnail: '/game-thumbnails/game-of-life.webp?v=20260715'
+thumbnail: '/game-thumbnails/game-of-life.webp?v=20260924'
 order: 3
 ---
