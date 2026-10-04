@@ -300,7 +300,7 @@ export const cv = {
         { name: 'Docker' },
       ],
       description:
-        'Built in a three-person team. OghmaNotes brings Canvas course material, notes, cited AI chat, quizzes and spaced repetition into one study workspace. Its import workers extract PDFs, create embeddings and report progress; Qdrant handles retrieval while PostgreSQL stores content and ownership. The team moved it from AWS to self-hosted Docker.',
+        'Built in a three-person team. OghmaNotes brings Canvas course material, notes, cited AI chat, quizzes and spaced repetition into one study workspace. Its import workers extract PDFs, create embeddings and report progress, with retries and cancellation. Qdrant handles retrieval while PostgreSQL stores content and ownership. The team moved it from AWS to self-hosted Docker.',
       links: [{ url: 'https://oghmanotes.ie', label: 'Live at' }],
     },
     {
@@ -317,7 +317,7 @@ export const cv = {
         { name: 'Vitest' },
       ],
       description:
-        'Built a swimming-club platform for squads, training sessions, attendance, results and performance tracking. Designed its React interface, JSON:API backend and multi-schema PostgreSQL model; tested client and API workflows with Vitest.',
+        'Built a swimming-club platform for squads, training sessions, attendance, results and performance tracking. Designed its React interface, JSON:API backend and multi-schema PostgreSQL model; tested client and API workflows with Vitest, including 90+ backend tests.',
       links: [{ url: 'https://swim.semyon.ie', label: 'Live at' }],
     },
     {
@@ -334,7 +334,7 @@ export const cv = {
         { name: 'NFS' },
       ],
       description:
-        'Run 30+ services in 54 containers with Jenkins pipelines, Cloudflare tunnels and Nginx reverse proxies across 21 internal virtual hosts. Back up services to a RAID NAS over NFS using Btrfs snapshots.',
+        'Run 30+ services in 54 containers with Cloudflare tunnels and Nginx reverse proxies across 21 internal virtual hosts. Tuned Jenkins pipelines across six applications with persistent BuildKit caching, cutting the Irish Rail build from 9m 43s to 1m 11s. Back up services to a RAID NAS over NFS with daily, weekly, monthly and yearly Btrfs snapshots.',
     },
     {
       name: 'Irish Rail data pipeline',
