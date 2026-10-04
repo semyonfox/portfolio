@@ -9,15 +9,9 @@ on:
 permissions:
   contents: read
 
-concurrency:
-  group: ci-${{ github.workflow }}-${{ github.event_name }}-${{ github.event.pull_request.number || github.run_id }}
-  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
-
 jobs:
   frontend:
     name: Frontend
-    needs: deployment-contract
-    if: needs.deployment-contract.outputs.frontend == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -30,13 +24,13 @@ jobs:
           run-install: false
       - name: Install dependencies
         run: vp install --frozen-lockfile
+      - name: Check
+        run: vp run check
       - name: Build
         run: vp run build
 
   rust-api:
     name: Rust API
-    needs: deployment-contract
-    if: needs.deployment-contract.outputs.rust_api == 'true'
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -58,57 +52,12 @@ jobs:
   deployment-contract:
     name: Deployment contract
     runs-on: ubuntu-latest
-    outputs:
-      frontend: ${{ steps.changes.outputs.frontend }}
-      rust_api: ${{ steps.changes.outputs.rust_api }}
     steps:
       - name: Checkout
         uses: actions/checkout@v5
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
         with:
-          fetch-depth: 2
-      - name: Select checks
-        id: changes
-        run: |
-          node --input-type=module <<'NODE'
-          import { execFileSync } from 'node:child_process';
-          import { appendFileSync } from 'node:fs';
-
-          const all = { frontend: true, rust_api: true };
-          let selected = { ...all };
-          if (process.env.GITHUB_EVENT_NAME === 'pull_request') {
-            try {
-              const git = (...args) => execFileSync('git', args, { encoding: 'utf8' });
-              if (!/^refs\/pull\/\d+\/merge$/.test(process.env.GITHUB_REF ?? '') ||
-                  git('rev-parse', 'HEAD').trim() !== process.env.GITHUB_SHA) {
-                throw new Error('checkout is not the expected pull request merge');
-              }
-              git('rev-parse', '--verify', 'HEAD^2');
-              const paths = git('diff', '--name-only', '--no-renames', '-z', 'HEAD^1', 'HEAD')
-                .split('\0').filter(Boolean);
-              selected = { frontend: false, rust_api: false };
-              for (const path of paths) {
-                if (path === 'api/openapi.json') {
-                  // the API embeds this schema and the frontend imports it for its docs
-                  selected = { ...all };
-                } else if (path.startsWith('api/')) {
-                  selected.rust_api = true;
-                } else if (/^(src|public|data)\//.test(path) ||
-                           ['astro.config.mjs', 'tailwind.config.mjs', 'tsconfig.json', 'vite.config.ts'].includes(path)) {
-                  selected.frontend = true;
-                } else if (!['README.md', 'LICENSE'].includes(path)) {
-                  // shared tooling, workflow changes and unknown paths keep full coverage
-                  selected = { ...all };
-                  break;
-                }
-              }
-            } catch (error) {
-              console.warn(`Running all checks: ${error.message}`);
-              selected = { ...all };
-            }
-          }
-          console.log('Selected checks:', selected);
-          appendFileSync(process.env.GITHUB_OUTPUT,
-            Object.entries(selected).map(([name, enabled]) => `${name}=${enabled}\n`).join(''));
-          NODE
+          node-version: 22
       - name: Validate deploy contract
         run: bash scripts/validate-deploy-contract.sh
