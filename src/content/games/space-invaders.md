@@ -3,10 +3,9 @@ title: 'Space Invaders'
 description: 'Space Invaders game with wave progression, boss fights every five waves, upgrades, and scaling difficulty. Created for CT2110 coursework.'
 tech: 'Java (Swing)'
 github: 'https://github.com/semyonfox/space-invaders'
-embed: '/games/space-invaders/index.html'
-download: '/games/downloads/space-invaders-desktop.zip'
+embed: '/games/space-invaders/'
 displayWidth: 960
 displayHeight: 540
-thumbnail: '/game-thumbnails/space-invaders.webp?v=20260715'
+thumbnail: '/game-thumbnails/space-invaders.webp?v=20260924'
 order: 1
 ---
