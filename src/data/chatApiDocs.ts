@@ -46,7 +46,7 @@ export const chatApiDocs = {
   requestRules: [
     {
       term: 'messages',
-      description: `${messagesSchema.minItems}-${messagesSchema.maxItems} entries of { role, content }.`,
+      description: `${messagesSchema.minItems}-${messagesSchema.maxItems} entries of { role, content } in order. The final message must be from the user.`,
     },
     {
       term: 'role',

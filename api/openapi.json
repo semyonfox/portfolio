@@ -17,7 +17,7 @@
     "/api/chat": {
       "post": {
         "summary": "Send a chat message",
-        "description": "Submits a list of recent messages. The server prepends a fixed system prompt and keeps only the last 5 user/assistant messages. Returns a single plain-text reply. No streaming.",
+        "description": "Submits a list of recent messages ending with a user message. The server prepends a fixed system prompt and keeps only the last 5 user/assistant messages. Returns a single plain-text reply. No streaming. Upstream requests time out after 30 seconds.",
         "operationId": "chat",
         "requestBody": {
           "required": true,
@@ -170,6 +170,7 @@
         "properties": {
           "messages": {
             "type": "array",
+            "description": "Recent messages in order; the final message must have role user.",
             "minItems": 1,
             "maxItems": 40,
             "items": { "$ref": "#/components/schemas/ChatMessage" }
