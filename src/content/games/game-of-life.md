@@ -4,10 +4,9 @@ description: "Interactive Conway's Game of Life with start and randomise control
 tech: 'Java (Swing)'
 github: 'https://github.com/semyonfox/game_of_life_java'
 private: true
-embed: '/games/game-of-life/index.html'
-download: '/games/java/game-of-life.jar'
+embed: '/games/game-of-life/'
 displayWidth: 900
 displayHeight: 900
-thumbnail: '/game-thumbnails/game-of-life.webp?v=20260715'
+thumbnail: '/game-thumbnails/game-of-life.webp?v=20260924'
 order: 3
 ---
