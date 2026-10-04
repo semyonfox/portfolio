@@ -20,6 +20,7 @@ const MAX_MESSAGES: usize = 40;
 const MAX_CONTENT_LEN: usize = 4000;
 const MAX_HISTORY: usize = 5;
 const MAX_BODY_BYTES: usize = 16 * 1024;
+const UPSTREAM_TIMEOUT_SECS: u64 = 30;
 const REPLY_TOKENS: u32 = 300;
 const TEMPERATURE: f32 = 0.35;
 const RATE_LIMIT_REQUESTS: usize = 20;
@@ -504,6 +505,13 @@ fn validate(req: &ChatRequest) -> Result<(), &'static str> {
     }
     if req.messages.len() > MAX_MESSAGES {
         return Err("too many messages");
+    }
+    if req
+        .messages
+        .last()
+        .is_none_or(|message| message.role != "user")
+    {
+        return Err("last message must be from user");
     }
     for m in &req.messages {
         if m.content.trim().is_empty() {
@@ -1049,7 +1057,10 @@ async fn main() {
         api_key,
         api_url: api_url.clone(),
         model: model.clone(),
-        http_client: reqwest::Client::new(),
+        http_client: reqwest::Client::builder()
+            .timeout(Duration::from_secs(UPSTREAM_TIMEOUT_SECS))
+            .build()
+            .expect("failed to build HTTP client"),
         rate_limiter: RateLimiter::new(
             RATE_LIMIT_REQUESTS,
             Duration::from_secs(RATE_LIMIT_WINDOW_SECS),
@@ -1103,6 +1114,25 @@ mod tests {
             role: role.to_string(),
             content: content.to_string(),
         }
+    }
+
+    #[test]
+    fn chat_requires_a_final_user_message() {
+        let request = |messages| ChatRequest {
+            messages,
+            conversation_id: None,
+        };
+
+        assert!(validate(&request(vec![message("user", "hello")])).is_ok());
+        assert!(validate(&request(vec![message("assistant", "hello")])).is_err());
+        assert!(validate(&request(vec![message("system", "hello")])).is_err());
+        assert!(
+            validate(&request(vec![
+                message("user", "hello"),
+                message("assistant", "reply"),
+            ]))
+            .is_err()
+        );
     }
 
     #[test]
