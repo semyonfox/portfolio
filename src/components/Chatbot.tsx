@@ -1,16 +1,9 @@
 import { useState, useRef, useEffect } from 'preact/hooks';
-import { track } from '../lib/track';
+import { track, trackError } from '../lib/track';
+import { chatRequest, type Message } from '../lib/chat-request';
 
 const CHAT_API = import.meta.env.PUBLIC_CHAT_API_URL || '/api/chat';
 const FOXBOT_SRC = '/foxbot.webp';
-
-// per-tab id so the backend can group a conversation's turns. lives in
-// memory only, never touches cookies or storage
-function newConversationId() {
-  return typeof crypto !== 'undefined' && 'randomUUID' in crypto
-    ? crypto.randomUUID()
-    : Math.random().toString(36).slice(2);
-}
 
 // rotating bubble text on the collapsed chatbot
 const QUIPS = [
@@ -44,11 +37,6 @@ const ERROR_MSGS = [
   'the assistant is taking an unplanned debugging break - try again shortly',
 ];
 
-interface Message {
-  role: 'user' | 'assistant';
-  content: string;
-}
-
 export default function Chatbot() {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
@@ -60,12 +48,12 @@ export default function Chatbot() {
   ]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
+  const [failure, setFailure] = useState('');
   const [quip, setQuip] = useState(QUIPS[0]);
   const messagesEnd = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const returnFocus = useRef(false);
-  const conversationId = useRef(newConversationId());
 
   // rotate quips
   useEffect(() => {
@@ -77,7 +65,12 @@ export default function Chatbot() {
 
   // scroll to bottom on new messages
   useEffect(() => {
-    messagesEnd.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEnd.current?.scrollIntoView({
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        ? 'instant'
+        : 'smooth',
+      block: 'nearest',
+    });
   }, [messages]);
 
   useEffect(() => {
@@ -99,40 +92,67 @@ export default function Chatbot() {
     if (!text || loading) return;
 
     const userMsg: Message = { role: 'user', content: text };
+    const body = chatRequest(messages, userMsg);
+    if (!body) {
+      setFailure('That message is too long. Please shorten it and send again.');
+      trackError('validation_failed', 'popup');
+      return;
+    }
     setMessages((prev) => [...prev, userMsg]);
     setInput('');
     setLoading(true);
+    setFailure('');
+
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 30000);
+    const fail = (content: string) => {
+      trackError('request_failed', 'popup');
+      setFailure(
+        `No reply arrived. Check the message below and send again to retry. ${content}`,
+      );
+      setInput((current) => current || text);
+    };
 
     try {
       const res = await fetch(CHAT_API, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          messages: [...messages, userMsg],
-          conversation_id: conversationId.current,
-        }),
+        signal: controller.signal,
+        body,
       });
 
       if (res.status === 429) {
         const msg =
           RATE_LIMIT_MSGS[Math.floor(Math.random() * RATE_LIMIT_MSGS.length)];
-        setMessages((prev) => [...prev, { role: 'assistant', content: msg }]);
+        fail(msg);
         return;
       }
       if (!res.ok) {
         const msg = ERROR_MSGS[Math.floor(Math.random() * ERROR_MSGS.length)];
-        setMessages((prev) => [...prev, { role: 'assistant', content: msg }]);
+        fail(msg);
         return;
       }
-      const data = await res.json();
-      setMessages((prev) => [
-        ...prev,
-        { role: 'assistant', content: data.reply },
-      ]);
+      const data: unknown = await res.json();
+      if (
+        typeof data !== 'object' ||
+        data === null ||
+        !('reply' in data) ||
+        typeof data.reply !== 'string' ||
+        !data.reply.trim()
+      ) {
+        throw new Error('Missing chat reply');
+      }
+      const reply = data.reply;
+      setMessages((prev) => [...prev, { role: 'assistant', content: reply }]);
     } catch {
       const msg = ERROR_MSGS[Math.floor(Math.random() * ERROR_MSGS.length)];
-      setMessages((prev) => [...prev, { role: 'assistant', content: msg }]);
+      fail(
+        controller.signal.aborted
+          ? 'that took too long. try sending again.'
+          : msg,
+      );
     } finally {
+      window.clearTimeout(timeout);
       setLoading(false);
     }
   }
@@ -147,7 +167,7 @@ export default function Chatbot() {
           ref={triggerRef}
           onClick={() => {
             setOpen(true);
-            track('chat_open');
+            track('action_completed', 'popup');
           }}
           class="w-12 h-12 rounded-full shadow-lg shadow-fox/25 flex items-center justify-center hover:scale-110 transition-all overflow-hidden border-2 border-fox"
           aria-label="Open chat"
@@ -174,10 +194,10 @@ export default function Chatbot() {
       aria-modal="false"
       aria-labelledby="chat-title"
       onKeyDown={(event) => event.key === 'Escape' && closeChat()}
-      class="fixed bottom-4 left-4 right-4 sm:left-auto sm:bottom-6 sm:right-6 z-50 w-auto sm:w-[340px] max-h-[min(520px,calc(100vh-2rem))] bg-surface border border-heading/10 rounded-xl shadow-2xl flex flex-col overflow-hidden"
+      class="fixed bottom-4 left-4 right-4 sm:left-auto sm:bottom-6 sm:right-6 z-50 w-auto sm:w-[340px] max-h-[min(520px,calc(100dvh-2rem))] bg-surface border border-heading/10 rounded-xl shadow-2xl flex flex-col overflow-y-auto"
     >
       {/* header */}
-      <div class="flex items-center justify-between px-4 py-3 border-b border-border">
+      <div class="shrink-0 flex items-center justify-between px-4 py-3 border-b border-border">
         <div class="flex items-center gap-2">
           <img
             src={FOXBOT_SRC}
@@ -193,7 +213,7 @@ export default function Chatbot() {
         </div>
         <button
           onClick={closeChat}
-          class="text-dim hover:text-heading transition-colors text-sm"
+          class="grid h-11 w-11 place-items-center text-dim hover:text-heading transition-colors text-sm"
           aria-label="Close chat"
         >
           ✕
@@ -201,44 +221,55 @@ export default function Chatbot() {
       </div>
 
       {/* messages */}
-      <div class="flex-1 overflow-y-auto p-4 space-y-3 min-h-[200px] max-h-[320px]">
-        {messages.map((msg, i) => (
-          <div
-            key={i}
-            class={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
-          >
-            <div
-              class={`max-w-[80%] px-3 py-2 rounded-xl text-xs leading-relaxed ${
-                msg.role === 'user'
-                  ? 'bg-white text-black rounded-br-none'
-                  : 'bg-border text-heading/80 rounded-bl-none'
-              }`}
+      <div class="flex-1 overflow-y-auto p-4 space-y-3 min-h-0 max-h-[320px]">
+        <ol aria-label="Conversation" class="space-y-3">
+          {messages.map((msg, i) => (
+            <li
+              key={i}
+              class={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
             >
-              {msg.content}
-            </div>
-          </div>
-        ))}
+              <div
+                class={`max-w-[80%] px-3 py-2 rounded-xl text-sm leading-relaxed break-words ${
+                  msg.role === 'user'
+                    ? 'bg-white text-black rounded-br-none'
+                    : 'bg-border text-heading/80 rounded-bl-none'
+                }`}
+              >
+                <span class="sr-only">
+                  {msg.role === 'user' ? 'You: ' : 'Assistant: '}
+                </span>
+                {msg.content}
+              </div>
+            </li>
+          ))}
+        </ol>
         {loading && (
           <div class="flex justify-start">
-            <div class="bg-border text-heading/40 px-3 py-2 rounded-xl rounded-bl-none text-xs">
+            <div class="bg-border text-muted px-3 py-2 rounded-xl rounded-bl-none text-xs">
               typing...
             </div>
           </div>
         )}
         <div ref={messagesEnd} />
       </div>
+      {failure && <p class="px-3 py-2 text-sm text-heading">{failure}</p>}
       <p class="sr-only" aria-live="polite" aria-atomic="true">
-        {loading
-          ? 'Semyon’s assistant is typing.'
-          : messages.length > 1 &&
-              messages[messages.length - 1].role === 'assistant'
-            ? messages[messages.length - 1].content
-            : ''}
+        {failure ||
+          (loading
+            ? 'Semyon’s assistant is typing.'
+            : messages.length > 1 &&
+                messages[messages.length - 1].role === 'assistant'
+              ? messages[messages.length - 1].content
+              : '')}
+      </p>
+
+      <p id="chat-privacy" class="shrink-0 px-3 py-2 text-xs text-muted">
+        Messages go to OpenRouter to answer. Please leave out personal details.
       </p>
 
       {/* input */}
       <form
-        class="border-t border-border p-3 flex gap-2"
+        class="shrink-0 border-t border-border p-3 flex gap-2"
         onSubmit={(event) => {
           event.preventDefault();
           void send();
@@ -252,14 +283,16 @@ export default function Chatbot() {
           id="chat-message"
           type="text"
           value={input}
-          onInput={(e) => setInput((e.target as HTMLInputElement).value)}
+          onInput={(e) => setInput(e.currentTarget.value)}
           placeholder="type a message..."
-          class="flex-1 bg-border rounded-lg px-3 py-2 text-xs text-heading placeholder:text-dim focus:outline-none focus:ring-1 focus:ring-fox/25"
+          aria-describedby="chat-privacy"
+          maxLength={4000}
+          class="min-w-0 flex-1 bg-border rounded-lg px-3 py-2 text-base sm:text-sm text-heading placeholder:text-dim focus:outline-none focus:ring-1 focus:ring-fox/25"
         />
         <button
           type="submit"
           disabled={loading || !input.trim()}
-          class="bg-white text-black font-semibold text-xs px-3 py-2 rounded-lg hover:bg-white/90 transition-colors disabled:opacity-40"
+          class="min-h-11 bg-white text-black font-semibold text-sm px-3 py-2 rounded-lg hover:bg-white/90 transition-colors disabled:opacity-40"
         >
           send
         </button>
