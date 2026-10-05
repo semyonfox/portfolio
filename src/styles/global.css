@@ -21,6 +21,7 @@
   h6 {
     letter-spacing: 0;
     text-wrap: balance;
+    overflow-wrap: anywhere;
   }
 
   p,
@@ -204,7 +205,7 @@
   }
 
   .diagram-controls > button {
-    @apply grid h-9 w-9 cursor-pointer place-items-center rounded-lg border border-border bg-bg/95 p-0 text-muted shadow-lg transition-colors hover:border-fox/40 hover:bg-border hover:text-heading;
+    @apply grid h-11 w-11 cursor-pointer place-items-center rounded-lg border border-border bg-bg/95 p-0 text-muted shadow-lg transition-colors hover:border-fox/40 hover:bg-border hover:text-heading;
   }
 
   .diagram-controls svg {
@@ -308,5 +309,28 @@
     .type-card-title {
       @apply text-lg;
     }
+  }
+}
+
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: 2px solid #e8702a;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  button:hover {
+    transform: none;
+    scale: 1;
   }
 }

@@ -88,13 +88,13 @@ const gamePreviewClass: Record<string, string> = {
     <!-- game player (hidden by default) -->
     <div id="game-player" class="hidden">
       <div
-        class="max-w-6xl mx-auto flex items-center justify-between gap-4 mb-4"
+        class="max-w-6xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4"
       >
         <div>
-          <h2 id="player-title" class="type-section-title"></h2>
+          <h2 id="player-title" tabindex="-1" class="type-section-title"></h2>
           <p id="player-tech" class="text-dim text-xs mt-1"></p>
         </div>
-        <div class="flex gap-2">
+        <div class="player-actions flex flex-wrap items-center gap-2">
           <a
             id="player-github"
             href="#"
@@ -128,7 +128,7 @@ const gamePreviewClass: Record<string, string> = {
             id="player-back"
             class="border border-border text-muted text-xs px-3 py-1.5 rounded-lg hover:text-heading hover:border-muted transition-colors"
           >
-            back
+            back to games
           </button>
         </div>
       </div>
@@ -142,6 +142,11 @@ const gamePreviewClass: Record<string, string> = {
       </div>
       <div id="player-details" class="player-details">
         <p id="player-description" class="type-body"></p>
+        <p id="player-status" class="text-muted text-sm mt-3" role="status"></p>
+        <div class="player-actions flex flex-wrap gap-3 mt-3">
+          <button id="player-retry" class="hidden text-fox text-sm">retry player</button>
+          <a id="player-direct" class="hidden text-fox text-sm" target="_blank" rel="noopener noreferrer">open in new tab &nearr;</a>
+        </div>
       </div>
     </div>
   </section>
@@ -401,9 +406,18 @@ const gamePreviewClass: Record<string, string> = {
   }
 
   #game-player {
-    margin-inline: calc(50% - 50vw);
+    margin-inline: min(0px, calc((72rem - 100vw) / 2));
     padding-inline: clamp(1rem, 2vw, 2rem);
     scroll-margin-top: 5rem;
+  }
+
+  .player-actions > a:not(.hidden),
+  .player-actions > button:not(.hidden) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding-inline: 12px;
   }
 
   .game-stage {
@@ -458,6 +472,10 @@ const gamePreviewClass: Record<string, string> = {
   }
 
   @media (max-width: 48rem) {
+    #game-player {
+      margin-inline: -1.5rem;
+    }
+
     .game-frame {
       min-height: 22rem;
     }
@@ -467,137 +485,165 @@ const gamePreviewClass: Record<string, string> = {
 <script>
   import { track } from '../lib/track';
 
-  const catalog = document.getElementById('game-catalog');
-  const intro = document.getElementById('games-intro');
-  const player = document.getElementById('game-player');
-  const frame = document.getElementById('player-frame') as HTMLIFrameElement;
-  const title = document.getElementById('player-title');
-  const description = document.getElementById('player-description');
-  const tech = document.getElementById('player-tech');
-  const githubLink = document.getElementById(
-    'player-github',
-  ) as HTMLAnchorElement;
-  const privateRepo = document.getElementById('player-private');
-  const downloadLink = document.getElementById(
-    'player-download',
-  ) as HTMLAnchorElement;
-  const downloadLabel = document.getElementById('player-download-label');
-  const backBtn = document.getElementById('player-back');
-  const fullscreenBtn = document.getElementById('player-fullscreen');
-  const stage = document.getElementById('player-stage');
+  let cleanup: (() => void) | undefined;
 
-  const cards = [...document.querySelectorAll<HTMLElement>('.game-card')];
-  let activeGameId: string | undefined;
+  function initializePlayer() {
+    cleanup?.();
+    const catalog = document.getElementById('game-catalog');
+    const intro = document.getElementById('games-intro');
+    const player = document.getElementById('game-player');
+    const frame = document.querySelector<HTMLIFrameElement>('#player-frame');
+    const title = document.getElementById('player-title');
+    const description = document.getElementById('player-description');
+    const tech = document.getElementById('player-tech');
+    const githubLink = document.querySelector<HTMLAnchorElement>('#player-github');
+    const downloadLink = document.querySelector<HTMLAnchorElement>('#player-download');
+    const downloadLabel = document.getElementById('player-download-label');
+    const privateRepo = document.getElementById('player-private');
+    const backBtn = document.getElementById('player-back');
+    const fullscreenBtn = document.getElementById('player-fullscreen');
+    const stage = document.getElementById('player-stage');
+    const status = document.getElementById('player-status');
+    const retryBtn = document.getElementById('player-retry');
+    const directLink = document.querySelector<HTMLAnchorElement>('#player-direct');
+    if (!catalog || !player || !frame || !title || !stage || !status) return;
 
-  const openGame = (el: HTMLElement) => {
-    if (activeGameId === el.dataset.gameId) return;
-    activeGameId = el.dataset.gameId;
-    const embedUrl = el.dataset.gameEmbed;
-    track('game_open', activeGameId);
+    const controller = new AbortController();
+    const options = { signal: controller.signal };
+    const cards = [...document.querySelectorAll<HTMLButtonElement>('.game-card')];
+    let activeCard: HTMLButtonElement | undefined;
+    let loadingTimeout: number | undefined;
+    const clearLoading = () => window.clearTimeout(loadingTimeout);
+    cleanup = () => {
+      controller.abort();
+      clearLoading();
+    };
 
-    if (title) title.textContent = el.dataset.gameTitle || '';
-    if (description) {
-      description.textContent = el.dataset.gameDescription || '';
-    }
-    if (tech) tech.textContent = el.dataset.gameTech || '';
-
-    if (el.dataset.gamePrivate === 'true') {
-      githubLink?.classList.add('hidden');
-      privateRepo?.classList.remove('hidden');
-    } else if (el.dataset.gameGithub && githubLink) {
-      githubLink.href = el.dataset.gameGithub;
-      githubLink.classList.remove('hidden');
-      privateRepo?.classList.add('hidden');
-    } else if (githubLink) {
-      githubLink.classList.add('hidden');
-      privateRepo?.classList.add('hidden');
-    }
-
-    if (el.dataset.gameDownload) {
-      downloadLink.href = el.dataset.gameDownload;
-      if (downloadLabel) {
-        downloadLabel.textContent = el.dataset.gameDownload.endsWith('.zip')
-          ? 'download desktop ZIP'
-          : 'download JAR';
-      }
-      downloadLink.classList.remove('hidden');
-    } else {
-      downloadLink.classList.add('hidden');
-    }
-
-    if (embedUrl && frame) {
+    const loadEmbed = (card: HTMLButtonElement) => {
+      clearLoading();
       frame.removeAttribute('srcdoc');
-      frame.src = embedUrl;
-      window.setTimeout(() => frame.focus(), 0);
-      const displayWidth = Number(el.dataset.gameDisplayWidth);
-      const displayHeight = Number(el.dataset.gameDisplayHeight);
+      frame.src = card.dataset.gameEmbed || '';
+      status.textContent = 'Opening player...';
+      loadingTimeout = window.setTimeout(() => {
+        status.textContent = 'Taking a while? Retry the player or open it in a new tab.';
+      }, 12000);
+    };
+
+    frame.addEventListener('load', () => {
+      if (!activeCard?.dataset.gameEmbed) return;
+      clearLoading();
+      // a load event can also mean an error page, so keep recovery available
+      status.textContent = 'If the player is blank, retry it or open it in a new tab.';
+    }, options);
+    frame.addEventListener('error', () => {
+      clearLoading();
+      status.textContent = 'The player could not load. Retry it or open it in a new tab.';
+    }, options);
+
+    const openGame = (card: HTMLButtonElement) => {
+      if (activeCard === card) return;
+      activeCard = card;
+      const embedUrl = card.dataset.gameEmbed;
+      track('action_completed', 'game');
+      title.textContent = card.dataset.gameTitle || '';
+      frame.title = `${card.dataset.gameTitle || 'Game'} player`;
+      if (description) description.textContent = card.dataset.gameDescription || '';
+      if (tech) tech.textContent = card.dataset.gameTech || '';
+
+      const isPrivate = card.dataset.gamePrivate === 'true';
+      privateRepo?.classList.toggle('hidden', !isPrivate);
+      githubLink?.classList.toggle('hidden', isPrivate || !card.dataset.gameGithub);
+      if (githubLink && card.dataset.gameGithub) githubLink.href = card.dataset.gameGithub;
+
+      downloadLink?.classList.toggle('hidden', !card.dataset.gameDownload);
+      if (downloadLink && card.dataset.gameDownload) {
+        downloadLink.href = card.dataset.gameDownload;
+        if (downloadLabel) {
+          downloadLabel.textContent = card.dataset.gameDownload.endsWith('.zip')
+            ? 'download desktop ZIP'
+            : 'download JAR';
+        }
+      }
+
+      clearLoading();
+      stage.classList.toggle('hidden', !embedUrl);
+      retryBtn?.classList.toggle('hidden', !embedUrl);
+      directLink?.classList.toggle('hidden', !embedUrl);
+      fullscreenBtn?.classList.toggle('hidden', !embedUrl || !document.fullscreenEnabled);
+      if (directLink && embedUrl) directLink.href = embedUrl;
+
+      const displayWidth = Number(card.dataset.gameDisplayWidth);
+      const displayHeight = Number(card.dataset.gameDisplayHeight);
       if (displayWidth > 0 && displayHeight > 0) {
-        const aspect = displayWidth / displayHeight;
-        stage?.style.setProperty(
-          '--game-aspect',
-          `${displayWidth} / ${displayHeight}`,
-        );
-        stage?.style.setProperty('--game-aspect-value', String(aspect));
+        stage.style.setProperty('--game-aspect', `${displayWidth} / ${displayHeight}`);
+        stage.style.setProperty('--game-aspect-value', String(displayWidth / displayHeight));
       } else {
-        stage?.style.removeProperty('--game-aspect');
-        stage?.style.removeProperty('--game-aspect-value');
+        stage.style.removeProperty('--game-aspect');
+        stage.style.removeProperty('--game-aspect-value');
       }
-    } else if (frame) {
-      const msg = el.dataset.gameNoembed || 'Game embed coming soon';
-      stage?.style.removeProperty('--game-aspect');
-      stage?.style.removeProperty('--game-aspect-value');
-      frame.removeAttribute('src');
-      frame.srcdoc = `<div style="display:flex;align-items:center;justify-content:center;height:100%;background:#0a0a0a;color:#666;font-family:system-ui;font-size:14px;"><p>${msg}</p></div>`;
-    }
 
-    catalog?.classList.add('hidden');
-    intro?.classList.add('hidden');
-    player?.classList.remove('hidden');
-    player?.scrollIntoView({ block: 'start' });
-  };
+      if (embedUrl) loadEmbed(card);
+      else {
+        frame.removeAttribute('src');
+        frame.removeAttribute('srcdoc');
+        status.textContent = card.dataset.gameNoembed || 'Game embed coming soon';
+      }
+      catalog.classList.add('hidden');
+      intro?.classList.add('hidden');
+      player.classList.remove('hidden');
+      player.scrollIntoView({ block: 'start' });
+      title.focus({ preventScroll: true });
+    };
 
-  const closeGame = () => {
-    if (!activeGameId) return;
-    activeGameId = undefined;
-    player?.classList.add('hidden');
-    intro?.classList.remove('hidden');
-    catalog?.classList.remove('hidden');
-    if (frame) {
+    const closeGame = () => {
+      if (!activeCard) return;
+      const previousCard = activeCard;
+      activeCard = undefined;
+      clearLoading();
+      player.classList.add('hidden');
+      intro?.classList.remove('hidden');
+      catalog.classList.remove('hidden');
       frame.removeAttribute('src');
       frame.removeAttribute('srcdoc');
-    }
-  };
+      status.textContent = '';
+      previousCard.focus();
+    };
 
-  const syncGameFromUrl = () => {
-    const id = window.location.hash.slice(1);
-    const card = cards.find((candidate) => candidate.dataset.gameId === id);
-    if (card) openGame(card);
-    else closeGame();
-  };
+    const syncGameFromUrl = () => {
+      const id = window.location.hash.slice(1);
+      const card = cards.find((candidate) => candidate.dataset.gameId === id);
+      if (card) openGame(card);
+      else closeGame();
+    };
 
-  cards.forEach((card) => {
-    card.addEventListener('click', () => {
-      const id = card.dataset.gameId;
-      if (!id) return;
-      window.location.hash = id;
-      syncGameFromUrl();
+    cards.forEach((card) => {
+      card.addEventListener('click', () => {
+        const id = card.dataset.gameId;
+        if (!id) return;
+        window.location.hash = id;
+        syncGameFromUrl();
+      }, options);
     });
-  });
+    backBtn?.addEventListener('click', () => {
+      window.history.pushState(window.history.state, '', window.location.pathname + window.location.search);
+      closeGame();
+    }, options);
+    retryBtn?.addEventListener('click', () => {
+      if (activeCard?.dataset.gameEmbed) loadEmbed(activeCard);
+    }, options);
+    window.addEventListener('popstate', syncGameFromUrl, options);
+    window.addEventListener('hashchange', syncGameFromUrl, options);
+    syncGameFromUrl();
 
-  backBtn?.addEventListener('click', () => {
-    window.history.replaceState(
-      window.history.state,
-      '',
-      window.location.pathname + window.location.search,
-    );
-    closeGame();
-  });
+    fullscreenBtn?.addEventListener('click', async () => {
+      try {
+        await stage.requestFullscreen();
+      } catch {
+        status.textContent = 'Fullscreen is unavailable. You can open the player in a new tab.';
+      }
+    }, options);
+  }
 
-  window.addEventListener('popstate', syncGameFromUrl);
-  window.addEventListener('hashchange', syncGameFromUrl);
-  syncGameFromUrl();
-
-  fullscreenBtn?.addEventListener('click', () => {
-    stage?.requestFullscreen?.();
-  });
+  document.addEventListener('astro:page-load', initializePlayer);
+  document.addEventListener('astro:before-swap', () => cleanup?.());
 </script>

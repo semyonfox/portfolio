@@ -4,7 +4,7 @@ export const privacyMeta = {
   title: 'Privacy',
   pageDescription:
     'What semyon.ie collects and why. No cookies, no banners, no raw IPs.',
-  updated: '15 July 2026',
+  updated: '3 October 2026',
 };
 
 export interface PrivacySection {
@@ -14,57 +14,41 @@ export interface PrivacySection {
 }
 
 export const privacyIntro =
-  "This site collects as little as it can, and stores none of it on your device. No cookies, no localStorage, no fingerprinting, no third-party analytics, no ads. That's why there's no cookie banner.";
+  'This version uses no cookies, browser storage, visitor identifiers or fingerprinting for analytics. Anonymous counts and fixed error categories are off until explicitly configured. This notice describes this version; it requires the matching site and API deployment.';
 
 export const privacySections: PrivacySection[] = [
   {
-    heading: 'What gets collected',
-    items: [
-      'Assistant chats: the messages you send, the reply you get, a timestamp, response time, and which model answered. Chats are read later to improve the assistant and to spot what people look for, so please don’t type personal details into it.',
-      'Usage events: page views, aggregate internal navigation between site paths, coarse link placement (header, footer, content, or call to action), chat opens, game launches, outbound link clicks, contact form submissions, and requests for pages that don’t exist. Event URLs are limited to paths or external origins and paths, without query strings or fragments. Page views are classified only as direct or external arrivals; navigation events are not tied together into a browsing history.',
-      'Device context per event: browser and operating system family (parsed from the user agent, the raw string is never kept), preferred language, and a coarse device class (mobile, tablet, or desktop).',
-      'Rough location: a two-letter country code resolved by Cloudflare at the network edge. This site never looks up or stores your IP address itself.',
-      'An anonymous visitor id: a salted hash of your IP and browser that rotates every day, used to estimate daily unique visitors. It is designed not to reveal your IP and can’t link your visits across days.',
-    ],
-  },
-  {
-    heading: 'What never gets collected',
-    items: [
-      'Raw IP addresses. They’re used transiently in memory for rate limiting, then discarded.',
-      'Names, emails, or accounts, unless you type them into the chat or the contact form yourself.',
-      'Anything stored in or read from browser storage.',
+    heading: 'Anonymous counts and errors',
+    paragraphs: [
+      'If enabled, self-hosted analytics receive screen and action counts plus fixed technical error categories. Each event contains only the schema version, app name, count/error kind, an allowlisted event name, web surface and a static page category.',
+      'No URL paths, query strings, referrers, browser details, country, IP hashes, visitor IDs, conversation IDs, form contents or error messages/stacks are included. There are no unique visitor counts or recordings.',
     ],
   },
   {
     heading: 'Opting out',
     paragraphs: [
-      'If your browser sends Do Not Track or Global Privacy Control, usage events are not recorded. This is honoured on both the client and the server.',
+      'Do Not Track and Global Privacy Control suppress analytics. You can also select “Disable anonymous counts for this page session” in the footer. That choice lasts through site navigation until reload and is kept only in memory.',
     ],
   },
   {
-    heading: 'Third parties',
-    items: [
-      'OpenRouter: chat messages are forwarded to OpenRouter and the underlying model provider to generate replies.',
-      'Cloudflare Email Service: contact form messages are sent to Semyon’s verified inbox through Cloudflare, which receives the name, email, and message you submit.',
-      'Cloudflare: site traffic passes through Cloudflare, which performs the country lookup at the edge.',
+    heading: 'Chat and contact',
+    paragraphs: [
+      'Assistant messages are forwarded to OpenRouter and the underlying model provider to generate replies. Please leave out personal details. This API version does not write questions, replies or visitor identifiers to analytics storage.',
+      'Cloudflare Email Service delivers the name, email and message you submit to the configured inbox. Contact message contents are not stored in this site’s database; the delivered email remains in the inbox until deleted.',
+      'IP addresses are used transiently in memory for security rate limiting. Site traffic passes through Cloudflare. Hosting intermediaries and external providers have their own processing and retention policies.',
     ],
   },
   {
     heading: 'Retention',
     paragraphs: [
-      'Chat logs are kept for up to 12 months. Usage events are kept for up to 24 months. After that they’re deleted. Contact message contents are not stored in this site’s database; the delivered email remains in Semyon’s inbox until deleted.',
+      'The self-hosted collector contract requires UTC daily aggregate counts only: 30 days for usage counts and 14 days for error counts, with hourly purging. Raw events and request metadata must not be stored, and access logging must be disabled on the ingestion path before collection is enabled.',
+      'This version stops writing to the previous analytics database and leaves existing historical records untouched. Their retention and deletion need a separate operator review. Updating this source does not change a running deployment or delete stored data.',
     ],
   },
   {
-    heading: 'Legal basis',
+    heading: 'Questions and requests',
     paragraphs: [
-      'Processing rests on legitimate interest (GDPR article 6(1)(f)): running, securing, and improving this site. Nothing here is used for advertising, sold, or shared for marketing.',
-    ],
-  },
-  {
-    heading: 'Your rights',
-    paragraphs: [
-      'You have the usual GDPR rights: access, correction, deletion, and objection. Email hello@semyon.ie. One honest caveat: because visitor ids rotate daily and IPs aren’t stored, this site usually can’t tell which rows are yours. For chat deletion requests it helps if you can quote part of the conversation.',
+      'For privacy questions, access, correction, deletion or objections, email hello@semyon.ie. Anonymous counters have no visitor identifier that can link them back to you.',
     ],
   },
 ];
