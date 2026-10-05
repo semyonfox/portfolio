@@ -4,6 +4,6 @@ description: "JavaScript clicker about humanity's artificial creations across hi
 tech: 'JavaScript'
 github: 'https://github.com/semyonfox/artificial'
 embed: 'https://artificial.semyon.ie'
-thumbnail: '/game-thumbnails/artificial.webp?v=20260715'
+thumbnail: '/game-thumbnails/artificial.webp?v=20260924'
 order: 4
 ---

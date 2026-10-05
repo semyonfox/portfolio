@@ -7,6 +7,6 @@ embed: '/games/space-invaders/index.html'
 download: '/games/downloads/space-invaders-desktop.zip'
 displayWidth: 960
 displayHeight: 540
-thumbnail: '/game-thumbnails/space-invaders.webp?v=20260715'
+thumbnail: '/game-thumbnails/space-invaders.webp?v=20260924'
 order: 1
 ---

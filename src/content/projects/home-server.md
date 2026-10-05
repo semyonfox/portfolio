@@ -19,6 +19,8 @@ order: 1
 
 When its hinge damaged the 4K touchscreen, my Dell XPS 15 went from a half-usable laptop to a practical introduction to Linux systems administration, networking, storage, and containers.
 
+As of September 2026, the setup runs more than 30 services in 54 containers, with VPN access, Cloudflare tunnels and nginx reverse proxies across 21 internal virtual hosts. I maintain Jenkins pipelines for six applications with persistent BuildKit caching; the Irish Rail build dropped from 9m 43s to 1m 11s. Service backups go to the RAID NAS over NFS using Btrfs snapshots with daily, weekly, monthly and yearly retention.
+
 ## Server
 
 - **Host:** Dell XPS 15 running Ubuntu Server from a 500 GB SSD

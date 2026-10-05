@@ -7,6 +7,6 @@ embed: '/games/astar-maze-chase/index.html'
 download: '/games/downloads/astar-maze-chase-desktop.zip'
 displayWidth: 1280
 displayHeight: 800
-thumbnail: '/game-thumbnails/maze-chase.webp?v=20260715'
+thumbnail: '/game-thumbnails/maze-chase.webp?v=20260924'
 order: 2
 ---

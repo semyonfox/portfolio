@@ -7,6 +7,6 @@ embed: '/games/cellular-automata-caves/index.html'
 download: '/games/java/cellular-automata-caves.jar'
 displayWidth: 900
 displayHeight: 900
-thumbnail: '/game-thumbnails/cellular-caves.webp?v=20260715'
+thumbnail: '/game-thumbnails/cellular-caves.webp?v=20260924'
 order: 5
 ---

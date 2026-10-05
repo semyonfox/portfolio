@@ -18,14 +18,14 @@ const gamePreviewClass: Record<string, string> = {
 ---
 
 <Layout
-  title="Games | Semyon Fox"
-  description="Games and apps I've built that you can actually play."
+  title="Games & Renders | Semyon Fox"
+  description="Playable games, interactive tools and short renders I've made."
 >
   <section class="pt-20 pb-16 md:pt-28">
     <div id="games-intro">
-      <h1 class="type-page-title mb-3">Games & Apps</h1>
+      <h1 class="type-page-title mb-3">Games & Renders</h1>
       <p class="type-body mb-12">
-        games and other interactive things i've built
+        games you can play, tools you can try, and a few things in motion
       </p>
     </div>
 
@@ -84,6 +84,33 @@ const gamePreviewClass: Record<string, string> = {
         ))
       }
     </div>
+
+    <section id="renders" class="mt-16" aria-labelledby="renders-title">
+      <h2 id="renders-title" class="type-section-title mb-2">In motion</h2>
+      <p class="type-body mb-5">Short clips from a game environment and a motion study.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <article class="bg-surface border border-heading/[0.06] rounded-bento overflow-hidden">
+          <video class="w-full aspect-video bg-black" controls preload="none" playsinline poster="/projects/after-midnight.png" aria-label="After Midnight curtain and plant motion test">
+            <source src="/renders/after-midnight-breeze.mp4" type="video/mp4" />
+          </video>
+          <div class="p-4">
+            <h3 class="type-small-title">After Midnight: breeze test</h3>
+            <p class="text-muted text-sm mt-1.5">A six-second capture of the curtains and plants in the house prototype.</p>
+            <a href="/projects/after-midnight" class="text-fox text-sm mt-2 inline-block hover:underline">about the game &rarr;</a>
+          </div>
+        </article>
+        <article class="bg-surface border border-heading/[0.06] rounded-bento overflow-hidden">
+          <video class="w-full aspect-video bg-black" controls preload="none" playsinline poster="/renders/orbital-demo.webp" aria-label="Orbital motion study">
+            <source src="/renders/orbital-demo.mp4" type="video/mp4" />
+          </video>
+          <div class="p-4">
+            <h3 class="type-small-title">Orbital</h3>
+            <p class="text-muted text-sm mt-1.5">A 30-second orbital motion study made for Streambox.</p>
+            <a href="/projects/streambox" class="text-fox text-sm mt-2 inline-block hover:underline">about Streambox &rarr;</a>
+          </div>
+        </article>
+      </div>
+    </section>
 
     <!-- game player (hidden by default) -->
     <div id="game-player" class="hidden">
@@ -491,6 +518,7 @@ const gamePreviewClass: Record<string, string> = {
     cleanup?.();
     const catalog = document.getElementById('game-catalog');
     const intro = document.getElementById('games-intro');
+    const renders = document.getElementById('renders');
     const player = document.getElementById('game-player');
     const frame = document.querySelector<HTMLIFrameElement>('#player-frame');
     const title = document.getElementById('player-title');
@@ -590,6 +618,7 @@ const gamePreviewClass: Record<string, string> = {
       }
       catalog.classList.add('hidden');
       intro?.classList.add('hidden');
+      renders?.classList.add('hidden');
       player.classList.remove('hidden');
       player.scrollIntoView({ block: 'start' });
       title.focus({ preventScroll: true });
@@ -602,6 +631,7 @@ const gamePreviewClass: Record<string, string> = {
       clearLoading();
       player.classList.add('hidden');
       intro?.classList.remove('hidden');
+      renders?.classList.remove('hidden');
       catalog.classList.remove('hidden');
       frame.removeAttribute('src');
       frame.removeAttribute('srcdoc');

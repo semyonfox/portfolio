@@ -4,6 +4,6 @@ description: 'Browser-based incremental clicker with an upgrade system.'
 tech: 'JavaScript'
 github: 'https://github.com/semyonfox/clickerGame'
 embed: 'https://clicker.semyon.ie'
-thumbnail: '/game-thumbnails/clicker-game.webp?v=20260715'
+thumbnail: '/game-thumbnails/clicker-game.webp?v=20260924'
 order: 7
 ---
