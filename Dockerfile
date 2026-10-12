@@ -7,7 +7,7 @@ ARG PUBLIC_CHAT_API_URL=/api/chat
 ENV PUBLIC_CHAT_API_URL=$PUBLIC_CHAT_API_URL
 RUN vp run build
 
-FROM nginx:1.31-alpine@sha256:a9ae6f6d078d477e21323310498e5196cb2b7c0aedd9e07b7306612077227d7c
+FROM nginx:1.31-alpine@sha256:df221db836e1754089190208cee7eeda94f233197056426eda74a43ab1abeac2
 RUN apk add --no-cache wget
 COPY --from=build /app/dist /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
