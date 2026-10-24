@@ -26,7 +26,7 @@
     "@fontsource/inter": "^5.3.0",
     "astro": "^7.2.8",
     "preact": "^10.29.8",
-    "sharp": "^0.35.4",
+    "sharp": "^0.35.5",
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
