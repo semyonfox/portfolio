@@ -11,4 +11,4 @@ order: 15
 
 Drag between devices to build links. Packets take the shortest connected route, but each wire has finite capacity, so bottlenecks form and queues can overflow. Delivered packets earn credits for new routes and upgrades.
 
-The browser demo is an existing WebGL export. It starts and reaches gameplay; it may predate the latest Unity source, so its exact feature set should be judged from the demo itself.
+The browser demo is an existing WebGL export. It may predate the latest Unity source.
