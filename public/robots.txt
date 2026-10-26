@@ -1,4 +1,6 @@
+# cloudflare prepends the training-crawler opt-outs (bot preference sync)
 User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=no
 Allow: /
 
 Sitemap: https://semyon.ie/sitemap-index.xml
