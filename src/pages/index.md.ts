@@ -26,8 +26,6 @@ Developer, swimmer, builder. Computer Science & IT student at the University of 
 
 Builds tools for studying and swimming, plus chess experiments and games. Runs much of the work on his own Linux infrastructure and trains for a sub-minute 100m freestyle.
 
-**Seeking a Jan–Aug 2027 software engineering / platform / SRE placement.**
-
 ## Tech
 
 JavaScript, TypeScript, React, Next.js, Node.js/Express, Java, Python, Rust, C, SQL, PostgreSQL, MySQL, TimescaleDB, Redis, Docker, Jenkins CI/CD, Linux, nginx, Cloudflare Workers, Tunnels, Zero Trust, AWS, Tailwind, Astro.
