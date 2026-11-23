@@ -1,4 +1,4 @@
-FROM ghcr.io/voidzero-dev/vite-plus:1.5.0@sha256:cce163cdf4cf3fff928925e03a815910be14d34c355fe40b4e79e766fe368f63 AS build
+FROM ghcr.io/voidzero-dev/vite-plus:1.7.0@sha256:dcdbe5282b3c2087fec3f5e38272b8e04939f1ef5c565b8bfec0cbfb66f238ae AS build
 WORKDIR /app
 COPY --chown=vp:vp package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 RUN vp install --frozen-lockfile
